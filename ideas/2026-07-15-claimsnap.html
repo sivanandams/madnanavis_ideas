@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-15 — ClaimSnap</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-15</div>
+    <h1>ClaimSnap</h1>
+    <p class="pitch">AI turns your before/after turnover photos into insurance-ready damage claims in minutes — so short-term rental hosts stop quietly eating the cost of guest damage.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Airbnb / Vrbo hosts and small property-management companies operating 5–200 furnished short-term rental units — especially self-managed hosts and boutique PM shops with no dedicated ops or claims staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Platforms, security-deposit services (Superhog, Truvi, CSA), and travel insurers all require itemized evidence — before/after photos, receipts, market-price comps — submitted within a tight 14–30 day window after checkout. Most hosts have no organized "move-in" baseline photos, don't know fair replacement costs, and burn hours assembling claims that still get rejected on a technicality. It's a recurring $50–500 loss per incident, multiplied across every turnover a busy host or PM company runs each year.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Host connects their calendar/PMS (Guesty, Hostaway, OwnerRez) or logs turnovers manually.</li>
+      <li>Baseline "move-in" photos are captured per room through a simple mobile flow (or pulled automatically from a smart lock/camera at turnover, if connected).</li>
+      <li>After each stay, the cleaner or host uploads "post-checkout" photos through the same flow.</li>
+      <li>Vision AI diffs each before/after room pair, flags likely damage (stains, breaks, missing items) with a confidence score.</li>
+      <li>Host confirms flagged items; AI pulls a repair/replacement cost estimate from a maintained pricing reference and drafts an itemized claim + demand letter formatted for the Airbnb Resolution Center, the relevant insurer, or the deposit platform.</li>
+      <li>Host submits with one click (or copy/paste in v1) and the claim is tracked through to resolution.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Calendar/PMS APIs</span>
+      <span class="badge">Mobile photo capture + EXIF verification</span>
+      <span class="badge">Vision model for damage detection</span>
+      <span class="badge">Repair/replacement cost dataset</span>
+      <span class="badge">Smart lock/camera (optional)</span>
+      <span class="badge">PDF/e-sign generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Low monthly base per property (~$15–25/property/mo) plus an optional success fee (~10%) on damage amounts actually recovered — aligning incentives the way recovery-style services typically do. A free tier capped at one property drives bottom-up adoption among individual hosts before expanding into PM companies.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Single-property, manual-turnover mode: mobile web app for before/after photo upload, AI diff detection covering the top five damage categories (stains/burns, broken furniture, missing items, wall damage, appliance damage), an auto-generated PDF claim packet with cost estimates from a starter pricing catalog, and manual submission to the platform (no direct Airbnb API auto-submit yet — that requires business API access). Target: 20–30 pilot hosts recruited from STR host Facebook groups and subreddits.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>"AI for short-term rentals" almost always means guest-messaging chatbots or dynamic pricing — both already crowded (Hospitable, PriceLabs, Wheelhouse). Nobody is targeting the unglamorous, high-frequency, financially painful moment of turnover damage documentation. It's exactly the kind of structured, verifiable, deadline-bound task vision AI is genuinely good at — comparing two photo sets and pricing a repair — rather than another conversational layer bolted onto an existing dashboard.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
