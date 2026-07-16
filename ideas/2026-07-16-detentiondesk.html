@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-16 — DetentionDesk</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-16</div>
+    <h1>DetentionDesk</h1>
+    <p class="pitch">AI turns ELD timestamps and rate confirmations into airtight detention-pay claims — so owner-operators stop eating thousands a year in unpaid dock wait time.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owner-operators and small trucking fleets (1–25 trucks) hauling dry van, reefer, or flatbed freight for brokers and shippers under rate confirmations that include detention clauses.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Detention time — waiting past free time at pickup or delivery — is one of trucking's largest uncompensated costs; industry estimates put unclaimed detention pay in the billions annually. To collect it, a driver has to cross-reference ELD "on-duty-not-driving" timestamps against free-time and detention-rate terms buried in each broker's rate confirmation (every broker's contract language and format differs), then file a claim within a tight 24–72 hour window in the exact format that broker demands. Most owner-operators have no back-office staff to do this consistently, so claims are skipped, filed late, or rejected on a technicality — a recurring $100–400 loss per detained load.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Driver connects their ELD (Motive, Samsara, KeepTruckin/Verizon Connect) or forwards ELD log PDFs for a load.</li>
+      <li>Driver uploads or forwards the rate confirmation (photo or email) for the same load.</li>
+      <li>Document AI extracts the free-time window, detention rate, and any threshold/notice clauses from the rate-con — handling the fact that every broker's template reads differently.</li>
+      <li>The system cross-references ELD stop timestamps against BOL check-in/check-out times to compute exact detention hours owed, no manual math.</li>
+      <li>It auto-drafts a claim packet — timestamps, hours, rate, supporting document excerpts — formatted to match that specific broker's submission requirements, and starts a countdown alert against the filing deadline.</li>
+      <li>Driver reviews, edits if needed, and submits with one click (or copy/paste in v1); the claim is tracked to payment with automated follow-up reminders.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">ELD APIs (Motive, Samsara, Verizon Connect)</span>
+      <span class="badge">Document AI for rate-con &amp; BOL parsing</span>
+      <span class="badge">Email-forward ingestion</span>
+      <span class="badge">Broker claim-format template library</span>
+      <span class="badge">Time-series matching engine</span>
+      <span class="badge">PDF generation &amp; e-sign</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-truck monthly subscription (~$29–49/truck/mo) with an optional success-fee-only tier (~15% of recovered detention pay, no monthly cost) for drivers wary of upfront spend — mirroring how recovery-style services typically price to align incentive with payout.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual, load-by-load flow with no ELD API in v1: driver uploads a photo/PDF of the ELD log excerpt plus the rate confirmation for a single load. Rate-con parsing tuned to the 8–10 largest freight brokers' contract formats. Auto-calculated detention claim as a formatted PDF, plus a filing-window countdown reminder by text/email. Target: 20–30 pilot owner-operators recruited from trucking Facebook groups, r/Truckers, and OOIDA-adjacent communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>"AI for trucking" almost always means load-matching marketplaces or dispatch chatbots — already crowded territory (DAT, Truckstop, and a wave of AI dispatch copilots). Nobody is targeting the tedious, deadline-bound, contract-clause-dependent paperwork of detention claims, even though it's exactly the kind of task modern AI is genuinely suited for: extracting variable terms from inconsistent contract documents and running deterministic time-series math against them, not holding a conversation. And because it recovers money already owed under an existing signed contract, the value is immediate and provable on day one — not a speculative efficiency gain.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
