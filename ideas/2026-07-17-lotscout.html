@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-17 — LotScout</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-17</div>
+    <h1>LotScout</h1>
+    <p class="pitch">Point a phone camera at an estate-sale item and get an instant, comp-backed price and printable listing — turning a two-day pricing marathon into a few hours.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent estate sale and liquidation companies (2–10 person crews) running 2–6 in-home sales a month, plus solo "clean-out" resellers who buy and flip whole households.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Before every sale, a crew has to price hundreds to thousands of items — furniture, tools, china, tchotchkes — in the 24–48 hours between the client walkthrough and sale day. Underpricing gives away thousands of dollars in a single weekend; overpricing leaves unsold junk the grieving or downsizing family now has to deal with. In practice, pricing rests on one senior "pricer" doing gut-instinct calls plus ad hoc eBay "sold" searches — a skill that takes years to build, doesn't transfer across a growing crew, and burns out the most expensive person on the team every single sale. Nobody has systematized it.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>A crew member walks the house with their phone, photographing each item room by room in batch mode.</li>
+      <li>Vision AI classifies each photo — item category, likely maker/brand/pattern where visible (furniture style, china maker's mark, tool brand) — and flags anything it's not confident about for a human tag.</li>
+      <li>The system pulls recent sold comps (eBay sold listings, plus antiques/collectibles auction records) for that item type, brand, and visible condition, and returns a suggested price range in seconds.</li>
+      <li>The pricer swipes through: accept the suggested price, nudge it up or down, or flag it for the team's expert — then locks in a price and condition note.</li>
+      <li>One tap generates a printable price tag with a QR code linking to that item's listing, and pushes the item to the sale's online catalog (and to eBay or Facebook Marketplace for high-value pieces).</li>
+      <li>After the sale, actual sold prices feed back into that company's own comp model, so pricing gets sharper with every sale they run.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Vision model for household-item classification</span>
+      <span class="badge">eBay Sold Listings data</span>
+      <span class="badge">Antiques/collectibles comp data (WorthPoint-style)</span>
+      <span class="badge">Label/sticker printer (Dymo, Zebra) or PDF sheet output</span>
+      <span class="badge">QR code generation</span>
+      <span class="badge">Lightweight sale-catalog storefront</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-sale fee (~$79–149 per sale event, scaled by item count) rather than a flat monthly charge — matching how estate sale companies already think in terms of cost-per-sale against sale revenue. A monthly unlimited plan (~$299–499/mo) for higher-volume companies running 6+ sales a month.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover the ~15 item categories that make up 80% of estate sale volume (furniture, kitchenware, tools, china/glassware, costume jewelry, books/media, art/prints, small electronics, linens, holiday/decor), with a manual type-in fallback for everything else. Comp data sourced from eBay sold listings only. Mobile-browser web app for photo capture and swipe review — no native app needed. Tags print to any standard label printer or a PDF sheet. Pilot with 8–12 estate sale companies in one metro area, recruited through EstateSales.net listings and the American Society of Estate Liquidators network.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing estate-sale software (EstateSales.net, Liquid Estate) is built to market a sale to buyers — it does nothing for the internal bottleneck that actually determines how much money the sale makes: pricing. That's a much higher-leverage problem, and vision AI is a near-perfect fit for it, yet nobody has aimed AI at it. Most SaaS builders skip this market because it looks unglamorous (used furniture, grandma's china) and is fragmented into thousands of tiny local operators with no dominant national chain — but that fragmentation, paired with a real, high-frequency, revenue-tied pain point that recurs on every single sale, makes it a strong wedge. And every sale run through the tool adds proprietary sold-price data that sharpens future pricing — a data moat competitors can't shortcut.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
