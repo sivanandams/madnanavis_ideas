@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-18 — RebutIQ</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-18</div>
+    <h1>RebutIQ</h1>
+    <p class="pitch">AI cross-references your home warranty contract, the technician's own diagnostic notes, and the denial letter to draft a clause-by-clause rebuttal — turning wrongly denied home-warranty claims into paid ones.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Homeowners who've had a home warranty claim denied or lowballed (American Home Shield, Choice Home Warranty, Cinch, First American, Old Republic), plus real estate agents and small property-management companies (10–200 units) who field warranty claims on behalf of clients or tenants and eat the friction every time one gets denied.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Home warranty companies deny a large share of claims citing boilerplate reasons — "pre-existing condition," "improper maintenance," "code violation," "secondary damage" — in a form letter that rarely quotes the actual contract language. Meanwhile the technician's own diagnostic report, which is what triggered the denial, often contradicts the stated reason or omits the clause that would actually make the item covered. Homeowners don't know their contract well enough to catch the contradiction, appeal windows are short (typically 15–30 days), and the claim amounts ($300–$5,000) are too small to justify a lawyer but too large to just walk away from. Most people give up and pay for the repair themselves.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads their home warranty contract once at signup (PDF or photo of the mailed booklet).</li>
+      <li>When a claim is denied, user forwards the denial letter/email and the technician's service report or diagnostic notes.</li>
+      <li>Document AI extracts the denial's cited reason code and exclusion clause, pulls the verbatim contract section it refers to, and separately extracts what the technician actually found and wrote.</li>
+      <li>The system cross-checks for contradictions: does the technician's own language undercut the stated denial reason? Does the cited exclusion actually apply given what was found? Is there an overlooked covered clause (secondary systems, workmanship guarantee, code-upgrade allowance)?</li>
+      <li>It auto-drafts an appeal letter that quotes the specific contract section numbers and the technician's own words back at the company, with the correct submission channel (portal, mail, fax) and a countdown to the appeal deadline.</li>
+      <li>User reviews, edits if needed, and submits; the system tracks the appeal to resolution and, if there's no response by the deadline, surfaces an escalation template (BBB complaint, state insurance/consumer-affairs regulator complaint).</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI / OCR for contracts &amp; denial letters</span>
+      <span class="badge">Clause taxonomy library per major provider</span>
+      <span class="badge">Email-forward ingestion</span>
+      <span class="badge">PDF generation</span>
+      <span class="badge">Certified-mail / fax API (e.g. Lob)</span>
+      <span class="badge">State regulator complaint template library</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Free contract parse plus one denial analysis to prove the contradiction exists; then $39 per appeal packet, or $19/month unlimited for agents and property managers handling multiple claims. Optional no-upfront-cost tier: 10% of the recovered claim value instead of the flat fee, for homeowners hesitant to pay before they know it'll work.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual upload only — no provider-portal integrations at launch. Clause parsing pre-tuned to the five largest home warranty providers (AHS, Choice, Cinch, First American, Old Republic), covering the bulk of the market. Output is a single downloadable appeal PDF plus plain-language submission instructions for that provider. Target 20–30 pilot users recruited from r/HomeWarranty, r/RealEstate agent groups, and property-management forums.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>"AI for insurance appeals" almost always means health insurance or auto insurance — huge, heavily regulated, and already crowded with well-funded entrants. Home warranty is a multi-billion-dollar industry with a reputation for high denial rates and essentially zero appeal tooling, because each individual claim is too small for a lawyer but painful enough that people quietly pay out of pocket instead of fighting it. The AI's job here isn't conversation — it's deterministic contradiction-detection: diffing a technician's own diagnostic language against the contract's exclusion language, a structured extraction-and-matching task that outperforms a chatbot and hands the homeowner an appeal armed with the company's own inspector's words.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
