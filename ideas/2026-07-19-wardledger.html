@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-19 — WardLedger</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #2b5f8a;
+    --accent-soft: #dbe8f2;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14181c;
+      --card-bg: #1c2126;
+      --ink: #eceef1;
+      --ink-soft: #a8b0b8;
+      --accent: #6fa8d8;
+      --accent-soft: #1e2f3d;
+      --border: #2e353c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181c; --card-bg: #1c2126; --ink: #eceef1; --ink-soft: #a8b0b8;
+    --accent: #6fa8d8; --accent-soft: #1e2f3d; --border: #2e353c;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #2b5f8a; --accent-soft: #dbe8f2; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-19</div>
+    <h1>WardLedger</h1>
+    <p class="pitch">AI turns a conservator's bank statements and receipts into the exact court-mandated accounting packet each probate court demands — so guardians stop risking contempt over spreadsheet errors.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Professional fiduciaries and family members serving as court-appointed conservators/guardians of the estate for incapacitated adults — roughly 1.3M active U.S. adult guardianship cases, split between individual family fiduciaries (usually one ward, filing rarely) and professional fiduciaries who manage a caseload of 10–100+ wards simultaneously.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Probate courts require periodic (usually annual or biennial) financial accountings itemizing every dollar in and out of a ward's estate — income, disbursements by category, asset schedules, bond reconciliation — filed in that specific county's local accounting format, which varies not just state to state but court to court within a state. Missing a deadline, misclassifying a disbursement, or failing to attach a receipt for a large expense can get a fiduciary held in contempt, personally surcharged, or removed from the case — real personal and financial liability. Family fiduciaries do this with a shoebox of receipts and a spreadsheet once a year and dread it; professional fiduciaries re-do the same manual categorization and formatting work, case after case, with no dedicated back-office tooling built for this workflow.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Fiduciary connects the ward's bank/investment accounts (Plaid) or uploads bank statements and receipt photos for the accounting period.</li>
+      <li>AI categorizes every transaction into that court's required schedule categories (income, medical, housing, distributions, asset changes) using a chart-of-accounts template matched to the specific state and county.</li>
+      <li>System flags anomalies — large disbursements missing a receipt, categories trending outside prior periods, asset totals falling below the bond amount — for the fiduciary to resolve before filing.</li>
+      <li>It auto-generates the formatted accounting packet: summary schedules, the county's official accounting form fields pre-filled, and an indexed exhibit list of attached receipts.</li>
+      <li>Fiduciary reviews, edits any miscategorized line, and exports a filing-ready PDF; the system tracks the next filing deadline and sends reminders as it approaches.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Plaid / bank &amp; brokerage aggregation</span>
+      <span class="badge">Receipt OCR</span>
+      <span class="badge">County probate accounting form template library</span>
+      <span class="badge">Transaction categorization engine</span>
+      <span class="badge">Deadline tracking &amp; reminders</span>
+      <span class="badge">PDF generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-ward monthly subscription (~$39–79/ward/mo) for professional fiduciaries managing multiple cases; a flat per-accounting-period fee (~$299–499) for individual family fiduciaries who file only once a year or two.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual upload only in v1 (no bank API): fiduciary uploads statements and receipt photos for one accounting period. Pre-built accounting-form templates for the five to ten highest-volume state/county courts by guardianship caseload (e.g. CA, FL, TX, NY, IL). Automated categorization, anomaly flags, and a filing-ready PDF plus deadline countdown. Recruit 15–20 pilot professional fiduciaries via the National Guardianship Association and state fiduciary associations, and a handful of family fiduciaries through elder law attorney referrals.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>"AI for legal" attention goes to law-firm-facing tools — contract review, e-discovery, litigation research — leaving this niche invisible because it sits at the intersection of family law, elder care, and bookkeeping, a combination no vertical SaaS company currently serves. Yet it has everything that makes a niche defensible: a hard legal deadline, personal financial liability for getting it wrong, and a task that's fundamentally about normalizing inconsistent formats and categorizing transactions — exactly what modern document AI is suited for, not a chatbot conversation. Elder law attorneys, who supervise and often recommend fiduciaries, are a natural low-cost referral channel that a generic bookkeeping tool would never think to court.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
