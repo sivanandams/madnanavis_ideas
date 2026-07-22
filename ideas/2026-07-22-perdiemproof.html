@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-22 — PerDiemProof</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-22</div>
+    <h1>PerDiemProof</h1>
+    <p class="pitch">AI cross-checks travel-nurse contracts and pay stubs against GSA per-diem tables — catching shorted stipends and tax-home audit risk before they cost thousands.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Travel nurses and travel allied-health professionals (radiology techs, surgical techs, physical therapists) working 8–13 week contracts through staffing agencies like Aya, Cross Country, AMN, Fusion, and Medical Solutions.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Travel healthcare pay is split into a taxable "bill rate" wage plus non-taxable stipends (housing, meals &amp; incidentals) that must track GSA per-diem tables for the assignment's exact ZIP/county and dates, plus IRS tax-home rules. Agencies routinely miscalculate this — wrong locality, stale rate year, blended-rate math errors — shorting travelers hundreds to thousands of dollars per contract, or structuring stipends in ways that jeopardize tax-home status and expose the traveler to a five-figure IRS liability if audited. Verifying it requires either a travel-tax specialist CPA (rare, $300+/session) or manually cross-referencing dense GSA PDFs against contract fine print — something almost no traveler actually does before signing.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Traveler uploads or forwards their agency contract (PDF/photo) showing bill rate, stipend breakdown, assignment location, and dates.</li>
+      <li>Document AI extracts base rate, stipend categories and amounts, assignment ZIP/county, and contract start/end dates.</li>
+      <li>System pulls the current GSA per-diem lookup for that locality and date range and computes the maximum allowable non-taxable stipend.</li>
+      <li>A diff engine flags any contract stipend below the GSA max (a correctable underpayment) and any structuring pattern that risks tax-home status (e.g., no duplicated-expense trail, stipend exceeding safe-harbor norms), producing a plain-English risk report.</li>
+      <li>Once working, the traveler forwards each pay stub; the system reconciles actual pay against the traveler's own signed contract terms and flags the specific stub line that doesn't match.</li>
+      <li>For any flagged issue, the system drafts a ready-to-send message to the recruiter citing the exact contract clause and GSA reference to request a correction.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for contract &amp; pay-stub parsing</span>
+      <span class="badge">GSA per-diem public dataset (CONUS lookup by ZIP/date)</span>
+      <span class="badge">Email-forward ingestion</span>
+      <span class="badge">Contract-template library for top agencies</span>
+      <span class="badge">Rules engine for tax-home risk checks</span>
+      <span class="badge">PDF/report generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat fee per contract review (~$19–29 per 8–13 week assignment) plus an optional $9/mo add-on for ongoing paycheck reconciliation during an active assignment — priced low enough to buy on the spot when a traveler is about to sign, with the subscription as pure upside once trust is established.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support contract formats from the 5 largest travel-nursing agencies and GSA CONUS per-diem lookup only (no OCONUS/foreign assignments). Ship the contract-level stipend and tax-home risk report first; defer ongoing pay-stub reconciliation to v2. Manual upload only, no direct agency integrations. Distribute through r/TravelNursing, travel-nurse Facebook groups, and travel-nurse influencers/podcasts as the initial channel.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Travel-healthcare tech investment has gone almost entirely into job-matching marketplaces (Vivian, Trusted, IntelyCare) — nobody is building for the contract-math verification problem, even though the core data source (GSA per-diem tables) is public, structured, and perfectly suited to deterministic cross-referencing rather than generic chatbot Q&amp;A. The tax-home audit-risk framing also raises willingness to pay well past a typical "did I get paid right" checker: this isn't just recovering a shorted stipend, it's protection against a personal IRS liability, which is a fundamentally higher-stakes pitch for the same underlying automation.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
