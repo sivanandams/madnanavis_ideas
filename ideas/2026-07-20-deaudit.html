@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-20 — DEAudit</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #2b5f8a;
+    --accent-soft: #dbe8f2;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14181c;
+      --card-bg: #1c2126;
+      --ink: #eceef1;
+      --ink-soft: #a8b0b8;
+      --accent: #6fa8d8;
+      --accent-soft: #1e2f3d;
+      --border: #2e353c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181c; --card-bg: #1c2126; --ink: #eceef1; --ink-soft: #a8b0b8;
+    --accent: #6fa8d8; --accent-soft: #1e2f3d; --border: #2e353c;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #2b5f8a; --accent-soft: #dbe8f2; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-20</div>
+    <h1>DEAudit</h1>
+    <p class="pitch">AI reconciles a veterinary clinic's controlled-substance logs against purchase invoices and dispensing records so a DEA inspection doesn't end with a suspended registration.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent small-animal and mixed-practice veterinary clinics (and mobile/ambulatory vets) that handle Schedule II–V drugs — ketamine, butorphanol, buprenorphine, phenobarbital, tramadol — roughly 20,000+ U.S. clinics outside the large corporate chains (VCA, Banfield, etc.) that already have dedicated compliance staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every DEA-registered vet must keep a running, milliliter-accurate log for each controlled substance, take a biennial physical inventory, and report any discrepancy over threshold on DEA Form 106. In practice this is a paper log sheet taped to the drug safe or a shared spreadsheet, prone to spillage that never gets logged, unit mismatches between mL purchase invoices and mg dispensing records, and arithmetic drift that compounds unnoticed for months. Vet techs also have one of the highest documented rates of opioid diversion of any profession, and reconciliation is often the first place it surfaces. When a DEA inspector finds the books don't balance, the registrant vet faces registration suspension, fines that can run into the tens of thousands, and referral to the state veterinary board — with zero in-house compliance staff to have caught it earlier.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Clinic photographs each controlled-substance log sheet on a recurring schedule (e.g. weekly) via mobile upload, and forwards distributor invoices (Covetrus, Patterson, MWI, Henry Schein) to a dedicated ingestion email address.</li>
+      <li>OCR and handwriting recognition extract every entry: drug, date, patient, amount administered/wasted, witness signature, running balance.</li>
+      <li>The system reconciles logged balances against invoiced purchases in and, where available, dispensing records out, flagging math errors, unit mismatches, missing witness signatures, and usage patterns that drift from a doctor or tech's historical norm.</li>
+      <li>Flagged lines route to the practice's DEA-registrant vet with the specific entry to fix or investigate, well before the biennial inventory date rather than at inspection time.</li>
+      <li>On the biennial date — or on demand ahead of an announced inspection — the system generates the DEA-format inventory report and a drill-down audit packet per drug, tracing every summary number back to its photographed source entry.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Mobile photo capture</span>
+      <span class="badge">Handwriting OCR</span>
+      <span class="badge">Email-forwarded distributor invoices</span>
+      <span class="badge">Optional PMS pull (Cornerstone, AVImark, ezyVet)</span>
+      <span class="badge">Per-drug anomaly detection</span>
+      <span class="badge">DEA Form 106 / biennial inventory templates</span>
+      <span class="badge">PDF audit packet generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-location monthly subscription, ~$99–199/mo per controlled-substance safe/location, scaled by drug-schedule volume; an optional rush "audit-ready packet" fee for clinics facing an imminent or surprise inspection.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual photo upload plus email-forwarded invoices only in v1 — no practice-management-system integration yet. OCR tuned to the 8–10 most common standardized DEA log sheet formats used in vet clinics. Reconciliation and anomaly flagging limited to the ten most commonly stocked and most-diverted controlled drugs. Auto-generated biennial inventory report and audit packet. Recruit 10–15 pilot independent clinics through state veterinary medical association newsletters and DEA-compliance CE webinar sponsorships.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Compliance-AI attention flows to human hospitals and pharmacies, which have budgets and dedicated diversion-monitoring vendors like Invistics or Medacist — nobody builds for veterinary clinics, even though every DEA-registered vet carries the same personal, felony-level exposure with zero compliance staff and a clipboard for a system of record. It sits at the intersection of animal health, DEA regulatory law, and workplace diversion monitoring — three worlds no existing practice-management or pharmacy software connects. The core task is reconciling messy handwritten logs against multiple external data sources with unit conversions and flagging statistical anomalies: a document-AI and anomaly-detection problem, not a conversational one, which is exactly why a generic chatbot wrapper can't solve it.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
