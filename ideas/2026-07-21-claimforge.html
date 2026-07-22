@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-21 — ClaimForge</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-21</div>
+    <h1>ClaimForge</h1>
+    <p class="pitch">AI turns a public insurance adjuster's photos, scope notes, and Xactimate estimates into a carrier-ready settlement demand package in minutes instead of the 5–15 hours it takes by hand.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and public insurance adjusters handling residential property claims (fire, water, wind, hail) — roughly 10,000+ licensed public adjusters in the US, most operating solo or in shops of 2–5 people, paid on a percentage of the settlement they win for the policyholder.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Turning field photos and a damage scope into a persuasive, well-documented demand package is still a manual slog: pulling line items out of Xactimate, writing narrative justification, citing comparable settlements and applicable policy/building-code provisions, and assembling it into a format each carrier will actually engage with. It routinely eats 5–15 hours per claim. Because adjusters are paid a percentage of the settlement — not by the hour — every hour spent formatting is an hour not spent on the next claim, and a rushed or thin package directly lowers what the carrier offers. There's no dedicated tool for this; adjusters cobble it together in Xactimate exports, Word, and Excel.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Adjuster uploads phone photos of the damage, their field scope notes, and the prior carrier estimate or their own Xactimate export (ESX) for the claim.</li>
+      <li>Document AI extracts and normalizes damage line items, matching photos to specific scope entries.</li>
+      <li>The system cross-references line items against a regional repair-cost database to flag under-scoped or missing items versus typical settlements for that damage type and geography.</li>
+      <li>AI drafts a formatted demand letter and package: narrative summary, itemized damages with photo citations, applicable policy/code references, and comparable-settlement context.</li>
+      <li>Adjuster reviews and edits the draft in-app, then exports a polished PDF/DOCX package ready to send to the carrier.</li>
+      <li>Package and claim status are tracked so the adjuster can see turnaround time and follow up before the negotiation stalls.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Xactimate ESX file parsing</span>
+      <span class="badge">Regional repair-cost database</span>
+      <span class="badge">Document AI / OCR for carrier estimates &amp; policies</span>
+      <span class="badge">State insurance code &amp; building code reference library</span>
+      <span class="badge">Photo-to-line-item matching</span>
+      <span class="badge">PDF/DOCX generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-claim fee (~$49–99/claim) or a monthly subscription (~$199–499/mo for a bundle of claims), priced against the adjuster's own commission upside rather than against generic document-SaaS comparables — a package that measurably raises a settlement easily justifies a two-to-three-figure cost on a claim worth tens of thousands.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Single vertical (residential water and fire damage) in a single high-volume state to start (e.g. Florida). Photo + PDF/ESX ingestion, template-based demand-package generation, manual review before sending — no direct carrier-portal integration in v1. Target: 15–20 pilot public adjusters recruited through state public-adjuster associations and CE/license-renewal course networks.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Most "AI for insurance" plays chase the carrier side (claims triage, fraud detection) — crowded, enterprise-sales-heavy territory. Public adjusters are the underserved counterparty: solo operators with real, calculable ROI (a better package can mean thousands more per claim) but no tooling built for them specifically. The differentiator isn't generic document drafting — it's proprietary ESX/Xactimate parsing plus a package format tuned to what actually moves carrier settlement offers, sold through the adjuster's own trade associations and license-renewal channels rather than typical SaaS PLG motions.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
