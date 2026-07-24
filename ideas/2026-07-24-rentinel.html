@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-24 — Rentinel</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #2b6a5a;
+    --accent-soft: #dcece5;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12160f;
+      --card-bg: #191f16;
+      --ink: #eef1e8;
+      --ink-soft: #aab5a3;
+      --accent: #63c4a4;
+      --accent-soft: #1e3a30;
+      --border: #2e3a2a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12160f; --card-bg: #191f16; --ink: #eef1e8; --ink-soft: #aab5a3;
+    --accent: #63c4a4; --accent-soft: #1e3a30; --border: #2e3a2a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #2b6a5a; --accent-soft: #dcece5; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-24</div>
+    <h1>Rentinel</h1>
+    <p class="pitch">AI reads commercial leases, then reconciles CAM billing and escalation math against what tenants are actually being charged — catching missed renewal deadlines and misbilled rent before they cost a small landlord real money.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent commercial landlords and small property management firms running 5–50 tenants across strip malls, office parks, and mixed-use retail — portfolios too small to justify MRI, Yardi, or Argus lease-administration modules, so lease abstracts and CAM math live in scanned PDFs, memory, and a bookkeeper's spreadsheet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every commercial lease buries critical terms — renewal option windows, rent escalation triggers, CAM/expense-stop caps, base-year resets, co-tenancy clauses — inside dense legal language, often across multiple amendments. At this portfolio size there's no lease-admin system tracking any of it, so renewal options silently lapse (losing an above-market tenant or worse, locking the landlord into a below-market rate for years), escalations get invoiced at the wrong amount, and CAM reconciliations skip caps or use a stale base year. These errors are invisible until a tenant disputes a bill or an attorney flags a missed deadline during a sale — by which point it's a five- or six-figure problem instead of a five-minute fix.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Landlord or property manager uploads lease PDFs — new leases, renewals, and amendments — to Rentinel.</li>
+      <li>Document AI extracts a structured abstract: parties, term, renewal option windows and notice deadlines, base rent and escalation schedule, CAM/expense-stop terms (cap %, base year, exclusions), and co-tenancy/exclusivity clauses.</li>
+      <li>Landlord imports their rent roll or accounting export (QuickBooks, AppFolio CSV, or plain spreadsheet) showing what tenants were actually billed.</li>
+      <li>A reconciliation engine cross-references the lease abstract against actual billing and flags mismatches — an escalation that wasn't applied on schedule, a CAM charge that exceeded the contractual cap, a base year used incorrectly.</li>
+      <li>A deadline calendar auto-generates 90/60/30-day alerts ahead of every renewal option window and required tenant notice.</li>
+      <li>For each flagged discrepancy, Rentinel drafts a correction memo or tenant billing-adjustment letter citing the exact clause and dollar impact.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for lease/amendment parsing</span>
+      <span class="badge">CSV / QuickBooks / AppFolio rent-roll import</span>
+      <span class="badge">CAM &amp; escalation rules engine</span>
+      <span class="badge">Deadline calendar with email/SMS alerts</span>
+      <span class="badge">Letter/memo generation</span>
+      <span class="badge">Clause library by lease type (NNN, gross, modified gross)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-active-lease subscription, roughly $15–25/month per lease abstracted and monitored, tiered by portfolio size — the price scales directly with the number of leases under management, and a single caught CAM error or saved renewal option pays for a year of the subscription outright.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support standard retail and office NNN/gross leases with simple percentage or CPI escalations (defer ground leases and exotic escalation formulas to v2). Manual PDF upload plus CSV/rent-roll import only — no live PM-software sync. Ship renewal-deadline alerting and CAM/escalation reconciliation as the two flagship features; defer co-tenancy and exclusivity clause monitoring to a later release. Go to market directly through commercial real estate broker networks and small PM firm associations.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Enterprise lease-administration suites already solve this problem — for portfolios of hundreds of properties, at six-figure implementation cost. The 5–50 property landlord, which is the numerical majority of U.S. commercial real estate ownership, is considered too small a deal for that market and is left with Excel and institutional memory. And unlike a generic "AI reads your contract" tool, the wedge isn't summarization — it's the reconciliation step that cross-references extracted lease terms against actual billed amounts to surface a specific, dollar-denominated error. That turns the pitch from "helpful document reader" into "we found you $14,000 you're owed," which sells itself on the very first upload instead of requiring an education campaign.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
