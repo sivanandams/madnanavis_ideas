@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-25 — ReserveWatch</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-25</div>
+    <h1>ReserveWatch</h1>
+    <p class="pitch">AI parses condo/HOA reserve studies and cross-checks them against state structural-integrity funding laws — flagging the dollar shortfall and deadline that could put board members personally on the hook.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Community association management (CAM) companies managing 10–50 condo/HOA properties each, plus self-managed condo boards, in states with new post-Surfside structural-integrity reserve laws — starting with Florida (SB 4-D) and expanding to California (SB 326/SB 645) and other states now drafting similar bills.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>After the 2021 Surfside condo collapse, states began passing "milestone inspection" and "structural integrity reserve study" (SIRS) laws that require associations to fund reserves to a statutory minimum percentage and complete structural inspections on a fixed age-based schedule — with board members (often retiree volunteers) facing personal fiduciary liability for missed deadlines or underfunded reserves. CAMs track this manually across dozens of properties in spreadsheets and email, each with a different building age, jurisdiction, and reserve-study report from a different engineering firm. A missed milestone filing or an underfunded reserve triggers fines and lawsuits, yet no software exists that watches statutory deadlines property-by-property and checks the reserve study's own numbers against the legal minimum funding threshold.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>CAM or board uploads the association's most recent reserve study PDF plus the property's state, county, and building age.</li>
+      <li>Document AI extracts the reserve component list, useful life, replacement cost, and current funding level from the study.</li>
+      <li>System looks up the applicable statute for that jurisdiction and building age (SIRS funding percentage, milestone inspection trigger age, filing deadlines).</li>
+      <li>Engine computes the compliance gap — dollars below the statutory minimum reserve, and days remaining until the next inspection or filing deadline.</li>
+      <li>Produces a per-property compliance dashboard and auto-drafts a board-meeting-ready memo citing the exact statute section and shortfall amount.</li>
+      <li>Sends automated 90/60/30-day deadline reminders by email/SMS to the property manager and board treasurer.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for reserve-study PDF parsing</span>
+      <span class="badge">Curated state statute database (SIRS %, inspection ages, deadlines)</span>
+      <span class="badge">County assessor/permit data for building age</span>
+      <span class="badge">Email/SMS reminder engine</span>
+      <span class="badge">Board memo/PDF generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-property subscription for CAMs (~$15–25/property/month, scaling naturally with the size of their managed portfolio), plus a flat $49/mo plan for self-managed HOA boards handling a single property.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support Florida's SB 4-D (milestone inspections + SIRS) only, since it is the most codified and highest-stakes law in force today, plus the 3–4 most common reserve-study report formats from major Florida engineering firms. Manual PDF upload only, deadline tracking limited to milestone inspection and SIRS filing (no full financial audit). Distribute through Community Associations Institute (CAI) Florida chapter meetings, vendor booths, and CAM-industry LinkedIn/Facebook groups.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The reserve-study engineering firms have no incentive to build compliance-tracking software — they get paid once per study regardless of what happens afterward — while existing HOA software (AppFolio, Vantaca) focuses on payments and accounting, not statute-specific liability tracking. This sits in the gap between them: a narrow, high-stakes, state-statute-driven compliance workflow currently run by volunteers on spreadsheets, where the buyer (the property manager) isn't the one legally exposed but the board members they answer to are — producing an unusually strong liability-driven willingness to pay for what looks, on the surface, like a modest deadline tracker.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
