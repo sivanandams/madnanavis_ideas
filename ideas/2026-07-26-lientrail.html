@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-26 — LienTrail</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-26</div>
+    <h1>LienTrail</h1>
+    <p class="pitch">State-compliant lien-sale workflow and audit-trail software for independent self-storage operators — so a delinquent-unit auction never turns into a wrongful-lien lawsuit.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owners and on-site managers of independent and small-chain self-storage facilities (1–20 locations) who are not on an enterprise REIT compliance program — the roughly 25,000+ mom-and-pop and regional operators who make up the majority of U.S. self-storage square footage but run on SiteLink/StorEDGE for rent collection and spreadsheets or paper for everything else.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every state has its own self-storage lien-sale statute governing exactly how an operator may auction a delinquent tenant's unit: minimum days delinquent before a notice can issue, certified-mail requirements, precise waiting periods (often 14–90 days and state-specific), what the notice must say verbatim, how and where the auction must be advertised, minimum time between advertisement and sale, and post-sale surplus-fund handling. Miss any one step — wrong notice period, insufficient mail proof, defective ad — and the sale is legally a "conversion," exposing the operator to tenant lawsuits for actual damages, statutory penalties, and attorney's fees that can exceed the value of everything in the unit combined. Operators currently track this by memory, a generic template downloaded from a state storage association, and a paper file — with no systematic way to prove, months later in court, that every deadline was actually met.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Manager imports a delinquent-tenant list (CSV export from SiteLink/StorEDGE, or manual entry) with tenant name, unit, move-in date, facility state, and balance owed.</li>
+      <li>System matches the facility's state to its lien-law ruleset and calculates every required deadline for that tenant: earliest lien-notice date, certified-mail cutoff, minimum waiting period, earliest legal auction date.</li>
+      <li>System auto-generates the state-specific lien notice letter with correct statutory language and citations, ready to print or send via a certified-mail API.</li>
+      <li>Each unit moves through a visible pipeline (delinquent → noticed → mail confirmed → sale-eligible → advertised → auctioned) with the manager checking off proof at each stage (mail receipt scan, ad screenshot/tear sheet).</li>
+      <li>Once the waiting period clears, system generates auction-advertisement copy meeting the state's minimum publication requirements and a printable auction announcement.</li>
+      <li>Every document, timestamp, and uploaded proof is compiled into a single locked case file per unit — the "defense packet" the operator hands to their attorney if a former tenant ever disputes the sale.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Maintained 50-state self-storage lien law ruleset</span>
+      <span class="badge">CSV import from SiteLink / StorEDGE / Storable</span>
+      <span class="badge">Certified mail API (e.g. Lob) for notice delivery + proof tracking</span>
+      <span class="badge">Document/PDF generation with state-specific legal templates</span>
+      <span class="badge">Immutable timestamped audit log per case</span>
+      <span class="badge">Optional listing push to StorageTreasures / storagestuff.bid</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-facility subscription ($59–99/facility/month) for operators with steady delinquency volume, or a pay-per-case fee (~$25–40 per lien case) for smaller single-facility owners where auctions are infrequent — case-based pricing removes the "why am I paying monthly for something I use twice a year" objection that kills adoption in this segment.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Ship rulesets for the 10 states with the highest self-storage facility density (TX, FL, CA, GA, NC, OH, IL, PA, TN, VA). Manual CSV/spreadsheet import only — no live PMS integration. Deliver notice-letter generation, deadline tracking, and the exportable audit-trail case file; defer certified-mail API automation and auction-marketplace listing push to v2. Go to market through state self-storage association newsletters and SiteLink/StorEDGE user communities, where this exact liability is a recurring topic.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every well-funded self-storage software dollar has gone into rental, payments, and access-control (SiteLink, StorEDGE, Nokē, Storable) — none of it targets the one workflow in the industry with genuine tail-risk litigation exposure. The underlying logic is entirely deterministic (statutory deadlines and required notice language per state), which means the product's core defensibility is a well-maintained legal ruleset and an audit trail an attorney will trust, not a chatbot interface. It also travels: the same deadline-and-defense-packet engine applies almost unchanged to mobile-home-park lien sales, boat/RV storage liens, and contractor's/mechanic's liens — adjacent verticals with the identical "miss one date, get sued" shape.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
