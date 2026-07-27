@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-27 — CAMClear</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #2b6a5f;
+    --accent-soft: #dcece7;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12140f;
+      --card-bg: #191c15;
+      --ink: #eceee2;
+      --ink-soft: #aab2a0;
+      --accent: #5cbba7;
+      --accent-soft: #1c3530;
+      --border: #313627;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12140f; --card-bg: #191c15; --ink: #eceee2; --ink-soft: #aab2a0;
+    --accent: #5cbba7; --accent-soft: #1c3530; --border: #313627;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #2b6a5f; --accent-soft: #dcece7; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-27</div>
+    <h1>CAMClear</h1>
+    <p class="pitch">AI cross-references your commercial lease's CAM clause against the landlord's annual reconciliation statement to catch padded, capped-but-billed-over, and non-includable charges — before the check clears.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small-to-mid independent retail, restaurant, and single-location office tenants leasing space in shopping centers, strip malls, and office parks — typically 1–10 locations, no in-house real estate counsel or lease administrator on staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Commercial leases include Common Area Maintenance (CAM) clauses that cap year-over-year increases on "controllable" costs, exclude certain expenses (capital improvements, leasing commissions, landlord admin fees beyond a set percentage), and specify a pro-rata share formula. Landlords and property managers send annual CAM reconciliation statements that are frequently wrong — via honest error or deliberate padding — and industry audit firms routinely find 10–30% overcharges. Big national chains hire CAM audit consultants at $150–300/hr or a cut of recovered dollars, but that model ignores the long tail of small independent tenants who individually have only $2,000–$10,000 at stake per year — not enough to justify a consultant, but real money to a single-location operator, and the lease usually gives them only a 60–120 day window after receiving the statement to formally dispute it before losing the right entirely.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tenant uploads their lease (or just the CAM/operating-expense clause pages) and the landlord's annual CAM reconciliation statement.</li>
+      <li>Document AI extracts the CAM formula: base year, cap type and percentage, controllable vs. uncontrollable expense categories, the exclusions list, management/admin fee cap, and the tenant's pro-rata share method (gross leasable area vs. relative square footage).</li>
+      <li>Document AI extracts the landlord's billed line items and year-over-year totals from the reconciliation statement.</li>
+      <li>A rules engine recomputes the allowable CAM charge under the lease's own cap and exclusion terms, and flags any line item that breaches the cap, bills an excluded cost, or misapplies the pro-rata share.</li>
+      <li>The system generates a plain-English discrepancy report, each contested item citing the exact lease section and dollar impact.</li>
+      <li>It auto-drafts a dispute letter to the landlord/property manager invoking the lease's audit-right clause, requesting a credit or the underlying invoices for the disputed items.</li>
+      <li>It sets a reminder ahead of next year's reconciliation statement so the tenant never misses the short audit-right window again.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI/OCR for lease + reconciliation PDFs</span>
+      <span class="badge">CAM clause taxonomy rules engine (caps, exclusions, admin fees, pro-rata methods)</span>
+      <span class="badge">Dispute-letter generation citing lease section &amp; audit-right clause</span>
+      <span class="badge">Deadline/reminder tracking tied to each lease's audit-right window</span>
+      <span class="badge">E-signature/PDF export for sending disputes</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat fee per audit ($299–$799 depending on lease length and statement complexity), since most tenants only need this once a year per lease, plus an optional $99/mo/location retainer for multi-unit franchisees and portfolio tenants that bundles ongoing deadline tracking and next-year auto-audit.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support the CAM clause structures used by major retail/strip-center landlords and REIT lease templates; single-location, manual document upload only. Defer office/industrial NNN lease nuances and multi-property portfolio dashboards to v2. Distribute through independent restaurant associations, franchisee owner groups, and commercial real estate attorneys who can refer tenant clients for a cut of the flat fee.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Conventional wisdom treats CAM audits as a game for expensive real estate consultants chasing big-box tenants with six-figure exposure — nobody has built self-serve tooling for the long tail of small independent retail and restaurant operators who individually have less at stake but collectively represent a much larger, completely unaddressed market, and who are exactly the price-sensitive segment that prefers a low flat fee over a percent-of-recovery consultant. The product also turns a structural quirk of commercial leases — a strict, easy-to-miss 60–120 day audit-right window — into a built-in annual re-engagement loop that generic contract-review tools have no reason to track.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
