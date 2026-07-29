@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-29 — Reclaimly</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-29</div>
+    <h1>Reclaimly</h1>
+    <p class="pitch">Point a phone at an appliance's nameplate and Reclaimly tells an independent repair tech whether the job is still under manufacturer warranty — then fills out and files the claim for them.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent appliance and HVAC repair technicians and small repair shops (1–10 techs) doing in-home service calls for washers, dryers, refrigerators, dishwashers, and residential HVAC units — not affiliated with a manufacturer's authorized service network.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>A meaningful share of the units techs service are still covered by a manufacturer's standard or extended warranty, but techs routinely skip filing the claim and just bill the homeowner instead. Every manufacturer has its own claim portal, its own labor-rate caps, its own required fields (serial number, purchase-date verification, fault code, parts used), and claims get rejected for small omissions. Filing one properly eats 20–40 minutes of unpaid admin time with no guarantee of payment, so a tech who's already booked solid simply treats the unit as out-of-warranty and charges the customer full price — leaving $150–$800 of legitimate manufacturer reimbursement on the table per eligible job, multiplied across dozens of jobs a month.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tech photographs the appliance's nameplate/rating plate and briefly describes the fault in the Reclaimly mobile app.</li>
+      <li>A vision model extracts the manufacturer, model number, serial number, and manufacture date from the photo.</li>
+      <li>Reclaimly checks the serial number and manufacture date against known warranty-term rules and, where available, the manufacturer's own serial-based coverage lookup, and returns an instant covered / not covered / needs proof-of-purchase verdict.</li>
+      <li>If covered, the app pre-fills that manufacturer's specific claim form (fault code, parts, labor, customer/unit details) from the job data already entered; the tech reviews and submits with one tap.</li>
+      <li>Reclaimly tracks each claim's status (submitted → under review → paid/denied) on a dashboard and nudges the tech when a manufacturer requests additional documentation.</li>
+      <li>Denied claims get a one-click "resubmit with correction" flow that highlights exactly which field triggered the rejection.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Vision/OCR model for nameplate reading</span>
+      <span class="badge">Manufacturer warranty-term rules database (top 6–8 brands)</span>
+      <span class="badge">Manufacturer serial-to-coverage lookup APIs/portals where available</span>
+      <span class="badge">Headless form-fill automation for manufacturer claim portals</span>
+      <span class="badge">Mobile photo capture (PWA)</span>
+      <span class="badge">Light job/customer tracking + status dashboard</span>
+      <span class="badge">Optional: Housecall Pro / ServiceTitan job import</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Success fee of 10–15% of the manufacturer reimbursement, charged only when a claim is actually paid — zero cost to try. Optional $29–49/mo tier adds unlimited claim submissions with priority processing and the dashboard/reporting view once a shop is filing high volume.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support the 5–8 highest-volume residential appliance and HVAC manufacturers (e.g., Whirlpool, GE, Samsung, LG, Trane, Carrier). Ship semi-automated submission first — Reclaimly pre-fills the correct manufacturer form and the tech reviews and clicks submit, rather than a fully autonomous portal bot. No factoring/cash-advance feature in v1; that's a v2 add-on once claim volume and payout timing are well understood.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Nearly every tool built for repair techs targets scheduling and dispatch (ServiceTitan, Housecall Pro) — a crowded field. Almost nobody targets the revenue quietly leaking out of unfiled warranty claims, because it sits at the unglamorous intersection of computer vision, a patchwork of manufacturer bureaucracies, and a customer base that is notoriously tool-fatigued and not chatbot-friendly. A success-fee model — paid only when the tech gets paid — removes the adoption friction that kills most tools aimed at busy solo technicians, and turns what looks like "another appliance app" into a pure-upside revenue-recovery service.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
