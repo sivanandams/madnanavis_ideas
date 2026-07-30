@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-30 — ShrinkLens</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-30</div>
+    <h1>ShrinkLens</h1>
+    <p class="pitch">AI vision compares before/after restock photos from vending and micro-market routes against cashless-sales telemetry to pinpoint exactly which machine, SKU, or driver is bleeding an operator's margin.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and regional vending &amp; micro-market operators running roughly 20–300 machines/kiosks — the NAMA-member tier below enterprise players like Compass or Aramark, who run their own routes but have no loss-prevention tooling built for unmanned, scattered locations.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Shrinkage — theft, spoilage, jammed coils, and driver miscounts or under-reporting — typically eats 3–10% of gross vending/micro-market revenue, but operators have almost no way to attribute the loss to a specific machine, product, or route driver. Enterprise loss-prevention tools assume fixed CCTV and a back office; that model doesn't scale to hundreds of unmanned machines spread across office parks and breakrooms. Today, an operator's only real levers are trusting the driver, running rare manual physical counts, or eating the loss as a cost of doing business — none of which tells them where the money is actually going.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Driver scans the machine's QR code and takes a "before" photo of the shelf/planogram at the start of a restock visit — a step most operators already require for proof-of-service or dispute purposes.</li>
+      <li>Driver restocks, then takes an "after" photo before leaving.</li>
+      <li>ShrinkLens pulls cashless sales telemetry for that machine since the prior visit via the operator's existing POS/telemetry provider (Cantaloupe Seed, Nayax, 365 Retail Markets, or PayRange).</li>
+      <li>A vision model counts units per slot in both photos and computes: units sold (from telemetry) vs. units actually consumed (before-count minus after-count) vs. units the driver logged as restocked.</li>
+      <li>Any slot where the three numbers don't reconcile beyond a tolerance band is flagged with a dollar amount, tagged to the specific machine, SKU, and driver.</li>
+      <li>A weekly digest ranks locations and drivers by cumulative variance, so an ops manager can triage the worst five machines first instead of auditing blind.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Vision model for slot-level shelf counting</span>
+      <span class="badge">Vending telemetry APIs (Cantaloupe, Nayax, 365 Retail Markets, PayRange)</span>
+      <span class="badge">Mobile photo-capture web app (no native install for v1)</span>
+      <span class="badge">QR/machine-ID registry</span>
+      <span class="badge">Variance rules engine</span>
+      <span class="badge">Weekly digest &amp; export (CSV/PDF)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-machine SaaS fee (~$8–15/machine/month), billed monthly and scaled to route size — matching how operators already think about unit economics per machine, with a free pilot tier capped at 15 machines to prove out the shrinkage-dollar-recovered number before the operator pays.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Single-region pilot with one operator, one telemetry integration (Cantaloupe, the most common in the US mid-market), and manual mobile-web photo upload — no native driver app, no route-optimization features. Ship the variance dashboard and weekly digest only; defer driver payroll deductions, multi-provider telemetry, and automated restock-order suggestions to later versions. Distribute through NAMA regional trade shows and vending-operator Facebook/LinkedIn groups.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Retail loss-prevention software has been built almost entirely around fixed cameras and a manned back office — a model that assumes capital and staff most micro-market and vending operators don't have across hundreds of unattended sites. The unlock is that operators already generate the raw signal for free: drivers take before/after photos for proof-of-service and dispute resolution, and machines already stream cashless sales telemetry. Nobody is fusing those two existing, un-monetized data streams with vision counting to localize shrinkage to a specific slot and driver — it gets most of the value of an enterprise vision-camera system with zero new hardware, which is why it's cheap enough for an operator to adopt on a single flagged machine before trusting it with the whole route.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
