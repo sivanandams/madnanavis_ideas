@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-07-31 — WattClaim</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #1f7a5c;
+    --accent-soft: #dcf0e6;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12140f;
+      --card-bg: #1a1d16;
+      --ink: #eef1e8;
+      --ink-soft: #a9b0a0;
+      --accent: #4fd6a2;
+      --accent-soft: #1e3a2e;
+      --border: #33372c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12140f; --card-bg: #1a1d16; --ink: #eef1e8; --ink-soft: #a9b0a0;
+    --accent: #4fd6a2; --accent-soft: #1e3a2e; --border: #33372c;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #1f7a5c; --accent-soft: #dcf0e6; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-07-31</div>
+    <h1>WattClaim</h1>
+    <p class="pitch">AI pulls live production data straight from your solar inverter's API and checks it against your installer's contracted performance guarantee — then auto-files the shortfall claim before the deadline quietly passes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Homeowners with residential solar systems installed under a dealer or financier contract that includes a production/performance guarantee — common with SunPower, Sunnova, Sunrun, Vivint Solar, and regional dealer-financed installs. Roughly a third of the 7M+ US residential solar systems carry some form of guaranteed-output clause tied to financing.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Performance-guarantee clauses obligate the installer (or its financier) to pay cash for any shortfall between guaranteed and actual annual kWh production, checked on the contract's anniversary date. Almost no homeowner tracks this: they don't know the guaranteed number, don't compute actual output against it, and miss the narrow filing window each year. Meanwhile a wave of installer bankruptcies (Pink Energy, SunPower, Sunworks, and others since 2022) has scattered the actual obligor across successor financiers and loan servicers, so even homeowners who suspect they're owed money don't know who to bill. The data to prove the claim already lives in the monitoring app on their phone — nobody is turning it into a dollar figure and a letter.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Homeowner connects their monitoring account (Enphase Enlighten, SolarEdge, Tesla, etc.) via OAuth — no hardware access needed, just the existing consumer app login.</li>
+      <li>Homeowner uploads their installation contract or PPA; document AI extracts the guaranteed annual kWh figure, the true-up/anniversary date, and the shortfall payment formula.</li>
+      <li>System pulls daily production data from the monitoring API for the contract year and computes actual vs. guaranteed output.</li>
+      <li>If a shortfall exists, it calculates the dollar amount owed per the contract's own formula and generates a claim letter citing the exact clause, the production data, and the computed amount.</li>
+      <li>If the original installer is defunct, the report cross-references a maintained bankruptcy/successor database to identify the correct financier, servicer, or state solar-recovery fund to file against instead.</li>
+      <li>The system re-runs automatically each year on the guarantee anniversary and nudges the homeowner with a pre-filled claim rather than waiting to be asked.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Enphase Enlighten API</span>
+      <span class="badge">SolarEdge Monitoring API</span>
+      <span class="badge">Tesla Energy API</span>
+      <span class="badge">Document AI for contract parsing</span>
+      <span class="badge">Installer bankruptcy / successor-servicer database</span>
+      <span class="badge">Annual scheduling &amp; reminder engine</span>
+      <span class="badge">Letter/PDF generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Contingency-first: no charge unless a shortfall claim is found, then 20% of the recovered amount, capped at $150 per claim — removes signup friction and lets the pitch be "we found you're owed $X" rather than "pay us to check." An optional $49/year flat plan is offered for owners who'd rather not share claim payouts once trust is established.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support Enphase and SolarEdge only (roughly two-thirds of residential US installs), and only contracts with an explicit, extractable production-guarantee clause — skip plain cash-purchase systems with no guarantee. One claim-letter template, manual contract upload, single-year true-up calculation (no multi-year averaging clauses in v1). Distribute through r/solar, solar-owner Facebook groups, and referral partnerships with consumer attorneys who already field these complaints but don't have the data-pulling tooling to quantify them.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Nearly all solar software targets the installer side — design tools, lead gen, O&amp;M dashboards — because that's where the money and distribution have historically been. WattClaim inverts the relationship: it treats the installer's own guarantee clause as a collections target on behalf of the homeowner, which is exactly the adversarial use case no installer-funded tool will ever build. It's also structurally different from document-only reconciliation ideas — the core signal is live production telemetry pulled via API, cross-referenced deterministically against a contract term, which is a natural fit for automation and needs no chatbot UX at all. The installer-bankruptcy wave makes this timelier than it looks: guarantee obligations don't disappear when a company folds, they just become harder to trace, which is precisely the lookup problem a maintained successor database solves.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
