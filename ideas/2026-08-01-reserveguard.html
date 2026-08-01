@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-01 — ReserveGuard</title>
+<style>
+  :root {
+    --bg: #f7f9f8;
+    --card-bg: #ffffff;
+    --ink: #191d1b;
+    --ink-soft: #52584f;
+    --accent: #2b6b57;
+    --accent-soft: #dcece4;
+    --border: #e0e6e1;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12160f;
+      --card-bg: #191e1a;
+      --ink: #eef1ea;
+      --ink-soft: #a9b3a3;
+      --accent: #5cbf9d;
+      --accent-soft: #1e3129;
+      --border: #2c342b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12160f; --card-bg: #191e1a; --ink: #eef1ea; --ink-soft: #a9b3a3;
+    --accent: #5cbf9d; --accent-soft: #1e3129; --border: #2c342b;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f9f8; --card-bg: #ffffff; --ink: #191d1b; --ink-soft: #52584f;
+    --accent: #2b6b57; --accent-soft: #dcece4; --border: #e0e6e1;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-01</div>
+    <h1>ReserveGuard</h1>
+    <p class="pitch">AI cross-checks HOA/condo reserve studies and financials against state structural-integrity reserve laws and Fannie Mae/Freddie Mac lending rules — flagging underfunding before it blocks a unit sale or triggers a five-figure special assessment.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Volunteer HOA/condo board treasurers and community-association management (CAM) companies overseeing mid-size condo associations (roughly 50–500 units) in states with new post-Surfside structural reserve mandates — starting with Florida and California, with more states adopting similar laws each legislative session.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>After the 2021 Surfside condo collapse, states began requiring structural integrity reserve studies and minimum funding levels (FL SB 4-D / 718.112, CA SB 326 &amp; SB 6, others following), with board members personally exposed to liability for non-compliance and units becoming unsellable or unmortgageable the moment Fannie Mae or Freddie Mac flags the association's reserve as "underfunded" (below their percent-funded threshold) or places it on an ineligible-project list. Determining compliance means cross-referencing a 50–100 page engineering reserve study, the association's actual bank and budget statements, and overlapping state and GSE rules that change annually — work that unpaid volunteer treasurers and CAM staff juggling dozens of associations rarely have the bandwidth or expertise to do property-by-property, until a lender rejection or a surprise assessment forces the issue.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Board or CAM company uploads the reserve study PDF plus the association's latest financial statements and annual budget.</li>
+      <li>Document AI extracts the component list, remaining useful life per component, current reserve balance, funding plan, and computed percent-funded figure.</li>
+      <li>System pulls the applicable state statute requirements for that association's state and the current Fannie Mae/Freddie Mac condo project eligibility thresholds.</li>
+      <li>A compliance engine flags gaps: statutory minimum-funding shortfall in dollars, missing required study elements (e.g., load-bearing element inspection), percent-funded below the GSE threshold, or a study that has gone stale past its required refresh interval.</li>
+      <li>Generates a board-ready compliance report with the exact shortfall and a side-by-side funding-plan projection comparing a contribution increase versus a special assessment to close the gap.</li>
+      <li>Sets an automatic re-check reminder tied to each state's statutory study-refresh interval.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for reserve-study &amp; financial statement parsing</span>
+      <span class="badge">State statute database (FL, CA, expanding)</span>
+      <span class="badge">Fannie Mae/Freddie Mac condo project eligibility criteria</span>
+      <span class="badge">Optional CAM software pull (Vantaca, AppFolio)</span>
+      <span class="badge">PDF report generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-association annual subscription, roughly $399–$799/yr scaled by unit count, sold directly to boards; plus a CAM-company portfolio tier around $29/unit/yr with volume pricing for management companies running compliance checks across their entire book of associations.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover Florida and California only — the two states with binding statutory deadlines and the largest condo stock — plus the GSE eligibility check. Manual PDF upload only in v1, no direct CAM software integration yet. Distribute through CAI (Community Associations Institute) chapter events, direct outreach to CAM companies, and referral partnerships with condo/HOA attorneys who already field these compliance questions.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The obvious assumption is that reserve-study firms (structural engineers) own this problem — but they're paid to produce the study, not to keep it compliant against statutes and GSE lending rules that shift every year and that neither the engineer nor the volunteer board actually tracks. The real leverage isn't engineering judgment (defensible, low-volume, already served); it's the deterministic cross-referencing of three data sources — study, financials, regulation — that directly gates whether a resident can sell or refinance their unit. That reframes the product from "HOA compliance paperwork" into "protecting the liquidity of my single largest asset," a far higher willingness-to-pay hook than typical association-management software, and one no reserve-study firm or CAM platform is currently positioned to sell.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
