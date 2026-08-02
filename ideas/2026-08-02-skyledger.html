@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-02 — SkyLedger</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #2b6cb5;
+    --accent-soft: #dbe8f4;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151a;
+      --card-bg: #191d24;
+      --ink: #edf1f5;
+      --ink-soft: #a6b0bc;
+      --accent: #6fa8e0;
+      --accent-soft: #1c2c3a;
+      --border: #2b323c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151a; --card-bg: #191d24; --ink: #edf1f5; --ink-soft: #a6b0bc;
+    --accent: #6fa8e0; --accent-soft: #1c2c3a; --border: #2b323c;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #2b6cb5; --accent-soft: #dbe8f4; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-02</div>
+    <h1>SkyLedger</h1>
+    <p class="pitch">Auto-builds the FAA compliance paper trail for solo and small commercial drone operators — airspace authorization, pilot currency, and per-flight documentation — so a ramp check, insurance renewal, or client audit never catches them empty-handed.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small-team commercial drone pilots operating under FAA Part 107 — real estate/aerial photographers, roof and property inspectors, construction-progress and agriculture/crop-scouting operators, and 2–5-pilot drone service shops that fly regularly in or near controlled airspace.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Part 107 operators must be able to produce, on demand, a coherent record of LAANC/controlled-airspace authorizations, remote pilot certificate currency (recurrent training every 24 months), aircraft registration, and per-flight conditions — but almost none of this is centralized. Most solo operators track it, if at all, in scattered app screenshots, a spreadsheet, or nothing. The gap only surfaces at the worst moment: an FAA ramp check or incident inquiry, a commercial client (real estate brokerage, engineering firm, insurer) demanding proof of compliance before hiring, or a liability-insurance renewal that now requires a documented compliance history. At that point missing records mean a denied claim, a lost contract, or a certificate action — not a $50 fine — which makes this a "keep me legal" purchase rather than a nice-to-have.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Pilot connects their drone's flight-log export (DJI is the dominant OEM format) or logs a flight manually from the mobile web app after landing.</li>
+      <li>System cross-references each flight's time and GPS track against LAANC/UAS Facility Map airspace data to confirm the flight was authorized, and flags any flight over controlled airspace, over people, or beyond visual line of sight that lacks a matching authorization or waiver on file.</li>
+      <li>System checks the pilot's FAA airman registry status and recurrent-training date and surfaces a running currency badge (green/amber/red).</li>
+      <li>Each flight is auto-packaged into a "flight record" — airspace authorization proof, weather conditions at launch time pulled from a public weather API, aircraft registration, and pilot certificate status at time of flight.</li>
+      <li>60/30/7-day reminders fire before recurrent training lapses or aircraft registration expires.</li>
+      <li>On demand — insurance renewal, new client onboarding, FAA inquiry — the pilot generates a single "compliance packet" PDF covering a date range or specific job.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">DJI flight-log / generic CSV telemetry parser</span>
+      <span class="badge">FAA LAANC &amp; UAS Facility Map airspace data</span>
+      <span class="badge">FAA airman registry lookup</span>
+      <span class="badge">NOAA/weather API for point-in-time conditions</span>
+      <span class="badge">PDF packet generation</span>
+      <span class="badge">Email/SMS reminders</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$39/mo per solo pilot, $129/mo for small shops (up to 5 pilots) with shared aircraft and job records, plus a $15 one-off compliance-packet export for occasional flyers who don't want a subscription. Priced as a rounding error next to a liability-insurance premium or a lost client contract.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>DJI log import plus manual flight entry only; LAANC cross-checking limited to the 20 busiest US metro airspace zones; recurrent-training and registration reminders; single compliance-packet PDF export. No BVLOS/state-specific waiver tracking and no direct insurer integrations in v1 — those come once packet-export usage validates demand. Distribute through drone-service Facebook groups, r/drones commercial threads, and partnerships with the liability insurers (e.g., BWI, SkyWatch) who already require this documentation at renewal.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Nearly all drone software investment targets the flying layer — mapping, photogrammetry, fleet ops (DroneDeploy, Skyward) — built for enterprise fleets, not the long tail of one-truck operators. SkyLedger targets the opposite layer: proving you were legal, not flying better. The buying trigger isn't pilot ambition, it's an external forcing function — an insurer, a commercial client, or the FAA itself demanding documentation that didn't exist five minutes earlier — which makes this a check-the-box purchase with low price sensitivity and high renewal stickiness, in a segment (solo/small operators) too fragmented and low-ARPU for the enterprise drone-ops vendors to bother chasing.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
