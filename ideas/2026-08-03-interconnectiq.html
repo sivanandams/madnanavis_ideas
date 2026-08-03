@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-03 — InterconnectIQ</title>
+<style>
+  :root {
+    --bg: #f6f9f8;
+    --card-bg: #ffffff;
+    --ink: #14201d;
+    --ink-soft: #4d5c58;
+    --accent: #1f7a5c;
+    --accent-soft: #dcf0e8;
+    --border: #dde8e3;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1714;
+      --card-bg: #17211d;
+      --ink: #eaf3ef;
+      --ink-soft: #a6bab3;
+      --accent: #4fcb9c;
+      --accent-soft: #1c3229;
+      --border: #2b3a34;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1714; --card-bg: #17211d; --ink: #eaf3ef; --ink-soft: #a6bab3;
+    --accent: #4fcb9c; --accent-soft: #1c3229; --border: #2b3a34;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f9f8; --card-bg: #ffffff; --ink: #14201d; --ink-soft: #4d5c58;
+    --accent: #1f7a5c; --accent-soft: #dcf0e8; --border: #dde8e3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-03</div>
+    <h1>InterconnectIQ</h1>
+    <p class="pitch">AI cross-checks solar/battery installation specs against each utility's interconnection rulebook and auto-fills the application — catching the technical rejections that stall installers' cash flow for weeks.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small-to-mid residential and commercial solar/battery installers (5–75 employees) who don't have a dedicated, full-time interconnection coordinator on staff but still submit dozens of utility interconnection applications a month across multiple utility territories.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Before an installed solar or battery system can be turned on, the installer must file an interconnection application with the local utility, and every utility has its own technical rulebook — allowable breaker sizing (the "120% rule"), meter compatibility, rapid-shutdown and anti-islanding requirements, one-line diagram conventions, and net-metering tariff paperwork — all of which change periodically and differ from the neighboring utility's rules. Applications with even small technical mismatches get kicked back, adding 2–6 weeks of delay per project, which delays the installer's final payment and financing draw. Installers currently either hire a dedicated interconnection coordinator (a real job posting, $60K–$85K/yr) or have senior electricians burn hours manually re-checking every submission against scattered utility PDFs and portal instructions — an expensive, error-prone use of skilled labor that doesn't scale with growth.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Installer uploads the system design export (PDF/CSV from Aurora Solar, OpenSolar, or SolarEdge Designer) along with the project address and target utility.</li>
+      <li>Document AI extracts equipment specs: panel/inverter/battery models, system size, breaker and busbar ratings, meter type, and rapid-shutdown configuration.</li>
+      <li>A maintained, per-utility rulebook database (curated from published interconnection standards for each covered utility) is checked against the extracted specs.</li>
+      <li>Any mismatch — oversized breaker, unlisted rapid-shutdown device, wrong meter class, missing one-line diagram element — is flagged in plain English with the specific utility rule it violates, before submission.</li>
+      <li>Once specs pass, the system auto-fills that utility's standard interconnection application form (or portal-ready data export) from the extracted data.</li>
+      <li>The installer tracks each application's status and gets alerted on utility-side response deadlines and stale submissions needing follow-up.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for design-export parsing (Aurora, OpenSolar, SolarEdge)</span>
+      <span class="badge">Curated per-utility interconnection rulebook database</span>
+      <span class="badge">PDF form-fill / portal data export</span>
+      <span class="badge">DSIRE public database for state net-metering/rebate programs</span>
+      <span class="badge">Status/deadline tracking &amp; alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Monthly subscription tiered by number of active utility territories covered (e.g., $299/mo for up to 3 utilities, $699/mo for up to 10), positioned against the $60K–$85K/yr cost of hiring a dedicated interconnection coordinator — an easy ROI case even at low adoption within a company.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover the top 15–20 utilities across California, Texas, and Arizona (the highest-volume residential solar markets) with manually curated rulebooks and a single design-export format (Aurora Solar PDF) to start. Output is a filled, downloadable application packet — no direct portal submission or e-signature in v1. Distribute through solar installer trade associations, SEIA regional chapters, and installer-focused Facebook/Slack communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Solar tech investment has overwhelmingly targeted the customer-facing layer — lead generation, financing, and design software (Aurora, OpenSolar, Sunlight, Mosaic) — because that's where the flashy demos and big contracts are. The interconnection paperwork layer looks boring and bureaucratic, so it's been left almost entirely to spreadsheets and tribal knowledge, even though it's the actual bottleneck that determines when an installer gets paid. It's also structurally defensible in a way a thin LLM wrapper isn't: the value comes from a maintained, jurisdiction-specific structured dataset of utility technical rules that must be tracked and updated as utilities change them, not from generic chat reasoning over unstructured text.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
