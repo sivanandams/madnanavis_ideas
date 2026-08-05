@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-05 — TariffPilot</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-05</div>
+    <h1>TariffPilot</h1>
+    <p class="pitch">AI classifies HS codes and tracks tariff-rate changes across every SKU a small import brand sells, catching costly misclassifications and duty-rate shifts before they blow up margins.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small-to-mid DTC and Amazon FBA brands (roughly $1M–$20M revenue) that import physical goods directly from overseas manufacturers — mostly China, Vietnam, and India — without an in-house trade compliance team or a customs broker retainer beyond basic entry filing.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Since 2025's escalating tariff actions (Section 301, IEEPA, reciprocal tariffs), duty rates on the same product category can change multiple times a year and vary drastically on tiny classification differences — a "textile bag" versus a "plastic-coated bag" can sit 10+ points apart. Small brands rely on their freight forwarder or customs broker to classify products, but brokers optimize for fast entry, not accuracy: misclassification either triggers CBP penalties and back duties (sometimes years retroactive, with interest) or brands "play it safe" and overpay tariffs on every unit, quietly eating 5–15 points of margin. Nobody at a small brand has the bandwidth to monitor USTR/CBP tariff notices SKU-by-SKU — they find out when a customs bill lands or a broker flags it after the fact.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Brand connects its Shopify/Amazon catalog or uploads a SKU list with product descriptions, materials, and country of origin.</li>
+      <li>A classification engine proposes HS/HTS codes per SKU from the product description and material composition, cross-referenced against the CBP CROSS ruling database for precedent, with a confidence score per SKU.</li>
+      <li>The system pulls current and scheduled duty rates for each classified HS code and country-of-origin pair from USTR/CBP tariff schedule feeds and computes the landed-cost impact per SKU.</li>
+      <li>Ongoing monitoring watches Federal Register tariff notices and Section 301 list changes affecting the brand's classified HS codes, and alerts exactly which SKUs are hit and by how much before the next PO or customs entry.</li>
+      <li>For ambiguous SKUs, the system drafts a classification memo with CROSS ruling citations the brand can hand to its customs broker or use to request a formal binding ruling.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">CBP CROSS ruling database</span>
+      <span class="badge">USITC Harmonized Tariff Schedule dataset</span>
+      <span class="badge">Federal Register / USTR tariff notice feeds</span>
+      <span class="badge">Shopify &amp; Amazon Seller Central catalog API</span>
+      <span class="badge">CSV import of 7501 customs entry summaries</span>
+      <span class="badge">Product description / spec-sheet classification</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Tiered SaaS by SKU count — e.g. $99/mo up to 50 SKUs, $299/mo up to 250 SKUs, $799/mo+ for larger catalogs — plus a one-time "classification audit" fee ($500–$2,000) to backfill and clean up an existing catalog's HS codes, positioned as a high-margin lead-gen entry point.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual CSV upload only in v1 (no live Shopify/Amazon sync). Classification coverage limited to the ~15 tariff schedule chapters covering apparel, consumer electronics accessories, home goods, and toys — the highest-volume small-importer categories. Monitoring limited to Section 301 / China-origin tariff changes, currently the most volatile and highest-impact category. Ships a downloadable classification memo per SKU. Distribute via import/export LinkedIn communities, freight-forwarder referral partnerships, and DTC brand Slack/Discord communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Trade compliance software (Amber Road/E2open, Descartes) is built for enterprise importers with dedicated compliance teams and six-figure budgets — nobody serves the long tail of small import-dependent brands, who are most exposed to tariff volatility precisely because they have no compliance function and are least able to absorb a surprise duty bill. It reframes a "customs paperwork" chore as a live margin-protection tool, and turns two genuinely public but underused datasets — CBP CROSS rulings and Federal Register tariff notices — into a proactive, per-SKU alerting system. The core mechanism is deterministic classification plus regulatory-change monitoring, not a generic "ask me about tariffs" chatbot.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
