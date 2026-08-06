@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-06 — SponsorGuard</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-06</div>
+    <h1>SponsorGuard</h1>
+    <p class="pitch">Audio-and-vision AI watches every sponsored post an agency's creators publish and flags FTC disclosure violations before the FTC — or the brand's legal team — finds them.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Influencer marketing agencies and in-house brand partnerships teams managing 20–500 active creators across Instagram, TikTok, and YouTube on behalf of consumer brands (beauty, supplements, fintech, CPG).</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The FTC's revised Endorsement Guides carry penalties up to ~$51,744 per violation, and enforcement has shifted from warning letters to actual settlements. Compliance isn't just "did they use #ad" — it requires the disclosure to be unavoidable: verbally stated early in a video (not buried in a description), rendered in on-screen text large enough to read, and placed before the "swipe up" or "keep reading" fold on Instagram, not after. Agencies currently rely on a coordinator eyeballing a spreadsheet of post links once a month, or trusting the creator's own judgment. With hundreds of posts per brand per quarter across three platforms with different disclosure mechanics, violations slip through routinely — and because the agency (not just the creator) can be named in an FTC action, the liability sits with the exact team that has no scalable way to check it.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Agency uploads a roster of creator posts weekly (CSV of links, or connects Instagram/TikTok/YouTube accounts via OAuth) tagged with which posts are paid partnerships and the brand's specific disclosure requirements (e.g., "#ad" in first 3 hashtags, verbal mention within first 8 seconds).</li>
+      <li>Pipeline pulls each post's video/audio and transcribes it (speech-to-text), extracts on-screen text and its screen-time/size via frame sampling and OCR, and pulls caption/hashtag text via platform APIs.</li>
+      <li>A rules engine — not a chat model — scores each post against the specific FTC placement/timing/legibility criteria and the brand's contract terms, producing a pass/fail per requirement with the exact timestamp or frame where it failed.</li>
+      <li>Violations are compiled into a weekly digest per brand, with a screenshot/timestamp for each flagged post and a one-click "request creator fix" email template.</li>
+      <li>Once a post is corrected or the disclosure window passes, the system logs the outcome so the agency has a defensible audit trail if a brand or regulator ever asks.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Instagram Graph API / Meta Branded Content API</span>
+      <span class="badge">TikTok Business API</span>
+      <span class="badge">YouTube Data API</span>
+      <span class="badge">Speech-to-text (Whisper-class model)</span>
+      <span class="badge">Frame-sampling OCR / on-screen text detection</span>
+      <span class="badge">FTC Endorsement Guide ruleset (static reference, versioned)</span>
+      <span class="badge">CSV/contract-terms ingestion</span>
+      <span class="badge">Email/Slack alerting</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Tiered SaaS billed to the agency: $299/mo for up to 50 monitored creator-brand pairs, $899/mo up to 250, custom above that — priced against the cost of a single compliance coordinator's time, and trivially justified against one avoided five-figure FTC settlement.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support Instagram feed posts and Reels only (highest FTC enforcement volume and simplest API access via Meta's Branded Content tools); defer TikTok and YouTube to v2. Manual CSV upload of post links plus brand disclosure rules, no OAuth account linking yet. Ship the rules-engine scoring and weekly digest only — defer automated creator outreach and the audit-trail export to v1.1. Distribute directly to influencer marketing agency ops/legal leads via LinkedIn outreach and marketing-compliance industry Slack communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing "influencer compliance" tools are mostly contract and payment management (CreatorIQ, Aspire, GRIN) with a disclosure checkbox bolted on — none actually watch the media itself to check placement, timing, and legibility, because that's a multimodal media-analysis problem, not a CRM feature. Framing it as a chatbot Q&amp;A tool ("ask AI if this post is compliant") would undersell it and require someone to remember to ask; the defensible version is a silent pipeline that scores every post automatically against a deterministic ruleset and only surfaces exceptions — closer to a linter for regulatory text-and-media placement than to generic generative AI, which is exactly why agencies drowning in chatbot fatigue will trust it with something this liability-sensitive.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
