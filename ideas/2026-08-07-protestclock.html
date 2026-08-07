@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-07 — ProtestClock</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-07</div>
+    <h1>ProtestClock</h1>
+    <p class="pitch">AI screens a losing federal contractor's debriefing letter against GAO bid-protest precedent, flags a protestable defect, and drafts the protest before the 10-day statutory clock runs out.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size federal government contractors — especially 8(a), WOSB, SDVOSB, and HUBZone set-aside firms — who just lost a federal solicitation and received (or can request) an agency debriefing, typically on contracts in the $500K–$50M range where a re-compete loss meaningfully hurts revenue.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>After a federal bid loss, the contracting officer's debriefing starts a brutally tight clock: 3 days to request it, and then just 10 calendar days from the debriefing to file a GAO protest and get the automatic stay of award. GAO's own statistics show a large share of protests that reach a merits decision are sustained or trigger corrective action — meaning many "losses" were actually procurement errors (unequal treatment, unstated evaluation criteria, flawed cost-realism analysis, inconsistent past-performance scoring). But spotting those errors requires reading the debriefing against FAR Subpart 15 and years of GAO decisions, and a protest attorney costs $15K–$50K with a multi-day intake process — money and time most small contractors don't have inside a 10-day window. So the default move, even when a company was cheated out of a fair evaluation, is to walk away.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Contractor uploads the debriefing letter/slides, the solicitation's Section L/M (evaluation criteria), and their own proposal's relevant excerpts, and enters the debriefing date.</li>
+      <li>System immediately starts a countdown showing the request-for-debriefing deadline, the 10-day GAO protest deadline, and the agency-level protest alternative deadline, and sends email/SMS alerts as each approaches.</li>
+      <li>Document AI extracts the stated evaluation factors, the ratings/scores given to the contractor, and any comparative information disclosed about the awardee (price, technical rating, past performance).</li>
+      <li>A retrieval engine matches the extracted facts against a tagged corpus of published GAO sustained-protest decisions, surfacing specific precedent (e.g., "GAO sustained a protest on materially similar unequal-treatment facts in B-XXXXXX") for each flagged issue.</li>
+      <li>The system outputs a scored issue report (which grounds are present, strength of the precedent match, and citations) plus a first-draft protest memorandum formatted for GAO's Electronic Protest Docketing System, ready for the contractor or a reviewing attorney to finalize.</li>
+      <li>If no strong ground is found, the report says so plainly and recommends against protesting — a fast, cheap "don't waste your money" answer is itself the product for a large share of users.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">GAO bid protest decisions (public, via GAO's EPDS/EDS)</span>
+      <span class="badge">FAR Subpart 15 &amp; Part 33 text</span>
+      <span class="badge">SAM.gov / USASpending contract award data</span>
+      <span class="badge">Document AI for debriefing &amp; solicitation parsing</span>
+      <span class="badge">Precedent-tagging &amp; retrieval index</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat per-review fee of $299–$499 with a guaranteed 24-hour turnaround, purchased at the moment of urgency rather than as a subscription. An optional $79/mo "award watch" add-on monitors the contractor's SAM.gov bid activity and reminds them to request a debriefing the moment an award is posted, so they never miss the initial 3-day trigger.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover GAO-level protests only (skip Court of Federal Claims and agency-level protests for v1), and only full-and-open or set-aside negotiated procurements under FAR Part 15 (skip task-order protests under multi-award IDIQs, which have different deadlines and a $10M jurisdictional threshold). Ship the deadline countdown and issue-flagging report first; the drafted protest memo can be a v1.1 addition once the flagging accuracy is validated against real GAO outcomes. Manual document upload only. Go to market through APEX Accelerator (PTAC) counselors, govcon LinkedIn communities, and small-business federal contracting associations like NCMA and WOSB/SDVOSB chapters.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>GAO publishes the full text of every bid protest decision for free, which is exactly the kind of structured, citable legal corpus that rewards precedent-matching over generic chatbot Q&amp;A — yet no product treats it as a real-time triage engine for the specific small businesses who most need it. The category is also self-selecting for willingness to pay: by definition, every user just lost a contract worth six or seven figures, and the statutory 10-day fuse turns "maybe someday" into "decide by Thursday," which is a far stronger purchase trigger than most compliance tooling gets. And because the honest answer is "don't protest" more often than not, the product's credibility — and repeat use across a contractor's pipeline of bids — comes precisely from how often it talks a user out of a claim, not into one.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
