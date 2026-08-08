@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-08 — VisitClear</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-08</div>
+    <h1>VisitClear</h1>
+    <p class="pitch">AI reconciles Electronic Visit Verification (EVV) clock-in/out data against Medicaid visit schedules and auto-generates the exact correction packet each state's aggregator requires — so home care agencies stop losing revenue to EVV claim denials.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size home care and personal care agencies (roughly 20–200 caregivers) that bill state Medicaid programs for personal care, home health, or waiver services in states enforcing EVV under the 21st Century Cures Act — office managers, billing coordinators, and agency owners who run the daily exception queue by hand.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every Medicaid-billed visit has to clear EVV validation with a state aggregator (Sandata, HHAeXchange, Tellus) before it can be claimed, and a huge share of visits get flagged: a caregiver forgot to punch in, GPS drifted outside the client's geofence, the visit ran long and tripped a duration rule, or a signature was never captured. Each flagged visit needs a manual correction — with its own required reason code, evidence, and field format that differs by state and by aggregator — before the claim can even be submitted. Small agencies run this by hand in a spreadsheet against printed schedules, which eats 5–15 hours a week of back-office time, delays reimbursement by 30–60+ days, and once an agency's exception rate crosses a state's threshold it can trigger a full program-integrity audit that puts the whole Medicaid contract at risk.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Agency connects its EVV aggregator export (Sandata, HHAeXchange, or Tellus CSV/API) and its scheduling system export (visit roster, assigned caregiver, planned start/end).</li>
+      <li>A nightly reconciliation pass matches every scheduled visit against its EVV record and classifies each exception by type: missing punch, geofence miss, duration mismatch, missing signature.</li>
+      <li>For each exception, the system pre-fills the state-required correction reason and evidence using caregiver context (a one-tap SMS reply, prior pattern for that route, or client-side notes) instead of a biller re-typing it from scratch.</li>
+      <li>The system outputs a per-state, aggregator-formatted correction batch ready to import or key into the portal, plus a same-day SMS nudge to any caregiver who is mid-visit with no punch yet, catching the mistake before it becomes a denial.</li>
+      <li>A dashboard tracks exception rate, dollars held up in corrections, and average days-to-clear, giving the owner a number to manage instead of a stack of denial notices.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Sandata EVV export/API</span>
+      <span class="badge">HHAeXchange export/API</span>
+      <span class="badge">Tellus export</span>
+      <span class="badge">Scheduling software exports (AlayaCare, CareSmartz360, Generations)</span>
+      <span class="badge">State-by-state EVV correction field specs</span>
+      <span class="badge">SMS/push for caregiver nudges</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-caregiver-per-month SaaS fee, roughly $8–$15/active caregiver/month with a monthly minimum, since exception volume and dollars recovered scale directly with headcount. A zero-commitment onboarding tier prices the first 60 days as a percentage of previously-denied dollars recovered, so an agency can see cash impact before switching to the flat subscription.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with Sandata and HHAeXchange only, since together they cover the majority of state EVV contracts, and target a handful of high-volume EVV states (e.g., NY, TX, PA, OH, IL) rather than building all fifty states' correction formats at once. CSV import first, live API sync as a v1.1 upgrade once mapping is validated. SMS nudges only — no native caregiver app. Go to market through state and regional home care associations, EVV vendor user groups, and Medicaid billing-consultant referral partners who already see this pain across their client base.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>EVV is a federally mandated, deterministic, rules-based compliance system that almost nobody outside home care has heard of — every state runs its own aggregator with its own correction codes and field formats, which is exactly the kind of fragmented, boring infrastructure gap that's too small for Sandata or HHAeXchange themselves to fix well but is real money for every agency stuck with it. Because the correction rules are fixed and auditable rather than a matter of judgment, the automation can be verified against a known ruleset instead of leaning on chatbot guesswork, so accuracy compounds instead of drifting. And the trigger for churn risk cuts the other way from most compliance tools: agencies don't buy this to avoid a hypothetical fine, they buy it because denied claims are cash sitting on the table today, which makes ROI immediate and easy to point to in the first invoice.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
