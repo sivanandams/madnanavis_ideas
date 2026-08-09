@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-09 — IEPShield</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-09</div>
+    <h1>IEPShield</h1>
+    <p class="pitch">AI reads a child's IEP against their evaluation data and IDEA/state compliance rules, flags the specific procedural and substantive violations, and tracks every statutory deadline — turning a special-education advocate's 6-hour file review into a 20-minute one.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent special-education advocates and small advocacy practices (typically solo or 2–8 person shops) who represent parents of children with IEPs or 504 plans in disputes with school districts — plus the education-law attorneys who take the cases advocates escalate to due process or mediation. Not parents directly: advocates already bill $75–$200/hour and juggle 15–40 open family files at a time.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every IEP dispute runs on a stack of overlapping clocks: a 2-year statute of limitations on claims, a 15-day resolution-session window after a due process complaint, state-specific deadlines to request an independent educational evaluation (IEE) reimbursement, and annual/triennial review deadlines the district itself must hit. Missing any one of them can forfeit a family's claim entirely. On top of the clock, advocates must manually cross-check a 40-page IEP against the child's evaluation data, present levels, and IDEA's substantive-FAPE standard (plus state-specific case law) to spot violations — inadequate present levels, goals not tied to the disability, missing related services, predetermination, or an evaluation that's stale or incomplete. That review takes 4–8 hours per file done properly, which is why most advocates cap their caseload well below demand and many families with real, winnable claims never get looked at in time.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Advocate uploads the current IEP, the most recent evaluation/reevaluation report, and any prior IEPs, plus key dates (evaluation date, IEP meeting date, any parent complaint or IEE request).</li>
+      <li>System immediately builds a deadline dashboard: SOL window, IEE reimbursement window, resolution-session countdown if a due process complaint is filed, and the district's own annual/triennial review due dates — with email/SMS alerts as each approaches.</li>
+      <li>Document AI extracts present levels, goals, services, accommodations, and placement, then checks each against IDEA procedural requirements and a state-specific rules layer (eligibility criteria, evaluation timelines, prior written notice requirements).</li>
+      <li>A retrieval engine matches the extracted facts against a tagged corpus of published due process hearing decisions and OCR/OSEP guidance letters, surfacing precedent for each flagged issue (e.g., "goals not measurable — hearing officer found FAPE denial on similar facts in [state] Case #XXXX").</li>
+      <li>Output is a scored issue report — procedural violations, substantive FAPE concerns, strength of precedent match — plus a first-draft parent letter or IEE request letter the advocate edits and sends, not a final legal filing.</li>
+      <li>If the IEP is defensible, the report says so and points the advocate toward the weaker, real issues instead — a credible "this one's actually fine" result is what earns trust for the next 30 files.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Published due process hearing decisions (state SEA/OAH databases, public)</span>
+      <span class="badge">IDEA statute &amp; regulations text (34 CFR Part 300)</span>
+      <span class="badge">State-specific special-ed regulations (50-state rules layer)</span>
+      <span class="badge">OSEP policy letters &amp; guidance</span>
+      <span class="badge">Document AI for IEP/evaluation parsing</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-seat SaaS subscription for advocacy practices: $89/mo per advocate seat for unlimited deadline tracking plus a bundled 10 file-reviews/month, with additional file reviews at $25 each above that. A $249/mo "practice" tier adds multi-advocate caseload dashboards and client-facing deadline portals so families can see their own clock without calling the advocate.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in 3–5 states with large advocate populations and strong hearing-decision data availability (e.g., California, New York, Texas, Pennsylvania) rather than all 50 at once — the state rules layer and precedent corpus are the hard part, so depth beats breadth. Ship the deadline dashboard and issue-flagging report first; the draft letter generator can follow once flagging accuracy is validated against advocates' own case outcomes. Manual document upload only, no district SIS/IEP-software integration in v1. Go to market through COPAA (Council of Parent Attorneys and Advocates) membership channels, state parent-training centers, and special-ed advocate Facebook/LinkedIn communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Special education is one of the few areas of law where the core evidence — the IEP itself — is a semi-structured document with a predictable schema (present levels, goals, services, placement) across all 50 states, which makes it far more tractable for reliable rules-checking than most legal-AI applications, yet the space is dominated either by pure community/training nonprofits (COPAA, Wrightslaw) with no software or by generic "AI legal assistant" wrappers nobody in this niche trusts. The buyer is also structurally different from parent-facing edtech: advocates are repeat, high-volume, already-paying professionals whose bottleneck is hours-per-file, not willingness to pay — so a tool that turns an 6-hour review into 20 minutes directly multiplies their billable capacity instead of competing with a free option parents could just use themselves.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
