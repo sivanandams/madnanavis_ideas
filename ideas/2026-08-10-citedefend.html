@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-10 — CiteDefend</title>
+<style>
+  :root {
+    --bg: #fbf8f5;
+    --card-bg: #ffffff;
+    --ink: #1f1a15;
+    --ink-soft: #5a5148;
+    --accent: #b5570e;
+    --accent-soft: #f6e3d1;
+    --border: #ece2d6;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17130f;
+      --card-bg: #201a15;
+      --ink: #f3ece4;
+      --ink-soft: #baab9c;
+      --accent: #f0954f;
+      --accent-soft: #3a2716;
+      --border: #362b21;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17130f; --card-bg: #201a15; --ink: #f3ece4; --ink-soft: #baab9c;
+    --accent: #f0954f; --accent-soft: #3a2716; --border: #362b21;
+  }
+  :root[data-theme="light"] {
+    --bg: #fbf8f5; --card-bg: #ffffff; --ink: #1f1a15; --ink-soft: #5a5148;
+    --accent: #b5570e; --accent-soft: #f6e3d1; --border: #ece2d6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-10</div>
+    <h1>CiteDefend</h1>
+    <p class="pitch">AI reads a small employer's OSHA citation, matches the classification and penalty math against OSHRC precedent for defects, and drafts the Notice of Contest before the 15-working-day clock runs out.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small manufacturers, construction subcontractors, and warehouse/logistics operators (roughly 20–500 employees) who just received a federal OSHA citation — especially a "Serious," "Willful," or "Repeat" classification carrying a proposed penalty in the $15K–$150K range — and have no in-house EHS counsel or safety director.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Once OSHA issues a Citation and Notification of Penalty, the employer has exactly 15 working days to file a Notice of Contest before it becomes a final order that can't be appealed. Many citations carry contestable defects — a violation misclassified as Serious when the facts support Other-Than-Serious, the wrong standard cited, an unrealistic abatement date, or a penalty computed without the size, good-faith, or history reductions OSHA's own Field Operations Manual requires. Catching these takes reading the citation against 29 CFR interpretation letters and OSHRC case law, and an OSHA defense attorney wants a $5K–$20K retainer with a multi-day intake — inside a 15-day fuse that also includes a separate, even tighter window to request an informal conference with the Area Director. Most small employers just pay the fine.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Employer uploads the Citation and Notification of Penalty (OSHA Form 2), any inspection narrative on hand, and the citation issue date.</li>
+      <li>System starts a countdown to the informal-conference window and the 15-working-day Notice of Contest deadline, with email/SMS alerts as each approaches.</li>
+      <li>Document AI extracts the cited standard(s), classification (De Minimis / Other-Than-Serious / Serious / Willful / Repeat), proposed penalty, and abatement date.</li>
+      <li>A retrieval engine checks those facts against a tagged corpus of OSHRC ALJ and Commission decisions plus the Field Operations Manual's penalty-calculation rules, surfacing specific precedent for classification errors or penalty miscalculations.</li>
+      <li>Output is a scored issue report with citations, plus a drafted Notice of Contest letter and/or informal-conference talking points aimed at a penalty reduction.</li>
+      <li>If no real defect turns up, the report says so and recommends using the informal conference purely to negotiate the penalty down — a fast, honest "don't contest, just negotiate" answer that's the right call for a large share of users.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">OSHRC decisions (public via OSHRC e-library)</span>
+      <span class="badge">OSHA Field Operations Manual &amp; interpretation letters</span>
+      <span class="badge">29 CFR 1910 standard text</span>
+      <span class="badge">OSHA penalty-calculation &amp; reduction tables</span>
+      <span class="badge">Document AI for citation parsing</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat per-citation review fee of $349–$599 with a 24–48 hour turnaround, bought at the moment of urgency rather than as a subscription. An optional $99/mo "inspection watch" add-on starts the clock and sends reminders the moment an employer logs that an OSHA inspection closing conference happened, so the informal-conference window is never missed.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover federal OSHA jurisdiction only (skip State Plan states, which run their own review procedures) and General Industry citations under 29 CFR 1910 (skip Construction 1926 and Maritime standards, which have different classification patterns). Ship the deadline countdown and issue-flagging report first; the auto-drafted Notice of Contest letter is a v1.1 addition once flagging accuracy is validated against real OSHRC outcomes. Manual document upload only, no OSHA portal integration. Go to market through workplace safety consultants, NFIB and manufacturing trade associations, and EHS/safety-director LinkedIn communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>OSHRC publishes the full text of every contested-citation decision for free — a structured, citable precedent corpus that almost no small employer knows exists, which is exactly the kind of data that rewards precedent-matching over generic chatbot Q&amp;A. The real appealable value is usually in the classification and penalty math, not the underlying hazard finding, so the product can win by getting a Serious citation downgraded and the fine cut even when the safety violation itself was real. And because "this citation looks correctly issued, just negotiate the penalty" is the honest answer more often than not, the product's credibility — and its referral pipeline from safety consultants who'd otherwise lose the introduction to an attorney — comes from how often it talks employers out of a losing contest.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
