@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-13 — ShelfSentry</title>
+<style>
+  :root {
+    --bg: #f8f7fb;
+    --card-bg: #ffffff;
+    --ink: #1b1a24;
+    --ink-soft: #58566a;
+    --accent: #5b3fae;
+    --accent-soft: #e8e2f7;
+    --border: #e3e0ec;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131120;
+      --card-bg: #1a1729;
+      --ink: #eeecf7;
+      --ink-soft: #b1acc7;
+      --accent: #a98cf0;
+      --accent-soft: #2c2545;
+      --border: #302a47;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131120; --card-bg: #1a1729; --ink: #eeecf7; --ink-soft: #b1acc7;
+    --accent: #a98cf0; --accent-soft: #2c2545; --border: #302a47;
+  }
+  :root[data-theme="light"] {
+    --bg: #f8f7fb; --card-bg: #ffffff; --ink: #1b1a24; --ink-soft: #58566a;
+    --accent: #5b3fae; --accent-soft: #e8e2f7; --border: #e3e0ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-13</div>
+    <h1>ShelfSentry</h1>
+    <p class="pitch">AI watches Amazon for copycat covers, impersonator listings, and AI-scraped knockoffs of an indie author's books, then drafts the DMCA takedown before launch-week sales get siphoned off.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Self-published authors on Amazon KDP in fast-churn genres — romantasy, cozy mystery, litRPG, self-help — earning roughly $3K+/month, plus small indie publishing collectives and ghostwriting studios managing multiple pen names across dozens of titles.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Within days of a book popping on a category bestseller list, copycat listings appear: near-identical titles and cover art, "AI companion guide / instant summary" spinoffs marketed to look official, or outright pirated full-text reuploads under a slightly altered title. Each one splits sales, dilutes reviews, and confuses buyers — and every takedown requires the author to spot the listing, prove ownership, and navigate Amazon's Report Infringement / DMCA form correctly enough that it isn't silently rejected. Big publishers have legal teams for this; solo authors mostly just watch it happen and lose a chunk of their best sales week.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Author connects their KDP catalog — title, ASIN, cover image, ISBN — and lists any pen names to monitor.</li>
+      <li>Scheduled crawler pulls Amazon search results for the exact title, close title variants, and author-name misspellings/impersonations, and runs reverse-image search against the cover art.</li>
+      <li>A similarity engine scores each candidate listing: perceptual image hashing on covers, fuzzy string matching on titles, and embedding similarity on blurbs/descriptions, to separate real infringement from coincidental genre-convention overlap.</li>
+      <li>Flagged listings land in a review queue with a side-by-side comparison; the author confirms genuine infringement with one click.</li>
+      <li>System auto-drafts Amazon's infringement report with proof-of-ownership attached (KDP bookshelf screenshot, copyright registration if on file) and tracks each case's filing and resolution status.</li>
+      <li>A weekly digest summarizes new detections, resolved takedowns, and estimated sales recovered.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Amazon listing search &amp; scraping</span>
+      <span class="badge">Perceptual image hashing for cover comparison</span>
+      <span class="badge">Text embedding similarity for titles/blurbs</span>
+      <span class="badge">KDP Bookshelf export</span>
+      <span class="badge">US Copyright Office registration lookup</span>
+      <span class="badge">Amazon Report Infringement / Brand Registry form automation</span>
+      <span class="badge">Email/SMS alerting</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$29/mo per pen name covering up to 25 monitored titles, with a $99/mo "collective" tier for studios managing multiple pen names. A $15 per-successful-takedown fee stacks on top, aligning revenue with actual removals rather than just alert volume.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Amazon.com only for v1 — skip international marketplaces and other retailers like Barnes &amp; Noble or Kobo. Detection covers cover-image and title/metadata similarity only; full-text plagiarism scanning of pirated PDFs is a v2 feature. Filing stays semi-automated — the system drafts the DMCA/infringement notice but the author clicks submit, limiting liability exposure from any false-positive match. Go to market through indie-author Facebook groups, the 20Booksto50K community, and romance/fantasy author newsletters.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Brand-protection tooling is built for enterprises chasing counterfeit sneakers and handbags, not $30/month romance novelists — so nobody in that market bothers serving KDP's millions of independently published titles, even though those authors publish fast, get copied fast, and have zero legal infrastructure of their own. The core detection task — image and text similarity at scale — is commodity AI technology; the opportunity is entirely in packaging it for an underserved buyer. It's also structurally viral: authors already warn each other about copycats inside tight-knit genre Facebook groups, so word-of-mouth adoption comes built in without a paid acquisition motion.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
