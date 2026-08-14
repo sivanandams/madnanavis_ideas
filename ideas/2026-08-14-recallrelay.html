@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-14 — RecallRelay</title>
+<style>
+  :root {
+    --bg: #f9f7f5;
+    --card-bg: #ffffff;
+    --ink: #201a17;
+    --ink-soft: #5a5049;
+    --accent: #b0431f;
+    --accent-soft: #f6e2d8;
+    --border: #e8ded6;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16110e;
+      --card-bg: #1d1712;
+      --ink: #f3ece6;
+      --ink-soft: #bba99c;
+      --accent: #ef8552;
+      --accent-soft: #3a2418;
+      --border: #33281f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16110e; --card-bg: #1d1712; --ink: #f3ece6; --ink-soft: #bba99c;
+    --accent: #ef8552; --accent-soft: #3a2418; --border: #33281f;
+  }
+  :root[data-theme="light"] {
+    --bg: #f9f7f5; --card-bg: #ffffff; --ink: #201a17; --ink-soft: #5a5049;
+    --accent: #b0431f; --accent-soft: #f6e2d8; --border: #e8ded6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.35rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-14</div>
+    <h1>RecallRelay</h1>
+    <p class="pitch">Matches a durable medical equipment supplier's dispensed-equipment records against live FDA recall data, auto-identifies which patients got the recalled unit, and generates the notification letters and audit trail CMS accreditation surveys require.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size durable medical equipment (DME) suppliers — home oxygen, CPAP/sleep therapy, and mobility equipment providers — typically 1–10 locations, who bill Medicare and must maintain CMS DMEPOS accreditation. Not hospital systems; independent and regional DME companies that run lean back offices with no dedicated compliance staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>When the FDA issues a Class I or Class II recall on equipment a supplier has dispensed — the 2021 Philips CPAP recall being the industry's defining trauma — CMS Supplier Standards obligate the supplier to identify every patient who received an affected serial or lot number, notify them, document the notification, and track replacement or return status, or risk losing Medicare billing privileges at the next accreditation survey. In practice this means someone manually cross-referencing a spreadsheet of dispensed serial numbers against a recall bulletin's affected-lot ranges, for equipment models that can span years of purchase orders and dozens of lot codes. It's slow, error-prone, and the failure mode isn't a warning — it's a survey deficiency that can suspend the supplier's ability to bill Medicare at all. Most suppliers have no system for this beyond "someone remembers to check the FDA website."</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Supplier uploads a CSV export of dispensed equipment: patient ID, equipment model, serial/lot number, and dispense date, pulled from their existing DME billing software.</li>
+      <li>RecallRelay continuously ingests FDA recall and MAUDE database entries plus manufacturer recall bulletins, parsing out affected models and serial/lot ranges for the equipment categories it covers.</li>
+      <li>A matching engine checks every new recall against the supplier's dispensed inventory and flags exactly which patients received an affected unit — no manual lookup required.</li>
+      <li>The system generates a ready-to-send patient notification letter (per CMS-required content), a supplier-facing action list, and a compliance packet documenting who was notified, when, and how.</li>
+      <li>Suppliers mark each patient's status (notified, replaced, returned, no response) and the system keeps a timestamped audit trail that satisfies accreditation surveyors on request.</li>
+      <li>If a new recall doesn't match any dispensed serials, the supplier gets a "not affected, no action needed" confirmation — itself valuable, since proving you checked is part of the compliance burden.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FDA recall &amp; enforcement report feeds (openFDA API)</span>
+      <span class="badge">FDA MAUDE adverse event database</span>
+      <span class="badge">Manufacturer recall bulletins (CPAP, oxygen, mobility OEMs)</span>
+      <span class="badge">CSV import from DME billing systems (Brightree, HME/PAX)</span>
+      <span class="badge">Serial/lot-range matching engine</span>
+      <span class="badge">Letter generation &amp; audit-log export</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Monthly subscription tiered by dispensed-patient volume, roughly $149–$449/mo per location, covering continuous recall monitoring and unlimited notification generation. During a major recall event (CPAP-scale), a one-time "recall response" surge fee applies for suppliers who need bulk letter generation and surveyor-ready documentation fast — the moment they're most willing to pay.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover three equipment categories only — CPAP/BiPAP, home oxygen concentrators, and power/manual wheelchairs — since these account for the large majority of DME recall volume and accreditation scrutiny. CSV upload only for v1, no direct billing-system integration. US FDA recalls only, English-language notification letters only, manual status tracking (no automated patient SMS/calls yet). Go to market through DME accreditation consultants, AAHomecare state chapters, and the durable medical equipment trade press, which already broadcasts every major recall to this exact audience.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The FDA already publishes structured, machine-readable recall and lot-range data for free — this is a matching and documentation problem, not a research or chatbot problem, which makes it a strong fit for a small automated rules engine rather than an AI assistant bolted onto a search box. Demand is naturally bursty and self-marketing: a major recall like the Philips CPAP event is front-page trade news the day it happens, and every affected supplier needs an answer within days, not months — turning a rare structural event into a recurring acquisition moment the product can ride each time a new recall lands. And because the underlying obligation is regulatory rather than optional, willingness to pay isn't about ROI persuasion — it's about avoiding the loss of the ability to bill Medicare at all, which is about as hard a purchase trigger as compliance software gets.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
