@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-04 — LienClock</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-04</div>
+    <h1>LienClock</h1>
+    <p class="pitch">A state-specific lien-law rules engine for self-storage operators that computes notice deadlines, generates compliant tenant notices, and tracks proof of mailing — so a delinquent unit can be auctioned without a wrongful-lien-sale lawsuit.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and small-chain self-storage facility owners/operators (roughly 1–200 units per site, up to a few dozen sites) who run their own back office rather than outsourcing to a national REIT management arm — the segment using SiteLink, storEDGE, or Easy Storage Solutions for rentals but nothing purpose-built for lien compliance.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Before a storage facility can legally auction a delinquent tenant's unit, state law dictates an exact sequence: a preliminary default notice, a specific waiting period (14–45+ days depending on state), certified-mail delivery with retained proof, precise statutory notice language, and sometimes a second notice or publication step before listing an auction. Every state's timeline and required wording differs, and the rules change periodically. Facility managers track this today in spreadsheets, sticky notes, or memory. A single missed date, wrong mail method, or omitted statutory phrase turns a routine lien sale into a wrongful-sale lawsuit — storage-industry insurers list it as one of the top liability categories — while getting it right just means the facility can finally re-rent a unit that's been sitting unpaid for months.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Manager marks a unit delinquent, entering tenant info, unit location (state/county), rental agreement date, and last payment date.</li>
+      <li>The rules engine — encoding each state's statutory lien-sale timeline and required notice content — computes every deadline (preliminary notice, waiting period end, second notice, earliest legal auction date) and generates the correctly worded notice letter for that state.</li>
+      <li>Manager sends the notice via the app's certified-mail integration; the app stores the mailing receipt and delivery/return status as the proof-of-service record tied to that unit.</li>
+      <li>Once the statutory waiting period elapses with no payment, the app flips the unit to "cleared to auction," auto-drafts the auction listing copy, and reminds the manager of any publication requirement still outstanding.</li>
+      <li>Post-auction, the app generates the required tenant disbursement/overage notice and closes out the unit's compliance file as an exportable audit trail.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">50-state lien-law statute ruleset (curated + periodic legal review)</span>
+      <span class="badge">Certified mail / proof-of-delivery API (Lob or EasyPost)</span>
+      <span class="badge">Document generation for state-specific notice letters</span>
+      <span class="badge">CSV import from SiteLink / storEDGE / Easy Storage Solutions</span>
+      <span class="badge">Auction listing export (StorageTreasures / Lockerfox copy)</span>
+      <span class="badge">Immutable audit-trail storage per unit</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-facility monthly subscription, $49–99/mo depending on unit count, covering unlimited notice generation and deadline tracking, plus pass-through certified-mail cost (~$8–10 per letter). Multi-site operators get a flat per-site discount tier.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Hardcode rulesets for the 10 states with the highest self-storage unit density (TX, CA, FL, GA, NC, OH, IL, PA, AZ, TN). CSV import only for delinquent tenant lists — no live API integration with storage-management platforms yet. Manual "mark as mailed" checkbox instead of a live certified-mail API in v1, with the Lob/EasyPost integration as the first paid upgrade. Auction listing is a copy-paste export, not a direct StorageTreasures push. Distribute through Self Storage Association state-chapter meetings, independent-operator Facebook groups, and direct outreach sourced from county storage-facility business licensing records.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Self-storage software incumbents (SiteLink, storEDGE, Easy Storage Solutions) compete entirely on rentals, POS, and access control — none of them go deep on lien-sale compliance, even though wrongful-lien-sale suits are a top-cited liability for storage operators and their insurers. The market looks "solved" because everyone already runs property-management software, but the actual failure point — getting state-specific timing and notice language exactly right, with a defensible mailing record — sits outside what that software does. It's a deterministic rules-engine-plus-document-generation problem, not a chatbot problem, which makes it buildable solo; and because avoiding one lawsuit is worth many thousands of dollars, a $49–99/mo price is trivial to justify even for a single-site operator.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
