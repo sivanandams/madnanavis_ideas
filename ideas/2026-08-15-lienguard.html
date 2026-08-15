@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-15 — LienGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-15</div>
+    <h1>LienGuard</h1>
+    <p class="pitch">AI turns a delinquent self-storage tenant's file into a state-exact lien notice, mail-and-publication timeline, and auction-ready compliance binder — so independent facility owners stop having their unit auctions voided (or getting sued) over a missed statutory step.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and small-chain self-storage facility owners and the third-party management companies that run 1–25 non-REIT locations (the long tail below Public Storage, Extra Space, and CubeSmart, who all run in-house legal). These operators typically use general-purpose storage software (SiteLink, StorEdge, Storable) for billing and access control, but handle lien/auction paperwork manually or off inherited templates.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every state's Self-Storage Facility Act (or equivalent) prescribes an exact sequence before a facility can legally sell a delinquent tenant's belongings: a default waiting period, a certified-letter lien notice with specific mandatory language and itemized charges, a second waiting period, a published or online auction notice with its own required content, and a minimum gap before the sale date. Miss any element — wrong notice period, missing statutory phrase, mailing one day early — and the sale can be ruled a "wrongful lien sale," voiding the auction and exposing the facility to tenant lawsuits that in several states carry treble damages and attorney's fees. Property managers are usually non-lawyers with high turnover, working from a binder of templates that quietly goes stale every time a state legislature amends the law (which happens most years somewhere), so the failure is invisible until a tenant's attorney finds the gap — often during litigation, when it's too late to fix.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Manager uploads (or syncs via CSV export from SiteLink/StorEdge) the delinquent-tenant list: unit, balance owed, last payment date, tenant contact info, and facility state.</li>
+      <li>Engine calculates the state-specific statutory timeline per unit — default maturity date, lien-notice mail-by date, minimum waiting period, publication deadline, earliest legal auction date — shown as a live per-unit countdown dashboard.</li>
+      <li>AI drafts the state-compliant lien notice with the exact required statutory language and itemized fees pre-filled, and generates a matching certified-mail merge (via a mail API) plus the published/online-auction notice text.</li>
+      <li>Before the sale is scheduled, a compliance check compares actual mail-send dates and elapsed days against the statute and flags any deviation — wrong wait period, missing clause, early posting — so the manager can correct course before auctioning.</li>
+      <li>On completion, the system outputs a timestamped "auction-ready" compliance binder (PDF) documenting every notice, date, and delivery confirmation — the exact evidence a facility needs if a tenant later disputes the sale.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">50-state self-storage lien statute library (maintained + versioned)</span>
+      <span class="badge">Storage management software exports (SiteLink, StorEdge, Storable)</span>
+      <span class="badge">Certified mail / delivery-confirmation API (e.g., Lob)</span>
+      <span class="badge">Online auction listing sites (StorageTreasures, Lockerfox) for notice cross-posting</span>
+      <span class="badge">PDF generation &amp; document-timestamping</span>
+      <span class="badge">Statute change-monitoring feed</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-facility SaaS subscription, $99–$179/mo per location covering unlimited active lien cases, plus a small per-letter pass-through fee for certified mail. Management companies running multiple locations get a per-portfolio volume discount. No usage-based case fee, since predictable monthly cost is what a small operator budgets for legal-risk tooling.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with hand-verified statute templates for the ten states with the highest self-storage facility density (TX, CA, FL, GA, NC, OH, IL, PA, TN, AZ). Manual CSV upload only for v1 — skip direct PMS API integration. Ship the countdown dashboard, notice drafting, certified-mail merge, and compliance check; leave automated cross-posting to auction sites as a v1.1 feature (v1 generates the notice text for manual copy-paste instead). Go to market through state chapters of the Self Storage Association, storage operator Facebook/LinkedIn groups, and the app marketplaces of SiteLink and Storable.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Everyone assumes the storage management software already covers this, because SiteLink and StorEdge do generate "lien letters" — but those are static templates for tenant billing workflows, not statute-tracking engines, and they don't get updated the moment a state legislature amends its self-storage act. The gap is invisible until a tenant's lawyer finds it during a wrongful-sale claim, which is exactly why nobody builds for it: the pain is deferred and probabilistic, right up until it's a five-figure legal bill. That deferred-but-catastrophic failure mode is also what makes this a genuinely good fit for structured AI rather than a chatbot: the value isn't "answer my legal question," it's continuously maintaining and applying a versioned, jurisdiction-specific rules engine against a tenant timeline — a compliance-automation problem, not a conversation. And because the statute library and mail-audit trail are the actual product, the moat compounds with every legislative session a competitor hasn't tracked yet.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
