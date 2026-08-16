@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-16 — ReserveRelease</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-16</div>
+    <h1>ReserveRelease</h1>
+    <p class="pitch">AI turns a frozen Stripe/PayPal/Square payout into a regulator-grade evidence packet and CFPB complaint — the one lever that reliably gets a human at the processor to unlock your money.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small e-commerce, dropshipping, digital-product, and service businesses (roughly $5K–$500K/mo in processing volume) using Stripe, PayPal, Square, or Venmo Business as their primary payment rail — the segment too small for a dedicated account manager but large enough that a frozen payout is an existential cash-flow event, not an inconvenience.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Payment processors algorithmically flag accounts for elevated dispute rates, sudden volume spikes, or "high-risk" category matches and respond by freezing the balance or imposing a rolling reserve — sometimes 100% of funds for up to 180 days — with a form-letter explanation and a support queue staffed by chatbots and first-line reps with no authority to release anything. Founders describe watching payroll and supplier payments bounce while their own money sits untouchable, and the standard advice on forums is "file a CFPB complaint" — because regulated processors must formally respond to the CFPB within 15 days, which routes the case to an executive escalation team that can actually act, something a support ticket never reaches. But almost no small merchant knows this channel exists, how to write a complaint that gets taken seriously, or what evidence (delivery proof, refund policy, dispute-rate context, business legitimacy documentation) actually moves the needle — so most either give up or spend days assembling a weak, generic complaint.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Merchant connects their Stripe/PayPal/Square account (read-only OAuth) or uploads the freeze/reserve notice plus a transaction and payout export.</li>
+      <li>System pulls order, tracking, refund, and dispute history for the flagged period and auto-classifies the likely freeze trigger (dispute-rate spike, category mismatch, sudden volume change, KYC document gap).</li>
+      <li>A retrieval engine matches the fact pattern against a tagged corpus of public CFPB complaint narratives and company responses for the same processor, surfacing which evidence types and phrasing correlated with a fast release versus a stalled case.</li>
+      <li>The system drafts a CFPB complaint (formatted for the CFPB portal's required fields) plus a parallel formal appeal to the processor's dispute-resolution or executive escalation address, both citing the merchant's own delivery/refund/legitimacy evidence.</li>
+      <li>A deadline tracker shows the CFPB's 15-day company-response clock once filed, and nudges the merchant to escalate (state banking regulator complaint, small-claims letter) if the processor doesn't respond in time.</li>
+      <li>If the account shows a genuinely high fraud/dispute pattern, the report says so and recommends remediation steps instead of a complaint — preserving credibility for the cases that are real processor overreach.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Stripe/PayPal/Square read-only OAuth &amp; export parsing</span>
+      <span class="badge">CFPB Consumer Complaint Database (public, via CFPB API)</span>
+      <span class="badge">Processor terms-of-service &amp; reserve-policy text corpus</span>
+      <span class="badge">Shopify/Etsy/WooCommerce order &amp; tracking data</span>
+      <span class="badge">Complaint-outcome tagging &amp; retrieval index</span>
+      <span class="badge">Regulatory deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat $149–$249 per complaint/appeal package with 24-hour turnaround, bought at the moment of a freeze. A $39/mo "Reserve Watch" add-on monitors dispute-rate and volume-spike risk signals from the connected account and pre-builds an evidence bundle before a freeze happens, so a filing is same-day instead of scrambling from zero.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover Stripe and PayPal only for v1 (the two largest small-business processors by volume; add Square and Venmo Business once the evidence-matching model is validated). Ship the account freeze/reserve complaint-and-appeal workflow first; skip full account-closure and identity-verification-dispute cases for v1, since those follow a different regulatory path. Manual CSV/notice upload is acceptable for launch — OAuth account connection can follow once demand is proven. Go to market through e-commerce and dropshipping communities (Reddit's r/ecommerce and r/dropship, Shopify Partner forums, indie-hacker Slack/Discord groups) where "Stripe froze my funds" threads already recur constantly.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The CFPB complaint database is free, public, and full of processor-specific response patterns — the same kind of structured, precedent-rich corpus that made GAO protest decisions or DEA logs useful for AI matching — yet no product treats it as a triage and drafting engine for the small merchants who most need the leverage it creates. The real insight isn't legal analysis; it's a regulatory-plumbing hack: routing a support problem through a compliance channel that a payment company is contractually obligated to answer on a clock, which no amount of "chat with our AI support bot" can replicate. And the willingness to pay is about as sharp as it gets — the customer's own money is sitting frozen in someone else's bank right now, which makes a $199 same-day filing an easy call next to weeks of missed payroll.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
