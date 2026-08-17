@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-17 — RxRecoup</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-17</div>
+    <h1>RxRecoup</h1>
+    <p class="pitch">AI cross-checks an independent pharmacy's dispensing claims against public federal drug-cost benchmarks, flags below-cost PBM reimbursements, and auto-drafts the state-mandated MAC appeal before the clock runs out.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Pharmacist-owners and operations managers at independent and small-chain retail pharmacies (roughly 1–20 stores) — the ~19,000 independently owned pharmacies in the U.S. that fill prescriptions under contracts with a handful of dominant pharmacy benefit managers (CVS Caremark, Express Scripts, OptumRx, Prime Therapeutics, MedImpact) and have no in-house team dedicated to reimbursement recovery.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>PBMs reimburse generic prescriptions against a Maximum Allowable Cost (MAC) list that routinely lags real acquisition cost, especially during generic drug price spikes and shortages — so pharmacies frequently dispense a drug for less than they paid the wholesaler for it. Most states have passed MAC transparency laws that give pharmacies a legal right to appeal an underpayment, but the appeal window is short (often 7–14 days from the fill date, varying by state and PBM contract) and the appeal must cite the correct statute and pricing evidence in the PBM's specific format. Pharmacists are already stretched thin at the counter, have no practical way to check thousands of monthly claims against a moving cost benchmark, and don't know which fills even qualify — so the underpayments are quietly written off, draining an estimated $1,000s per store per month in margin that pharmacies are legally entitled to recover.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Pharmacy uploads a weekly claims export from their pharmacy management system (NDC, quantity dispensed, reimbursement amount, fill date, PBM/plan) — CSV, no real-time integration required for v1.</li>
+      <li>System matches every claim's NDC against that week's CMS NADAC (National Average Drug Acquisition Cost) file — a free, public, weekly-updated federal benchmark — and computes actual margin per claim.</li>
+      <li>Claims reimbursed below cost (or below a configurable margin floor) are flagged and grouped by PBM and drug, surfacing the highest-impact underpayments first.</li>
+      <li>For each flagged claim, the system looks up the pharmacy's state MAC-appeal statute, calculates the exact appeal deadline from the fill date, and starts a countdown with alerts.</li>
+      <li>It auto-generates the appeal in the specific PBM's required submission format, pre-filled with the NADAC pricing evidence and the citation to the state law provision — one click for the pharmacist to review and submit.</li>
+      <li>Each appeal is tracked to resolution (approved uplift vs. denied), building a per-PBM track record so the pharmacy can see recovered dollars and escalate PBMs that blow through statutory response deadlines to the state Board of Pharmacy or Insurance Commissioner.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">CMS NADAC weekly pricing file (public, free)</span>
+      <span class="badge">State MAC-transparency statute &amp; deadline database</span>
+      <span class="badge">Pharmacy management system CSV exports (PioneerRx, Liberty, Rx30, QS/1)</span>
+      <span class="badge">Top-5 PBM MAC appeal formats/portals</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Contingency-first: a 20–30% success fee on reimbursement actually recovered, with zero upfront cost — the pitch to a skeptical, cash-strapped pharmacist is "we only get paid when you get paid." An optional flat $149–$249/mo tier unlocks unlimited self-filed appeals plus the PBM performance dashboard for pharmacies that want predictable cost instead of a percentage cut.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in the 8–10 states with the clearest, most enforceable MAC-appeal statutes and highest generic-drug volatility, targeting the three largest PBMs by market share. Manual weekly CSV upload only — skip live pharmacy-system API integration until volume justifies it. Ship the flagging engine and deadline countdown first; treat one-click portal submission as a fast-follow once appeal-drafting accuracy is validated against real PBM outcomes. Go to market through independent pharmacy associations (NCPA and state affiliates), pharmacy buying groups, and pharmacist-owner Facebook/LinkedIn communities where reimbursement complaints are already a constant topic.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The entire signal already exists in public federal data — NADAC is free and updated weekly — yet no product treats it as a real-time trigger for a legal right most pharmacists don't know they have or can't act on in time. This is deliberately not a chatbot problem: the product is a boring, exacting reconciliation engine over two structured datasets (a pharmacy's own claims vs. a government price benchmark) plus jurisdiction-specific templating, which is far more defensible and automatable than anything requiring open-ended reasoning. And because the appeal window is statutory and short, the product creates its own urgency on a recurring weekly cycle rather than needing to manufacture demand — every week's claims export produces a fresh batch of expiring, quantifiable dollars, which is what makes a contingency-fee model viable instead of a hard subscription sell into an already distrustful buyer.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
