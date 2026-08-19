@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-19 — SkimGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-19</div>
+    <h1>SkimGuard</h1>
+    <p class="pitch">AI reconciles your DoorDash/Uber Eats payout statements against your actual merchant contract terms and flags every dollar of commission, fee, or promo-cost overcharge — so independent restaurants stop quietly losing 3–8% of order revenue to billing errors nobody has time to audit.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent restaurant operators and small multi-unit groups (2–15 locations) who run on 2 or more third-party delivery platforms and have no back-office staff whose job is to read a 40-page weekly payout statement line by line.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Delivery platforms charge commission (roughly 15–30%), plus marketing/promo fees, payment-processing fees, and "order error" or adjustment charges that shift with contract tier, active promotions, and mid-term renegotiations. The merchant agreement specifies exact rates, but the weekly payout statement is a dense, multi-page PDF or CSV with hundreds of order-level line items. Mismatches — a stale commission tier, a promo cost charged twice, a fee applied outside its contracted date range, a misclassified order type — are common in operator forums, with reported overcharges routinely running into the thousands per month per location, but disputing requires citing the exact line item within a short window, and platform support gives no benefit of the doubt without hard evidence. The result is that most operators know they're probably being overcharged and audit nothing, because doing it by hand costs more hours than the recovery is worth for any single week.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator uploads their signed merchant agreement(s) and rate sheet(s) for each platform, plus each week's exported payout statement (CSV/PDF).</li>
+      <li>Document AI parses the merchant agreement into structured contracted terms: commission %, fee schedule, promo cost-share rules, and effective dates for any amendments.</li>
+      <li>A statement parser extracts every line item from the payout export — order subtotal, commission charged, fees charged, promo deductions, adjustments.</li>
+      <li>The reconciliation engine recomputes what should have been charged under the contracted terms and flags mismatches above a materiality threshold, grouped by root cause (wrong tier, double-charged promo, stale rate, misclassified order type).</li>
+      <li>The system generates a per-platform dispute packet — a structured line-item table citing the specific contract clause — ready to submit through the platform's merchant support channel, and tracks each dispute's status and resolution.</li>
+      <li>A weekly digest shows recovered $, disputed $, and pending $ by platform and location, so the operator sees the trend without opening a single statement themselves.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">DoorDash / Uber Eats merchant statement exports (CSV/PDF)</span>
+      <span class="badge">Document AI for contract &amp; statement parsing</span>
+      <span class="badge">Rate-reconciliation engine</span>
+      <span class="badge">POS integration (Toast/Square) for order-level cross-check</span>
+      <span class="badge">Dispute packet generation &amp; status tracking</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Contingency-based: 20–30% of overcharges actually recovered or credited, with no subscription fee — removing adoption friction for cash-strapped operators. An optional flat monitoring plan ($49–99/mo per location) suits operators who want proactive monthly flag reports without ever filing a dispute through the platform themselves.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support DoorDash and Uber Eats only (the two largest platforms) with manual CSV statement upload — skip live merchant-portal API integration and Grubhub for v1. Cover commission-rate and promo cost-share reconciliation only; defer "order protection"/chargeback-specific disputes to v1.1. The operator submits the generated dispute packet themselves in v1; automate submission once win-rate data validates the flagging accuracy. Go to market through independent restaurant associations, POS reseller partnerships (Toast/Square app marketplaces), and restaurant-operator Facebook/Reddit communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The overcharges are structurally invisible rather than rare: each line-item discrepancy is a few dollars buried among hundreds of weekly orders, so no single error triggers outrage, but the aggregate is material and platforms have little incentive to make it easy to audit. Unlike opaque insurance or healthcare billing, delivery platforms already publish detailed, machine-readable statement data — making this a rare high-volume, high-value recovery problem that's genuinely tractable for a small team to parse and reconcile programmatically, without needing proprietary data access or regulatory expertise. And because pricing is contingency-only, the pitch to a skeptical, time-poor operator is a zero-risk yes rather than another subscription to evaluate.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
