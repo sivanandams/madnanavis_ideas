@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-20 — ClawbackGuard</title>
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --card-bg: #ffffff;
+    --ink: #171b21;
+    --ink-soft: #4c5560;
+    --accent: #1d5fa8;
+    --accent-soft: #dde9f7;
+    --border: #dde3ec;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1116;
+      --card-bg: #161b22;
+      --ink: #e9edf3;
+      --ink-soft: #a5b0bd;
+      --accent: #5b9ee8;
+      --accent-soft: #1c2a3c;
+      --border: #2a323d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1116; --card-bg: #161b22; --ink: #e9edf3; --ink-soft: #a5b0bd;
+    --accent: #5b9ee8; --accent-soft: #1c2a3c; --border: #2a323d;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fb; --card-bg: #ffffff; --ink: #171b21; --ink-soft: #4c5560;
+    --accent: #1d5fa8; --accent-soft: #dde9f7; --border: #dde3ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-20</div>
+    <h1>ClawbackGuard</h1>
+    <p class="pitch">AI reads a PBM's pharmacy audit recoupment letter, checks every disputed claim against that state's Pharmacy Audit Integrity Act, and drafts a statute-cited appeal before the clawback window closes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent retail pharmacy owners — roughly 19,000 non-chain pharmacies in the US — who periodically receive desk-audit findings and recoupment demands from PBMs (CVS Caremark, Express Scripts, OptumRx, Prime Therapeutics) and have no in-house pharmacy-law counsel or compliance staff to fight them.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>PBM audits routinely flag claims for "discrepancies" — a mismatched days-supply field, a refill-too-soon trigger, a missing signature log — and demand recoupment on each one, often with 30 days or less to appeal under the pharmacy's state Pharmacy Audit Integrity Act. Most of these acts contain protections PBMs don't volunteer: recoupment is barred for purely clerical/typographical errors that caused no financial harm, extrapolation from a small sample to the full claim universe is restricted, and audits outside the statutory lookback period are invalid outright. Independent pharmacies rarely know these provisions exist, appeal rates are reportedly under 10%, and the alternative — a pharmacy-audit consultant at $150–$300/hr — often costs more than a single-store owner is willing to risk on a claim-by-claim fight, so most owners just pay the clawback and eat the margin hit.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner uploads the PBM's audit findings/recoupment letter and a CSV export of the flagged claims from their pharmacy management system (PioneerRx, Liberty, Rx30, etc.), and selects their state.</li>
+      <li>Document AI extracts each disputed claim: NDC, discrepancy code, dollar amount recouped, and the PBM's stated rationale.</li>
+      <li>A rules engine checks each claim against that state's tagged Audit Integrity Act provisions — clerical-error protection, extrapolation limits, lookback-period caps, notice-defect grounds — and scores it strong / weak / no ground, with the exact statute section cited.</li>
+      <li>System generates a draft appeal letter bundling the strong-ground claims with citations, formatted for the PBM's specific audit-appeal portal or mailing process, ready for the owner to sign and send.</li>
+      <li>A deadline tracker flags the state's appeal-window expiration and reminds the owner before it lapses.</li>
+      <li>Appeal outcomes (won/reduced/denied) feed back into the system to sharpen scoring and to show the owner benchmark recovery rates for their PBM and finding type.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State Pharmacy Audit Integrity Act statute corpus (all 50 states)</span>
+      <span class="badge">PBM audit-letter templates (top 4 PBMs)</span>
+      <span class="badge">Pharmacy management system CSV export parsing</span>
+      <span class="badge">Document AI for letter/claims extraction</span>
+      <span class="badge">Statute-matching rules engine</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$99/mo subscription covering unlimited audit-letter reviews and deadline monitoring for a single pharmacy location, undercutting a single hour of consultant time; multi-location independent groups pay $79/mo per additional store. An optional one-time $249 "appeal packet" add-on gets a human pharmacist-consultant to review and co-sign the AI-drafted letter before it's sent.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with the 10 states holding the most independent pharmacies and the strongest Audit Integrity Act language (TX, CA, FL, NY, PA, OH, GA, NC, IL, MI), and cover audit letters from the three largest PBMs only. Manual CSV upload for claims data — skip live pharmacy-system API integration for v1. Ship the scored findings report and draft appeal letter; skip portal auto-submission and outcome-tracking analytics until the scoring accuracy is validated against real appeal results. Go to market through NCPA state affiliate conferences and independent-pharmacy-owner Facebook groups.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>PBM audit findings are unusually machine-friendly for a legal-adjacent product: a small, stable set of national payers issues largely templated, semi-automated recoupment letters against a well-defined statutory corpus that barely changes year to year, so match accuracy compounds fast with volume instead of degrading like general legal advice does. Because industry appeal rates sit under 10% while the underlying statutes already protect a meaningful share of flagged claims, even a modestly accurate first version returns real cash to a customer within weeks — a rare, undeniable ROI story for compliance software, and one that travels fast through the tight-knit, association-driven independent pharmacy community rather than needing paid acquisition.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
