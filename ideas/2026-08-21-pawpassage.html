@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-21 — PawPassage</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-21</div>
+    <h1>PawPassage</h1>
+    <p class="pitch">AI turns each destination country's ever-changing, date-sensitive pet-import rules into a personalized reverse-timeline for a specific pet and travel date, so international movers never get a pet stuck in quarantine, denied boarding, or turned back at customs.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Corporate relocation and global mobility coordinators, military PCS (permanent-change-of-station) support desks, and independent international pet-shipping agents who handle multiple household pet moves per month — plus a self-serve tier for individual expat, military, and remote-work pet owners doing a DIY move without an agent.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Pet-import requirements are brutally date-sensitive and vary by destination: a rabies antibody titer test might need to be drawn 90–365 days before travel and the result on file 3+ months before entry (the EU/UK/Japan/Australia "advance rabies" pathway), microchips must meet ISO 11784/11785 standards and be implanted <em>before</em> vaccination for the record to count, import permits must be filed and approved within narrow windows, and USDA APHIS endorsement of the health certificate must happen within days of departure. Miss one date and the consequence isn't a late fee — it's the pet quarantined for months (Australia, Japan), denied boarding by the airline, or refused entry at customs. Relocation coordinators handle only a handful of pet cases a year, it's not their core expertise, and they're currently stitching together government PDFs, outdated blog posts, and expensive one-off concierge vets — so a single missed deadline becomes a costly, emotionally charged service failure that reflects on the coordinator, not just the owner.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User (owner or coordinator acting on a client's behalf) enters origin country, destination country, target travel date, and pet species/breed, and uploads existing vaccination, microchip, and titer test records.</li>
+      <li>A rules engine — built on a maintained corpus of destination-country agriculture-ministry and USDA APHIS import requirements — generates a personalized reverse-timeline: every required step (microchip implant, rabies vaccination, titer draw, waiting period, import permit filing, USDA endorsement appointment, health certificate validity window) plotted as hard deadlines counting back from the travel date.</li>
+      <li>Document AI parses the uploaded vet records against the destination's required fields (chip format, vaccine type/lot, titer lab accreditation) and flags anything missing, expired, or in a format likely to trigger a customs rejection — before the owner is at the airport.</li>
+      <li>Automated email/SMS reminders fire as each deadline approaches; a case dashboard shows every pet's status and risk level for coordinators managing several moves at once.</li>
+      <li>Ahead of travel, the system generates a pre-flight compliance packet — checklist plus assembled documents in the destination's expected order — and a plain-language entry-risk score ("on track" / "at risk: titer drawn 4 days too late for Japan's 180-day rule").</li>
+      <li>If a deadline has already been missed, the system says so immediately and shows the fallback pathway (e.g., standard quarantine track) rather than letting the user discover it at check-in.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">USDA APHIS Pet Travel / VEHCS data</span>
+      <span class="badge">Destination-country agriculture &amp; customs import rules (maintained corpus)</span>
+      <span class="badge">IATA live animal / airline pet-cargo policies</span>
+      <span class="badge">Rabies titer lab result formats (e.g., Kansas State Rabies Laboratory)</span>
+      <span class="badge">Document OCR for vet records &amp; health certificates</span>
+      <span class="badge">Email/SMS reminder engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Free tier generates the basic reverse-timeline checklist for one pet/route to drive top-of-funnel adoption and word of mouth. Individual owners pay a one-time $149–$249 "full compliance packet" fee per pet per move (document review, reminders, pre-flight packet). Relocation companies, mobility desks, and pet-shipping agents subscribe at $299–$999/mo based on caseload, with a white-label client-facing portal and a per-case add-on fee for document review — priced as liability insurance for their job, not a convenience tool.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover the highest-volume corridors first — US↔UK, US↔EU/Schengen, US↔Australia, US↔Japan, and US↔Canada — which together account for the bulk of expat, military, and corporate-relocation pet moves. Dogs and cats only (skip exotic pets and livestock). Manual document upload with OCR extraction; no direct lab or airline API integration yet. Go to market through corporate mobility associations (Worldwide ERC), military spouse and PCS Facebook/relocation communities, and independent IPATA-member pet shippers looking to reduce their own liability exposure.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The category looks like "just information" — free government PDFs exist for every country — which scares most founders away and keeps well-funded competitors out. But the real product isn't the rules, it's the reverse-engineered, per-pet, per-date deadline calendar computed against a specific animal's actual vaccination and microchip history, something no static PDF or blog post can produce and that becomes wrong the moment any input date shifts. The stakes are also unusually purchase-forcing for an "information" product: a mistake doesn't cost a late fee, it costs months of quarantine or a euthanized pet, so willingness to pay is closer to travel insurance than to a research tool. And the highest-leverage buyer isn't the pet owner at all — it's the relocation coordinator or mobility desk who gets blamed when a client's move goes wrong, making this an audit-trail liability shield they expense without hesitation, sold B2B2C into a channel that currently has no dedicated software at all.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
