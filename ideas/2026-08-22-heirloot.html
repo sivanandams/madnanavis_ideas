@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-22 — HeirLoot</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-22</div>
+    <h1>HeirLoot</h1>
+    <p class="pitch">Point a phone at a house full of a lifetime's belongings and get back an AI-priced, per-item liquidation plan — sell here, list there, donate the rest — before the estate sale date locks in.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small estate sale companies (typically 1–5 people running 2–6 sales a month) and independent senior move managers who handle downsizing for older adults moving into assisted living — professionals who are hired to empty and monetize an entire household on a fixed deadline, usually tied to a home closing or a facility move-in date.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>A single average home holds 1,000–3,000 individually sellable items spanning dozens of categories — furniture, china, tools, linens, electronics, vintage toys, costume jewelry — and someone has to look at each one, guess what it's worth, and decide whether it goes on a price tag, into an online listing, to a consignment shop, or to Goodwill. Estate sale operators report this pricing-and-routing pass eating 15–30 hours of skilled labor per job, done from memory and gut feel because there's no time to research comps on 2,000 line items in a week. Underprice and the operator's own commission (typically 30–40% of gross sales) shrinks; overprice and items don't move by sale day; misroute a $400 mid-century lamp into the $5 tag pile and it's gone for good. Grieving or overwhelmed families rarely push back on the numbers, which means the losses are invisible — they just show up as a smaller check and a worse reputation.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Coordinator walks the home room by room, taking batch photos of items (grouped tabletops, shelves, and drawers count as one photo each — no need to isolate items individually).</li>
+      <li>A vision pipeline detects and crops individual items per photo, tags each with a category and any visible maker's marks, brand names, or model numbers, and flags condition issues (chips, stains, missing parts).</li>
+      <li>For each item, the system queries recent sold-comp data (not asking prices) — eBay sold listings, UPC/barcode lookups for retail goods, and regional auction-house sold records — and returns a price range with a confidence score.</li>
+      <li>A routing rule scores expected-value-versus-effort per item and recommends a channel: in-home price tag, online marketplace listing, consignment/auction referral, or donate/dispose — so low-value bulky items don't eat staff time that high-value items need.</li>
+      <li>The system outputs a printable price-tag sheet (barcoded per item), a CSV/photo catalog ready to paste into online listings, and a short "get this appraised first" list for anything that looks like fine art, jewelry, coins, or signed pieces the model can't confidently price.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Vision model for item detection &amp; categorization</span>
+      <span class="badge">eBay sold-listings data</span>
+      <span class="badge">UPC/barcode product lookup</span>
+      <span class="badge">Regional auction-house sold-price records</span>
+      <span class="badge">PDF label/price-tag generator</span>
+      <span class="badge">CSV/photo export for marketplace listing</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat per-job fee of $99–$299 scaled by photo/item volume, billed at the point of use since estate liquidators work job-to-job rather than on a steady subscription. Senior move management firms running several downsizing jobs a month get a $79/mo plan with unlimited scans, since their volume and cash flow look more like a recurring business than a one-off estate sale.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover general household categories only — furniture, housewares, tools, media, small appliances, costume jewelry and collectibles — and explicitly exclude fine art, gemstone jewelry, coins, and firearms from automated pricing in v1, routing those straight to the "get appraised" list. Batch photo upload only, no live video capture. Wire up one comp source (eBay sold listings) plus UPC lookup before adding auction-house data. Ship the price-tag PDF and CSV catalog; skip direct marketplace auto-listing until pricing accuracy is validated against real sale-day results. Go to market through ASEL (American Society of Estate Liquidators) and NASMM (National Association of Senior Move Managers) member directories and regional conferences.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every existing "AI resale pricing" tool is built for a consumer flipping one item at a time on Poshmark or eBay; none of them are built for the very different B2B problem of triaging an entire household against a hard sale-date deadline, where the real skill isn't identifying an item but deciding fast whether it's worth anyone's time at all. Anchoring on sold-comp data instead of scraped asking prices also sidesteps the credibility problem every reseller app has — asking prices are fantasy, and an estate liquidator needs a number they can defend to a grieving family on the spot, which makes "here's what three of these actually sold for last month" the real product, not a chatbot description of the item.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
