@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-23 — MetrcMatch</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-23</div>
+    <h1>MetrcMatch</h1>
+    <p class="pitch">AI reconciles a cannabis license holder's point-of-sale, cultivation, and manufacturing records against their state seed-to-sale system every night, catching the tag mismatches and unlogged waste that trigger compliance audits before the state does.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Licensed cannabis cultivators, processors, and dispensaries in seed-to-sale-mandated states (Michigan, Missouri, Massachusetts, Colorado, Ohio, Maryland, and other METRC states, plus BioTrackTHC states like Florida and Louisiana) doing roughly $2M–$30M in revenue — especially multi-location operators and anyone who has already drawn a compliance violation, since a second one escalates fast.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>State cannabis regulators require every plant and product unit to be RFID-tagged, tracked, and reported in near real time through a state track-and-trace system; a licensee's POS and cultivation records must match that state ledger exactly, down to the package tag. Discrepancies — missing tags, quantity deltas, waste not logged within the state's deadline, transfer manifests never confirmed on the receiving end — are exactly what a state audit is designed to find, and they carry real teeth: administrative complaints, fines from roughly $1,000 to $100,000 depending on the state and severity, and, on repeat or serious findings, license suspension or non-renewal. Reconciliation today is a compliance manager copying two systems into a spreadsheet, usually monthly at best, so most operators only discover a mismatch when an inspector already has.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator connects their state track-and-trace API (a vendor API key issued by the state) and their POS/inventory system (Dutchie, Flowhub, or Treez) through existing integrations.</li>
+      <li>Nightly pull of package, plant, and transfer records from the state system, matched against POS sales and inventory-adjustment records for the same period.</li>
+      <li>Reconciliation engine matches records by package tag ID and flags quantity deltas beyond a configurable tolerance, unlogged waste, stale or expired packages, and transfer manifests missing a receiving confirmation.</li>
+      <li>An anomaly-scoring layer — not a generic chatbot — ranks each discrepancy by audit risk using the operator's state-specific rule set (e.g., Massachusetts requires destroyed waste logged within 3 days), separating same-day-fix issues from lower-risk noise.</li>
+      <li>A dashboard plus daily email/SMS digest lists open discrepancies and days remaining to correct each one, with a one-click "correction packet" (CSV/PDF proof of what was fixed and when) ready to hand an inspector.</li>
+      <li>A monthly "mock audit" report simulates what a state inspector would flag, so operators clean up issues on their own schedule instead of the state's.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">METRC vendor API (per state)</span>
+      <span class="badge">BioTrackTHC API (FL, LA)</span>
+      <span class="badge">POS integrations: Dutchie, Flowhub, Treez, Cova</span>
+      <span class="badge">State-by-state variance-threshold &amp; deadline rule sets</span>
+      <span class="badge">Discrepancy anomaly-scoring model</span>
+      <span class="badge">Email/SMS alerting</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$399–$1,499/month priced per licensed facility (single dispensary vs. multi-site operator), since the license — not the seat — is the audit unit. A one-time $995 "mock audit + cleanup" onboarding fee pays for itself by surfacing existing discrepancies before the subscription even starts.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with one state (Michigan or Missouri — high plant counts, active enforcement) and one POS integration (Dutchie), covering package and plant reconciliation plus waste-logging deadline alerts only; leave multi-state support and manufacturing/production-batch matching for v1.1. Support a manual CSV upload path for operators without a live POS integration yet. Go to market through cannabis compliance consultants and state cannabis trade associations who already do this reconciliation by hand for clients and would refer or white-label it.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing seed-to-sale platforms treat the state system as somewhere you report <em>to</em>, not a source of truth you audit <em>against</em> — nobody is building the shadow ledger whose entire job is catching drift between the state's official record and the operator's own systems before an inspector does. The category also comes with a built-in enforcement clock a small team can automate around: every state publishes its own exact correction windows and variance thresholds in its regulations, which makes the product's value legible and defensible without needing open-ended AI conversation — it behaves more like a compiler diffing two ledgers than a chatbot, and the "prove you fixed it" packet is what actually gets sold, not the alert itself.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
