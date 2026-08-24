@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-24 — DelegationGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-24</div>
+    <h1>DelegationGuard</h1>
+    <p class="pitch">Compliance tracking for the absentee "medical director" physicians who lend their license to med spas — so their delegation agreements, standing orders, and chart co-signs stay current across every location before a board complaint finds the gap first.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Physicians who serve as medical directors for medical spas and aesthetic practices — often signing on with 5 to 30+ locations for a monthly fee, rarely on-site — plus the practice owners (usually NPs, RNs, or estheticians) who need that physician's oversight paperwork airtight to keep operating legally under state delegation-of-services rules.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every state sets its own rules for how far a physician can delegate injectables, laser, and energy-device treatments to NPs, PAs, RNs, or aestheticians — supervision ratios, required standing orders, protocol renewal intervals, and chart co-signature windows all vary, and several states (Texas, Florida, California among them) have tightened enforcement and increased med-spa board complaints and lawsuits in the last few years. A medical director signed on at a dozen locations has no practical way to track which standing orders are stale, which providers are missing a current delegation agreement, or which treatment charts still need a co-signature inside the state's required window. When a complaint or malpractice claim lands, that gap in paperwork — not the treatment itself — is what turns a defensible case into a license action. Today this is tracked, if at all, in shared spreadsheets the medical director never opens, because no EHR or spa booking platform treats physician oversight as its own compliance object.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Medical director creates an account and adds each location/practice they oversee, plus the state each operates in.</li>
+      <li>For each location, the system loads a state-specific checklist (supervision ratio, required standing-order categories, renewal interval, co-sign window) from a curated rules library, and the director or practice manager uploads the current signed delegation agreement and standing orders.</li>
+      <li>AI reads each uploaded document, extracts its effective date, expiration/renewal date, covered procedures, and named providers, and flags mismatches against the state checklist (e.g., a Botox standing order that doesn't name a provider currently on staff).</li>
+      <li>Practice managers log treatments needing co-signature (manually in v1, via EHR webhook later); the system tracks each against its state's co-sign deadline and escalates by email/SMS as the window closes.</li>
+      <li>The medical director gets one dashboard across all locations: expiring documents, missing co-signs, and any location currently out of compliance, ranked by liability exposure rather than by location.</li>
+      <li>A monthly "director's binder" PDF auto-generates — the exact document set a board investigator or malpractice attorney would ask for first — so the director can produce it on demand instead of assembling it under pressure.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Curated state medical board delegation-rule library (manually researched &amp; maintained)</span>
+      <span class="badge">Document AI for standing orders &amp; delegation agreements</span>
+      <span class="badge">E-signature for agreement renewals</span>
+      <span class="badge">Email/SMS deadline alerts</span>
+      <span class="badge">Optional webhook/API from spa EHR-POS platforms (Boulevard, Vagaro, Aesthetic Record)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-location subscription paid by the medical director, $149–$299/mo per location with volume tiers at 10+ and 25+ locations, since the director (not the spa owner) carries the license risk and controls the multi-location budget. A one-time $499 "board complaint response" add-on assembles the full compliance binder for a specific location within 24 hours when an investigation actually opens.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in the five states with the highest med-spa density and the most active board enforcement — Texas, Florida, California, Arizona, and Georgia — and cover injectables and laser/energy devices only (skip IV therapy and weight-loss prescribing, which carry separate rule sets). Manual document upload and manual co-sign logging only; EHR webhooks are a v2 feature once the compliance-checklist accuracy is validated with real medical directors. Go to market through medical director staffing/placement networks, aesthetic nurse practitioner associations, and med-spa malpractice insurance brokers who already see the liability side of this problem.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every existing med-spa software (Boulevard, Vagaro, Aesthetic Record, PatientNow) is built for the front desk and the treating provider — none of them treat the medical director as a distinct user with distinct, cross-location liability, even though that person is the one whose license is actually on the line and the one most likely to pay for a tool that protects it. Selling to the director instead of the spa owner also sidesteps the crowded, thin-margin spa-software category entirely: the buyer isn't shopping on booking features or client retention, they're buying insurance against losing the ability to practice medicine, which supports a much higher price per seat for a much smaller, easier-to-reach audience.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
