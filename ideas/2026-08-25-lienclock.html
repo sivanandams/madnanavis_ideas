@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-25 — LienClock</title>
+<style>
+  :root {
+    --bg: #f8f7fa;
+    --card-bg: #ffffff;
+    --ink: #1c1a22;
+    --ink-soft: #56516a;
+    --accent: #5b3fd1;
+    --accent-soft: #e8e2fb;
+    --border: #e1ddec;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131019;
+      --card-bg: #1c1826;
+      --ink: #f1eef7;
+      --ink-soft: #b6aecb;
+      --accent: #a48af0;
+      --accent-soft: #2c2440;
+      --border: #322a44;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131019; --card-bg: #1c1826; --ink: #f1eef7; --ink-soft: #b6aecb;
+    --accent: #a48af0; --accent-soft: #2c2440; --border: #322a44;
+  }
+  :root[data-theme="light"] {
+    --bg: #f8f7fa; --card-bg: #ffffff; --ink: #1c1a22; --ink-soft: #56516a;
+    --accent: #5b3fd1; --accent-soft: #e8e2fb; --border: #e1ddec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-25</div>
+    <h1>LienClock</h1>
+    <p class="pitch">A state-by-state compliance engine that calculates statutory deadlines, drafts legally correct lien notices, and builds a lawsuit-ready evidence packet for self-storage facilities running delinquent-unit auctions.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independently owned and small regional self-storage operators (roughly 1–50 locations) — family businesses and out-of-state investor-owners who run facilities on spreadsheets or basic management software like SiteLink, Storable, or QuikStor, without an in-house legal or compliance team. This excludes the large REITs (Public Storage, Extra Space, CubeSmart), who already have legal departments, but covers the large majority of the roughly 50,000+ self-storage facilities in the US that don't.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every state's self-storage lien act sets its own rules for how an operator may sell a delinquent tenant's belongings: how many days of delinquency before a lien attaches, whether notice must go by certified mail, exact required language and statutory citations in the notice, minimum days between notice and auction, newspaper publication in some states, and rules for handling any surplus sale proceeds. Get one date or one clause wrong and the auction is legally voidable — former tenants sue for the value of lost belongings plus statutory damages and attorney's fees, and settlements routinely run into the tens of thousands of dollars. Facility managers currently track dozens of delinquent units by hand in spreadsheets or sticky notes, recalculating deadlines themselves and reusing notice templates that may not match the current statute, especially after a state updates its law or when an owner operates across multiple states with different rules.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator uploads a CSV export of delinquent units (or enters them manually) from their facility management software, including tenant, unit, lease-start date, and facility state.</li>
+      <li>LienClock's rules engine — built on a maintained database of all 50 states' self-storage lien statutes — calculates every required date for that unit: earliest lien-attachment date, certified-mail-by date, minimum notice-to-auction gap, and any publication-requirement flag, correctly versioned against the statute in force when the lease was signed.</li>
+      <li>The system auto-generates the state-specific lien notice as a ready-to-mail PDF with the correct statutory citation and required language, plus a per-unit compliance checklist (certified mail tracking number, proof-of-mailing upload).</li>
+      <li>As each deadline approaches, the operator gets an alert; once every minimum waiting period has legally cleared, the unit is marked "clear to list" with a timestamped certificate.</li>
+      <li>Every notice, mailing receipt, and deadline event is archived into a per-unit compliance packet — the exact documentation a facility needs to defend an auction if a former tenant later sues.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">50-state self-storage lien statute database (built once, reviewed periodically for legal changes)</span>
+      <span class="badge">SiteLink / Storable / QuikStor CSV export</span>
+      <span class="badge">USPS certified mail tracking API (or manual receipt upload)</span>
+      <span class="badge">PDF notice generation</span>
+      <span class="badge">StorageTreasures / Lockerfox listing links (v2)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-facility monthly subscription, $49–$99/location, covering unlimited lien notices and deadline tracking that month — priced as ongoing legal-risk infrastructure rather than a per-notice fee, so operators don't hesitate to run the process correctly on every unit. Multi-location operators get a volume discount. An optional $25-per-notice "attorney sign-off" add-on routes the generated notice through a network of self-storage-specialist attorneys for operators who want extra cover before a sale.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with the ten states that hold the largest share of self-storage facilities (TX, CA, FL, GA, NC, OH, IL, PA, NY, AZ), which likely covers over half of the independent-operator market. CSV import only in v1 — skip live API sync with management software. Ship deadline calculation, notice generation, and the compliance packet; for the handful of states requiring newspaper publication, v1 just flags the requirement and supplies the required text for the operator to place manually rather than automating it. No direct auction-marketplace integration yet — v1 output is a "clear to list" certificate the operator uses when listing manually.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Nobody in the current stack is incentivized to own this problem: auction marketplaces like StorageTreasures profit from listings going live and have no reason to slow an operator down to check the legal steps first, while facility management software treats a delinquent unit as a billing and CRM event, not a legal-timeline event. That leaves compliance as an orphaned step every operator has to reinvent by hand. The risk is also asymmetric in a way that sells well: a hundred correctly run lien sales earn the software zero credit, but a single defective one can cost more than a decade of subscription fees, which is exactly the tail-risk profile that turns software into insurance people buy before they've ever been burned. And because each state's requirements are fixed, citable statute rather than judgment calls, a deterministic rules engine and document generator beats a generic AI chatbot here — the product's value is provable correctness on a specific date and a specific clause, not conversational help.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
