@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-26 — SpecGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-26</div>
+    <h1>SpecGuard</h1>
+    <p class="pitch">AI diffs a factory's production sample photos against your tech pack and golden sample — catching color, placement, and construction deviations before a boutique apparel brand ships 10,000 wrong units.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and boutique apparel, footwear, and accessory brands doing roughly $500K–$10M in annual revenue, manufacturing overseas (China, Vietnam, India, Bangladesh, Turkey) through small-batch factories, with no in-house QC or sourcing team — usually one founder or ops lead juggling production alongside everything else.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Full third-party inspection services (AQF, SGS, Intertek, Bureau Veritas) charge $250–$500+ per visit plus travel, and require enough lead time and order volume that they only make sense for brands running large, predictable runs. Boutique brands doing small or irregular batches can't justify that cost, so they either skip QC entirely or rely on factory-submitted "approval" photos — which are often shot to flatter the sample, not to reveal the defect. Spec deviations (an off Pantone shade, a logo sitting 2cm too high, a missing bar-tack, a mislabeled size run) routinely surface only after a full production run ships, forcing rush reproduction, air freight, retailer chargebacks, and returns that can wipe out a season's margin on a single style.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Brand uploads the tech pack (PDF/spec sheet) for a style — measurements, Pantone/color codes, construction callouts — plus photos of the approved "golden sample."</li>
+      <li>Factory or brand rep photographs a production sample using a guided in-app capture flow: fixed angle overlays and a required color-reference card in frame, so every submission is directly comparable and self-calibrating for lighting.</li>
+      <li>A computer-vision pipeline compares the production photos against the golden sample and spec sheet: color deltaE deviation from the Pantone/RGB reference, logo/label placement offset in calibrated cm, presence/absence of construction details (stitch lines, bar-tacks, trims) via object detection, and proportion/measurement ratio checks.</li>
+      <li>System generates a pass/fail QC report with annotated side-by-side image diffs, deviations ranked by severity, and an auto-translated corrective note ready to send straight to the factory.</li>
+      <li>Brand approves or rejects the sample in one click; every report is stored against its PO/style number as a dated audit trail for resolving disputes with the factory.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Tech pack (PDF/Excel) parsing</span>
+      <span class="badge">Pantone/color reference library + printed calibration card</span>
+      <span class="badge">Computer vision: object detection &amp; image diffing</span>
+      <span class="badge">Cloud image storage per style/PO</span>
+      <span class="badge">WhatsApp/WeChat photo intake for factories</span>
+      <span class="badge">Machine translation (English ↔ Mandarin/Vietnamese/Hindi/Bengali)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Usage-based per-check fee ($15–$25 per style/PO QC run) for occasional buyers, plus a monthly plan ($99–$299/mo) for brands in frequent production that bundles unlimited spec storage, multiple team seats, and priority processing. An optional add-on lets brands white-label the QC report to send to their own retail buyers as proof of quality control.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One workflow only: tech pack + golden sample upload, one production sample photo set, automated color + logo/label placement + basic construction check, output a downloadable PDF report. Support just two garment categories at launch — knit t-shirts and hoodies — to keep the computer-vision problem tractable before generalizing to wovens, denim, footwear, and accessories. Manual photo upload only; no live factory portal yet.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Most "AI for apparel" pitches chase design generation or supply-chain matchmaking — a crowded, hype-driven lane. SpecGuard instead automates the unglamorous, high-friction step nobody wants to build for: quality control, using computer vision as a measurement instrument rather than a chatbot. It replaces a $300+/visit human inspector with a self-serve photo-diffing tool an ops person can run in an afternoon, serving the exact segment enterprise QC firms ignore — brands too small for a dedicated inspector contract, but too exposed on margin to skip QC entirely. And because factories already communicate primarily over WhatsApp/WeChat, meeting them there (instead of asking for email or portal logins) removes the single biggest adoption barrier this category usually stalls on.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
