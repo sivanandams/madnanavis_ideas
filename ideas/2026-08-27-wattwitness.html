@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-27 — WattWitness</title>
+<style>
+  :root {
+    --bg: #fbf8f2;
+    --card-bg: #ffffff;
+    --ink: #201a10;
+    --ink-soft: #57503f;
+    --accent: #b5720c;
+    --accent-soft: #f3e4c8;
+    --border: #eadfc9;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130c;
+      --card-bg: #1e1a10;
+      --ink: #f3ecdd;
+      --ink-soft: #bfb195;
+      --accent: #e8a53d;
+      --accent-soft: #33280f;
+      --border: #362c17;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16130c; --card-bg: #1e1a10; --ink: #f3ecdd; --ink-soft: #bfb195;
+    --accent: #e8a53d; --accent-soft: #33280f; --border: #362c17;
+  }
+  :root[data-theme="light"] {
+    --bg: #fbf8f2; --card-bg: #ffffff; --ink: #201a10; --ink-soft: #57503f;
+    --accent: #b5720c; --accent-soft: #f3e4c8; --border: #eadfc9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-27</div>
+    <h1>WattWitness</h1>
+    <p class="pitch">AI reconciles your solar lease or PPA's production guarantee and escalator clauses against your inverter's actual generation data — catching underproduction checks and payoff-quote overcharges homeowners never think to verify.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Homeowners with third-party-owned residential solar (a lease or power purchase agreement) from the major national installers — Sunrun, Vivint Solar/SunPower legacy accounts, and Sunnova — especially those a few years into a 20-25 year contract, refinancing, selling, or renewing, or who suspect their system is producing less than promised.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every standard solar lease/PPA contains a production guarantee — if the system underproduces the contracted year-by-year kWh schedule, the company owes the homeowner a true-up check — plus an annual price escalator (typically 2.9%+). But homeowners receive one opaque monthly bill, never see the contract's guarantee schedule laid out against their real production, and the solar companies do not proactively calculate or pay out shortfalls. During a home sale, the "solar transfer/payoff quote" the installer provides is similarly unauditable, and disputing it can stall or kill a closing. The money is contractually owed and the data to prove it already exists in the homeowner's own monitoring app — nobody just does the arithmetic.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Homeowner uploads their lease/PPA agreement (PDF) and connects their monitoring account — Enphase Enlighten or SolarEdge — via read-only OAuth, or uploads a CSV export.</li>
+      <li>Document AI extracts the guaranteed production schedule (kWh/year), the escalator rate and start date, the per-kWh or lease price terms, and the buyout/payoff schedule.</li>
+      <li>The system pulls actual monthly and annual production from the monitoring API and reconciles it year-by-year against the guaranteed schedule.</li>
+      <li>It calculates any production-guarantee shortfall check owed, flags escalator or billing math that doesn't match the contract, and outputs a plain-English report plus a pre-filled dispute/claim letter addressed to the solar company.</li>
+      <li>For sellers, a "true payoff cost" calculator compares the installer's transfer quote against what the contract actually specifies, giving the homeowner leverage in the real-estate negotiation.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Enphase Enlighten API</span>
+      <span class="badge">SolarEdge monitoring API</span>
+      <span class="badge">Tesla app CSV export</span>
+      <span class="badge">Document AI for PPA/lease PDFs</span>
+      <span class="badge">Per-installer contract template rules engine</span>
+      <span class="badge">Utility bill OCR (optional)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>A one-time report fee of $99-$149, priced like a home-inspection add-on and purchased at a moment of concrete motivation (suspected underproduction or an upcoming home sale). An optional $19/mo "production watch" re-runs the reconciliation automatically each year and alerts the homeowner before each contract escalator date and at the anniversary the guarantee is checked.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support only the standard contract templates from the three largest installers (Sunrun, Sunnova, Vivint/SunPower legacy) and only Enphase and SolarEdge monitoring — the two dominant platforms — leaving Tesla and smaller inverter brands for v1.1. Ship production-guarantee-shortfall detection as the core check; defer full payoff-quote auditing until the shortfall flow is validated. Manual PDF upload only, no e-signature or filing automation. Distribute through r/solar, solar-owner Facebook groups, and real-estate agents who regularly handle homes with assumed solar leases.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>This isn't a claim against a hostile insurer looking for reasons to deny — it's arithmetic against a specific, dollar-denominated obligation the solar company already wrote into a contract it drafted, owed by a well-capitalized counterparty with every incentive to just pay a small true-up check rather than litigate it. The verification data isn't buried in someone's memory or a paper trail either; it already lives, timestamped and API-accessible, inside the homeowner's own monitoring app. That combination — a structured contractual promise plus third-party-verifiable ground truth plus a solvent payer — is unusually rare among consumer money-recovery ideas, and the market is large and growing every year as more of the ~4 million existing third-party-owned solar contracts age past their early years, when underproduction versus degraded-panel reality first starts to show up.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
