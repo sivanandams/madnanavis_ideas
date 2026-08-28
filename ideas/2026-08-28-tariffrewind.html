@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-28 — TariffRewind</title>
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --card-bg: #ffffff;
+    --ink: #201a14;
+    --ink-soft: #5a4f42;
+    --accent: #a8541f;
+    --accent-soft: #f3e0cf;
+    --border: #e7ddce;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16110c;
+      --card-bg: #1e1811;
+      --ink: #f3ecdf;
+      --ink-soft: #bfae97;
+      --accent: #e08a45;
+      --accent-soft: #3a2718;
+      --border: #35291c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16110c; --card-bg: #1e1811; --ink: #f3ecdf; --ink-soft: #bfae97;
+    --accent: #e08a45; --accent-soft: #3a2718; --border: #35291c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f8f7f4; --card-bg: #ffffff; --ink: #201a14; --ink-soft: #5a4f42;
+    --accent: #a8541f; --accent-soft: #f3e0cf; --border: #e7ddce;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.35rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-28</div>
+    <h1>TariffRewind</h1>
+    <p class="pitch">AI re-classifies your customs entries against CBP rulings and the tariff schedule, flags duty you overpaid, and files the correction before your refund window closes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small-to-mid U.S. importers ($5M–$150M revenue) — e-commerce brands, industrial parts distributors, specialty food and beverage importers — who move regular container volume but have no in-house trade compliance counsel and simply accept whatever HTS classification their customs broker used.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Under the 2025–2026 tariff environment — broad Section 301 and IEEPA duties layered on shifting country-specific rates and exclusion lists — customs brokers routinely default to conservative, higher-duty HTS codes to limit their own liability rather than research the more specific classification, applicable exclusion, or First Sale valuation a product actually qualifies for. That leaves real, recoverable duty sitting on the table. Recovering it requires filing a Post Summary Correction within 300 days of entry, or a formal Protest within 180 days of liquidation — a document-heavy, deadline-bound process most SMB importers don't even know exists, so the money simply expires unclaimed.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Importer uploads their entry summary data (ABI broker export or an ACE portal CSV) — commercial invoices, HTS codes used, and duty paid per entry.</li>
+      <li>For each SKU, the system pulls the product spec sheet or description and matches it against CBP's CROSS ruling database and the Harmonized Tariff Schedule to surface a more specific, lower-duty classification, an applicable exclusion, or a First Sale valuation opportunity.</li>
+      <li>Each flagged entry gets a savings-confidence score with the exact CBP ruling(s) it's grounded in, so the claim is citable, not just asserted.</li>
+      <li>A deadline tracker shows which entries are still inside the 300-day Post Summary Correction window versus the 180-day post-liquidation protest window versus already time-barred, with alerts before each closes.</li>
+      <li>For flagged entries, the system auto-generates the PSC filing packet or protest letter with ruling citations, ready for the importer or their broker to submit through ACE.</li>
+      <li>Recovered refunds are tracked back to the flagged entries, and outcomes feed the ruling-match model to sharpen future confidence scores.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">CBP CROSS ruling database (public)</span>
+      <span class="badge">USITC Harmonized Tariff Schedule</span>
+      <span class="badge">ACE portal / ABI broker entry-summary exports</span>
+      <span class="badge">Section 301 &amp; IEEPA exclusion lists</span>
+      <span class="badge">Product spec sheet OCR/parsing</span>
+      <span class="badge">ERP/accounting hooks (NetSuite, QuickBooks) for SKU data</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Contingency fee of 20–30% of duty actually recovered — zero cost to the importer if nothing is found, which removes the adoption barrier entirely. An optional $199/mo subscription adds forward-looking classification review on new SKUs and entries, so future shipments stop overpaying in the first place.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover Post Summary Correction only, for entries still inside the 300-day window (skip formal Protests and Court of International Trade appeals for v1). Support one entry-summary export format to start, matched to the top 2–3 customs brokers by SMB market share, with manual CSV upload only — no live ACE API integration yet. Go to market through customs broker referral partnerships and trade-compliance LinkedIn communities rather than paid ads.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Trade compliance software has been built almost entirely for large enterprises as GTM (global trade management) suites bolted onto SAP, ignoring the much larger long tail of SMB importers who don't even know a duty-refund process exists. CBP publishes its full ruling corpus for free in a structured, citable form — exactly the narrow, high-precision domain where retrieval-based matching beats a generic chatbot. And the 2025–2026 tariff spike has made per-entry duty amounts large enough that a pure contingency model is an easy yes for the importer and a strong margin for the provider, turning a compliance backwater into a live "found money" pitch instead of a "yet another compliance dashboard" sell.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
