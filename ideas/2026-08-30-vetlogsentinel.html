@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-30 — VetLog Sentinel</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-30</div>
+    <h1>VetLog Sentinel</h1>
+    <p class="pitch">AI reconciles a veterinary practice's controlled-substance logs against distributor purchase records so DEA-auditable discrepancies get caught and fixed weeks before an inspector ever walks in.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent veterinary practices and small clinic groups (1–15 doctors) that stock Schedule II–V controlled substances — ketamine, butorphanol, tramadol, phenobarbital, buprenorphine — for anesthesia, sedation, seizure management, and euthanasia. Practice managers and owner-vets who are personally named on the DEA registration are the buyers.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every dose of a controlled substance drawn, wasted, or administered has to be logged with a running balance, a co-witness signature for waste, and a reconciled tie-out to what the practice actually bought. In a busy clinic this is still done on paper binders or a shared spreadsheet, updated by whichever tech is free between surgeries. Nobody checks the math until a DEA or state veterinary board inspector shows up — and by then a missing witness signature, a balance that doesn't tie to invoices, or an unlogged vial is no longer a clerical fix, it's a registration suspension, a fine, or a referral for diversion investigation. The clinic finds out it had a problem on the day it's most expensive to have one.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Practice photographs or scans its paper controlled-substance log sheets weekly (or exports a log from its practice management system), and uploads distributor invoices/statements from its ordering account.</li>
+      <li>OCR and table parsing extract each log line — date, drug, tech initials, amount drawn, amount administered, amount wasted, witness initials, running balance — and each purchase line from the distributor records.</li>
+      <li>A reconciliation engine ties purchases in against logged usage and flags every discrepancy type separately: balance math errors, waste entries missing a second signature, drugs purchased but never appearing in the log, backdated or out-of-sequence entries, and unexplained balance drops.</li>
+      <li>The clinic gets a ranked discrepancy report in plain language ("Oct 3 ketamine waste of 0.4mL has no witness initials — get a co-sign and note it now, before this ages past your board's correction window"), not a raw data dump.</li>
+      <li>A "mock inspection" mode runs the full reconciliation against the practice's actual state board renewal or DEA registration date, so owners can schedule a clean-up pass ahead of a known review window instead of reacting cold.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">OCR/table extraction for handwritten &amp; printed log sheets</span>
+      <span class="badge">Distributor purchase exports (Covetrus, MWI, Patterson, Midwest Vet Supply)</span>
+      <span class="badge">PIMS export parsing (Cornerstone, AVImark, ezyVet)</span>
+      <span class="badge">DEA Schedule II–V drug &amp; Form 222/CSOS reference data</span>
+      <span class="badge">State veterinary board inspection &amp; renewal calendars</span>
+      <span class="badge">Deterministic reconciliation/discrepancy engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat SaaS subscription of $179–$249/month per clinic location for ongoing weekly reconciliation and alerts, positioned as cheaper than one afternoon of a practice manager's time spent hand-checking binders. A one-time $399 "pre-inspection sweep" is sold standalone to clinics that just want a clean bill of health before a scheduled state board renewal, without committing to the subscription — this is the low-friction way most practices will try the product first.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual photo/CSV upload only for both logs and purchase records — no live PIMS or distributor API integration in v1. Cover the five most commonly diverted/audited veterinary controlled substances (ketamine, butorphanol, tramadol, phenobarbital, buprenorphine) rather than the full schedule. Single-location independent clinics only, starting with two or three populous states with active board audit programs (e.g. California, Texas, Florida) so the state-specific rule set stays small enough to hand-build and verify. Go to market through veterinary practice management consultants, state VMA conferences, and referrals from veterinary CPAs who already see clinics get hit with fines.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Controlled-substance reconciliation software already exists — for human hospitals and retail pharmacies, sold as enterprise diversion-monitoring platforms with six-figure contracts and integrations no solo vet clinic could ever afford or needs. Veterinary practices carry the same DEA exposure and the same schedule II–V drugs but have been left with paper binders because they're too small a deal for that market and too specialized for generic compliance tools. The reconciliation itself is a deterministic numeric-matching problem — line up purchases against logged draws and flag what doesn't add up — which plays to accurate automation rather than a chatbot interface, and it's the kind of task a busy tech will always defer "until later," which is exactly why a system that runs it automatically every week has real, recurring value instead of being a one-time audit tool.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
