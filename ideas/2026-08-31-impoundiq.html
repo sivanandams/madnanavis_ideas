@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-08-31 — ImpoundIQ</title>
+<style>
+  :root {
+    --bg: #f7f6fa;
+    --card-bg: #ffffff;
+    --ink: #1c1a22;
+    --ink-soft: #524d5c;
+    --accent: #5b3f9e;
+    --accent-soft: #e6def7;
+    --border: #e1ddea;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14121a;
+      --card-bg: #1c1924;
+      --ink: #ede9f4;
+      --ink-soft: #b1a8c2;
+      --accent: #9d7fe0;
+      --accent-soft: #2c2440;
+      --border: #322c3e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14121a; --card-bg: #1c1924; --ink: #ede9f4; --ink-soft: #b1a8c2;
+    --accent: #9d7fe0; --accent-soft: #2c2440; --border: #322c3e;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f6fa; --card-bg: #ffffff; --ink: #1c1a22; --ink-soft: #524d5c;
+    --accent: #5b3f9e; --accent-soft: #e6def7; --border: #e1ddea;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-08-31</div>
+    <h1>ImpoundIQ</h1>
+    <p class="pitch">AI decodes the VIN on every non-consensual tow, looks up the owner and lienholder, and auto-generates the exact statutory notices and countdown clocks each state requires — so tow and impound lot operators stop risking license revocation and conversion lawsuits over a missed deadline.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent tow companies and vehicle storage/impound lot operators who handle non-consensual tows (police-ordered, private-property, and abandoned-vehicle tows) — typically small operators running 50–1,000 impounds a month with no in-house compliance or legal staff, who currently track notice deadlines on paper logs or a spreadsheet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The moment a tow company takes non-consensual possession of a vehicle, most states impose a strict, formulaic notice regime: notify the registered owner (and any lienholder) within a fixed window — often 3–10 business days — using specific statutory language about the right to a hearing, storage-fee accrual, and sale timeline, typically via certified mail, and only after that can the lot legally start charging full storage or move toward a lien sale/auction. The rules differ by state and sometimes by municipality, the owner/lienholder lookup itself requires a DMV or NMVTIS query the operator often doesn't know how to run correctly, and a missed deadline or wrong notice language doesn't just mean an admin headache — it can void the lien, expose the company to a conversion or wrongful-impound lawsuit, and put its tow license or state authorization at risk on renewal. Today this is handled by an office manager juggling paper deadlines across dozens of vehicles at once, or by paying a lawyer on retainer who reviews it after the fact, when it's often too late.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Dispatcher or driver logs a new impound from the truck or lot: photo of the VIN/plate, tow date, tow reason, and lot location, via a phone-first intake form.</li>
+      <li>System decodes the VIN, queries NMVTIS and available state DMV title/lien records for the registered owner and any lienholder, and falls back to a manual-lookup task queue in states without a usable API.</li>
+      <li>A coded rules engine maps the vehicle's state (and city, where local ordinances add requirements) to the exact notice deadlines, required notice language, and minimum hold period before a lien sale is permitted, then starts the countdown clocks.</li>
+      <li>The system auto-drafts the statutorily compliant notice letter(s), merges in the owner/lienholder details, and sends them via a certified-mail API — capturing the mailing receipt and delivery tracking automatically as compliance evidence.</li>
+      <li>A lot-wide dashboard shows every vehicle's status (on-track / due soon / overdue) in red-amber-green, flags vehicles that have cleared their hold period and are eligible for lien sale, and generates the required auction/publication notice text.</li>
+      <li>Each vehicle gets a one-click, timestamped audit packet (notices sent, delivery proof, dates) the operator can hand to a DMV auditor or produce in litigation if an owner disputes the tow.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">NMVTIS title/lien lookup</span>
+      <span class="badge">State DMV record APIs (where available)</span>
+      <span class="badge">VIN decode API</span>
+      <span class="badge">Certified mail / proof-of-delivery API (e.g. Lob)</span>
+      <span class="badge">Curated state-by-state tow &amp; lien statute rule set</span>
+      <span class="badge">Deadline/reminder engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-vehicle-processed fee ($8–$15 per impound handled end-to-end) rather than a flat subscription, since it maps directly onto a cost operators already budget for certified mail and admin time — with an optional flat monthly plan ($149–$599/mo based on volume) for higher-volume lots that want unlimited processing and audit-packet storage.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in 3–5 states with well-documented, comparatively simple statutory schemes (e.g., Texas, Florida, Ohio), covering only non-consensual/police-directed tows (not voluntary roadside tows, which carry no notice obligation). Manual VIN/plate entry plus automated NMVTIS and DMV lookups where an API exists; states without API access get a manual-lookup task in the same queue rather than being unsupported. Ship the countdown dashboard, notice generation, and certified-mail tracking first; leave full auction/publication automation as a v1.1 add-on, surfaced in v1 as a checklist of exactly what's still required and by when.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Towing reads as a low-tech, blue-collar business nobody expects to pay for SaaS — but non-consensual tow operators carry real strict-liability exposure per vehicle (conversion claims, storage-fee clawbacks, and DMV license revocation on renewal), which makes this closer to compulsory regulatory insurance than a nice-to-have tool, and turns willingness to pay into a near-certainty rather than a guess. Because the statutes are formulaic — fixed deadlines, prescribed notice language, a defined hold period — the same "extract facts, match to a coded rule, emit the required document" pattern that works for legal-adjacent compliance tools applies almost mechanically here, with no chatbot UX needed at all: the entire product surface is a queue of vehicles and a wall of countdown clocks, which is exactly the kind of unglamorous, unsexy problem that keeps larger players away while still being genuinely urgent to the people who own it.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
