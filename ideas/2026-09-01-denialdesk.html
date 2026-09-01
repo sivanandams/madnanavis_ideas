@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-01 — DenialDesk</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-01</div>
+    <h1>DenialDesk</h1>
+    <p class="pitch">AI turns a specialty infusion clinic's insurance denial letter into a payer-specific peer-to-peer talking-points script and a citation-backed written appeal, before the re-authorization deadline lapses.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent, non-hospital-affiliated infusion clinics — rheumatology, gastroenterology (Crohn's/ulcerative colitis), and community oncology practices with roughly 3–30 providers — that administer high-cost biologic and specialty infusions (e.g., Remicade/biosimilars, Rituxan, Entyvio) and have no in-house payer-relations or managed-care staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Prior-authorization denial rates for specialty biologic infusions are high, and every denial triggers a peer-to-peer call where the treating physician must justify the drug against the payer's exact medical policy criteria — usually within a 14–30 day window. Small clinics have no managed-care team to prep for these calls, so a physician scrambles through chart notes and a dense payer policy PDF between patients, often loses, and the clinic eats the cost of an already-ordered infusion drug that can run into the thousands of dollars per dose. Big-system revenue-cycle software (Epic, Cohere Health, etc.) is built for hospital networks with dedicated staff, not a five-provider infusion suite, so this segment is left doing it by hand or simply not appealing.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Staff uploads the denial letter along with the patient's relevant chart excerpts (diagnosis, ICD-10 codes, prior therapies tried/failed, recent labs) and selects the payer and drug.</li>
+      <li>System pulls the payer's published medical policy for that drug and extracts the specific coverage criteria the denial cites as unmet.</li>
+      <li>It cross-checks the patient's chart data against each criterion and produces a "gap checklist" — which criteria are met, which are missing supporting documentation, and which are genuinely not met.</li>
+      <li>Generates a peer-to-peer call script organized by policy criterion, with the strongest clinical citations (FDA label, specialty-society guideline) attached to each point.</li>
+      <li>Drafts a formal written appeal letter referencing the same policy sections and citations, ready for physician review and signature.</li>
+      <li>Tracks the appeal deadline with alerts, and logs the outcome (approved/denied, which argument worked) into a per-payer, per-drug playbook that sharpens future appeals against that same payer.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Payer medical policy documents (public bulletins/PDFs)</span>
+      <span class="badge">FDA drug labels &amp; specialty-society guidelines</span>
+      <span class="badge">ICD-10/CPT/HCPCS code libraries</span>
+      <span class="badge">Document AI for denial letters &amp; chart excerpts</span>
+      <span class="badge">Per-payer outcome/playbook database</span>
+      <span class="badge">Deadline engine with staff alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Subscription at $349–$599/mo per clinic covering unlimited appeals up to a volume tier (infusion clinics typically process several denials a month, not just one), since a single averted denial can be worth more than a year of the subscription. A per-appeal option at $199 serves very small practices that only need it occasionally.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover 4–5 top biologic infusion drug classes (rheumatology and IBD first, oncology infusion later) and the 5–6 largest commercial payers' published policies; skip Medicare Advantage and Medicaid MCO appeals initially, since their rules and timelines differ. Manual document upload only, no EHR integration in v1. Output is the P2P prep script and the written appeal draft — no automated submission to the payer. Go to market through infusion-clinic billing consultants, specialty pharmacy hub-services reps, and rheumatology/GI practice-management associations.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Prior-auth software vendors chase large hospital systems and deep EHR integrations because that's where the enterprise contracts are — which means the smallest, most exposed clinics, the ones with no managed-care staff sitting on the highest-dollar, highest-denial-rate drugs in medicine, are the most underserved segment in the category. A missed appeal there isn't a rounding error, it's a five-figure drug write-off, which makes a several-hundred-dollar monthly subscription an easy yes. And the real moat isn't the drafting itself (any LLM can write a letter) — it's the compounding per-payer, per-drug playbook of what argument actually won last time, which only accrues from real outcomes logged inside the product and can't be replicated by a generic chatbot with no structured policy grounding or appeal history.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
