@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-02 — CredSprint</title>
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --card-bg: #ffffff;
+    --ink: #161c26;
+    --ink-soft: #4b5768;
+    --accent: #2456c9;
+    --accent-soft: #dde6fb;
+    --border: #dde3ee;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1420;
+      --card-bg: #161c29;
+      --ink: #e9edf5;
+      --ink-soft: #a7b1c4;
+      --accent: #7ea1f5;
+      --accent-soft: #1d2a45;
+      --border: #2a3245;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420; --card-bg: #161c29; --ink: #e9edf5; --ink-soft: #a7b1c4;
+    --accent: #7ea1f5; --accent-soft: #1d2a45; --border: #2a3245;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fb; --card-bg: #ffffff; --ink: #161c26; --ink-soft: #4b5768;
+    --accent: #2456c9; --accent-soft: #dde6fb; --border: #dde3ee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-02</div>
+    <h1>CredSprint</h1>
+    <p class="pitch">A personal credentialing vault for locum tenens physicians and NPs/PAs that auto-fills each hospital's privileging application from one reusable profile and tracks every expiring document before it stalls the next paycheck.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Locum tenens and per-diem physicians, nurse practitioners, and physician assistants who pick up assignments across multiple hospitals, ambulatory surgery centers, or telehealth platforms each year — typically juggling 2-5 facilities or staffing agencies at a time without a dedicated in-house credentialing coordinator of their own.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Hospital credentialing and privileging takes 90-150 days per facility and demands re-submitting nearly the same 40-plus data points — education, work history, malpractice claims history, references, license and DEA numbers, board certifications — into every facility's own format: a proprietary portal, a PDF packet, or a CAQH-linked application that still needs facility-specific attestations. Locum providers only earn once they're credentialed and scheduled, so every week of delay is lost income at $1,500-$2,500/day rates. Staffing agencies provide credentialing coordinators, but they're spread across hundreds of providers, so it's the individual clinician who ends up hunting down a stale CV, an expired malpractice face sheet, or a lapsed immunization record right when a new assignment needs it. Existing credentialing software (Medallion, Modio, symplr) sells to hospitals, health systems, and staffing agencies as enterprise infrastructure — none of it is owned by the provider themselves.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Provider uploads their CAQH ProView export, state license(s), DEA certificate, board certification, malpractice policy, and CV once into a personal credentialing vault.</li>
+      <li>When accepting a new assignment, they forward or upload the facility's or agency's specific application (PDF, portal export, or scanned form).</li>
+      <li>Document AI parses the target application's required fields and format, maps them against the vault, and pre-fills a matching submission packet — or a structured answer sheet for manual portal entry — while flagging anything expired, missing, or expiring within 90 days (license renewal, malpractice tail coverage, TB test, ACLS/BLS card).</li>
+      <li>The system tracks each open application's stage (submitted → primary source verification → committee review → privileges granted) via provider self-reported updates or periodic check-in prompts, and fires renewal alerts 90/60/30 days ahead of anything with an expiration date feeding a future application.</li>
+      <li>A single dashboard shows, across every active and pipeline facility, exactly what document or signature is blocking each one, so the provider or their recruiter knows precisely what to chase next.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">CAQH ProView export/API</span>
+      <span class="badge">State medical/nursing board license lookups</span>
+      <span class="badge">NPPES NPI registry</span>
+      <span class="badge">DEA registration verification</span>
+      <span class="badge">Document OCR &amp; form-field parsing</span>
+      <span class="badge">E-signature for attestations</span>
+      <span class="badge">Email/SMS renewal reminders</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Subscription of $39-$59/month per provider, active only while they're working locum assignments (pause anytime between contracts). Occasional users can instead pay a one-time $199 "packet builder" fee per new facility application. Staffing agencies are a later channel play: a bulk seat license (~$15/provider/month) they hand out as a recruiting perk, layered on top of the self-serve consumer product rather than replacing it.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover physician, NP, and PA hospital/ASC privileging applications only — skip payer enrollment and CAQH itself, which is a separate downstream flow to add later. Manual document upload and parsing in v1; no live integrations with hospital credentialing systems yet, since those are too fragmented to standardize against early. Ship the vault, auto-fill packet generator, and expiration tracker first; the multi-facility status dashboard follows once there's a base of users juggling two or more concurrent applications. Go to market through locum tenens communities on Reddit and Facebook, independent locum agency provider newsletters, and LinkedIn groups for travel and locum clinicians.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every credentialing vendor sells to the institution doing the verifying — hospitals, staffing agencies, health plans — because that's where the "enterprise" budget obviously sits. But the person re-keying the same 40 data points into a dozen rigid formats every year, and personally losing five figures of income per month of delay, is the individual provider, who has no dedicated tool of their own today. Because the underlying facts (license numbers, work history, malpractice claims) are highly reusable and expire on a predictable, trackable cadence, this is a case where a structured personal "identity vault" beats a generic AI chatbot outright: the value is in precise field-mapping and freshness-tracking against many rigid target formats, not open-ended conversation.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
