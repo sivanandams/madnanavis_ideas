@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-03 — PassBack</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-03</div>
+    <h1>PassBack</h1>
+    <p class="pitch">AI reconciles a commercial tenant's annual CAM/operating-expense statement against the exact allowable-expense clauses buried in their lease — flagging landlord overbilling before the contractual audit-rights window closes forever.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size multi-unit commercial tenants — restaurant and retail franchisees, dental/medical/urgent-care groups, and gyms — leasing 2 to 50 locations in shopping centers, strip malls, or office buildings under NNN or gross-up CAM lease structures, who have no in-house real estate counsel and currently pay whatever the landlord's reconciliation statement says.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Commercial leases give tenants a contractual right to audit the landlord's annual CAM/operating-expense reconciliation — but that right typically expires 60 to 120 days after the statement arrives, after which the charges are deemed final and unchallengeable for the year. Exercising it means comparing an opaque spreadsheet of line items against a specific, heavily negotiated "Operating Expenses" definition and its exclusions (capital expenditures, roof/structural repairs, management-fee caps, admin-fee percentages, gross-up provisions) that's scattered across a 40–80 page lease. Boutique CAM audit firms know landlords overbill routinely, but they work contingency and only take engagements above a deal-size threshold that excludes almost every small multi-unit operator — so those tenants either eat the overcharge or let the deadline lapse without ever knowing they had a claim.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tenant uploads their lease (or just the Operating Expense/CAM clause pages) once, plus each annual reconciliation statement as it arrives.</li>
+      <li>Clause-extraction AI pulls the lease's allowable-OpEx categories, explicit exclusions, admin-fee cap, base year, and gross-up mechanics, and calendars the audit-rights deadline with escalating alerts.</li>
+      <li>Document AI parses the reconciliation statement's line items and tags each one against the extracted allowable list, flagging anything outside scope or over a capped percentage.</li>
+      <li>A year-over-year comparison across the tenant's statements (and, over time, anonymized data from other tenants of the same landlord) flags line items that spiked anomalously as worth a formal audit.</li>
+      <li>System generates the formal audit-request letter citing the specific lease section and requested backup documents, ready to send before the deadline.</li>
+      <li>If nothing crosses a materiality threshold, the report says so and recommends paying the statement as billed — a fast "you're clean this year" answer is itself valuable enough to justify a recurring check every reconciliation cycle.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Lease clause-extraction AI (OCR + NLP)</span>
+      <span class="badge">CAM/opex statement parsing (PDF &amp; Excel)</span>
+      <span class="badge">Taxonomy of standard OpEx categories &amp; common exclusion clauses</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+      <span class="badge">E-sign / certified-mail delivery for audit letters</span>
+      <span class="badge">Cross-tenant landlord benchmarking dataset (builds over time)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat per-statement flag report at $199–$399, paid each time a reconciliation arrives — a recurring, calendar-triggered purchase rather than a one-time sale. An optional "full audit representation" tier, priced at 20–25% of recovered overcharges, kicks in when the flag report surfaces a claim large enough to warrant sending the formal audit request and negotiating the credit.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover retail and restaurant NNN leases only for v1 (skip office/industrial gross leases, which use different opex structures and audit-rights language). Build the clause taxonomy around the handful of major mall and shopping-center landlord lease templates that dominate the multi-unit franchise market, since those templates repeat almost verbatim across tenants. Manual upload only, no landlord-portal integration. Go to market through the International Franchise Association, multi-unit operator Facebook/LinkedIn groups, and commercial real estate attorneys who currently turn away small clients as too low-value to bill hourly.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>CAM auditing already exists as a service — but only for enterprise tenants large enough to meet a boutique firm's contingency-deal minimum, which structurally excludes the long tail of 2-to-50-location franchisees who lease from the very same landlords using near-identical boilerplate. That overlap means the clause taxonomy built for one tenant transfers cheaply to the next, turning a labor-intensive lease-review business into a software problem. And unlike most one-time compliance tools, the contractual audit window resets every single year on every single lease a tenant holds, so the product's purchase trigger isn't a one-off event but a structurally recurring calendar deadline that scales with how many locations a franchisee operates.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
