@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-04 — CiteClear</title>
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card-bg: #ffffff;
+    --ink: #201a12;
+    --ink-soft: #5c5142;
+    --accent: #a65d1f;
+    --accent-soft: #f3e3d0;
+    --border: #e8dcc9;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #15110b;
+      --card-bg: #1d1811;
+      --ink: #f3ecdf;
+      --ink-soft: #bcae96;
+      --accent: #e08a3e;
+      --accent-soft: #372716;
+      --border: #35291b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #15110b; --card-bg: #1d1811; --ink: #f3ecdf; --ink-soft: #bcae96;
+    --accent: #e08a3e; --accent-soft: #372716; --border: #35291b;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf7f2; --card-bg: #ffffff; --ink: #201a12; --ink-soft: #5c5142;
+    --accent: #a65d1f; --accent-soft: #f3e3d0; --border: #e8dcc9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-04</div>
+    <h1>CiteClear</h1>
+    <p class="pitch">AI turns a state health inspector's Form 2567 deficiency citations into a CMS-compliant Plan of Correction — before the 10-day clock triggers a payment freeze.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Administrators and Directors of Nursing at skilled nursing facilities (SNFs) — especially small independent operators and regional chains of 3–15 buildings without an in-house compliance department — who just received a Statement of Deficiencies from their annual (or complaint-triggered) state survey.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every one of the roughly 15,000 Medicare/Medicaid-certified nursing homes in the US gets an unannounced state survey at least once a year, and cannot opt out. The resulting Form CMS-2567 lists deficiencies by F-tag and a severity/scope grid, and the facility has exactly 10 calendar days to submit an acceptable Plan of Correction (PoC) or face escalating consequences: Denial of Payment for New Admissions (a revenue freeze), Civil Monetary Penalties that accrue daily, or in severe cases termination from Medicare/Medicaid entirely. First-draft PoCs are frequently rejected for vague or boilerplate language under CMS's revised, stricter review process, which restarts the clock. Compliance consultants who write acceptable PoCs charge $3,000–$10,000 per cycle and are rarely available on a few days' notice, leaving small operators scrambling every single survey cycle.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Administrator uploads the Statement of Deficiencies PDF the moment it's received and enters the survey exit date, starting a 10-day countdown with escalating email/SMS alerts.</li>
+      <li>Document AI parses each cited deficiency into its F-tag, severity/scope grid level, and the surveyor's specific factual findings and cited resident/record numbers.</li>
+      <li>Each F-tag is matched against a tagged library of CMS-accepted PoC language (built from State Operations Manual guidance and historically accepted, de-identified PoC submissions) and against the specific facts cited, to draft a tailored response covering all four CMS-required elements: corrective action for affected residents, corrective action for others potentially affected, systemic/monitoring changes, and a completion date.</li>
+      <li>Deficiencies likely to carry Immediate Jeopardy exposure or high CMP risk are flagged separately so the facility loops in legal counsel before submitting rather than after.</li>
+      <li>System outputs a formatted PoC ready for the state agency's submission channel (portal or fax), as an editable draft the administrator reviews, adjusts, and signs.</li>
+      <li>Each facility's F-tag history is logged over time so repeat citations — which draw materially harsher penalties on a follow-up survey — are surfaced before the next survey window opens.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">CMS Form 2567 parsing (Document AI/OCR)</span>
+      <span class="badge">State Operations Manual &amp; F-tag regulatory text corpus</span>
+      <span class="badge">Library of historically accepted PoC language</span>
+      <span class="badge">CMS Care Compare deficiency database (public)</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+      <span class="badge">State survey-agency e-fax/portal submission</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-survey-cycle fee of $399–$899, scaled by the number and severity of deficiencies cited, with 48-hour turnaround — matching the reality that surveys land unpredictably roughly once a year rather than fitting a monthly subscription. An optional $99/mo "compliance monitor" add-on tracks the facility's F-tag trends against Care Compare data for peer facilities in-state and proactively flags recurring risk areas before the next survey.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover federally certified skilled nursing facilities only (skip assisted living, which is state-licensed with too much cross-state variation for v1), and standard severity/scope deficiencies (Level D–F) rather than Immediate Jeopardy citations, which need a legal-review-gated workflow. Ship deficiency parsing plus drafted PoC first; defer repeat-citation trend tracking to v1.1. Go to market through state Health Care Association affiliates, LeadingAge chapters, and SNF administrator Facebook/LinkedIn groups, plus direct outreach timed against publicly posted CMS survey data showing which facilities were just surveyed.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>CMS publishes the complete, structured national deficiency and F-tag history for every certified nursing home via Care Compare — exactly the kind of labeled, citable corpus most compliance categories lack, and one competitors mine for sales leads but not for drafting the response itself. The market is also self-selecting by federal design: 100% of SNFs are surveyed annually, cannot opt out, and face a hard 10-day federal deadline the instant paper lands, which is a far stronger and more predictable purchase trigger than most compliance software gets. And because most small operators treat this as an annual fire drill rather than an ongoing tool, per-incident pricing that mirrors how the pain actually arrives outperforms the subscription-first model that generic long-term-care compliance SaaS defaults to.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
