@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-05 — PayDirt</title>
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card-bg: #ffffff;
+    --ink: #201a12;
+    --ink-soft: #5a4f3f;
+    --accent: #9a5b13;
+    --accent-soft: #f3e2c9;
+    --border: #e7dcc6;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130d;
+      --card-bg: #201b13;
+      --ink: #f3ecdf;
+      --ink-soft: #bdae8f;
+      --accent: #e0a04c;
+      --accent-soft: #362a15;
+      --border: #362e1e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16130d; --card-bg: #201b13; --ink: #f3ecdf; --ink-soft: #bdae8f;
+    --accent: #e0a04c; --accent-soft: #362a15; --border: #362e1e;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf7f2; --card-bg: #ffffff; --ink: #201a12; --ink-soft: #5a4f3f;
+    --accent: #9a5b13; --accent-soft: #f3e2c9; --border: #e7dcc6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-05</div>
+    <h1>PayDirt</h1>
+    <p class="pitch">AI reconciles an oil &amp; gas royalty owner's monthly check stubs against public commodity price indexes, state severance tax tables, and their own lease language — catching underpayment that boutique audit firms won't touch because the account is too small.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Non-operating mineral and royalty interest owners in U.S. oil &amp; gas basins (Permian, Eagle Ford, Bakken, Marcellus/Appalachia, Anadarko/SCOOP-STACK) — mostly people who inherited mineral rights or leased family land a generation ago and now receive monthly or quarterly check-stub statements from an operator, typically earning $2,000–$75,000/year in royalty income. Large enough to care, far too small for a contingency-fee forensic audit firm to bother with.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Royalty check stubs are dense, operator-specific, and deliberately hard to audit: gross value, wellhead price, "post-production" deductions (gathering, compression, dehydration, transportation, processing), severance tax, and the owner's decimal interest are crammed into a cryptic line-item format that differs by operator and changes without notice. State law and the owner's own lease often restrict which deductions are even allowed — some leases are "cost-free" to the royalty owner — but almost no one checks, because doing so means manually cross-referencing the stub against lease clauses, state statutes, and the actual NYMEX/regional index price for that production month. Industry studies and state lawsuits have repeatedly found systematic underpayment through disallowed deductions, below-index pricing, and stale decimal interests after ownership transfers. Forensic royalty auditors exist, but they work on contingency and only take owners with large enough interests to justify the effort — leaving the long tail of small owners with no economical way to know if they're being shorted, so most just cash the check.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner uploads recent check-stub PDFs (or forwards the operator's statement email) plus their lease and, if available, the division order showing their decimal interest.</li>
+      <li>Document AI extracts, per production month and well: gross value, volume, wellhead/index price used, each deduction category and amount, severance tax withheld, and net paid.</li>
+      <li>An NLP pass over the lease flags the governing deduction language (e.g., "free of cost to lessor," a specific post-production cost clause, or silence — which defaults to state common law and varies by jurisdiction) and pulls the recorded decimal interest for comparison.</li>
+      <li>The system cross-checks the stub's price against the public regional index (Henry Hub, WTI Midland/Cushing, or the relevant basin differential) for that production month, checks severance tax against the state's published rate, and flags: below-index pricing without a stated quality/transport reason, deductions the lease doesn't authorize, and decimal-interest mismatches versus recorded ownership.</li>
+      <li>Owner gets a plain-language discrepancy report with an estimated dollar-per-line impact, annualized, plus a generated inquiry/demand letter citing the specific lease clause or state statute (e.g., Texas Natural Resources Code §91.501 prompt-payment rules, Kansas or Oklahoma proceeds-from-production statutes) ready to send to the operator's division order department.</li>
+      <li>If nothing is off, the report says so — a fast, credible "you're being paid correctly" answer is itself valuable, since most owners currently have zero way to know either way.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for check-stub &amp; lease parsing</span>
+      <span class="badge">Public commodity index feeds (Henry Hub, WTI, EIA basin differentials)</span>
+      <span class="badge">State severance tax rate tables</span>
+      <span class="badge">Corpus of state royalty-payment statutes &amp; deduction case law</span>
+      <span class="badge">Optional county clerk / GLO deed &amp; lease record lookups for decimal-interest verification</span>
+      <span class="badge">Email-forwarding ingestion for recurring stubs</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat one-time audit fee of $199–$399 covering up to 24 months of stubs for a well/lease. A $19–$39/mo "royalty watch" subscription auto-ingests new monthly stubs via email forwarding and flags anomalies going forward without re-uploading. For flagged underpayments above a threshold (say $5,000), an optional warm handoff to an affiliate royalty-litigation attorney network on a referral-fee basis — PayDirt stays software-only and never takes contingency itself.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover oil and natural gas royalty statements only, limited to Texas, Oklahoma, and North Dakota — the three states with the clearest statutory deduction rules and the largest population of small non-operating owners. Skip working-interest/joint-interest billing statements and skip wind/solar lease audits entirely for v1. Manual PDF upload only; email-forwarding automation ships as a v1.1 retention feature once parsing accuracy is proven. Go to market through NARO (National Association of Royalty Owners) state chapters, mineral-rights Facebook groups, and forums like the r/mineralrights community and MineralAnswers.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The existing royalty-audit market is entirely contingency-fee boutique firms that cherry-pick large working-interest accounts, which means the millions of small non-operating owners — the exact people a $299 flat-fee SaaS tool can serve profitably — are systematically ignored by the current supply of auditors, not fought over by them. The core value is also deliberately non-conversational: it's a deterministic reconciliation against public price indices, published tax tables, and statutory text, producing a verifiable, line-itemized discrepancy trail rather than a summarized chat answer — which makes it far more defensible against a generic LLM wrapper than most "AI audits your documents" pitches. And because royalty stubs arrive monthly for the life of the well, a one-time audit naturally upsells into a recurring "statement immune system," giving the product a built-in retention hook that most one-and-done compliance tools lack.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
