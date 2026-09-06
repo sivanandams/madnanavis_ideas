@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-06 — WarrantyWon</title>
+<style>
+  :root {
+    --bg: #f8f7f4;
+    --card-bg: #ffffff;
+    --ink: #1d1a15;
+    --ink-soft: #5a5546;
+    --accent: #b5601f;
+    --accent-soft: #f4e3d0;
+    --border: #e6e0d4;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130e;
+      --card-bg: #1e1a13;
+      --ink: #f2ede2;
+      --ink-soft: #bcb29c;
+      --accent: #e8963f;
+      --accent-soft: #3a2a15;
+      --border: #332c1f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16130e; --card-bg: #1e1a13; --ink: #f2ede2; --ink-soft: #bcb29c;
+    --accent: #e8963f; --accent-soft: #3a2a15; --border: #332c1f;
+  }
+  :root[data-theme="light"] {
+    --bg: #f8f7f4; --card-bg: #ffffff; --ink: #1d1a15; --ink-soft: #5a5546;
+    --accent: #b5601f; --accent-soft: #f4e3d0; --border: #e6e0d4;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-06</div>
+    <h1>WarrantyWon</h1>
+    <p class="pitch">AI enforces manufacturer-specific documentation at the job site and auto-drafts appeals so HVAC and plumbing contractors stop losing warranty reimbursement money to paperwork technicalities.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size residential HVAC and plumbing contractors (5–50 technicians) who perform manufacturer warranty repairs for brands like Carrier, Trane, Lennox, Rheem, Goodman, and Daikin, and who bill those brands' distributors directly for parts and labor reimbursement.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Manufacturers reimburse contractors for warranty repairs, but a large share of claims come back denied or short-paid for missing a specific piece of documentation — a legible serial-plate photo, the exact failure code screen, a timestamped before/after photo, an install-date proof — and the required checklist differs by manufacturer and sometimes by distributor region. Techs who don't know the current rules leave the job site without the evidence, so by the time an office admin files the claim it's already unwinnable. Each denial is worth $200–$2,000, denial rates commonly run in the 20–30% range, and contractors are already working thin margins on service calls — so most write the loss off rather than fight a form rejection, quietly bleeding money they already earned.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Contractor picks their manufacturer/distributor accounts during onboarding and uploads 5–10 recent denial notices so the system learns which documentation each brand actually enforces.</li>
+      <li>At the job site, the technician opens a mobile checklist for that specific manufacturer and unit type; the system validates each photo in real time — OCR confirms the serial number is legible, checks for timestamp/geotag metadata, flags a missing failure-code screen — before the tech is allowed to close out the ticket.</li>
+      <li>The system auto-fills the manufacturer's exact claim-form fields from the captured checklist data and exports the packet in the format that distributor's claim portal expects.</li>
+      <li>When a claim is denied anyway, the office uploads the denial notice; the system matches the stated denial reason against that manufacturer's own published warranty terms and a library of previously successful appeals, then drafts an appeal letter with the corrected or missing evidence attached.</li>
+      <li>A dashboard tracks claims filed, denied, appealed, and recovered, giving the owner a running dollar figure of money saved — the metric that actually sells the renewal.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Manufacturer warranty policy documents (Carrier, Trane, Lennox, Rheem, Goodman, Daikin)</span>
+      <span class="badge">Distributor claim-portal formats (manual export/RPA for v1)</span>
+      <span class="badge">OCR for serial plates &amp; error-code displays</span>
+      <span class="badge">Photo timestamp/geotag capture</span>
+      <span class="badge">Mobile web checklist app</span>
+      <span class="badge">Denial-reason ↔ policy-clause matching engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/month per active technician for the field checklist and auto-filed claim packets, plus a 12% success fee on dollars recovered through appeals — no recovery, no fee. Aligning most of the price with actual money returned makes the pitch to a skeptical trade-business owner almost risk-free.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with two manufacturers only — Carrier and Trane, which together cover a large share of residential HVAC installs — and residential warranty claims exclusively (skip commercial units and multi-family). Ship the field checklist, photo validation, and auto-filled claim packet first; defer automated appeal-letter drafting to v1.1 once denial-reason data has accumulated. Distributor submission stays a manual export the office confirms before sending, rather than a live portal integration. Go to market through HVAC/plumbing trade associations (ACCA, PHCC), regional distributor training days, and referrals from the manufacturers' own warranty-compliance staff, who have every incentive to see claims filed correctly the first time.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Nearly every "AI for contractors" product targets scheduling, dispatch, or CRM — ServiceTitan territory — competing for a budget line owners already have opinions about. WarrantyWon instead targets money the contractor has already earned and is silently losing to paperwork technicalities, which is a far easier sell: it's not "spend more on software," it's "stop leaving cash on the table." And it fixes the failure at its actual source — most denials trace back to evidence the tech didn't capture in the field, not to a clerical mistake made later — so enforcing the checklist at the point of capture solves a problem that a back-office admin tool or a generic chatbot layered on top of existing paperwork structurally cannot reach.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
