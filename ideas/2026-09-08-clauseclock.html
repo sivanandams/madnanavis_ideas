@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-08 — ClauseClock</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-08</div>
+    <h1>ClauseClock</h1>
+    <p class="pitch">AI reads a small operator's commercial lease, converts every buried "not less than X days nor more than Y days before expiration" clause into an absolute deadline, and forces the renewal decision onto their calendar months before the option quietly expires.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent restaurant, salon, gym, daycare, and boutique-retail operators leasing 1–5 physical locations from local or regional landlords — businesses too small to employ a lease administrator or in-house real estate counsel, and too small for enterprise lease-admin platforms built for portfolios of 50+ locations.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Commercial leases hide their most consequential deadlines inside relative-date language ("Tenant must give written notice not less than 180 nor more than 270 days prior to the Expiration Date") that nobody converts to an actual calendar date until it's almost too late. Miss the renewal-option window and the operator loses a negotiated rent, forfeits years of build-out investment, or gets pushed to a landlord's punitive month-to-month terms. The same blind spot hits CAM reconciliation dispute deadlines, percentage-rent reporting dates, and insurance certificate renewals. Enterprise tenants have lease-admin software and staff for exactly this; a single-location restaurant owner has a PDF in a drawer and finds out about the missed window when the landlord's letter arrives.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator uploads their lease PDF(s) and confirms the commencement date; document AI extracts the renewal option window, rent escalation schedule, CAM reconciliation deadline, percentage-rent reporting date, and insurance/COI renewal requirement.</li>
+      <li>A deterministic date-math engine — not the AI's own arithmetic — converts every relative-date clause into an exact calendar date and builds a master deadline timeline for that lease.</li>
+      <li>The system sends 90/60/30/14-day multi-channel alerts (email + SMS) before each deadline, each paired with a plain-English translation of the underlying clause and a recommended action.</li>
+      <li>One click generates a renewal-notice (or CAM-dispute-notice) letter pre-filled with the lease's specific section citations and dates, ready to send or hand to a reviewing attorney.</li>
+      <li>A lightweight CAM-anomaly check compares each year's reconciliation statement line items against the lease's defined CAM caps and exclusions, flagging charges that look outside the negotiated terms.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">PDF/OCR ingestion + LLM clause extraction</span>
+      <span class="badge">Deterministic relative-to-absolute date engine</span>
+      <span class="badge">Calendar sync (Google/Outlook/iCal)</span>
+      <span class="badge">Email + SMS alerts (SendGrid/Twilio)</span>
+      <span class="badge">Certified-mail / delivery-proof API for notices</span>
+      <span class="badge">State landlord-tenant statute defaults</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$39/mo per active lease (most operators carry 1–3), dropping to $29/lease/mo at 4+ locations. A free tier covers the deadline calendar alone as a loss-leader; clause translation, CAM-anomaly detection, and notice-letter generation sit behind the paid tier. A one-time $99 "audit my lease" upsell delivers a full plain-English lease summary at signup.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support standard US retail/restaurant NNN and gross leases in English only; skip ground leases, percentage-only leases, and non-US jurisdictions. Manual PDF upload, no landlord/PM system integration in v1. Ship the deadline calendar, plain-English clause translator, and alerts first; defer CAM-anomaly detection and auto-generated notice letters to v1.1. Go to market through independent restaurant associations, POS/payroll partners serving SMBs (Toast, Square communities), tenant-side commercial real estate brokers, and franchise associations.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Lease-admin software reads as a saturated, enterprise-only category because that's who currently buys MRI, Lucernex, or VTS — but the pain is inverted from what the market structure suggests: a single-location operator has zero institutional memory and no lease administrator, so missing one clause is existential, while an enterprise tenant has redundant systems and staff cushioning the same miss. The category looks crowded at the top and is empty at the bottom. And the product's real value isn't AI cleverness — it's refusing to let a relative-date clause silently become a missed absolute deadline, a deterministic calculation wrapped in just enough AI extraction to make lease upload effortless, which makes the output trustworthy in a way a general-purpose chatbot answer about "when is my renewal due" never would be.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
