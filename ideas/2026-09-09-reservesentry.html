@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-09 — ReserveSentry</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card-bg: #ffffff;
+    --ink: #171a1d;
+    --ink-soft: #4d545c;
+    --accent: #1f4f8f;
+    --accent-soft: #dde8f7;
+    --border: #dde2e8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10141a;
+      --card-bg: #171d24;
+      --ink: #e9eef4;
+      --ink-soft: #a9b4c0;
+      --accent: #6fa4e8;
+      --accent-soft: #1c2c40;
+      --border: #2b333c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10141a; --card-bg: #171d24; --ink: #e9eef4; --ink-soft: #a9b4c0;
+    --accent: #6fa4e8; --accent-soft: #1c2c40; --border: #2b333c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8fa; --card-bg: #ffffff; --ink: #171a1d; --ink-soft: #4d545c;
+    --accent: #1f4f8f; --accent-soft: #dde8f7; --border: #dde2e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-09</div>
+    <h1>ReserveSentry</h1>
+    <p class="pitch">AI reads a condo or HOA's structural reserve study and engineering reports, maps them against each state's post-Surfside inspection and funding deadlines, and auto-drafts the board disclosures before the fines and liability hit.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Community association management (CAM) companies and independent community managers who administer 10–200+ condo and HOA boards, often spread across multiple states, each now subject to a different structural integrity reserve study (SIRS) and milestone-inspection law.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Since the 2021 Champlain Towers South collapse, states have raced to pass structural reserve and inspection laws — Florida's SB 4-D Milestone Inspection and SIRS, California's SB326/SB721 balcony inspection law, Colorado's HB21-1229, and similar statutes now moving through Virginia, Illinois, and Georgia — each with different building-age and height thresholds, inspection intervals, reserve-funding percentages, and owner-disclosure deadlines. A manager running dozens of associations across a few states must correctly identify which law applies to which building, translate a 40–80 page engineer's PDF into the exact numeric disclosures each state requires be sent to owners, and refile on a schedule no two states share — with fines, personal board-member liability, and insurer non-renewal as the downside of a missed date. Today this lives in a spreadsheet and a calendar reminder per property, and a single missed Milestone Inspection filing can get a county to compel a special assessment or restrict occupancy.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Manager uploads each association's engineering/reserve study PDF along with the building's state, county, year built, and number of stories.</li>
+      <li>System identifies which state and local statutes apply and generates that property's full compliance calendar — every inspection, filing, and owner-disclosure deadline.</li>
+      <li>Document AI extracts the reserve study's key figures: component list, remaining useful life per component, percent funded, and recommended annual contribution.</li>
+      <li>System auto-drafts the state-mandated board disclosure and reserve-funding notice, pre-filled with the extracted figures, ready for board sign-off and owner mailing.</li>
+      <li>A portfolio dashboard shows every property's compliance status (green/yellow/red) with email/SMS alerts as deadlines approach, and one-click regeneration whenever a new reserve study is uploaded.</li>
+      <li>Any property with a missing filing or a reserve study past its mandated re-inspection interval is flagged as an active liability risk needing immediate board attention.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Curated state/local statute database (FL SB 4-D, CA SB326/SB721, CO HB21-1229, VA, IL, GA)</span>
+      <span class="badge">Document AI for engineering &amp; reserve study PDF parsing</span>
+      <span class="badge">Deadline/compliance-calendar engine with email/SMS alerts</span>
+      <span class="badge">E-signature workflow for board approval</span>
+      <span class="badge">Optional sync with CAM platforms (Vantaca, TOPS, AppFolio)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-property SaaS subscription sold to CAM firms — roughly $99–$299/month per property depending on unit count, billed against the same per-door software budget CAMs already carry — plus an optional annual "compliance audit" add-on where a licensed engineering partner reviews any property flagged high-risk.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover Florida only for v1 — SB 4-D's Milestone Inspection and SIRS requirements are the most urgent, best-documented, and highest-stakes, with the largest existing base of CAM firms exposed to them. Expand to California and Colorado in v1.1. Ship the compliance calendar, document parsing, and auto-drafted disclosures first; skip full e-signature and defer to PDF export for manual board sign-off. Go to market through Florida CAI chapters, county building-department mailing lists, and condo law firms who already field compliance questions from clients.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Everyone assumed the post-Surfside SIRS wave created a market for engineering firms doing the physical inspections — but the chronic, recurring pain is downstream of that: translating one engineer's idiosyncratic report into a fast-multiplying, inconsistent patchwork of state-specific disclosure and filing obligations, repeated across dozens of properties per manager, on a calendar no two states share. Because these laws are new, still being amended annually, and legally distinct per jurisdiction, no incumbent CAM platform — built around accounting and resident portals — has rebuilt itself around them, leaving a multi-year window before this becomes commodity. And the buyer is the CAM firm managing many boards at once, not the underfunded volunteer board itself, so the willingness-to-pay is professional-services-grade even though the end beneficiary would never buy software on its own.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
