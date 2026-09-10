@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-10 — PreNeedGuard</title>
+<style>
+  :root {
+    --bg: #faf8f4;
+    --card-bg: #ffffff;
+    --ink: #1d1a15;
+    --ink-soft: #59544a;
+    --accent: #8a5a1f;
+    --accent-soft: #f0e2cc;
+    --border: #e6dfd0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16130e;
+      --card-bg: #1e1a13;
+      --ink: #f2ecdf;
+      --ink-soft: #b8ac95;
+      --accent: #d99b3f;
+      --accent-soft: #33291a;
+      --border: #332c20;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16130e; --card-bg: #1e1a13; --ink: #f2ecdf; --ink-soft: #b8ac95;
+    --accent: #d99b3f; --accent-soft: #33291a; --border: #332c20;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf8f4; --card-bg: #ffffff; --ink: #1d1a15; --ink-soft: #59544a;
+    --accent: #8a5a1f; --accent-soft: #f0e2cc; --border: #e6dfd0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-10</div>
+    <h1>PreNeedGuard</h1>
+    <p class="pitch">AI reconciles a funeral home's preneed trust and insurance-funded contracts against state funding rules, flags underfunded or late deposits, and auto-drafts the annual compliance filing before the state examiner finds the gap first.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent, family-owned funeral homes and cemeteries (roughly 1–3 locations) that sell preneed funeral or burial contracts — not the large public consolidators, who already run in-house compliance staff. There are about 19,000 funeral homes in the US and the large majority are independents who handle preneed trust accounting themselves or via their bookkeeper.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every state funeral or insurance board requires that money collected for a preneed contract be deposited — usually 100% to 110% of net proceeds — into a trust or an insurance-funded policy within a strict window (often 30 days), tracked per contract, for a promise that isn't fulfilled for 10–40 years. Small funeral homes track this across a trustee bank statement, a handful of preneed insurance carrier policy lists, and a homegrown spreadsheet of contracts sold, with no one reconciling the three against each other or against each state's specific funding formula until a state examiner shows up. A shortfall found at exam time triggers fines, a "make whole" order requiring the owner to cover the gap out of pocket, and in repeat cases license suspension — yet the underlying error is usually a boring bookkeeping lag, not fraud. Nobody catches it early because nobody in a 3-person office has time to manually cross-reference hundreds of contracts against trustee statements every month.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner uploads the trust company or insurance carrier statement(s), the funeral home's own preneed contract ledger (spreadsheet or export from their case-management software), and picks their state.</li>
+      <li>Document AI parses the statements and matches each contract to its corresponding trust deposit or insurance policy by contract number, name, and date.</li>
+      <li>The engine applies that state's specific funding-percentage and days-to-deposit rule to flag any contract that's unfunded, underfunded, or deposited late — with a plain-English reason for each flag.</li>
+      <li>A running compliance dashboard shows total trust liability vs. total funded balance, so the owner always knows their funding ratio, not just at audit time.</li>
+      <li>At year-end, the system generates the state-specific annual reconciliation report/filing in the required format, pre-filled from the reconciled data, ready for the owner or their CPA to sign and submit.</li>
+      <li>New contracts trigger a deposit-deadline reminder so the 30-day (or state-specific) funding window is never missed in the first place.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Trust company / bank statement import (CSV, PDF)</span>
+      <span class="badge">Preneed insurance carrier policy data (Homesteaders, NGL, Forethought)</span>
+      <span class="badge">State funeral/insurance board funding-rule database (per-state %, deadlines, filing formats)</span>
+      <span class="badge">Document AI for statement &amp; ledger parsing</span>
+      <span class="badge">Funeral home case-management software exports (e.g., Passare, FDLIC-adjacent tools)</span>
+      <span class="badge">Deadline &amp; alert engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-location subscription, $175–$350/month tiered by number of active preneed contracts under management, billed to the funeral home. A one-time "exam readiness" package ($750–$1,500) for homes bracing for a scheduled state audit, run as a fast historical reconciliation rather than the ongoing subscription.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with the 8–10 states that have the largest independent-funeral-home populations and clearly codified funding formulas (e.g., Texas, Florida, Illinois, Ohio, Pennsylvania), hand-coding each state's rule set rather than building a generalized rules engine. Manual statement/ledger upload only — no live bank feeds in v1. Ship the reconciliation dashboard and flagging first; the auto-generated state filing template follows once matching accuracy is validated against a handful of design-partner homes. Skip multi-location roll-ups for larger groups until v2. Go to market through state funeral director associations, NFDA (National Funeral Directors Association) regional conferences, and the CPA firms that already specialize in funeral home accounting.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Funeral homes are one of the only small-business verticals legally required to hold client money in trust for decades before ever delivering the service, which makes them permanently exam-exposed in a way most SaaS builders never think to look at — the category reads as "funeral tech," not "fintech compliance," so it gets skipped. The buyer pool (~19,000 locations) is far too small to interest a venture-scale company but plenty large enough to support a solo founder at a few thousand dollars a year per customer. And because the money sits untouched for 10–40 years, switching compliance systems mid-relationship is something no prudent owner wants to risk right before a state exam — once a home's contracts are reconciled and mapped in the system, churn is structurally low, and the AI's real value isn't conversational, it's the tedious, exacting cross-referencing of three messy documents that a human would only do once a decade under duress.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
