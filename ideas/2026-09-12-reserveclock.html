@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-12 — ReserveClock</title>
+<style>
+  :root {
+    --bg: #f7f8fa;
+    --card-bg: #ffffff;
+    --ink: #171a1d;
+    --ink-soft: #4d535a;
+    --accent: #1f4e8b;
+    --accent-soft: #dbe6f5;
+    --border: #dde2e8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10131a;
+      --card-bg: #171b23;
+      --ink: #e9edf1;
+      --ink-soft: #a9b2bd;
+      --accent: #6fa3e0;
+      --accent-soft: #1c2c3f;
+      --border: #2b323c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10131a; --card-bg: #171b23; --ink: #e9edf1; --ink-soft: #a9b2bd;
+    --accent: #6fa3e0; --accent-soft: #1c2c3f; --border: #2b323c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f8fa; --card-bg: #ffffff; --ink: #171a1d; --ink-soft: #4d535a;
+    --accent: #1f4e8b; --accent-soft: #dbe6f5; --border: #dde2e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-12</div>
+    <h1>ReserveClock</h1>
+    <p class="pitch">AI reads a condo association's reserve study and engineering report, checks it against state structural-inspection and reserve-funding law, and generates the legally required unit-owner disclosure before the deadline that can trigger a five- or six-figure special assessment.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Volunteer condo and co-op association boards (treasurers and presidents, almost never professionals) at buildings of three stories or more, plus the small property-management companies that administer 5–50 such buildings, concentrated first in Florida and increasingly in California, Colorado, Virginia, Illinois, and other states that copied Florida's post-Surfside statutes.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>After the 2021 Surfside condo collapse, Florida and a growing list of states now legally require aging condo buildings to complete a "Milestone" structural inspection and a Structural Integrity Reserve Study (SIRS) on fixed statutory deadlines, fund reserves for roof, load-bearing walls, waterproofing, electrical, and plumbing at the study's calculated level, and mail every unit owner a specific disclosure of any funding shortfall. Miss a deadline or send an incomplete disclosure and the board faces the loss of insurance renewal, personal board-member liability, lender-financing freezes on unit sales, and litigation from owners — while getting it right usually means imposing a special assessment nobody wants to be the one to announce. The boards responsible are unpaid volunteers reading a 40-page engineering PDF full of "remaining useful life" tables for the first time, with no in-house compliance staff and a management company that is itself juggling dozens of buildings on spreadsheets and calendar reminders.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Board or manager enters the building's address, year built, county, story count, and construction type, and uploads the existing reserve study and/or structural engineering inspection report if one exists.</li>
+      <li>The system determines the building's exact statutory posture: which inspection and SIRS deadlines apply, whether they've already passed, and when the next recurring cycle falls due, based on the building's age and its state's specific statute (Florida's 718.301/718.112 milestone-and-SIRS regime first, since it's the most developed and enforced).</li>
+      <li>Document AI extracts each reserve component's remaining useful life and replacement cost from the uploaded study, and checks that every statutorily mandated category (roof, primary structural members, load-bearing walls, floor, foundation, fireproofing, plumbing, electrical, waterproofing, and exterior painting) is present and funded on a non-pooled, item-by-item basis as SIRS law requires.</li>
+      <li>Any missing category, underfunded line item, or study past its required update cycle is flagged in plain language, with the dollar shortfall and the statute section it violates.</li>
+      <li>The system auto-generates the state-mandated unit-owner disclosure notice — the specific required language plus the board's actual funding numbers — ready to send, and a compliance dashboard showing every upcoming deadline with countdown alerts to board members and the property manager.</li>
+      <li>Every generated disclosure and every deadline check is logged with a timestamp, giving the board a durable compliance record to show an insurer, a lender, or a court if funding or timing is ever challenged.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State statute text (FL 718.301/718.112, and equivalents as other states pass them)</span>
+      <span class="badge">County property appraiser data for building age/story count</span>
+      <span class="badge">Document AI for reserve-study &amp; engineering-report parsing</span>
+      <span class="badge">Deadline engine with email/SMS alerts to board members</span>
+      <span class="badge">Disclosure-notice template generator per state</span>
+      <span class="badge">Email/print-mail delivery for unit-owner notices (v2)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-building annual subscription of $600–$1,800/year (tiered by unit count), sold directly to self-managed boards and, at a per-portfolio discount, to property-management companies administering many buildings. A one-time $399 "compliance checkup" report is offered as a no-subscription entry point for a board that just wants to know where it stands before its next annual meeting.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Florida only, condos three stories and up, covering Milestone Inspection and SIRS deadline tracking plus reserve-study gap analysis and disclosure-notice generation. No mailing/e-signature delivery in v1 — export a print-ready PDF and a recommended certified-mail vendor. No new engineering inspections performed or brokered; the product only reads and checks studies that already exist or are commissioned separately. Go to market through Community Association Institute (CAI) chapter meetings, Florida condo-association Facebook and Nextdoor groups, and referral partnerships with the reserve-study and structural-engineering firms who do the underlying inspections but don't offer ongoing compliance tracking themselves.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>This isn't a discretionary purchase competing for attention against other software — the underlying compliance work is legally mandatory and deadline-driven by statute, which gives it the forced-adoption economics of tax software rather than the elastic demand of most SaaS. The buyers are structurally unlike typical B2B customers: unpaid volunteers with real personal liability exposure, who rotate off the board every year or two, meaning the product has to sell itself anew to each incoming treasurer rather than relying on a sticky champion — so the compliance record and audit trail have to be the selling point, not a slick dashboard. And because the reserve-study and structural-engineering firms who generate the source documents have no incentive to build ongoing compliance tooling themselves, they're a distribution channel rather than a competitor, and the regulatory copy-paste already underway (multiple states adopting Florida-style statutes since Surfside) means the addressable market keeps expanding on a schedule the founder doesn't control.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
