@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-14 — MilestoneGuard</title>
+<style>
+  :root {
+    --bg: #f7f7fb;
+    --card-bg: #ffffff;
+    --ink: #1a1926;
+    --ink-soft: #55536a;
+    --accent: #4a3f9e;
+    --accent-soft: #e6e2fa;
+    --border: #e0dded;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131220;
+      --card-bg: #1a1830;
+      --ink: #ece9fb;
+      --ink-soft: #b1acc9;
+      --accent: #9184e8;
+      --accent-soft: #2a2450;
+      --border: #2c2a44;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #131220; --card-bg: #1a1830; --ink: #ece9fb; --ink-soft: #b1acc9;
+    --accent: #9184e8; --accent-soft: #2a2450; --border: #2c2a44;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7f7fb; --card-bg: #ffffff; --ink: #1a1926; --ink-soft: #55536a;
+    --accent: #4a3f9e; --accent-soft: #e6e2fa; --border: #e0dded;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-14</div>
+    <h1>MilestoneGuard</h1>
+    <p class="pitch">AI tracks state-mandated milestone structural inspection and reserve-study deadlines for condo/HOA boards, ingests the engineer's report, and auto-drafts the legally required owner disclosure packet before the fine clock — or the insurance non-renewal — hits.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Volunteer condo and HOA board treasurers/presidents, and the community association managers (CAMs) who serve small-to-mid buildings (roughly 3–25 stories, self-managed or under a small CAM firm rather than a national management giant), concentrated in states with new post-Surfside structural inspection statutes — Florida (SB 4-D / §553.899), California (SB 326 balcony inspections, SB 721), and the wave of similar bills moving through other coastal and high-rise states.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Since the 2021 Surfside collapse, states have imposed strict, statute-specific deadlines: milestone structural inspections at fixed building ages (e.g. 30 years, or 25 years within 3 miles of the coast, then every 10 years in Florida), adequately funded reserve studies, and mandatory owner disclosure within a set number of days of receiving the engineer's report — all backed by civil liability, county fines, and insurers now flatly refusing to renew or quote coverage without proof of compliance. Volunteer board members with full-time day jobs are expected to track which statute applies to their exact building, translate a 40-page engineering report full of technical severity language into a legally compliant disclosure letter, mail it correctly, and keep proof — and in practice most boards only discover they've blown a deadline when a renewal notice comes back as a non-renewal or a unit sale falls through at closing because the buyer's attorney can't get a compliance packet.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Board or CAM enters the building's address, year built, story count, and distance from the coast; the engine matches it against a curated statute database and computes the exact applicable inspection and reserve-study deadlines, county by county.</li>
+      <li>A deadline dashboard shows every upcoming trigger and fires email/SMS alerts at 12, 6, 3, and 1 month out, plus a separate alert tied to the association's insurance renewal date.</li>
+      <li>Board uploads the engineer's milestone inspection report (PDF); document AI extracts the findings, severity classification (e.g. "substantial structural deterioration"), and any required remediation timeline.</li>
+      <li>The system auto-generates the state-specific owner disclosure notice — correctly formatted, citing the right statute section, summarizing findings within the mandated timeframe — ready for board signature and mailing.</li>
+      <li>It compiles a compliance binder (PDF): engineer report, disclosure letters, reserve study summary, and a proof-of-mailing log — the exact packet insurers, mortgage lenders, and closing attorneys ask for.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Curated state statute &amp; county deadline database</span>
+      <span class="badge">County assessor / GIS building-age records</span>
+      <span class="badge">Document AI for engineering-report ingestion</span>
+      <span class="badge">Certified-mail / e-delivery API (e.g. Lob) for owner notices</span>
+      <span class="badge">CSV import/export for AMS platforms (Vantaca, AppFolio, Buildium)</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-building annual subscription, $600–$1,800/yr scaled by unit count, billed to the association (paid by the board treasurer directly or passed through a CAM firm's invoicing). Add a one-time $299 "compliance rescue" fee for boards that discover they're already past a deadline and need an expedited disclosure packet.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with Florida only (SB 4-D / §553.899 is the most litigated and urgent statute), targeting self-managed and small-CAM buildings. Ship deadline tracking and disclosure-letter generation from a manually uploaded engineer PDF; skip automated reserve-study math (refer out to licensed reserve-study firms for v1) and skip OCR of on-site inspection photos. Go to market through Florida CAI/CAM chapters, condo-law attorney referral partnerships, and property-and-casualty insurance agents who need their book of business insurable.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The obvious read is "boring compliance software a big PropTech player eventually eats" — but the real wedge isn't the reserve-study math, which is a licensed-engineer judgment call no AI should touch. It's the unglamorous, entirely deterministic choke point of turning a dense engineering PDF into the exact statute-mandated notice letter, on time, in the right format — precisely the kind of rules-bound document generation AI is well suited for and where unpaid volunteer boards reliably fail. And because non-compliance now surfaces as an insurance non-renewal or a stalled closing rather than a board's own to-do list, the highest-intent buyer often isn't the board at all — it's the insurance agent or the closing attorney who needs a compliance packet to keep a policy bound or a sale moving, giving the product a second, non-obvious referral channel with its own urgency independent of the board.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
