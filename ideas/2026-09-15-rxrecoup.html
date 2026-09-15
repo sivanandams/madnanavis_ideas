@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-15 — RxRecoup</title>
+<style>
+  :root {
+    --bg: #f6f8fa;
+    --card-bg: #ffffff;
+    --ink: #171b1f;
+    --ink-soft: #4c565f;
+    --accent: #1d5f8a;
+    --accent-soft: #dcebf4;
+    --border: #dde3e8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1418;
+      --card-bg: #161d22;
+      --ink: #e9eef2;
+      --ink-soft: #a9b5bd;
+      --accent: #5aa8d6;
+      --accent-soft: #1b2e3a;
+      --border: #2a333a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1418; --card-bg: #161d22; --ink: #e9eef2; --ink-soft: #a9b5bd;
+    --accent: #5aa8d6; --accent-soft: #1b2e3a; --border: #2a333a;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fa; --card-bg: #ffffff; --ink: #171b1f; --ink-soft: #4c565f;
+    --accent: #1d5f8a; --accent-soft: #dcebf4; --border: #dde3e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-15</div>
+    <h1>RxRecoup</h1>
+    <p class="pitch">AI reads a PBM's pharmacy audit recoupment notice line by line, checks each disputed claim against that state's Pharmacy Audit Integrity Act, and drafts the appeal before the clock runs out — paid only when the pharmacy gets money back.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and small-chain retail pharmacies (1–10 locations) that dispense against commercial, Medicare Part D, and Medicaid managed-care plans, plus the regional pharmacy buying groups and co-ops that already bundle other back-office services for their members.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Pharmacy benefit managers (CVS Caremark, Express Scripts, OptumRx, and dozens of smaller ones) run routine desk and on-site audits, then send recoupment notices demanding repayment for entire claims over technical paperwork issues — a missing refill authorization, a prescriber NPI mismatch, an illegible signature log — even when the drug was correctly dispensed and no patient or plan was harmed. A single notice can bundle hundreds of claims and demand $10K–$200K in clawbacks, against an average independent pharmacy net margin near 3%. Over 40 states have passed Pharmacy Audit Integrity Acts that explicitly bar PBMs from recouping for clerical, non-fraudulent errors absent actual financial harm — but the statutes are non-uniform, buried in insurance code, and pharmacists have 15–45 days to file a compliant written appeal citing the right provision. Most pharmacies have no in-house counsel, can't justify $300+/hr attorney fees on a single audit, and simply pay the clawback, training PBMs to keep auditing the same way.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Pharmacist uploads the PBM audit findings letter/spreadsheet, the underlying NCPDP claim records for the disputed prescriptions, and selects their state.</li>
+      <li>System extracts the appeal deadline from the letter and starts a countdown with email/SMS reminders.</li>
+      <li>Document AI classifies each disputed claim by discrepancy type (clerical/documentation, quantity, prescriber/DEA mismatch, suspected fraud) and pulls the PBM's stated reason.</li>
+      <li>A rules engine cross-checks each claim against the pharmacy's state Pharmacy Audit Integrity Act provisions and the specific PBM's provider-manual audit terms, flagging claims that are non-recoupable, partially recoupable, or legitimately owed.</li>
+      <li>Output is a per-claim verdict table with statutory citations, a total contestable dollar amount, and a formatted appeal letter ready to submit through the PBM's appeal portal or by certified mail.</li>
+      <li>Claims flagged as suspected fraud are excluded and routed to a "consult an attorney" notice rather than auto-appealed.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">50-state Pharmacy Audit Integrity Act corpus, tagged by provision</span>
+      <span class="badge">Major PBM provider manuals (Caremark, Express Scripts, OptumRx)</span>
+      <span class="badge">NCPDP claim record parsing</span>
+      <span class="badge">Document AI for scanned audit letters</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+      <span class="badge">E-fax / portal export for appeal submission</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>No-recovery-no-fee: a $99 intake fee per audit response plus 20% contingency on any amount the PBM agrees to reverse or not collect, capped so a very large recovery doesn't feel punitive. Buying groups and co-ops can white-label the tool as a member benefit for a flat annual license instead of per-audit contingency.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with the 15 states carrying the strongest, most litigated Pharmacy Audit Integrity Act language and the three largest PBMs by covered-life volume. Handle clerical/documentation and quantity-discrepancy claims only in v1 (route suspected-fraud and DUR-related recoupments to a referral partner). Manual document upload only — no direct pharmacy-system integration yet. Go to market through state independent pharmacy associations (NCPA state affiliates), pharmacy buying groups, and PBM-audit Facebook/LinkedIn groups where pharmacists already trade war stories about recoupments.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The legal protection here already exists and is statutory, not argued from scratch — the product's job is pure pattern-matching between a structured claim record and a codified state provision, which plays to AI's strengths far more than open-ended chatbot advice would. Most pharmacists have never heard of their state's Audit Integrity Act, so the product isn't competing for attention against other audit-defense tools — it's introducing an invisible right most of the market doesn't know it has. And because pure contingency pricing means the pharmacy risks nothing to try it, the sales motion sidesteps the classic "small business won't pay for compliance software" objection entirely: the pitch is literally "we only get paid if you do."</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
