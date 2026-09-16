@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-16 — LienFlow</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-16</div>
+    <h1>LienFlow</h1>
+    <p class="pitch">A state-by-state compliance engine that walks independent self-storage operators through the delinquent-unit lien-to-auction process, so a missed deadline never turns into a wrongful-auction lawsuit.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and small-chain self-storage facility owners and operators (roughly 1–20 locations) who run their own delinquency process rather than outsourcing to a REIT-scale management company — the segment using SiteLink, storEDGE, or Easy Storage Solutions for billing and access control, but handling lien notices and auctions manually or with a paralegal on retainer.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>When a tenant stops paying, state self-storage lien statutes dictate exactly when the operator can send a notice, what the notice must say, how it must be delivered (often certified mail with return receipt), how long the tenant has to cure, and when the unit can legally go to auction — and every state's rules differ on timing and required language. Get any step wrong — a notice sent a day early, missing statutory language, insufficient proof of delivery — and the operator is exposed to a wrongful lien or wrongful auction lawsuit, which can mean statutory damages plus the value of the tenant's goods. Existing storage management software tracks billing and generates a generic notice template, but treats the compliance timeline as a checklist item, not a live legal process, leaving owners and site managers to track deadlines in spreadsheets and hope they got the statute right.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator connects their storage management software's delinquency export (CSV or API) or manually flags a unit as delinquent and enters the facility's state and last-paid date.</li>
+      <li>LienFlow's compliance engine looks up that state's statutory timeline and computes every deadline: pre-lien notice window, cure period, lien-sale notice window, minimum advertising period, earliest legal auction date.</li>
+      <li>The system auto-generates statute-compliant notice letters (with the tenant's specific balance and unit) and files a certified-mail send through an integrated mail API, capturing the tracking/return-receipt as proof of service.</li>
+      <li>A facility dashboard shows every delinquent unit as a row on a timeline, color-coded by how close it is to a deadline, with automatic alerts to the manager when an action is due.</li>
+      <li>Once the statutory waiting period lapses with no cure, LienFlow packages the auction listing (photos, description, opening bid) for posting to StorageTreasures or Lockerfox, and retains the full notice/proof-of-service trail as an auditable compliance record if the tenant ever disputes the auction.</li>
+      <li>If a state's rule changes or a step is skipped, the dashboard blocks the next action and flags the specific compliance gap rather than letting the manager proceed.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State self-storage lien statute database (maintained &amp; monitored for legislative changes)</span>
+      <span class="badge">Storage management software exports/APIs (SiteLink, storEDGE, Easy Storage Solutions)</span>
+      <span class="badge">Certified mail / e-notice API (Lob, Certified Mail Labels)</span>
+      <span class="badge">Auction platform integrations (StorageTreasures, Lockerfox)</span>
+      <span class="badge">Document generation &amp; e-signature/audit trail</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-facility monthly subscription ($49–$99/facility/month, volume discounts for multi-location operators) covering the compliance engine, dashboard, and audit trail, plus a per-notice pass-through fee for certified mail costs. An optional "compliance guarantee" tier at a higher price point offers reimbursement of statutory damages if a properly-followed LienFlow timeline still results in a successful wrongful-auction claim, which doubles as the trust signal that sells the product.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in a single high-density self-storage state (e.g., Texas or Florida) to validate the statute engine and notice templates against a real regulatory environment before generalizing. Ship manual CSV upload of delinquent units, automated notice generation with certified-mail send and proof-of-service tracking, and the deadline dashboard. Skip direct auction-platform API integration in v1 — hand the operator a pre-filled listing packet and a manual-posting checklist instead. Go to market through state self-storage association trade shows/newsletters (e.g., Texas Self Storage Association, Florida Self Storage Association) and storage-industry Facebook groups, where owners already trade horror stories about lien mistakes.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every incumbent storage management platform (SiteLink, storEDGE) is built around billing and access control, so lien compliance shows up as a static template buried in settings, not a first-class, continuously-updated legal workflow — the market has been trained to think "lien letters" are a documents problem rather than a live-monitoring problem. The real moat is unglamorous and defensible: maintaining and updating a compliance engine across 50 states' lien statutes as they change is tedious enough that big incumbents haven't bothered, and risky enough (real legal liability, not just inconvenience) that a generic AI chatbot answering "what does my state require" is exactly the wrong tool — operators need a system that enforces the sequence, not one that answers questions about it. That combination of low glamour, real legal stakes, and fragmented state-by-state complexity is precisely why the niche stays open.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
