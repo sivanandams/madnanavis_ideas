@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-17 — TrustBell</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-17</div>
+    <h1>TrustBell</h1>
+    <p class="pitch">AI reconciles a funeral home's pre-need trust deposits against every signed contract, catches underfunding before a state examiner does, and auto-drafts the annual trust filing.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independently owned funeral homes and cemeteries (the vast majority of the ~19,000 funeral establishments in the U.S. are single-location, family-run businesses) that sell pre-need funeral or burial contracts — money paid years or decades before the service — and are required by state law to place most of that money into a regulated trust or insurance-funded arrangement.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every state that allows pre-need sales requires funeral homes to deposit a statutory percentage of each contract into a trust (or fund a life-insurance policy) and file periodic reports proving the trust is fully funded. In practice this reconciliation is done by hand or in Excel against bank/trust-company statements, hundreds of individual contracts, partial payment plans, cancellations, and interest accruals — an error-prone process for owners who are morticians, not accountants. State boards audit these trusts, and shortfalls or late filings are one of the most common reasons funeral homes lose their license or face six-figure fines; several states have shut down or fined dozens of homes a year over trust violations. The stakes are existential (license, business, sometimes criminal liability for misappropriation) but the tooling is nonexistent — general accounting software has no concept of a per-contract statutory funding requirement.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner uploads pre-need contract PDFs (or a bulk export from their existing funeral home management software) and monthly trust/insurance statements (PDF or CSV).</li>
+      <li>Document AI extracts each contract's sale price, statutory trust percentage, payment schedule, and beneficiary, then matches deposits in the trust statement to the contract that generated them.</li>
+      <li>A reconciliation dashboard flags any contract that is underfunded, any deposit made late relative to the state's required deposit window, and any trust withdrawal that doesn't tie to a documented death/service delivery or approved cancellation.</li>
+      <li>The system computes the state-specific annual/biennial trust report (form and required fields vary by state — e.g., percentage-funded vs. full-funded states, growth/interest disclosure rules) and generates a filing-ready document for the owner or their accountant to submit.</li>
+      <li>Ongoing: each new contract or deposit is uploaded (or auto-pulled from an accounting integration) and the dashboard stays current, with alerts before the next filing deadline and before any contract quietly drifts underfunded.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Contract PDF/OCR extraction (AI document parsing)</span>
+      <span class="badge">Bank &amp; trust-company statement import (PDF/CSV, Plaid-style feeds where available)</span>
+      <span class="badge">State-by-state pre-need statute &amp; filing-form library</span>
+      <span class="badge">Funeral home management software exports (e.g., Halcyon, FDS, Passare)</span>
+      <span class="badge">Reconciliation &amp; anomaly-detection engine</span>
+      <span class="badge">Filing deadline calendar with email/SMS alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Monthly SaaS fee tiered by number of active pre-need contracts under management — roughly $129/mo up to 150 contracts, $249/mo up to 500, custom above that for multi-location groups — plus a one-time setup fee ($400–$900) to onboard historical contracts and configure the customer's state's statutory rules. Annual filing-generation is included; a "trust audit readiness" add-on that produces an examiner-ready packet on demand is an upsell.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in a single high-volume regulated state (e.g., Texas or Florida, both with active, well-documented pre-need trust statutes and large numbers of independent funeral homes) with one filing-form template and manual contract/statement upload only — no live bank integration yet. Reconciliation dashboard and underfunding alerts ship first; the auto-generated state filing document is the v1 headline feature once extraction accuracy is validated against real contracts. Expand state-by-state after the first vertical proves retention, since each new state is mostly a new ruleset plus a new form, not a new product.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The handful of existing "funeral home software" products (Halcyon, FDS, Passare, others) focus on case management, obituaries, and family-facing sales — none of them treat statutory trust compliance as its own product, even though it's the thing that actually revokes licenses and generates lawsuits. It's boring, back-office, and regulatory, which is exactly why a general SaaS company hasn't bothered — but that also means a small, focused team can become the system of record for a real audit trail in a category nobody is fighting over. And because the buyer isn't shopping for "nice to have" software but for protection against a state board fine or license loss, willingness to pay is driven by fear of a specific, dated, external audit event rather than vague productivity gains — a much easier sale for a niche vertical tool than for a generic bookkeeping app.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
