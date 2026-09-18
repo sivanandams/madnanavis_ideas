@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-18 — ReserveClock</title>
+<style>
+  :root {
+    --bg: #f6f8fb;
+    --card-bg: #ffffff;
+    --ink: #171b22;
+    --ink-soft: #4c5568;
+    --accent: #1e4fa3;
+    --accent-soft: #dce7f8;
+    --border: #dde3ee;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1218;
+      --card-bg: #161b24;
+      --ink: #e9edf5;
+      --ink-soft: #a6afc2;
+      --accent: #6d9eef;
+      --accent-soft: #1c2c47;
+      --border: #2a3140;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1218; --card-bg: #161b24; --ink: #e9edf5; --ink-soft: #a6afc2;
+    --accent: #6d9eef; --accent-soft: #1c2c47; --border: #2a3140;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fb; --card-bg: #ffffff; --ink: #171b22; --ink-soft: #4c5568;
+    --accent: #1e4fa3; --accent-soft: #dce7f8; --border: #dde3ee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.35rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-18</div>
+    <h1>ReserveClock</h1>
+    <p class="pitch">AI turns the fast-multiplying, county-and-age-specific condo structural-safety and reserve-funding statutes (Florida SB-4D/SIRS, California SB-326/SB-721, and every state copying them since Surfside) into a per-building compliance calendar and legal audit trail, so community association managers stop discovering a missed deadline only when a board gets sued or a unit sale collapses at closing.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Community association management (CAM) companies and property management firms handling condo/HOA portfolios of 5–50+ buildings in states with mandatory structural-inspection and reserve-funding laws, plus a self-serve tier for self-managed HOA board treasurers and the title/escrow companies who need SIRS-certification status confirmed before a unit sale can close.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Since the 2021 Surfside collapse, states have rapidly passed laws requiring condo associations above a certain age, height, or coastal distance to get milestone structural inspections, follow-up "Phase 2" engineering reports when issues are flagged, updated fully-funded reserve studies (waiving reserves is no longer legal in Florida), and disclosure of reserve status to owners and buyers within strict windows. The exact deadline set depends on the building's certificate-of-occupancy year, story count, county, and distance from the coastline — logic that differs statute to statute and changes every legislative session as more states copy Florida and California. A CAM managing dozens of associations tracks this today in spreadsheets and personal memory. Miss a deadline and the consequences aren't a fine: the building can be placed under an unsafe-structure order, board members face personal-liability suits, insurers drop or refuse to renew coverage, and — increasingly — Fannie Mae/Freddie Mac condo guidelines block mortgage funding on any unit sale until SIRS/reserve certification is on file, killing closings that were already under contract.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Manager enters building address, county, original certificate-of-occupancy year, story count, coastal distance, and association type; the system looks up which state/county statute track applies.</li>
+      <li>A rules engine — built on a maintained corpus of state and county structural-inspection and reserve-funding statutes (FL SB-4D + SIRS, CA SB-326 balcony/SB-721, plus expanding states) — computes the building's actual deadline set: milestone inspection date, Phase 2 engineering deadline if triggered, reserve-study update cadence, owner disclosure windows, and insurer notification dates.</li>
+      <li>Document AI ingests uploaded engineer reports, reserve studies, and board meeting minutes, extracts key dates and findings, and flags any reserve line item marked underfunded or any inspection result that legally requires a Phase 2 follow-up.</li>
+      <li>A portfolio dashboard color-codes every building's compliance status and risk level for a manager overseeing dozens of associations at once; automated board and manager reminders fire as each deadline approaches.</li>
+      <li>The system generates a lender/insurer-ready certification packet and a timestamped audit trail of every notice sent to the board — the exact record a CAM needs to hand over during an E&amp;O claim, a board-recall dispute, or a title company's closing request.</li>
+      <li>If a required action is already overdue, the system flags the legal exposure immediately and states the next remedial step and its own statutory deadline, rather than letting the manager find out from a lawsuit or a blocked closing.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State/county structural &amp; reserve-funding statute corpus (FL SB-4D/SIRS, CA SB-326/SB-721, expanding states)</span>
+      <span class="badge">County assessor/building-age records</span>
+      <span class="badge">Document OCR for engineer reports &amp; reserve studies</span>
+      <span class="badge">Fannie Mae/Freddie Mac condo project eligibility requirements</span>
+      <span class="badge">Email/SMS reminder engine</span>
+      <span class="badge">E-signature / notice-delivery audit log</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Free tier for a single self-managed HOA board (one building) to seed word of mouth in owner forums. CAM firms subscribe per building under management at $39–$79/building/month with volume discounts, positioned as a line item against their own E&amp;O liability rather than as generic software spend. A one-time $299 "certification packet" fee serves HOAs and title/escrow companies that need instant SIRS/reserve-status proof for a specific closing without an ongoing subscription.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover Florida and California only — the two states with the most mature, highest-stakes statutes and the largest existing condo stock triggered by them. Condos and HOAs only (skip co-ops and commercial buildings). Manual document upload with OCR extraction; no direct county API integration yet. Go to market through Community Associations Institute (CAI) chapters, state CAM licensing-renewal channels, and title/escrow companies who now need SIRS certification status confirmed at closing.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>It reads as "just another HOA compliance checklist," a category horizontal property-management platforms like AppFolio or Buildium could bolt on — except the statutory deadline logic is genuinely building-specific (age, county, story count, coastal distance all shift the dates), which is exactly the kind of narrow, high-consequence rules engine a horizontal vendor has no incentive to build well. The real leverage is that this data gets weaponized twice: once as a personal-liability shield for community managers and board members who get named in negligence suits, and again as a closing-table deal-blocker, because Fannie Mae/Freddie Mac condo guidelines now require SIRS/reserve certification before funding a unit purchase — pulling in title companies and lenders as a second paying channel that has nothing to do with the CAM relationship at all. And because these statutes are only four years old and a new state adopts a version almost every legislative session, there's a multi-year window of newly regulated buildings with no dedicated software before this becomes obvious to anyone else.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
