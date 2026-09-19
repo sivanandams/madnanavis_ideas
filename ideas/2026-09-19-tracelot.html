@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-19 — TraceLot</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-19</div>
+    <h1>TraceLot</h1>
+    <p class="pitch">AI reads a small food producer's messy supplier invoices, bills of lading, and harvest logs to auto-build the FSMA 204 traceability records big-brand ERP tools assume you already have.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size specialty food producers, co-packers, and regional distributors handling foods on the FDA's Food Traceability List — cut leafy greens, fresh-cut fruit, soft cheeses, nut butters, ready-to-eat deli salads, sprouts, certain seafood and shell eggs — typically $2M–$50M revenue, running on QuickBooks and spreadsheets instead of an ERP, who need to comply with the FDA Food Traceability Rule (21 CFR Part 1, Subpart S) or lose shelf space at retailers that already require it.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The rule requires capturing Critical Tracking Events and Key Data Elements — harvesting, cooling, packing, receiving, transformation, shipping — for every traceability lot, and being able to produce a full one-up/one-back trace within 24 hours of an FDA request. Enterprise players (TraceGains, FoodLogiQ) sell to companies that already run SAP or Deacom and can push EDI; the small producer this rule actually targets receives lot data as PDF invoices, handwritten harvest tickets, and email attachments from a dozen suppliers who will never adopt EDI for a $50K/year account. Today that producer's "traceability system" is a shared spreadsheet someone updates when they remember, which fails the first mock recall drill and risks a warning letter, a recall that can't be scoped narrowly, or delisting by a retailer auditing for compliance.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Producer forwards supplier invoices, bills of lading, and harvest/receiving tickets to a dedicated inbox (or drags PDFs/photos into the app); no supplier ever has to change how they send paperwork.</li>
+      <li>Document AI (OCR + entity extraction tuned to produce/food paperwork) pulls the traceability lot code, quantity, unit, date, and location for each shipment, flagging anything it can't parse with confidence for a 30-second human confirm.</li>
+      <li>Each event is filed against the correct Critical Tracking Event type (harvesting, cooling, initial packing, receiving, transformation, shipping) and linked into a running chain per traceability lot code, generating GS1-compliant lot codes and labels for the producer's own outbound shipments.</li>
+      <li>A "recall drill" button runs a one-up/one-back trace on any lot code in seconds and outputs the exact FDA-format report, so the producer can rehearse before an inspector ever asks.</li>
+      <li>The system also auto-generates and keeps current the required written Traceability Plan document, and flags any KDE gaps (e.g., a supplier who never sends a lot code) before they become an audit finding.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Email/inbox ingestion (Gmail/Outlook forwarding)</span>
+      <span class="badge">Document AI/OCR (AWS Textract or Google Document AI)</span>
+      <span class="badge">GS1 lot-code &amp; barcode/QR generation</span>
+      <span class="badge">QuickBooks/Xero CSV import for shipment records</span>
+      <span class="badge">FDA Food Traceability List &amp; KDE rule reference data</span>
+      <span class="badge">PDF/label export for FDA and retailer audit formats</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-facility SaaS subscription tiered by monthly lot volume: roughly $299/mo for a single small facility, up to $999/mo for a multi-line co-packer, plus a one-time $500–$1,500 onboarding fee to map each producer's supplier list and paperwork formats during setup.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Single facility only, no multi-site rollups. Ingestion via forwarded email/PDF upload plus manual CSV — no live ERP or EDI integration in v1. Cover the core CTEs (receiving, transformation, shipping) needed for a produce or dairy processor; skip growing/harvesting-specific fields (used mainly by farms) until v2. Ship: lot ledger, recall-drill report generator, and traceability plan PDF export. Go to market through food safety consultants and QA co-ops who already advise these producers on FSMA compliance and can refer clients directly.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every existing traceability vendor is built for the customer who can already integrate — the pitch is "connect your ERP," which quietly excludes most of the industry this specific rule was written for. The unlock isn't better traceability logic, it's meeting small producers exactly where their real records already live: a cluttered inbox of PDFs and photographed tickets from suppliers who will never change their own workflow. That reframes the product from "traceability software" to "a mail-in service that happens to be software," which is a much easier sell to an operations manager who has no time to run an implementation project, and it turns FDA's own compliance deadline into a forcing function that makes this a need-it-by-a-date purchase rather than a nice-to-have.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
