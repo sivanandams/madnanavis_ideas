@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-20 — ExcursionIQ</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-20</div>
+    <h1>ExcursionIQ</h1>
+    <p class="pitch">Turns a shipping temperature-logger export into an instant, citable "use it or lose it" verdict for a temperature-excursion biologic, backed by a curated per-drug stability-budget database instead of a chatbot guess.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and regional specialty pharmacies, 340B covered-entity clinic pharmacies, and long-term-care/infusion pharmacies that ship temperature-sensitive biologics (insulins, injectable biologics, vaccines, certain oncology drugs) directly to patients or clinics — typically dispensing several hundred to a few thousand cold-chain shipments a month, with no in-house pharmaceutical-sciences staff to interpret stability data.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every time a shipment's temperature logger shows the package spent time outside its labeled 2–8°C (or other) range, a pharmacist has to decide, often same-day with a patient waiting on a dose, whether the drug is still safe to dispense or must be discarded and replaced. That decision legally requires the manufacturer's stability/excursion data — mean kinetic temperature limits, cumulative excursion budgets, lot-specific exceptions — which isn't public or centrally searchable; it's scattered across package inserts, medical-information call lines, and PDFs that differ drug by drug and sometimes lot by lot. Today the default is either an anxious call to a manufacturer's medical-affairs line with hold times, or a defensive discard of a product that cost the pharmacy hundreds to tens of thousands of dollars, or worse, dispensing a compromised product on a guess. Accreditation bodies (URAC, ACHC) and payers also expect a documented, defensible justification for every excursion disposition, and most pharmacies currently have none beyond an email thread.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Pharmacy uploads or auto-syncs the shipment's data-logger export (CSV/PDF from common Bluetooth or USB logger brands) along with the NDC and lot number of the shipped product.</li>
+      <li>System parses the time/temperature trace and computes the excursion profile: duration outside range, peak deviation, and mean kinetic temperature.</li>
+      <li>The trace is matched against a curated, continuously maintained stability-budget database for that specific NDC (and lot-level exceptions where manufacturers publish them), built from package inserts, USP <1079> cold-chain guidance, and manufacturer excursion policies.</li>
+      <li>The system returns a verdict — dispense, discard, or "insufficient published data, escalate" — with a one-page justification report citing the exact source data, ready to drop into the patient record and the accreditation audit file.</li>
+      <li>For the "escalate" case, it pre-fills a manufacturer medical-information inquiry with the excursion data attached and tracks the reply-time SLA so nothing silently stalls.</li>
+      <li>Over time it aggregates excursions by carrier, lane, and season so the pharmacy's shipping/ops team can see which routes or packaging are actually causing losses, not just react to each one.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Data-logger export parsers (common Bluetooth/USB brands)</span>
+      <span class="badge">Curated per-NDC stability/excursion budget database (core IP)</span>
+      <span class="badge">USP &lt;1079&gt; / MKT calculation engine</span>
+      <span class="badge">NDC/lot lookup</span>
+      <span class="badge">E-fax/email for manufacturer medical-info inquiries</span>
+      <span class="badge">Audit-ready PDF report export for URAC/ACHC</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Usage-based per adjudicated excursion ($15–$40 depending on volume tier), framed as cheap insurance against a single discarded vial that can cost 100–1000x that, plus a flat platform fee ($199–$499/mo) covering unlimited logger ingestion, report storage, and audit-trail access. No seat-based pricing — it scales with shipment volume, which is also the pharmacy's own cost driver.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Hand-curate stability budgets for the ~50 highest-volume specialty/biologic NDCs (common insulins and biologics) rather than trying to cover every drug on day one, and support the two or three most common logger export formats. Manual upload only; skip auto-drafting manufacturer inquiries in v1 (surface the escalation and let the pharmacist send it). Sell directly to independent specialty and LTC/infusion pharmacy owners and 340B pharmacy directors through NCPA and specialty-pharmacy trade groups, where the $/vial-at-risk math sells itself in one conversation.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>A generic AI chatbot cannot answer "is this vial still good" because the answer isn't in any corpus a model has been trained on — it's locked in manufacturer PDFs and hotlines that have to be manually tracked down and kept current per drug and per lot, so the real product is the curated dataset and its upkeep, not a language interface to it. It also sidesteps the usual "will anyone pay for compliance software" problem: the buyer isn't budgeting for software, they're weighing a $20 report against a $2,000 vial they're about to throw away or a liability claim they can't currently defend, which makes the sale about avoided loss rather than a discretionary tool.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
