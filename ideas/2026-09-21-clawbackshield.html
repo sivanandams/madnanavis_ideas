@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-21 — ClawbackShield</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-21</div>
+    <h1>ClawbackShield</h1>
+    <p class="pitch">AI reads a PBM's pharmacy audit findings letter, checks each flagged claim against the pharmacy's home state's Pharmacy Audit Integrity Act, and drafts the appeal that reverses clawbacks the PBM was never legally entitled to take.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent and small-chain retail pharmacies (1–15 locations) that dispense through third-party PBM networks — CVS Caremark, Express Scripts, OptumRx, and the regional plans layered on top — and are subject to periodic desk or on-site reimbursement audits. Roughly 19,000 independent pharmacies operate in the US, most too small to retain a pharmacy-law attorney on retainer.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>PBM audits routinely claw back reimbursement for claims that were dispensed correctly but have a paperwork defect — a missing refill-authorization fax, a transposed NDC digit, a signature log filed a day late. A single audit cycle can recover $5,000–$80,000 from one pharmacy, and PBM auditors are paid on a percentage of what they recover, so the incentive runs opposite the pharmacy's. Nearly every state has passed some version of a Pharmacy Audit Integrity Act that explicitly bars clawbacks for clerical or recordkeeping errors absent evidence of fraud or actual patient harm — but the statutes are scattered, PBM audit letters never cite them, and the appeal window is typically just 30 days. Pharmacists are running the counter, not reading statute books, so the overwhelming majority of clawbacks go unappealed even when state law says they shouldn't have happened.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Pharmacy uploads the PBM's audit findings letter or spreadsheet (CSV/PDF, often hundreds of line items) and selects their state and the PBM.</li>
+      <li>Document AI extracts each flagged claim: NDC, fill date, dollar amount, and the auditor's stated discrepancy reason code.</li>
+      <li>A rules engine matches each reason code against that state's Pharmacy Audit Integrity Act provisions and the PBM's own provider-manual audit clauses, classifying each line as "recoverable," "should be waived — clerical error protection applies," or "needs documentation" (e.g., a missing signature the pharmacy can still produce).</li>
+      <li>The system starts a 30-day appeal countdown per audit and shows a running dollar total of contested-but-wrongly-clawed-back amounts.</li>
+      <li>For every flagged-waivable line, it auto-drafts an appeal letter citing the exact statute section and provider-manual clause, bundled into one PBM-ready packet the pharmacist reviews and submits.</li>
+      <li>Outcomes (reversed / upheld / partial) are logged per PBM and reason code, sharpening the rules engine and giving the pharmacy a track record for future audits.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">50-state Pharmacy Audit Integrity Act statute text</span>
+      <span class="badge">PBM provider manuals (Caremark, ESI, OptumRx, regional plans)</span>
+      <span class="badge">Document AI for audit letter/spreadsheet parsing</span>
+      <span class="badge">NDC / NCPDP reference data</span>
+      <span class="badge">Reason-code-to-statute rules engine</span>
+      <span class="badge">Appeal-deadline tracker with email/SMS alerts</span>
+      <span class="badge">PDF appeal-letter generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Contingency fee of 20% on any clawback amount successfully reversed — removes the buying objection entirely since a pharmacy pays nothing if the appeal fails. Layer an optional $149/mo subscription for pharmacies with recurring audit exposure, covering unlimited audit-letter triage, deadline tracking, and a standing "audit readiness" score based on past findings.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with the three largest PBMs by claim volume (Caremark, Express Scripts, OptumRx) and the ten states with the highest independent-pharmacy density (Texas, California, New York, Florida, Ohio, Illinois, Pennsylvania, Georgia, North Carolina, Michigan). Manual upload only, no PBM portal integration in v1. Cover the handful of reason codes that account for most audit dollar volume (missing refill authorization, prescriber signature timing, NDC mismatch, quantity discrepancy) rather than the long tail. Go to market through NCPA state affiliate chapters, independent pharmacy buying/co-op groups (Epic Pharmacies, Health Mart, Good Neighbor Pharmacy), and pharmacy-focused Facebook/LinkedIn communities where audit horror stories already get shared.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing pharmacy-compliance tools are almost all prospective — helping a pharmacy avoid triggering an audit flag or calculating DIR fee exposure in advance. Nobody productizes the retrospective, adversarial side: matching a specific clawback reason against a specific state's audit-integrity statute is a structured precedent-matching problem, not a generic chatbot task, and the 50-state statute corpus is public, stable, and rarely changes — exactly the kind of narrow legal-text grounding that makes automated citation reliable instead of risky. Contingency pricing also inverts the usual compliance-software sales problem: instead of asking a cash-strapped independent pharmacy to buy another subscription on faith, the product only gets paid when it recovers money the PBM had no legal right to take, which is a pitch pharmacists forward to each other for free.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
