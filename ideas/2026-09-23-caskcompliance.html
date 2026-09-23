@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-23 — CaskCompliance</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-23</div>
+    <h1>CaskCompliance</h1>
+    <p class="pitch">AI-assisted interstate alcohol compliance and distributor-franchise tracking for craft breweries and distilleries expanding beyond their home state.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Craft breweries and distilleries doing roughly $2M–$20M in annual revenue that distribute in 3–15 states and have no in-house compliance or legal staff — typically a founder, an operations manager, and an outside law firm they call only when something's already on fire.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The US three-tier alcohol system means every state has its own licensing renewal cycles, label registration (COLA) rules, tied-house restrictions, and — critically — franchise/termination laws that can trap a brewery in a bad distributor relationship indefinitely once signed. Missing a license renewal or violating a franchise-law notice period can mean losing distribution rights in a state entirely, sometimes for years, or facing fines that dwarf the cost of prevention. Today this is tracked in spreadsheets, sticky notes, and outside counsel billed at $300–$600/hour — counsel that gets called reactively, after a distributor has already sent a termination notice or a state has already flagged a lapsed permit, not proactively before the deadline.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Brewery onboards by listing the states it currently distributes in and uploads its distributor agreements for each.</li>
+      <li>Document AI extracts key terms from each contract — territory, term length, renewal date, and the specific notice period and "cause" language required to terminate under that state's franchise law.</li>
+      <li>A human-curated, AI-summarized feed of state ABC (Alcohol Beverage Control) board bulletins flags relevant regulatory changes and upcoming license renewal windows for each state the brewery operates in.</li>
+      <li>A dashboard surfaces every upcoming deadline — license renewals, label registrations, distributor agreement anniversaries — ranked by days remaining and dollar/legal risk.</li>
+      <li>Automated email/Slack alerts fire on a graduated schedule (90/30/7 days) before each deadline.</li>
+      <li>When the brewery wants to enter a new state, the system generates an AI-drafted compliance checklist (licensing steps, franchise-law summary, tied-house rules) pulled from the same underlying dataset.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State ABC board bulletins/websites</span>
+      <span class="badge">TTB COLA label database</span>
+      <span class="badge">Document AI for contract extraction</span>
+      <span class="badge">State franchise-law reference corpus</span>
+      <span class="badge">Email/Slack alerting</span>
+      <span class="badge">Calendar sync (Google/Outlook)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Tiered SaaS by number of states monitored: Starter $299/mo (up to 5 states), Growth $799/mo (up to 15 states), Enterprise custom for multi-state distribution portfolios. A one-time $500 "new-state entry report" add-on for breweries expanding into a state they don't yet monitor.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover the ten states with the highest craft beer distribution volume (CA, TX, FL, NY, CO, WA, OR, IL, PA, NC) with human-curated regulatory monitoring plus AI summarization, rather than fully automated scraping of all 50 states. Ship contract upload with AI term extraction and the deadline dashboard/alerts first; the new-state-entry checklist generator can follow once the core tracking is validated with design partners. Go to market through the Brewers Association, state craft brewers guilds, and alcohol-beverage attorneys who'd rather refer routine deadline tracking than bill hourly for it.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Most compliance SaaS chases the well-trodden, well-funded categories — HIPAA, SOC 2, GDPR — where incumbents already dominate. Alcohol beverage compliance is a real, expensive, legally fragmented pain (10,000+ US craft breweries and distilleries, each facing a different rulebook per state) that stays underserved precisely because it looks too narrow and too weird for generalist compliance vendors to bother with, and generic legal-AI chatbots have no structured advantage here — the value is in extracting hard dates and franchise-law triggers from real contracts and regulatory text, not in conversational Q&amp;A. The wedge is also naturally viral within a tight professional community: alcohol-beverage attorneys who currently bill for deadline-tracking would rather hand it off to a tool and refer clients to it than keep doing it themselves at their hourly rate.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
