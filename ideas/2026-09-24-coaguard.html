@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-24 — CoAGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-24</div>
+    <h1>CoAGuard</h1>
+    <p class="pitch">AI reads every Certificate of Analysis your contract manufacturer sends, cross-checks it against your label claims and federal thresholds, and flags out-of-spec batches before Amazon or the FDA finds them.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small-team owners of private-label supplement and nutraceutical brands ($500K–$20M revenue) who sell primarily on Amazon and Shopify and manufacture through third-party contract manufacturers (CMs) rather than owning their own lab or QA department.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every production batch arrives with a Certificate of Analysis (CoA) from the CM's lab — a multi-page PDF listing tested amounts for each active ingredient, heavy metals, and microbials. Before a batch can legally ship, someone has to manually check every tested value against the label claim's allowable tolerance, USP/FDA 21 CFR 111 limits, and California Prop 65 thresholds. In a one-person ops team this is done in a spreadsheet, by eyeballing PDFs that look different from every lab, and it's easy to miss a heavy-metal result that's technically within the lab's "pass" stamp but outside what the label or Prop 65 actually allows. A single missed discrepancy triggers an Amazon delisting, an FDA warning letter, or a lawsuit — and founders currently find out only after the problem is public. Enterprise QMS platforms (TraceGains, SafetyChain) solve this for manufacturers with real QA staff and $20K+/year budgets; nobody serves the solo brand owner who reviews CoAs between customer-service tickets.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads the CM's CoA PDF for a batch, along with the product's label claim (or connects their Amazon listing so label data is pulled automatically by ASIN).</li>
+      <li>A document-parsing model trained specifically on lab report layouts (not a generic chatbot) extracts every tested analyte, its measured value, its unit, and the lab's own pass/fail stamp — handling the fact that every third-party lab formats these tables differently.</li>
+      <li>A rules engine compares each extracted value against three references: the product's label claim tolerance (typically -0%/+manufacturer overage limits), USP/FDA 21 CFR 111 identity and strength requirements, and California Prop 65 thresholds for heavy metals.</li>
+      <li>The system produces a one-page pass/fail report that highlights any analyte that is out of spec even when the lab's own stamp says "pass" (labs test against their own internal spec, not the brand's label or Prop 65, which is the actual source of most missed risk).</li>
+      <li>Every report and source CoA is stored with a timestamp in a searchable audit trail, matching the record-retention requirements the FDA already expects brands to keep.</li>
+      <li>If a batch fails, the system sends an immediate alert so the brand can hold the shipment before it reaches an Amazon warehouse or a customer.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI tuned for lab-report PDFs (OCR + table extraction)</span>
+      <span class="badge">Ingredient &amp; contaminant threshold database (USP, 21 CFR 111, Prop 65)</span>
+      <span class="badge">Amazon Seller Central API for label/listing pull</span>
+      <span class="badge">Email/Slack alerting</span>
+      <span class="badge">Encrypted document storage with audit-trail retention</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Tiered monthly subscription by active SKU count: $99/mo for up to 10 SKUs, $299/mo for up to 50 SKUs, with batch-level overage billing above a monthly CoA-processing cap. A pay-as-you-go option at $20/CoA suits brands with only a handful of SKUs who don't want a subscription.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Manual PDF upload and manual label entry only (no Amazon API integration yet). Support the 4–5 most common third-party lab report formats used by popular U.S. supplement CMs. Rules engine covers heavy metals, microbial limits, and label-claim tolerance — skip Prop 65 edge cases and international regulatory regimes for v1. Output is a downloadable PDF pass/fail report plus a searchable batch history. Go to market through supplement-brand Facebook groups, Amazon seller forums, and CM referral partnerships (CMs benefit from fewer disputed batches).</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The obvious read is that "supplement compliance software" is saturated — but the existing players are enterprise QMS suites built for manufacturers with in-house QA teams, not for the much larger and growing population of solo Amazon FBA brand owners who private-label and carry the same regulatory exposure with zero QA staff. The real product is a narrow, hard document-parsing problem: every third-party lab's CoA looks different, which is exactly why generic AI tools and manual review both fail here, and why a purpose-built parser is defensible rather than a thin wrapper. It's also a business where the AI does structured extraction and rule-checking rather than open-ended chat, so the output is a deterministic pass/fail a founder can act on immediately, not a conversation they have to interpret.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
