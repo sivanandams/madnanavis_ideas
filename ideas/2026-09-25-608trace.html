@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-25 — 608Trace</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-25</div>
+    <h1>608Trace</h1>
+    <p class="pitch">AI logs every pound of refrigerant an HVAC/R contractor buys, recovers, and recharges, auto-builds the EPA Section 608 audit trail a shop needs to survive an inspection, and flags leak-rate violations before the EPA does.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small-to-midsize HVAC/refrigeration contractors (5–50 technicians) who service commercial refrigeration and large comfort-cooling systems above the EPA's 50-lb charge threshold — supermarket and convenience-store refrigeration servicers, cold-storage and food-service equipment maintenance companies, and shops still carrying legacy R-22 systems through the ongoing HFC phase-down.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>EPA's Section 608 rules require a contractor to log refrigerant type and quantity added/recovered plus technician certification on every applicable service ticket, track leak rate per appliance, and initiate mandatory repairs once an appliance crosses its leak-rate threshold — with civil penalties running well into five figures per day per violation after EPA's periodic inflation adjustments. Most small shops track this on paper tags, a shared spreadsheet, or nothing at all; techs don't reliably fill in the required fields; and refrigerant is now expensive enough, with the AIM Act's HFC phase-down squeezing supply through 2030, that owners have no real visibility into shrinkage or theft versus legitimate use. When EPA or a state agency shows up — often triggered by a competitor complaint or a former employee — reconstructing two years of compliant records from paper tags is a nightmare, and missing-recordkeeping fines alone can be existential for a small shop.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tech logs each job from a mobile-first form at the point of service: appliance ID/location, refrigerant type, cylinder weigh-in/weigh-out (photo of the scale, OCR'd), work performed, and their 608 cert number.</li>
+      <li>System cross-checks the entry against that appliance's service history to auto-calculate its rolling annual leak rate and flags any unit crossing the EPA's actionable threshold, auto-generating the required repair timeline and verification-test reminder.</li>
+      <li>Distributor invoices are forwarded by email and parsed to reconcile cylinder-level refrigerant purchases against recovered/recharged quantities per technician, surfacing variance reports that catch mis-logging or shrinkage before it becomes a compliance blind spot.</li>
+      <li>One-click "audit binder" export builds the EPA-required recordkeeping packet — technician certs, per-appliance leak logs, disposal/reclamation certificates, purchase records — formatted for inspection, alongside a live dashboard of which appliances and techs are out of compliance right now.</li>
+      <li>Automated alerts track company-level EPA registration and state license renewals, plus refrigerant-type-specific rule changes as the R-22-to-HFC-to-next-gen transition keeps shifting.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Mobile-first offline-capable capture (PWA)</span>
+      <span class="badge">OCR for scale readouts &amp; cylinder labels</span>
+      <span class="badge">Distributor invoice email-forward parsing</span>
+      <span class="badge">EPA Section 608 leak-rate rules engine</span>
+      <span class="badge">Reclaimer disposal-certificate tracking</span>
+      <span class="badge">Optional FSM/dispatch sync (ServiceTitan, FieldEdge)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-technician SaaS at roughly $39–59/tech/month, priced as audit defense rather than per ticket, plus a company-level base fee (~$99/mo) covering the audit-binder generator and cylinder reconciliation dashboard. A flat "audit rescue" tier ($1,500–3,000) for shops that just got an inspection notice and need two years of paper-tag history digitized and reconciled fast.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover only commercial refrigeration and comfort-cooling appliances above the 50-lb charge threshold — the actual EPA reporting/leak-rate trigger — and skip residential split systems and motor-vehicle AC, which fall under separate, lighter rules. V1 is manual mobile entry plus distributor invoice forwarding only, no FSM integration yet. Ship leak-rate flagging and the audit-binder export first, since those are the two moments a shop owner actually feels the pain: a state inspector's letter, or an insurance/liability review. Go to market through HVAC/R trade associations (RSES, ACCA commercial-refrigeration chapters), 608-cert renewal and training providers, and referral partnerships with refrigerant distributors.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Every dispatch and field-service tool (ServiceTitan, FieldEdge) treats refrigerant as a billable line item, not a regulated substance with its own audit trail — so the compliance layer that actually protects a shop owner from a five- or six-figure EPA fine doesn't exist as a dedicated product, even though the underlying data (cylinder weights, technician certs, per-appliance leak history) is exactly the kind of structured, repetitive capture that AI/OCR handles well and generic chatbot Q&amp;A never touches. The AIM Act's HFC phase-down is actively driving refrigerant scarcity and price spikes through 2030, which means both the compliance risk and the shrinkage/theft risk this product also solves get worse every year rather than fading — a rare case where the regulatory tailwind and the cost-savings pitch point the same direction, so the sale doesn't depend on a shop owner caring about compliance in the abstract.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
