@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-26 — BenefitBridge</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-26</div>
+    <h1>BenefitBridge</h1>
+    <p class="pitch">AI verifies a decedent's life-insurance policy and auto-chases the assignment-of-benefits payment so independent funeral homes get repaid in days instead of months.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independently owned funeral homes (not corporate chains like SCI or Service Corp affiliates) handling roughly 100–400 calls per year, who routinely accept an "assignment of benefits" against a decedent's life insurance policy in lieu of upfront payment from the family.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>When a grieving family can't pay the $8K–$15K funeral bill upfront, the funeral home takes an assignment of benefits — a signed right to collect directly from the deceased's life insurer once the claim pays out. That means the funeral home has already delivered embalming, a casket, and services on credit, with zero collateral, and is now waiting on an insurance claims department that prioritizes the named beneficiary's paperwork over a third-party assignee's. Verifying the policy is even in force, chasing the right claims contact, and following up through fax queues and hold-music routinely takes 60–180 days, and an estimated 10–15% of assignments never pay out at all (lapsed policy, contestability-period holds, misdirected beneficiary claims) — losses the funeral home absorbs after the service is already rendered. Funeral directors are trained in grief support and embalming, not insurance claims adjudication, so this five-figure receivable sits in a shoebox of correspondence with no systematic follow-up.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>At time of arrangement, staff enter decedent info and policy details (insurer name, policy number) or scan the signed assignment-of-benefits document.</li>
+      <li>AI parses the document, looks up the correct insurer claims-department contact and submission channel from a maintained directory, and flags red-flag risk factors (policy issued &lt;2 years ago and therefore in the contestability period, missing/ambiguous beneficiary designation, group vs. individual policy).</li>
+      <li>System auto-generates and transmits the assignment packet plus death-certificate request to the insurer via its preferred channel (portal, fax, or mail), and starts a payment-SLA countdown calibrated to that insurer's historical average payment time.</li>
+      <li>If no response arrives within the expected window, the system triggers an automated follow-up cadence (logged calls, emails, escalation letters), with AI drafting escalation correspondence that cites the relevant state's prompt-payment-of-insurance-claims statute where one exists.</li>
+      <li>A single dashboard shows the funeral home's total dollars in AR by aging bucket across every pending assignment, flags claims at high risk of non-payment for an early write-off decision, and offers a one-click referral to a claims-recovery attorney partner for stalled high-value cases.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Insurer claims-department contact &amp; channel directory</span>
+      <span class="badge">State insurance-department prompt-pay statute text</span>
+      <span class="badge">Funeral home management system exports (SRS, Halcyon, FrontRunner)</span>
+      <span class="badge">E-fax / email automation</span>
+      <span class="badge">Document AI for assignment forms &amp; policy documents</span>
+      <span class="badge">E-signature for assignment packets (v1.1)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Tiered SaaS subscription by annual call volume ($149–$399/mo), plus an optional success-fee tier (2–4% of dollars recovered) for the automated escalation-and-recovery workflow — aligning the product's incentive with getting the funeral home paid rather than just logging paperwork, without requiring a large upfront commitment.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover claims-contact automation for only the top ~30 U.S. life insurers by market share (they account for the large majority of in-force individual policies), and prompt-pay statute citations for the 15 largest states by funeral-home count. Assignment intake is via manual CSV import from the funeral home's existing management software — no live API in v1. Ship status-tracking, the SLA countdown, and automated follow-up correspondence first; full AOB packet generation with embedded e-signature is a v1.1 addition once the core chasing workflow is validated with real recoveries.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Claims-chasing tools exist for medical billing and property/casualty, but nobody has built one for the death-care industry's specific assignment-of-benefits workflow — a fragmented market of 19,000+ mostly independent, family-owned funeral homes that is structurally under-served precisely because the people running it are trained for grief support and embalming, not insurance adjudication. It's also one of the most reliable "someone unambiguously owes us money, it's just admin friction" receivables in any industry: the debt is contractually assigned, the amount is fixed at time of service, and the only real work is disciplined, insurer-specific follow-up — exactly the kind of structured, repetitive, multi-step process automation outperforms generic chatbot Q&amp;A rather than needing it.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
