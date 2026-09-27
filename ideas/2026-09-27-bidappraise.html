@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-27 — BidAppraise</title>
+<style>
+  :root {
+    --bg: #f6f8fa;
+    --card-bg: #ffffff;
+    --ink: #171b20;
+    --ink-soft: #4d5560;
+    --accent: #b5651d;
+    --accent-soft: #f3e3d1;
+    --border: #dde2e8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151a;
+      --card-bg: #191d23;
+      --ink: #eceff3;
+      --ink-soft: #a7b0bd;
+      --accent: #e08a3e;
+      --accent-soft: #35281a;
+      --border: #2b313a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #12151a; --card-bg: #191d23; --ink: #eceff3; --ink-soft: #a7b0bd;
+    --accent: #e08a3e; --accent-soft: #35281a; --border: #2b313a;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fa; --card-bg: #ffffff; --ink: #171b20; --ink-soft: #4d5560;
+    --accent: #b5651d; --accent-soft: #f3e3d1; --border: #dde2e8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+    margin-bottom: 0.3rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-27</div>
+    <h1>BidAppraise</h1>
+    <p class="pitch">A pre-bid appraisal tool for salvage-auction vehicle buyers: enter a VIN and the lot's damage photos, get a repair-cost estimate, comparable resale value, and a max-bid ceiling before the Copart/IAAI countdown hits zero.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent used-car dealers, licensed vehicle rebuilders, and small export buyers (many shipping rebuilt units to Latin America, West Africa, and Eastern Europe) who actively bid on salvage-title vehicles at Copart and IAAI auctions — typically buying 10–100+ vehicles a month, often bidding on several lots a day with only a photo set, a VIN, and a short damage narrative to go on.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Salvage auction lots close on a fixed clock with no test drive, no lift inspection, and photos that are frequently low-resolution, poorly angled, or missing the underside/frame damage that actually determines total cost to rebuild. Bidders either guess (and regularly overpay on a vehicle with hidden frame or airbag-module damage that turns a "$1,200 repair" into a $4,000 one) or pay $150–$300 per vehicle for a third-party pre-bid inspection service that can't turn results around inside the auction's short preview window. At real buying volumes, a handful of bad bids a month wipes out the margin on everything else, and there is no fast, cheap, always-on way to sanity-check a bid before clicking.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Buyer enters the VIN and manually uploads the lot's photo set (or pastes the public Copart/IAAI lot number and photo URLs) along with the listed damage type, primary damage location, and odometer/keys/runs-drives status.</li>
+      <li>VIN decode (NHTSA vPIC) pulls trim, engine, drivetrain, and factory options to anchor the valuation to the exact build, not just year/make/model.</li>
+      <li>A vision model trained on labeled collision-damage photo sets scores damage severity by zone (front clip, frame rail, airbags/SRS, radiator support, unibody rail) and flags photos that don't show enough of the car to trust the read — pushing the buyer to request specific angles before bidding.</li>
+      <li>A parts-and-labor cost engine maps the damage zones to an OEM/aftermarket parts list and regional labor-rate table to produce a repair-cost range with a confidence band, not a false-precision single number.</li>
+      <li>A comparables engine pulls recent clean-title and rebuilt-title sale prices for the same VIN configuration (dealer auction comps plus regional classifieds) to estimate resale value once repaired.</li>
+      <li>The system outputs a max-bid ceiling (resale value minus repair cost minus target margin minus transport/title fees) with a one-line rationale, refreshed instantly if the buyer edits any input — fast enough to use live during the auction's closing seconds.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">NHTSA vPIC VIN decode (free)</span>
+      <span class="badge">Labeled collision-damage photo dataset + CV severity model</span>
+      <span class="badge">Aftermarket/OEM parts pricing feed</span>
+      <span class="badge">Regional labor-rate table</span>
+      <span class="badge">Dealer auction &amp; classifieds comp data</span>
+      <span class="badge">Manual lot/photo intake (no auction-site scraping in v1)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Pay-per-lot credits ($6–$9 per vehicle appraised) for occasional bidders, plus an unlimited monthly plan ($149–$399/mo tiered by volume) for dealers and rebuilders running dozens of lots a week. A per-vehicle price point matches how buyers already think about cost — each appraisal is cheap insurance against one bad bid.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch with front-end collision damage only on the 8–10 highest-volume rebuild models (F-150, Silverado, Camry, Accord, Civic, Altima, Corolla, RAV4) in a single auction region, using manually uploaded photos and lot data to sidestep any auction-site scraping or ToS questions. Flood, fire, hail, and rollover categories — which need different damage signals (water lines, smoke residue, roof-crush geometry) — are explicitly out of scope until the core CV model is validated against real post-repair invoices from a small panel of partner rebuild shops.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Body shops and independent appraisers already know how to price collision damage from photos — but their business model bills by the hour for a manual estimate, so none of them have built software to compress that judgment into a 60-second, $7 read delivered at the exact moment a bidder needs it: mid-auction, with the clock running. The product isn't competing with a shop estimate on precision; it's competing with "guess or skip the lot," which is the real alternative most bidders face today. And because salvage buyers evaluate dozens of lots a week, the per-vehicle pricing model turns every single bid into a repeat-purchase moment instead of a one-time sale, which is a much stronger usage-based revenue engine than the subscription-and-hope model most inspection tools default to.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
