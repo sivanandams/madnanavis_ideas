@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-28 — ItemTwenty</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card-bg: #ffffff;
+    --ink: #191a23;
+    --ink-soft: #4f5266;
+    --accent: #33459e;
+    --accent-soft: #dfe3f7;
+    --border: #dfe1ec;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10111a;
+      --card-bg: #171826;
+      --ink: #e9eaf6;
+      --ink-soft: #a7abc7;
+      --accent: #7c8de8;
+      --accent-soft: #232a4a;
+      --border: #2a2d42;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10111a; --card-bg: #171826; --ink: #e9eaf6; --ink-soft: #a7abc7;
+    --accent: #7c8de8; --accent-soft: #232a4a; --border: #2a2d42;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f7fb; --card-bg: #ffffff; --ink: #191a23; --ink-soft: #4f5266;
+    --accent: #33459e; --accent-soft: #dfe3f7; --border: #dfe1ec;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-28</div>
+    <h1>ItemTwenty</h1>
+    <p class="pitch">AI reads a franchise's public FDD, computes the real multi-year closure and turnover rate hidden in its Item 20 tables, and cross-checks the litigation history against a maintained corpus of past filings — the due-diligence pass a $2,000 franchise attorney would do, delivered before the 14-day cooling-off clock runs out.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Prospective franchisees — individuals and small groups, often first-time business buyers financing with an SBA loan or retirement savings — evaluating a $100K–$2M franchise purchase in food service, fitness, home services, or senior/child care, in the weeks between receiving the franchisor's Franchise Disclosure Document (FDD) and signing.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The FTC Franchise Rule forces every franchisor to hand prospective buyers a 150–400 page FDD at least 14 days before any money or signature. Item 20 of that document lists, franchise by franchise and state by state, every outlet opened, closed, transferred, terminated, non-renewed, or ceased operating over the past three years — the single best public predictor of whether a brand is healthy or quietly failing. But the tables are dense, formatted differently by every franchisor, and require manual arithmetic across years to turn into an actual closure rate. Item 3's litigation section can list dozens of arbitrations and lawsuits with no summary of what they mean. A proper attorney review costs $1,500–$5,000 and takes one to two weeks — time and money most buyers don't spend, especially with a franchisor's sales team pushing toward "discovery day" and a fast decision. The result: people sink life savings and personal guarantees into ten-year franchise agreements with 20–30% annual unit turnover they never actually calculated.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads the FDD PDF they received (or pulls one from an ingested library of previously-analyzed brands) and specifies the state where they intend to operate.</li>
+      <li>Document AI extracts the Item 20 outlet tables — outlets at start of year, opened, closed, transferred, terminated, non-renewed, ceased operations — by year and state, and computes rolling closure rate, transfer rate, non-renewal rate, and the company-owned-vs-franchised ratio trend.</li>
+      <li>Item 3 litigation and Item 4 bankruptcy entries are parsed and classified (franchisee-initiated vs. company-initiated, encroachment, misrepresentation, non-payment), surfacing patterns like repeated territory-encroachment suits.</li>
+      <li>The brand is matched against a maintained corpus of that franchisor's own prior-year FDD filings (pulled from state registration portals that require public filing) to show whether churn, legal exposure, and initial investment costs are rising or falling year over year.</li>
+      <li>Output is a scored red/yellow/green due-diligence report in plain English, benchmarked against other brands in the same category, plus a generated list of specific questions to ask existing franchisees — using the contact list Item 20 already requires the franchisor to disclose.</li>
+      <li>A 14-day FTC cooling-off countdown ships with the report, plus an optional "send to my attorney" packet if red flags surface.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State franchise registration portals (CA DFPI, WI DFI, MN Commerce, NY, etc.)</span>
+      <span class="badge">FTC Franchise Rule text</span>
+      <span class="badge">Document AI / table extraction for FDD PDFs</span>
+      <span class="badge">Multi-year FDD corpus per brand for trend analysis</span>
+      <span class="badge">Litigation classification model</span>
+      <span class="badge">Category benchmark database</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>One-time report fee of $199–$349 per brand evaluated (buyers typically compare 2–4 brands before choosing). A $29/mo "franchise shopper" tier gives unlimited reports plus trend alerts on watched brands for buyers who shop over several months. A B2B tier at $99/mo per seat targets franchise attorneys and consultants who want a fast first-pass report to speed up client intake.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Limit v1 to the highest-volume categories — fitness, quick-service food, home services/cleaning, and senior/child care — where SBA loan volume and buyer search interest are highest. Support the current year's FDD plus one prior year for trend (skip full multi-year history). Manual PDF upload only; skip automated scraping of state portals to avoid ToS complexity at launch. Rely on Item 3's own disclosures rather than a PACER integration for litigation detail. Go to market through franchise-buyer communities (r/franchise, Unhappy Franchisee), SBA loan brokers who want to cut default referrals, and franchise attorneys as a white-label lead-gen tool.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Item 20 churn data is public, standardized by federal rule, and is the best available predictor of franchise failure — yet almost nothing automatically computes real closure rates from it, because franchise due diligence is culturally treated as a legal problem requiring a lawyer, not a data-extraction problem requiring better tooling. The category also sidesteps the usual information-asymmetry trap: the franchisor is legally compelled to hand over its own worst statistics, already formatted as a document — just formatted in a way that's nearly impossible to compute by hand under sales pressure and a ticking 14-day clock. The product isn't inventing insight the franchisor is hiding; it's just doing the arithmetic before the buyer signs.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
