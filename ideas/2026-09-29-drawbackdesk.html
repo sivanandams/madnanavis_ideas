@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-29 — DrawbackDesk</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-29</div>
+    <h1>DrawbackDesk</h1>
+    <p class="pitch">Match a small importer's tariff-paid entries to their export shipments and auto-assemble the U.S. customs duty drawback claim that refunds up to 99% of duties on goods later re-exported.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size U.S. importer-exporters ($2M–$100M in annual imports) who bring in components, materials or finished goods and ship some of them abroad — contract manufacturers, equipment makers, distributors selling into Canada/Mexico/LatAm, and DTC brands with international fulfillment. Typically 5–50 employees, no in-house trade compliance team, relying on a customs broker who rarely raises drawback.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>With tariff rates elevated across many product categories, duties are now a top-three cost line for these firms. Customs duty drawback lets them reclaim up to 99% of duties, taxes and fees paid on imported goods that are later exported or destroyed, within a 5-year window. Most eligible companies never file: the claim requires linking specific import entries to specific export records (often via 8-digit HTS "substitution" matching), keeping proof of export, and filing through ACE with precise data. Drawback specialists exist but typically take 20–30% of the refund, have minimum-size thresholds, and run slow, spreadsheet-heavy processes. The result is a large pile of unclaimed cash sitting in expiring 5-year windows, invisible to the firms that are owed it.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads (or emails in) their ACE entry-summary export from their broker (CSV/PDF) and an export ledger: commercial invoices, shipping records, or AES/EEI filings.</li>
+      <li>The system parses entries and exports, normalizes part numbers and HTS codes, and computes a "refund opportunity" estimate within minutes, showing the dollar value by entry and the date each import window expires.</li>
+      <li>A matching engine pairs imports to exports under the applicable drawback rules (direct identification or 8-digit HTS substitution), optimizing for the highest total refund and flagging entries near the 5-year cutoff first.</li>
+      <li>For each proposed claim, the tool checks the required evidence (proof of export, proof of duty payment, no double-claiming, no prior liquidation problems) and lists precisely what is missing, with request templates the user can send to their freight forwarder or broker.</li>
+      <li>Once complete, it generates the claim packet in the format needed for ACE filing (data file plus supporting-document index) for a licensed broker or the user's customs-filing partner to submit; a dashboard then tracks each claim through to refund receipt.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">ACE entry-summary reports (via broker export)</span>
+      <span class="badge">Export records (AES/EEI, bills of lading, invoices)</span>
+      <span class="badge">HTS schedule &amp; duty-rate tables</span>
+      <span class="badge">ERP/accounting exports (QuickBooks, NetSuite, Shopify)</span>
+      <span class="badge">Document AI for invoices &amp; shipping docs</span>
+      <span class="badge">Customs broker / filer partner API or handoff</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Free opportunity scan (the lead magnet: "you have $84K in refundable duties, $31K expiring in 90 days"). After that, a success fee of 8–12% of refunds actually received — well below the 20–30% incumbents charge — or a $499/mo subscription with a capped fee for firms that file continuously. Success-based pricing makes the buy decision nearly risk-free.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One narrow lane: manufacturing-drawback claims are out; v1 covers only "unused merchandise" and straight re-export of imported goods, where record-keeping is simplest. Manual CSV/PDF upload only, no live ACE integration. The v1 deliverable is the opportunity scan plus a matched, evidence-checked claim packet; filing itself is handed to a partner licensed customs broker who charges a flat fee per claim. Acquire users through customs-broker referrals, export-focused trade associations, state export-assistance programs, and LinkedIn/newsletter content aimed at importers reacting to tariff costs. Validate accuracy with two or three friendly pilot importers by comparing claims against what a specialist would file.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Drawback is an old, obscure program, and the industry around it was built for large importers, so small firms are simply below the radar — yet tariffs have turned the previously marginal refund into serious money for exactly those firms. The work is a matching and evidence-assembly problem across messy structured data, which is where automation genuinely beats a chatbot, and the free scan shows the customer a dollar figure of cash they didn't know they were owed. The 5-year expiry means every day of delay destroys refund value, giving the product a natural urgency and a built-in "expiring soon" trigger. Finally, a success-fee model undercuts the incumbents while aligning perfectly with the customer's incentives.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
