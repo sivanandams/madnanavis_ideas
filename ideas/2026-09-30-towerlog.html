@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-09-30 — TowerLog</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-09-30</div>
+    <h1>TowerLog</h1>
+    <p class="pitch">AI turns a water-treatment tech's photos, lab reports and sensor readings into the inspection logs, Legionella sampling records and annual certification a city requires for every building cooling tower — so small building owners stop risking fines and shutdown orders.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent water-treatment contractors and property managers of small and mid-size commercial and multifamily buildings in jurisdictions that regulate cooling towers (NYC first, then other cities and states adopting Legionella rules). Typically 5–150 towers under management, no dedicated compliance staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Cooling-tower rules like NYC's require a written maintenance program and plan, recurring inspections, periodic Legionella culture sampling with defined follow-up actions when results come back positive, registration, and an annual certification filed by a deadline. The records live in paper logbooks, lab PDFs, technician texts and spreadsheets. A missed sampling window, an unlogged corrective action or a lab result nobody acted on within the required timeframe can mean violations, fines, or worse, a public-health incident and liability. Contractors spend hours per tower per year assembling proof, and owners rarely know they are out of compliance until an inspector shows up.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Contractor adds each tower (address, registration number, plan version) and TowerLog builds a compliance calendar of inspection, sampling and certification due dates.</li>
+      <li>On site, the tech snaps photos of the basin, drift eliminators, fill and biocide feed, and speaks or types quick notes. AI structures these into a dated inspection record against the checklist the plan requires.</li>
+      <li>Lab reports (PDF or email) are forwarded to a TowerLog inbox; document AI extracts colony counts and sample IDs and maps them to the correct tower and sampling event.</li>
+      <li>A rules engine compares each result to the plan's action thresholds and, when one is exceeded, opens a corrective-action workflow (retest, disinfection, notify owner) with countdown timers and a logged audit trail.</li>
+      <li>Before the annual deadline, the system assembles the certification packet, flags gaps such as a missing quarterly inspection, and gives the owner a one-page status the property manager can sign off on.</li>
+      <li>Owners get a read-only portal and an exportable inspector-ready binder at any time.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Municipal cooling-tower registry / filing rules</span>
+      <span class="badge">Lab report intake (email + PDF parsing)</span>
+      <span class="badge">Photo capture with timestamp &amp; GPS</span>
+      <span class="badge">Rules engine for plan thresholds</span>
+      <span class="badge">Optional IoT: conductivity / temperature / biocide sensors</span>
+      <span class="badge">Calendar &amp; SMS reminders</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-tower subscription of roughly $25–$45/month for contractors (who resell it to owners as part of their service contract), with a $79 one-time annual certification-packet fee for owners who self-manage. Volume tiers for contractors above 50 towers. Optional sensor bundle sold at cost plus margin.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>NYC only, one written plan template, and only the four core artifacts: compliance calendar, inspection record, lab-result intake with threshold alerts, and the annual certification packet. No sensors in v1; photos and lab PDFs only. Mobile web app rather than native. Validate with 3–5 independent water-treatment contractors, who each carry dozens of towers and act as the distribution channel to owners. Confirm current rule details with a qualified professional before relying on any deadline the product computes.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Most compliance software targets big facilities teams; cooling towers are instead serviced by small, local water-treatment shops whose real product is a paper trail. Selling to the shop makes it a per-tower reseller channel with built-in stickiness, because the log history becomes the owner's legal defense. The value comes from unglamorous AI, such as structuring photos and parsing lab PDFs, and from deterministic rules on top, not from a chatbot. And every new city that passes Legionella rules copies the same template, so one regulated wedge becomes a repeatable playbook.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
