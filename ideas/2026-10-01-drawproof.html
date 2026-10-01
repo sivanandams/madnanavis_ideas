@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-01 — DrawProof</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-01</div>
+    <h1>DrawProof</h1>
+    <p class="pitch">Satellite evapotranspiration data plus diversion records automatically assemble a "beneficial use" evidence file for Western irrigators, so a water right worth more than the land itself isn't lost to forfeiture or discounted in a sale.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owners of small and mid-size irrigated farms and ranches in prior-appropriation Western states (Colorado, Idaho, Utah, Montana, Wyoming, Oregon, Nevada), plus the water-right brokers, rural land agents, and water attorneys who represent them. Secondary: ditch companies and irrigation districts managing hundreds of shareholder rights.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Under "use it or lose it" doctrine, a water right unused for a statutory period (often 5–10 years) can be declared abandoned or forfeited, and a right's value in a sale or transfer depends on proving its historic consumptive use. Water rights can be worth $5K–$50K+ per acre-foot, often exceeding the land's value. Yet proof is usually a shoebox of paper headgate logs, a fuzzy memory of which fields were fallow in a dry year, and an engineer billing $200+/hour to reconstruct history for a change-of-use or sale application. Owners who leave land fallow for a drought, a conservation program, or an estate transition often don't know whether they are protecting or quietly losing the right. Buyers' due diligence on "historic use" is slow, expensive, and a frequent deal-killer.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner enters or uploads the water right (decree/permit number, priority date, place of use polygon or parcel IDs, and quantified amount).</li>
+      <li>System pulls 20+ years of Landsat/Sentinel-derived crop-water-use and irrigated-acreage estimates for each place-of-use field, and flags per year whether the field shows irrigation activity.</li>
+      <li>Owner optionally adds headgate readings, ditch company delivery records, power-meter data for pumped wells, or photos; OCR and a lightweight parser turn them into structured diversion records.</li>
+      <li>The engine reconciles remote-sensing evidence against records, produces a year-by-year "use confidence" timeline, and highlights risk windows, such as consecutive non-use years approaching a state's forfeiture threshold.</li>
+      <li>For risk windows, it suggests documented, state-specific protective actions (e.g., filing for temporary non-use or conservation-program exemptions) and sets reminders before deadlines.</li>
+      <li>One click exports a beneficial-use evidence packet (maps, timeline, methodology note, source citations) formatted for a buyer's due diligence or for a water engineer to finalize and stamp.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">OpenET / Landsat / Sentinel-2 evapotranspiration</span>
+      <span class="badge">USDA Cropland Data Layer</span>
+      <span class="badge">State engineer water-right databases (public)</span>
+      <span class="badge">County parcel GIS</span>
+      <span class="badge">OCR for headgate &amp; ditch records</span>
+      <span class="badge">State forfeiture-rule library (curated)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$29/month per monitored water right for owners (continuous monitoring and alerts), $249 per exported evidence packet for one-off sales or filings, and a $199/month broker plan with unlimited packets and client workspaces. Ditch companies get per-shareholder pricing (~$4/right/month) with bulk onboarding.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in one state with open data and a clear forfeiture statute (Colorado or Idaho), covering surface-water irrigation rights only (skip groundwater, municipal, and instream rights). Ship parcel lookup, the remote-sensing use timeline, and risk-window alerts first; the PDF evidence packet is next, and record OCR comes later. Position it explicitly as evidence support, not legal or engineering advice, with a partner water engineer reviewing the first 50 packets to validate accuracy. Go to market via county extension offices, water attorneys' referral lists, and rural land-broker networks.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Satellite ET data has become free and field-level accurate, but agtech has pointed it at yield and irrigation scheduling, not at the legal question of whether a water right is still alive. The buyer isn't buying farm analytics; they're buying defensible evidence for an asset that can dwarf their land value, a much higher willingness to pay and a clear event trigger (sale, estate transfer, drought fallowing). Because every state's rules differ and engineers still must stamp filings, the moat is the curated rule library and an accumulating, auditable evidence history per right, which is hard for a generic geospatial or legal-AI tool to replicate.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
