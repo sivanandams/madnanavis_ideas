@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-02 — DriftLog</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-02</div>
+    <h1>DriftLog</h1>
+    <p class="pitch">Turns a pesticide applicator's messy spray tickets into audit-ready state use reports, and checks each job against wind, label buffer and endangered-species rules before the rig leaves the yard.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent custom pesticide applicators: 1&ndash;15 truck operations doing ground rig, turf/ornamental, right-of-way or small aerial work, holding state commercial applicator licenses and applying restricted-use pesticides (RUPs). Starting with California, Oregon and Washington, where reporting is strictest.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every application must be recorded (product, EPA reg. number, rate, site, wind, applicator) and many states require monthly or annual use reports in their own format. California's monthly Pesticide Use Report is due by the 10th of the following month. Records live on carbon-copy tickets, texts and the glovebox, and are re-typed in the evening. Missing or sloppy records are among the most common inspection violations, with fines in the hundreds to thousands of dollars per violation. Drift complaints are worse: without a time-stamped wind and buffer record, the applicator can't defend a neighbor's crop-damage claim, and one complaint can cost a licence or a liability policy. Large ag-retail software exists, but it is expensive, farm-centric and overkill for a two-truck shop.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The applicator snaps a photo of the job ticket or product label, or forwards the customer work-order email. OCR and an extraction model pull product, EPA reg. number, rate, acreage, site and target pest.</li>
+      <li>Before the job, DriftLog pulls the NOAA hourly wind forecast for the site's coordinates and checks the label's wind and buffer limits, the state's county restrictions, and the current endangered-species bulletin for that parcel. It returns go / hold / go-with-buffer, with the reason.</li>
+      <li>At application time, one tap stamps the actual start and end, the measured or station wind speed and direction, and a GPS-pinned map snapshot, producing a defensible drift record.</li>
+      <li>The record is validated against the label (maximum rate, re-entry interval, pre-harvest interval, application count per season) and flagged if it breaks any of them.</li>
+      <li>At month end, one click exports the state-format use report (e.g. California PUR upload file) and a PDF record binder keyed by customer and site.</li>
+      <li>If a complaint arrives, an &ldquo;incident pack&rdquo; compiles the ticket, wind log, label excerpt and map in one PDF for the insurer or county inspector.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">EPA pesticide label data (PPLS / state product databases)</span>
+      <span class="badge">NOAA / NWS hourly forecast &amp; station wind</span>
+      <span class="badge">EPA Bulletins Live! Two (species)</span>
+      <span class="badge">State use-report formats (CalPEST, Oregon, Washington)</span>
+      <span class="badge">Parcel / county boundaries</span>
+      <span class="badge">Photo OCR &amp; extraction</span>
+      <span class="badge">QuickBooks export (optional)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/month per licensed applicator seat, including unlimited records and report exports, plus $19/month per extra truck. A $99 one-time &ldquo;back-fill&rdquo; service digitises a shoebox of old tickets before an audit. A later add-on bundles incident packs for pesticide-liability insurers, who may offer premium discounts to customers who keep drift logs.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One state (California) and one output: the monthly PUR file plus the pre-job wind check. Mobile-first PWA that works offline and syncs later, since rural job sites have poor signal. Manual site entry with a map pin; no customer portal, no aerial-application support, no inventory tracking. Ten design partners recruited through county ag commissioner trainings, PCA/QAL continuing-education sessions and applicator association newsletters. Success metric: a user completes a month-end report in under 15 minutes instead of an evening.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The category looks like boring agriculture record-keeping, but the real value is defensive: the product creates the evidence that wins a drift claim. That changes the buyer's mindset from &ldquo;compliance chore&rdquo; to &ldquo;insurance for my licence,&rdquo; which supports higher pricing and low churn. The AI is applied where it is actually useful &mdash; reading ugly paper, matching label restrictions to a forecast &mdash; rather than as a chatbot. The data is all public but scattered across EPA, NOAA and fifty differently shaped state forms, and per-state format work is a moat that discourages large vendors from serving small shops. Insurers and county inspectors become natural distribution channels once the incident pack proves itself.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
