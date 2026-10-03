@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-03 — WaiverLoop</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-03</div>
+    <h1>WaiverLoop</h1>
+    <p class="pitch">AI builds the safety case for FAA Part 107 drone waiver applications by mirroring the mitigations and operational language of previously granted waivers, and fixes the denial-prone gaps before filing.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small commercial drone operators (1–15 pilots) in inspection, roofing, surveying, agriculture, real estate and media who need an FAA Part 107 waiver — operations over people, over moving vehicles, beyond visual line of sight (BVLOS), multiple aircraft per pilot, or controlled-airspace exceptions — to win higher-paying jobs.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The best-paying drone work (utility corridors, large-site inspection, events, dense urban sites) legally requires a waiver, but the FAA application demands a written safety case: hazard analysis, mitigations, communications procedures and risk assessment tied to the specific regulation being waived. Most operators have never written one. Applications come back incomplete or denied after weeks of waiting, and each resubmission restarts the wait. Consultants charge $1,500–$5,000 per waiver, which is out of reach for a one-person shop, so many operators either decline the jobs or fly less ambitious missions than their equipment allows.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator picks the regulation to waive (e.g. §107.39 operations over people, §107.31 BVLOS) and describes the mission: aircraft model, site type, altitude, crowd density, crew, and the contract they want to win.</li>
+      <li>System retrieves similar previously granted waivers from the FAA's public waiver listing, along with the operating limitations and provisions attached to each.</li>
+      <li>An analysis step extracts the mitigation patterns that recur in granted waivers for that regulation and aircraft class (observer ratios, lighting, ground-risk buffers, lost-link behaviour, comms plans), and compares them with the operator's mission.</li>
+      <li>The operator answers a short set of gap questions only where the mission has no matching mitigation, such as "How will you keep non-participants out of the 50 ft buffer?"</li>
+      <li>System generates the full application packet: the DroneZone-ready narrative, hazard/mitigation table, operating procedures and an attached flight-ops checklist.</li>
+      <li>A pre-flight scorecard lists weak sections, reasons FAA reviewers commonly send applications back, and what to tighten. After filing, a tracker logs the submission date and alerts the operator when the typical review window has passed.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FAA public list of issued Part 107 waivers</span>
+      <span class="badge">14 CFR Part 107 text &amp; FAA advisory circulars</span>
+      <span class="badge">FAA-accepted means of compliance for ops over people</span>
+      <span class="badge">LAANC / UAS facility map data</span>
+      <span class="badge">Aircraft spec sheets (manufacturer data)</span>
+      <span class="badge">PDF/DOCX export for DroneZone upload</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-application fee of $149–$249 including one free revision round after any FAA feedback, which undercuts consultants by 90%+. Optional $19/mo "ops locker" keeps granted waivers, expiry dates (waivers are time-limited) and renewal drafts, so renewals become a one-click re-file rather than a restart.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support only the three most common waiver types (operations over people, over moving vehicles, and multiple aircraft per pilot), and only for small, sub-55 lb aircraft from the top three or four manufacturers. Skip BVLOS and Part 135 delivery waivers in v1; those need far deeper safety cases and are now handled by bespoke programs. Ingest the public waiver list once a month, hand-label the mitigation patterns for the first ~200 granted waivers, and ship a web form plus exportable packet with no DroneZone automation. Distribute through drone-pilot forums, Part 107 test-prep communities and YouTube creators who already teach waiver basics.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The FAA publicly lists every issued waiver along with its operating provisions, which amounts to a free answer key of what the agency has already accepted, yet operators treat the process as a black box and pay consultants to reinvent it each time. The product is a precedent-mirroring engine, not a chat assistant: its value comes from pattern-matching a mission to accepted mitigations and identifying exactly which parts of the safety case are missing. The buyer's ROI is also unusually concrete, because one granted waiver unlocks a specific, recurring class of contracts. And waivers expire, so a solved first application turns into a natural renewal stream.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
