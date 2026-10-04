@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-04 — MassBalance</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-04</div>
+    <h1>MassBalance</h1>
+    <p class="pitch">Reconciles a small organic food handler's supplier certificates, purchase receipts and production batches into an inspector-ready mass-balance and trace-back file — and warns the day a supplier's organic certificate lapses.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small USDA-organic-certified handlers: co-packers, private-label brands, bakeries, sauce and snack makers, bulk ingredient repackagers, and newly certified brokers/traders (US$500K–$20M revenue), typically run by an owner or a single quality/compliance person using spreadsheets and email.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every certified operation faces an annual inspection where the inspector picks a finished lot and demands a trace-back to purchase records and supplier organic certificates, plus a mass-balance showing organic inputs in roughly equal organic outputs. Since the Strengthening Organic Enforcement rule (effective March 2024), many brokers, traders and repackagers that were previously exempt must now be certified and keep audit-ready records, and fraud-prevention plans are required. Small teams assemble this from PDFs, supplier emails and spreadsheets in a frantic week. A supplier cert that expired mid-year, a mismatched scope (certified for "crops" but not "handling"), or a mass-balance gap becomes a non-compliance notice, a held shipment, or loss of the "USDA Organic" label — which can mean losing a retail account worth more than the certification costs.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User forwards supplier invoices, bills of lading and organic certificates to a dedicated inbox (or uploads PDFs/CSV exports from QuickBooks).</li>
+      <li>Document AI extracts supplier, ingredient, quantity, lot, date and certifier, then matches each supplier to the USDA Organic Integrity Database and checks that the cert is active and its scope covers the purchased product on the purchase date.</li>
+      <li>User logs production batches (or imports from a spreadsheet): inputs consumed by lot, finished units out, and expected yield loss.</li>
+      <li>The engine builds running mass-balance per ingredient and per finished lot, flagging unexplained variance outside a configurable yield tolerance, and orphan lots with no organic-certified source.</li>
+      <li>One click exports an audit packet: trace-back from any finished lot to supplier certs and receipts, a mass-balance table, and a fraud-vulnerability log for the Organic System Plan.</li>
+      <li>Alerts fire when a supplier's certificate is suspended, expires, or changes scope, listing every open lot and customer shipment that supplier touches.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">USDA Organic Integrity Database (public data)</span>
+      <span class="badge">Email-forward ingestion</span>
+      <span class="badge">QuickBooks / Xero invoices</span>
+      <span class="badge">Document AI for certs &amp; invoices</span>
+      <span class="badge">CSV batch import</span>
+      <span class="badge">PDF audit-packet export</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$149/mo for one facility and up to 150 suppliers; $349/mo for multiple facilities and co-packer client views. Optional $499 one-time "inspection rescue" to backfill and reconcile the prior 12 months of records from a messy folder before an audit.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>US NOP only (skip EU, Canada and COR equivalencies), handlers only (skip crop and livestock producers), and ingredient-level mass balance for a single facility. Manual batch entry plus invoice/cert ingestion; no ERP integrations beyond QuickBooks. Validate with 10 small handlers by offering the inspection-rescue service, using their real messy files to tune extraction. Reach customers through organic certifier newsletters, Organic Trade Association small-business channels, and organic-focused food-business consultants who can resell it.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Food ERPs and generic traceability tools target recall readiness for big manufacturers, while organic-specific tools mostly serve farms; the small handler's real deadline-driven pain — a certifier's trace-back request — is a niche between them. Its anchor dataset (certificate status in the public Organic Integrity Database) is free, official, and changes continuously, so the value is a live join between that registry and the user's own purchase records, not a chatbot. A new regulation just expanded the pool of businesses who must keep these records, and the downside is binary and expensive, so owners pay to remove the annual scramble rather than for a nice dashboard. Accuracy claims should be verified against current NOP rules during customer discovery.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
