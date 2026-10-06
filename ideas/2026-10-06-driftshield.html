@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-06 — DriftShield</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-06</div>
+    <h1>DriftShield</h1>
+    <p class="pitch">AI turns a spray applicator's job tickets and public weather history into a timestamped, label-compliance "defense file" — so a pesticide drift complaint is answered with proof in minutes instead of a five-figure settlement.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent custom pesticide and herbicide applicators — small aerial (ag-aviation) and ground-rig spray businesses with 1–15 trucks or aircraft, typically serving row-crop and specialty-crop farmers in the US Midwest, Delta and California Central Valley.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>When a neighbor's soybeans, vineyard or beehives show damage, the applicator is the first person blamed for "drift" — and the state agriculture department can demand, within days, restricted-use pesticide (RUP) records, wind speed and direction at time of application, label compliance, buffer-zone evidence and applicator licensing proof. Applicators currently keep this on carbon-copy tickets, GPS flight logs and memory. A single drift claim means five-figure settlements, insurance premium spikes or license action, and most are decided on whose paperwork is more complete — not who was actually at fault. Existing farm-management software is built for growers, not for the contractor on the hook.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol><li>Applicator snaps a photo of the job ticket (or forwards the dispatcher's text); document AI extracts field, product, EPA reg. number, rate, acreage and times.</li><li>The system pulls hourly historical wind, temperature-inversion indicators and humidity for the field's coordinates from public weather data, and checks the product label's restrictions (max wind, temperature, buffers, sensitive-crop setbacks) against those conditions.</li><li>Each job gets a locked, timestamped "defense file": ticket, weather snapshot, label-compliance check, nearby sensitive sites (apiaries, organic farms, schools, waterways) and flight/GPS track if uploaded.</li><li>Pre-spray, the app flags a job whose forecast window violates the label so the dispatcher can reschedule before the problem exists.</li><li>When a complaint arrives, one click assembles the state-formatted record packet and a plain-language timeline for the department of agriculture and the insurer.</li><li>Monthly and annual RUP reports export in the state's required layout.</li></ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p><span class="badge">NOAA / state mesonet weather history</span><span class="badge">EPA pesticide label database (PPLS)</span><span class="badge">FieldWatch / DriftWatch sensitive-site registries</span><span class="badge">Document AI for job tickets</span><span class="badge">GPS track import (AgNav, Satloc, GPX)</span><span class="badge">State RUP report templates</span></p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$79/month per truck or aircraft with unlimited jobs, plus a $249 one-off "complaint packet" export for operators on a basic plan. Insurance-channel angle: agricultural aviation underwriters may subsidize or discount premiums for customers with defense files, giving a second revenue path through broker partnerships.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Two states only (e.g. Iowa and Arkansas), ground and aerial rigs, row crops. Photo-of-ticket capture, label-vs-weather check and the defense-file PDF. No live telemetry integration, no grower portal, no chemical inventory. Go to market through state aerial applicator association meetings, ag-aviation insurance brokers and custom-applicator Facebook groups.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The buyer is not the farmer — the crowded part of ag-tech — but the contractor who carries the liability and has almost no software. The product's value is proof that is created at the moment of work, not reconstructed after a complaint, so it is a defensive asset that gets more valuable the one time a year it matters. Public weather history and label restrictions are free but scattered; joining them to a specific ticket is a small, tractable automation problem rather than a chatbot, and an insurer-backed distribution channel is available that no horizontal tool can reach.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
