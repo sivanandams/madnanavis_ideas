@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-07 — SkimCheck</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-07</div>
+    <h1>SkimCheck</h1>
+    <p class="pitch">AI re-computes a small dairy farm's monthly milk check from public federal-order prices and the farm's own test data, and flags underpayments, bad deductions and hauling errors the farmer has no time to catch.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent dairy farms (roughly 40&ndash;800 cows) in US Federal Milk Marketing Orders that ship to a cooperative or proprietary handler and receive a dense monthly (or semi-monthly) milk statement. Secondary buyers: farm-business consultants, ag lenders and dairy-focused accountants who manage many farms' books.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>A milk check is not a simple invoice. The pay price is built from the federal order's component prices (butterfat, protein, other solids), the farm's own butterfat/protein/SCC/bacteria test results, location and class adjustments, hauling and stop charges, premiums and quality deductions, co-op capital retains, advertising and promotion assessments, and sometimes base-excess or volume programs. Margins are thin and the check is the farm's single largest revenue line, yet most farmers accept the statement as-is because re-deriving it means digging through USDA market-administrator price releases, hauler tickets and lab reports at 10 p.m. after milking. Errors are rarely malicious &mdash; a wrong test attribution, a missed premium or a mis-keyed haul &mdash; but a recurring 0.5&ndash;1% shortfall on a $2M/yr revenue line is five figures, and nobody is paid to look for it.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Farmer (or their bookkeeper) forwards the monthly milk statement PDF and, optionally, the milk-quality lab report to a dedicated inbox, or uploads them in the browser.</li>
+      <li>Document AI extracts every line: pounds shipped per pickup, test values, component and class prices applied, premiums, deductions, hauling and assessments.</li>
+      <li>A deterministic pricing engine rebuilds the expected check from the market administrator's published prices for that order and month plus the farm's own pickup weights and tests. AI is used only for messy extraction and for explaining variances &mdash; the arithmetic is rules-based and auditable.</li>
+      <li>The report lists each variance with a plain-English reason and a confidence level (&ldquo;protein price used is last month's&rdquo;, &ldquo;hauler pickup 14 not on your weigh tickets&rdquo;, &ldquo;SCC premium tier looks one step low&rdquo;).</li>
+      <li>One tap generates a polite, specific query email to the co-op field rep or handler with the line items and math attached.</li>
+      <li>A running dashboard tracks the farm's pay price against order averages and other SkimCheck farms in the same region (anonymized) so farmers can see whether they are consistently below peers.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">USDA AMS Federal Order announced prices (public)</span>
+      <span class="badge">Market administrator monthly statistical reports</span>
+      <span class="badge">Milk statement PDFs (email-in)</span>
+      <span class="badge">Lab reports (DHIA / milk quality labs)</span>
+      <span class="badge">Hauler weigh tickets (photo/CSV)</span>
+      <span class="badge">Optional: QuickBooks / Farm financials export</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$39/month per farm, or $19/month for farms under 100 cows. A success-aligned alternative: free tier that finds variances, then 10% of any recovered money, capped per quarter. Consultant and lender plan at $15/farm/month with a bulk dashboard. Expected unit economics are favorable because one caught error typically pays for years of subscription.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One federal order and two or three of the most common handler statement formats (pick the region with the densest cluster of independent farms and the most approachable co-op). Email-in PDF only, no hauler or accounting integrations. Ship the variance report and the query-email draft; defer peer benchmarking until there are 50+ farms. Validate first as a concierge service: manually process 10 farms' last six statements to measure how often real, recoverable variances exist before building any automation. Go to market via dairy extension agents, farm-credit lenders, state dairy associations and farm-business consultants who already sit across the table from these farmers.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Ag-tech is crowded with herd-management and sensor products, but almost nothing audits the revenue side &mdash; the one place where the farmer is the weaker party in a relationship with a single buyer. The pricing inputs are public and formulaic, which makes this a verification problem that rewards deterministic rules plus targeted AI extraction rather than a chatbot. The buyer's alternative is not a competing tool but doing nothing, so the value proposition is concrete dollars recovered. The data network effect is real and defensible: anonymized statement data across handlers builds a regional pay-price benchmark that farmers cannot otherwise see, which in time becomes useful leverage in contract negotiations and to lenders underwriting cash flow.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
