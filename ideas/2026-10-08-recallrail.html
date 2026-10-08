@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-08 — RecallRail</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-08</div>
+    <h1>RecallRail</h1>
+    <p class="pitch">Forward your supplier invoices once; RecallRail matches every product you actually bought against live FDA, USDA and CPSC recalls and hands you a pull-list and an inspector-ready audit trail within minutes of a recall posting.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent grocers, food co-ops, farm stores, specialty/ethnic markets, natural-food stores and small multi-location convenience operators (1–15 stores) that buy from several distributors and have no dedicated food-safety staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Recalls are published as lot codes, UPCs and brand names across three agencies, while a small store knows only what is on its invoices. Large chains get recall alerts piped through their ERP; independents rely on a distributor email, a rep’s phone call or luck. A missed recall means contaminated product stays on shelves, plus liability, insurance and licensing exposure. Even when they catch one, state inspectors and insurers expect documented proof of when the store learned of it, what was pulled, and how it was disposed of. That paperwork is usually reconstructed from memory on a clipboard. Owners say they would pay for a “did anything I sell get recalled today?” answer that does not need an hour of manual searching.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner connects a dedicated forwarding address (or Gmail label) and forwards distributor invoices and delivery receipts as PDFs, emails or photos; no POS integration is required.</li>
+      <li>Document AI extracts line items (brand, product description, UPC/item code, pack size, delivery date, supplier) into a normalised purchase-history table that keeps a rolling 12-month window.</li>
+      <li>A nightly job, plus a webhook-style poll every 30 minutes, ingests new recall notices and uses fuzzy matching on brand, product name, UPC and date ranges to score likelihood that a purchased item falls inside a recalled lot or date window.</li>
+      <li>High-confidence matches trigger an SMS and email: “Pull these 3 items from shelf and back stock”, with a printable shelf tag and a one-tap checklist (located / pulled / quarantined / returned / destroyed).</li>
+      <li>Low-confidence matches ask a one-tap question (“Do you have lot code X on your shelf?”) rather than flooding the owner with false alarms.</li>
+      <li>Each completed action is time-stamped into a PDF recall log (notice, match evidence, who acted, when, disposition, photos) ready for inspectors, insurers and distributors’ credit claims.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">openFDA food enforcement &amp; recall API</span>
+      <span class="badge">USDA FSIS recall feed</span>
+      <span class="badge">CPSC recall API (for non-food grocery items)</span>
+      <span class="badge">Open Food Facts / GS1 UPC lookup</span>
+      <span class="badge">Email-forwarding inbox + invoice OCR</span>
+      <span class="badge">Twilio SMS / email alerts</span>
+      <span class="badge">PDF audit-log generator</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$29/mo per store for up to 500 monthly invoice lines, $49/mo for unlimited lines and multi-user access, and a $99/mo multi-store plan. A free “recall check” that scans one uploaded invoice is the acquisition hook. Natural expansion: a $15/mo add-on for temperature-log and supplier-certificate tracking.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Food and beverage recalls only (FDA and USDA), US only, English-language invoices from the top 5–6 regional distributors, matched at brand and UPC level. Manual shelf-confirmation checklist and PDF log; no POS or inventory sync. Distribution through state grocers’ associations, co-op networks (NCG, Co+op) and local food-safety trainers. Validate first by replaying the last 90 days of real recalls against 10 friendly stores’ invoice history to measure precision and recall before charging.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The competition is not a recall-alert feed; those are free and everywhere. The scarce asset is knowing what a particular store actually bought, which lives in messy invoices nobody structures. Turning that unstructured paperwork into a personal “bill of materials” makes generic recall noise irrelevant and delivers a rare, high-urgency alert. The audit-trail by-product is the sticky, defensible part: once insurers and inspectors accept RecallRail logs, the store cannot easily leave. Large chains solve this with ERP integrations independents cannot afford, so the product sells to a segment that is too small for enterprise vendors yet has real liability.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
