@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-09 — BackflowBridge</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-09</div>
+    <h1>BackflowBridge</h1>
+    <p class="pitch">Snap the test gauge and the device tag; AI fills in each water utility's own backflow test-report form and files it — so independent backflow testers stop losing evenings to a dozen different portals and PDFs.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Certified backflow assembly testers — typically solo plumbers or 1–5 person shops — who test 300–2,000 commercial and irrigation devices a year across several water districts, and who must submit every result to the utility that governs that device.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Water utilities require annual testing of backflow preventers to protect drinking water, and each utility demands the result in its own format: a proprietary web portal, a fillable PDF, an emailed scan, or a third-party tracking service with its own login and fees. A tester with customers in eight districts re-types the same gauge readings (check valve psi, relief valve opening point, pass/fail, repair notes, serial numbers) into eight different layouts, then chases customers whose devices went overdue and get shut-off warnings. Typos cause rejected reports; missed filings mean the customer is fined and blames the tester. Admin often takes as long as the testing, and it happens after a full day on site.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>On site, the tester photographs the device tag and test kit gauge readout (or types values in a quick form); vision AI extracts manufacturer, model, size, serial, location notes and readings.</li>
+      <li>The app validates the readings against pass/fail rules for the device type (RP, DC, PVB, SVB) and flags readings that look implausible or inconsistent with last year's test.</li>
+      <li>The tester picks the governing utility (auto-suggested from the service address); the system renders that utility's required form from a template library, filled in and signed with the tester's certification number and gauge calibration date.</li>
+      <li>The report is emailed or uploaded to the utility (portal automation where allowed, otherwise the utility's accepted email/PDF route), and a delivery receipt is stored.</li>
+      <li>A due-date engine builds next year's test schedule per device and sends customers reminder notices on the tester's behalf, driving repeat bookings.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Vision AI for device tags &amp; gauge readouts</span>
+      <span class="badge">Utility form template library</span>
+      <span class="badge">Per-device history database</span>
+      <span class="badge">Email &amp; PDF generation</span>
+      <span class="badge">Portal upload automation (where permitted)</span>
+      <span class="badge">SMS/email reminders</span>
+      <span class="badge">Address-to-water-district lookup</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/mo per tester including 100 reports, then $0.50 per additional report. Add-on of $99/mo for the customer reminder and rebooking engine. Annual plan discount; a small per-utility onboarding fee for utilities with unusual portals.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One metro area and its 5–10 largest water districts. Mobile web form with photo capture, form rendering for those districts, and email/PDF submission only (no portal automation). Manual CSV import of the tester's existing device list. Recruit through backflow certification classes, state ABPA/plumbing association chapters, and local tester Facebook groups; ship template support for a new utility on request within 48 hours to build the library as the moat.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing backflow software is built for the utility, to track compliance across thousands of devices, so the person who does the actual testing is left to cope with each utility's tooling. BackflowBridge sits on the tester's side and turns fragmentation into the product: every new utility template makes the library more valuable and harder to copy, and testers with eight districts are the ones with the most pain. The value is not a chatbot but structured extraction plus form fulfilment, and the compliance stakes (drinking-water safety, fines) make the buyer motivated and the churn low once their device history lives in the system.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
