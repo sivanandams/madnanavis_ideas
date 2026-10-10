@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-10 — HoodProof</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-10</div>
+    <h1>HoodProof</h1>
+    <p class="pitch">Computer vision turns a kitchen-hood cleaner's before/after phone photos into an NFPA 96 compliance certificate that fire marshals and insurers will actually accept — and flags missed zones before the tech leaves the site.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owner-operators and small crews (1–15 techs) running commercial kitchen exhaust (hood and duct) cleaning businesses, serving restaurants, hotels, schools, and hospital kitchens. Roughly several thousand such firms operate in the US, mostly on paper stickers, ad-hoc photos, and generic field-service tools.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>NFPA 96 requires kitchen exhaust systems to be cleaned on a schedule set by cooking volume (as often as monthly), and the work is only worth something if it can be proven. After a grease fire, insurers and fire marshals ask for evidence the system was cleaned to bare metal, including hard-to-reach duct sections, fans, and plenums. Restaurant clients demand it, and landlords and insurers increasingly require it at renewal. Cleaners currently prove the work with a sticker on the hood and a camera roll of unlabeled photos. Techs skip inaccessible sections, photos are missing or ambiguous, and a single disputed claim can expose the cleaner to liability and cost them the account. The owner has no scalable way to check that every tech did every zone, short of driving to the site.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The office schedules a job (client, site, system type, required frequency). The tech opens a mobile web app with a guided shot list: hood interior, filters, plenum, each duct run, access panels, fan, rooftop discharge.</li>
+      <li>For each zone the tech takes a "before" and an "after" photo. A vision model checks that the photo shows the intended zone, is in focus, and shows bare metal versus residual grease buildup, and prompts a retake or an access-panel note if it does not.</li>
+      <li>Missed zones or insufficient-clean photos block job closeout, or require a typed exception (e.g., "no access panel; customer notified") that is logged and sent to the customer.</li>
+      <li>On completion the system generates a timestamped, geotagged PDF service report with the photo pairs, a per-zone pass/exception table, and a reference to the NFPA 96 cleaning interval. It is emailed to the restaurant manager and optionally to their insurer or landlord.</li>
+      <li>The system schedules the next cleaning from the required frequency, reminds the customer, and keeps a searchable archive the cleaner can hand to a fire marshal or adjuster.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Phone camera + GPS/timestamp capture</span>
+      <span class="badge">Vision model fine-tuned on hood/duct grease imagery</span>
+      <span class="badge">NFPA 96 frequency table (cooking-type based)</span>
+      <span class="badge">Email/SMS delivery to customers &amp; insurers</span>
+      <span class="badge">QuickBooks invoice sync</span>
+      <span class="badge">Local fire-marshal report format templates</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$79/mo per company for up to 3 techs plus $19/mo per additional tech, with a $1.50 per-report fee after 100 reports a month. A $29/mo "customer portal" add-on gives each restaurant account a branded page for its cleaning history, which cleaners use as a retention tool. Annual billing at a discount.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Mobile web app (no native build), one fixed shot list per system type (canopy hood with a vertical duct and rooftop fan), manual job entry, and a PDF report. Vision checks are limited to "right zone, in focus, grease visible or not"; they are advisory only and the tech can override with a note, so the product never claims legal certification. Skip routing, payments, and multi-location accounts. Go to market through hood-cleaning trade groups (IKECA), Facebook groups, and a sticker on the hood pointing to a public report verification link, which advertises the product to every restaurant owner and inspector who sees it.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Generic field-service software treats photos as attachments; HoodProof treats them as evidence and checks them against a physical standard while the tech is still on site. That turns the cleaner's weakest link, inconsistent crews, into a managed process, and gives owners a defensible record when an insurer disputes a claim. Every report also carries a public verification link and a sticker, so the product spreads through the people who inspect restaurants, not through software marketing. The same dataset (thousands of labeled hood and duct images, with outcomes) becomes a moat that a late entrant can't copy by wiring up a generic vision API.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
