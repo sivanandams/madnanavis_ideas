@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-12 — ManifestMatch</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-12</div>
+    <h1>ManifestMatch</h1>
+    <p class="pitch">Tracks every hazardous-waste shipment from a small generator's dock to the disposal facility's signed return copy, and files the state exception report before the 45-day deadline turns a missing piece of paper into a violation.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Large-quantity hazardous waste generators that are small businesses in practice: multi-bay auto body and collision chains, dry cleaners, metal-finishing and machine shops, small labs and photo/print shops, and the EHS consultants who manage compliance for 10&ndash;100 such sites at once. Typically 2&ndash;40 manifested shipments per month, no dedicated EHS staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every shipment of hazardous waste leaves on a multi-copy paper manifest. Under RCRA, a large-quantity generator that has not received the signed copy back from the destination facility within 35 days must contact the transporter and facility, and if it still has nothing at 45 days it must file an Exception Report with the state or EPA. Small shops lose track: the signed copy is mailed, emailed, or uploaded to a hauler portal (or never sent), the owner is busy running the business, and the first sign of trouble is an inspector asking for the file. Missing return copies, mismatched waste codes, and unreconciled quantities are among the most commonly cited generator paperwork violations, and fines routinely run into the thousands per violation. Existing EHS software is built for enterprises with six-figure budgets; hauler portals only show that hauler's own shipments.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The generator forwards the outbound manifest (photo or PDF) to a dedicated inbox address on the day of pickup, or snaps it in a mobile web page.</li>
+      <li>Document AI extracts the manifest tracking number, EPA ID numbers, waste codes, container counts, quantities, transporter, and designated facility, then starts the 35-day and 45-day clocks.</li>
+      <li>Anything returning to that inbox (the signed destination copy, a hauler portal notification email, a scanned mail attachment) is auto-matched to the open shipment by tracking number, and the system checks for discrepancies: quantity variance, changed waste codes, rejected loads, or a different facility than planned.</li>
+      <li>At day 30 the system sends a pre-written follow-up to the transporter and facility on the generator's behalf, with the tracking number and a one-click reply link.</li>
+      <li>At day 35 and 45 it escalates: it alerts the owner and, if the copy is still missing, produces a pre-filled Exception Report in the format the generator's state requires, ready to sign and submit.</li>
+      <li>A monthly inspector-ready binder (PDF) lists every shipment, its return status, and the supporting documents, so an inspection becomes a download rather than a scramble.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Email forwarding / inbound parse</span>
+      <span class="badge">Document AI for manifest forms</span>
+      <span class="badge">EPA RCRAInfo handler ID lookups (public)</span>
+      <span class="badge">Federal and state waste-code lists</span>
+      <span class="badge">State exception-report templates</span>
+      <span class="badge">Optional: e-Manifest status API for electronic manifests</span>
+      <span class="badge">SMS / email deadline engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/month per site for up to 25 manifests, $99/month for unlimited. EHS consultants get a multi-site plan at $29 per site per month with a white-labeled binder. Anchored against a single missed-paperwork fine and the $150&ndash;$300 consultants charge for a manual manifest audit.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in two or three states with large auto-body and dry-cleaning populations (for example California, Texas, and Ohio), supporting paper manifests only, with the email-in inbox and the 35/45-day tracker, discrepancy flags, and one exception-report template per state. Skip electronic manifests, universal waste, and DOT hazmat training in v1. Reach customers through auto-body trade associations, collision-repair franchise networks, and the independent EHS consultants who already hold dozens of these accounts.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The product is not a compliance database; it is a reconciliation loop over a single, ugly document type that arrives from several unrelated senders. The hard part is matching messy returned copies to open shipments, which is exactly where document AI helps and generic chatbots do not. The EPA's push toward electronic manifests is often assumed to make this problem disappear, but a long tail of paper manifests, state-specific forms, and non-participating haulers keeps it alive for years, and the buyer already feels the pain on a fixed calendar: the clock starts at pickup, and the fine appears at inspection. Consultants managing many sites make for a built-in distribution channel that enterprise EHS vendors ignore as too small.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
