@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-14 — LabelLoop</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-14</div>
+    <h1>LabelLoop</h1>
+    <p class="pitch">Pre-flight checker that reads a craft beverage label artwork against TTB COLA rules and state add-on requirements, and fixes rejection triggers before you wait weeks for a federal "needs correction" notice.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Craft distilleries, wineries, cideries, and independent brewers (1–15 employees) that file their own Certificate of Label Approval (COLA) applications with the TTB, plus the freelance label designers and small print shops who serve them. There are thousands of new alcohol producers each year, and most have no in-house compliance staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>No bottle of beer, wine, or spirits can be sold across state lines without an approved COLA, and TTB reviewers reject or return a large share of first submissions for small, mechanical defects: wrong type size for the alcohol-content statement, missing or misplaced health warning, a class/type designation that does not match the formula, a misleading age or origin claim, a missing sulfite declaration, or an ABV that does not agree with the application. Each rejection restarts a queue that can run from days to several weeks, during which printed labels sit unusable and a distribution launch slips. Printing 10,000 labels before approval is a gamble; printing after approval means idle inventory. Consultants charge $150–$400 per label, which is hard to justify for a seasonal release.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads label artwork (PDF/PNG, front, back, neck) and picks product type (malt, wine, distilled spirit), plus entering formula facts: ABV, class/type, origin, vintage or age claims, ingredients that trigger declarations.</li>
+      <li>A vision pipeline locates and measures each mandatory element on the artwork — brand name, class/type, net contents, alcohol content, name and address, country of origin, government warning — and converts text height to millimetres using the supplied physical label dimensions.</li>
+      <li>A rules engine checks each element against 27 CFR parts 4, 5, and 7 (type size, contrast, same-field-of-view requirements, exact warning wording and capitalization), and an LLM step is limited to judging fuzzy items like potentially misleading claims, always showing the cited rule text.</li>
+      <li>Output is a marked-up copy of the artwork with pass/fail callouts, a prioritized fix list, and a cross-check against the entered formula data so the application and the label agree.</li>
+      <li>User fixes the artwork, re-uploads, and loops until clean; the tool then exports a pre-filled COLAs Online data sheet (the fields to paste into the TTB form) and an audit-trail PDF of what was checked.</li>
+      <li>Optional state layer: flags additional state requirements for the states where the product will be distributed (e.g., deposit or recycling marks, state-specific warnings).</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">27 CFR parts 4, 5, 7 &amp; 16 (public regulation text)</span>
+      <span class="badge">TTB COLA Public Registry (approved-label corpus)</span>
+      <span class="badge">TTB Industry Circulars &amp; labeling manuals</span>
+      <span class="badge">Vision/OCR with text-height measurement</span>
+      <span class="badge">Deterministic rules engine</span>
+      <span class="badge">Adobe Illustrator / Canva plugin (later)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$19 per label check with unlimited re-checks for 14 days, or $49/mo for up to 5 labels a month for producers with rotating seasonal releases. A $199/mo studio plan for freelance label designers and print shops with client workspaces and white-labeled reports.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Malt beverages and distilled spirits only (wine rules involve appellation and varietal percentages and can wait). Federal rules only, with state add-ons held for v2. Static single-label upload, no design-tool plugins. Calibrate by running the checker against a few hundred approved labels from the public COLA registry (should pass) and known-corrected labels (should flag), then publish the measured false-positive rate. Distribution: homebrew-to-commercial communities, craft distilling guild forums, SBDC counselors, and label printers who already field "is this compliant?" questions.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The real problem is geometric and rule-bound, not conversational: whether the ABV statement is tall enough and sits in the right field is a measurement task that generic chatbots handle poorly, so a deterministic rules engine with vision as the sensor is the correct architecture. TTB's public registry of approved labels doubles as a free labeled dataset for validation, which is rare in compliance niches. And the buying moment is sharp and recurring: every new SKU, vintage, and seasonal release is another label, while the cost of being wrong (reprinted labels plus a lost launch window) dwarfs a $19 check.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
