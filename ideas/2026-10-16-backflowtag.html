@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-16 — BackflowTag</title>
+<style>
+  :root {
+    --bg: #faf9f7;
+    --card-bg: #ffffff;
+    --ink: #1c1b19;
+    --ink-soft: #55524c;
+    --accent: #b5522b;
+    --accent-soft: #f2e2d8;
+    --border: #e6e1d8;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17140f;
+      --card-bg: #201c16;
+      --ink: #f1ece2;
+      --ink-soft: #b8b0a2;
+      --accent: #e0834f;
+      --accent-soft: #3a2a1c;
+      --border: #3a342a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #17140f; --card-bg: #201c16; --ink: #f1ece2; --ink-soft: #b8b0a2;
+    --accent: #e0834f; --accent-soft: #3a2a1c; --border: #3a342a;
+  }
+  :root[data-theme="light"] {
+    --bg: #faf9f7; --card-bg: #ffffff; --ink: #1c1b19; --ink-soft: #55524c;
+    --accent: #b5522b; --accent-soft: #f2e2d8; --border: #e6e1d8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-16</div>
+    <h1>BackflowTag</h1>
+    <p class="pitch">Photo-to-compliance-report automation for certified backflow preventer testers: snap the gauge and device tag, and get the correct test report filed with the right water utility, with next year's due dates tracked automatically.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and 2–5 person certified backflow assembly testers (often plumbers or irrigation contractors holding a state/utility tester certification) who test commercial, irrigation, and fire-line backflow preventers — tens of thousands of testers in the US, each running 500–3,000 devices a year.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every device must be tested annually and the result reported to the local water utility, which has its own form, portal, or emailed-PDF format and its own deadlines. Testers do the 20-minute test, then spend 10–15 minutes per device on handwriting, retyping gauge readings, finding the right utility's portal, and uploading. A missed or rejected report means the customer gets a shutoff-threat notice and blames the tester. Customer reminders are tracked in spreadsheets and paper tag cards, so repeat business leaks every year.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tester photographs the device data plate and the test kit's gauge readout on site (or types readings in a fast mobile form).</li>
+      <li>OCR extracts make, model, serial, size, location and test pressures; the tester confirms pass/fail and any repairs made.</li>
+      <li>The app maps the service address to its water utility and renders the report in that utility's required format.</li>
+      <li>The report is submitted via the utility's portal, email address, or upload form (assisted in v1), and a copy goes to the property owner.</li>
+      <li>Device record is stored with its history; the app schedules next-year reminders and sends branded booking links to the owner 60 days before the due date.</li>
+      <li>Dashboard shows overdue devices, rejected reports, and rebooking revenue.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Mobile OCR for data plates</span>
+      <span class="badge">Water-utility format &amp; contact directory</span>
+      <span class="badge">Address-to-utility geocoding</span>
+      <span class="badge">Tester certification &amp; calibration records</span>
+      <span class="badge">PDF generation &amp; email/SMS</span>
+      <span class="badge">QuickBooks invoicing (later)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49–99/month per tester with a device allowance, plus ~$1 per submission above it. Optional add-on: a 15% fee on rebookings generated by the automated owner reminders. Priced against the 10+ minutes saved per device and the annual repeat revenue protected.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One metro area and its 5–10 largest water utilities. Mobile web app with photo OCR, 3–5 utility report templates, PDF output with manual submit (download/email), device history, and annual reminders by email/SMS. Recruit 15 testers via local plumbing/irrigation associations and backflow-certification training courses. No portal automation in v1.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>General field-service tools (Jobber, ServiceTitan) don't know that the deliverable is a regulator-facing report in a different format for every utility, and the utility directory plus format library is the real moat. It looks like a tiny, boring niche, but each utility format learned makes the product better for every other tester in that service area. The reminder loop converts a compliance chore into recurring revenue for the tester, which is what makes them pay and stay.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
