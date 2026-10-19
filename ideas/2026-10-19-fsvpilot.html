@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-19 — FSVPilot</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-19</div>
+    <h1>FSVPilot</h1>
+    <p class="pitch">Turns a small food importer's supplier emails, certificates, and lab reports into an FDA-ready Foreign Supplier Verification Program file — and flags the supplier whose paperwork would fail an inspection before the shipment is held at the port.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small US food importers and specialty distributors (1–15 employees) bringing in spices, olive oil, dried fruit, seafood, tea, or ethnic-grocery products from 10–60 foreign suppliers — the "FSVP Importer" of record under FDA's Food Safety Modernization Act, often the owner doubling as the compliance department.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Under the FSVP rule, the importer — not the foreign supplier — is legally responsible for a written hazard analysis, supplier evaluation, verification activities (audits, sampling, record review), corrective actions, and annual reevaluation for every food/supplier pair, kept as records FDA can demand on short notice. Small importers typically have this scattered across WhatsApp threads, PDF certificates in email, and supplier-sent lab reports in five formats, with expiry dates nobody tracks. A lapsed third-party audit certificate or a missing reevaluation turns into an FDA Form 483-style finding, an import alert, or detained product sitting at the port accruing demurrage. Consultants charge $3K–$10K per supplier-program build and don't maintain it; enterprise supplier-management platforms (built for Walmart-scale suppliers) start around $20K/yr and assume a QA team.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Importer forwards supplier emails and attachments to a dedicated inbox address, or drag-drops a folder of audit certificates, COAs, lab reports, and spec sheets.</li>
+      <li>Document AI classifies each file (GFSI audit cert, certificate of analysis, product spec, letter of guarantee, pesticide/heavy-metal lab panel), extracts supplier, product, issuing body, scope, test results, and expiry dates, and links it to a product–supplier pair.</li>
+      <li>A rules engine maps each product category to its likely hazards (e.g., aflatoxin in spices and nuts, lead in cinnamon, histamine in tuna, Salmonella in sesame) and checks whether the evidence on file actually covers them, producing a gap list per pair: "no lead test in 14 months," "audit scope excludes the packing line."</li>
+      <li>System generates the written FSVP file per pair — hazard analysis, supplier evaluation, verification-activity rationale, reevaluation log — as an exportable inspection binder (PDF + index) in the structure an FDA investigator expects.</li>
+      <li>Expiry and reevaluation calendar sends alerts 60/30/7 days ahead, and drafts the exact request email to the supplier for the missing document.</li>
+      <li>A pre-shipment check lets the importer enter a PO and see a green/amber/red readiness status for that supplier–product before it ships.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Inbound email parsing</span>
+      <span class="badge">Document AI for certificates &amp; lab reports</span>
+      <span class="badge">FDA FSVP rule (21 CFR Part 1 Subpart L)</span>
+      <span class="badge">FDA import alerts &amp; refusal data (public)</span>
+      <span class="badge">GFSI-recognized scheme certificate registries</span>
+      <span class="badge">FDA DUNS/FEI lookups</span>
+      <span class="badge">Hazard-by-commodity knowledge base</span>
+      <span class="badge">QuickBooks / PO CSV import (optional)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$149/mo for up to 10 supplier–product pairs, $349/mo for up to 40, plus a one-time $499 "backfill" service that ingests a customer's existing email and folder mess into a first inspection-ready binder. Annual plans discounted 20%. Compare to a single consultant engagement or one week of detained product.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Only human-food FSVP importers (skip animal feed, dietary supplements, and the qualified-individual training track), and only the three most common product families to start: spices/seasonings, edible oils, and dried fruit/nuts. Email-forward ingestion and PDF binder export only; no supplier portal, no ERP integrations. Hazard rules are hand-curated by the founder with a food-safety advisor for those three families, with every AI-extracted field shown next to its source page for one-click confirmation. Distribute through specialty-food importer associations, trade-show exhibitor lists, and food-safety consultants who want a tool to maintain what they build.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The market looks like generic "supplier management" or "compliance chatbot" territory, but the real product is the evidence-to-hazard gap check: knowing that a spice importer needs a recent lead and Salmonella result, not just a nice audit certificate, is domain logic that generic document tools and enterprise platforms don't ship. The buyer is also unusually well-motivated and underserved — the legal obligation falls on the tiny importer, enforcement is real (port detention, import alerts), and the incumbents are either $20K+ platforms or one-off consultants. Finally, the work is a recurring workflow, not a one-time report: certificates expire and reevaluations come due every year, so the product earns retention from the calendar alone.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
