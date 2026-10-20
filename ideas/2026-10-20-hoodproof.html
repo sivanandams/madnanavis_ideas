@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-20 — HoodProof</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-20</div>
+    <h1>HoodProof</h1>
+    <p class="pitch">Photo-verified NFPA 96 kitchen-exhaust cleaning records that hood-cleaning contractors hand to restaurants, so the restaurant's insurer and fire marshal actually accept them.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owner-operated commercial kitchen exhaust (hood) cleaning companies with 2–25 technicians, who service restaurants, hotels, hospital kitchens and school cafeterias on quarterly or semi-annual NFPA 96 schedules.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Grease-duct fires are a leading cause of restaurant fires, and insurers increasingly deny or reduce claims when a restaurant cannot prove the ductwork was cleaned to bare metal. Fire marshals ask for records during inspections, yet the industry runs on a sticker on the hood and a PDF invoice. Honest contractors lose bids to cheap operators who clean only the visible hood and skip the inaccessible duct and fan. Technicians take before/after photos on personal phones that end up scattered, unlabeled and unusable. When a fire happens or an inspector asks, the contractor cannot show what was cleaned, where, or whether access panels were even installed, which exposes both the contractor and the restaurant.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Office creates a site with a simple hood/duct/fan map (a template of access points, e.g. "hood plenum, riser, horizontal run, rooftop fan") and a cleaning frequency set from the cooking type (solid fuel, high-volume, standard).</li>
+      <li>Technician opens the mobile web app on the job and is walked through a required photo checklist: before and after shots at every access point, grease-depth gauge reading, rooftop fan and hinge kit, and any inaccessible sections.</li>
+      <li>Vision AI checks each after-photo for residual grease versus bare metal, blur, wrong location, and reused or duplicate images, using the photo's timestamp and GPS. The tech is asked to reshoot anything that fails before leaving the site.</li>
+      <li>The system generates a branded, tamper-evident compliance report with a QR code. The code goes on the hood sticker, and scanning it shows the report with the date, photos, technician and any deficiencies (missing access panels, fan not hinged, clearance problems).</li>
+      <li>The restaurant gets the report by email and can forward it to its insurer or fire marshal. Deficiencies create a quote-ready upsell job for the contractor.</li>
+      <li>Automated reminders re-book the next cleaning at the NFPA 96 interval and flag customers who are overdue.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Phone camera, GPS &amp; timestamp</span>
+      <span class="badge">Vision model for grease / bare-metal classification</span>
+      <span class="badge">NFPA 96 inspection-interval rules (encoded by cooking type)</span>
+      <span class="badge">QuickBooks / Jobber / Housecall Pro (invoice sync)</span>
+      <span class="badge">Hashed report storage for tamper evidence</span>
+      <span class="badge">Email/SMS reminders</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$89/mo per contractor plus $2 per verified service report, with a Pro tier at $199/mo for multi-crew companies that adds white-label branding, a customer portal and a QuickBooks sync. Contractors recover the cost on a single won bid because the report is their proof of quality. A later add-on offers restaurants a free read-only portal that upsells to multi-location chains.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One mobile web app for technicians (no native app) and a simple office dashboard. Fixed photo checklist templates for three kitchen types. Vision AI limited to a pass/fail flag on each after-photo, with a human override. PDF and QR report plus email delivery. Manual interval reminders. Skip fire-suppression inspection, fan-motor diagnostics and insurer integrations for v1. Go to market through IKECA-affiliated contractor groups, hood-cleaning Facebook groups and trade-show floors, with a free first 10 reports.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Generic field-service software already schedules and invoices the job, but none of it proves the work was done to a fire-code standard. HoodProof sells evidence, not scheduling. The buyer is the contractor, but the value is felt by the restaurant's insurer and the fire marshal, which gives the contractor a reason to show the report to customers and win business from lower-quality competitors. Every report is also a viral touchpoint: the QR sticker sits on a hood that inspectors, managers and the next contractor all see. The vision task is narrow and checkable (grease versus bare metal at a known location), which makes AI genuinely useful rather than a chatbot add-on.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
