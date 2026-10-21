@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-21 — MassBalance Organic</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-21</div>
+    <h1>MassBalance Organic</h1>
+    <p class="pitch">Turns a small organic handler's messy invoices, receipts and batch notes into the mass-balance and audit-trail reconciliation that USDA organic inspectors demand, flagging gaps weeks before the annual inspection.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small USDA-certified organic handlers and processors: craft food makers, co-packers, roasters, spice blenders, pet-food and supplement brands, and small mills, typically 3&ndash;40 employees and $1M&ndash;$25M revenue, run by an owner or a single quality/ops person who also handles certification paperwork.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Under the USDA National Organic Program, every certified operation must keep an audit trail that lets an inspector trace organic ingredients from purchase to sale and show that quantities reconcile: no more organic product sold than organic input bought. The 2024 Strengthening Organic Enforcement rule expanded certification and fraud-prevention expectations, including mass-balance checks and supply-chain traceability audits. For a small handler this means piecing together supplier invoices, organic certificates, receiving logs, batch sheets and sales records in spreadsheets the week before the inspection. Common failures are an expired supplier certificate, an unverified ingredient, a yield that does not add up, or an unrecorded sample or waste loss. The result is a noncompliance notice, a delayed certificate, or a lost retailer listing. Consultants charge $100&ndash;$200 an hour to reconstruct the trail after the fact, and general QuickBooks-style tools know nothing about organic status.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The handler forwards supplier invoices and bills of lading to a dedicated inbox and drops in batch or production sheets (photo, PDF or CSV).</li>
+      <li>Document extraction pulls out supplier, ingredient, lot number, quantity and unit, then matches each line to that supplier's organic certificate, checking the scope covers the specific product and the certificate is unexpired.</li>
+      <li>The engine builds a running organic ingredient ledger per product: organic units received, used in batches, lost to waste or samples, and shipped out as finished goods, with expected yield bands learned from past batches.</li>
+      <li>Exceptions are raised in plain language: "Supplier X's certificate lapsed 3 days before this receipt," "Batch 214 used 12% more organic oats than was purchased," "Sales of Granola A exceed ingredient-supported output by 340 lb."</li>
+      <li>One click exports an inspector-ready packet: audit-trail binder, mass-balance worksheet per product, supplier certificate index, and a traceback exercise (pick any sold lot and trace it to ingredient lots) generated in seconds.</li>
+      <li>Ahead of the annual update, a readiness score and checklist show what needs fixing and who must supply the missing document.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">USDA Organic Integrity Database (public supplier certificate lookup)</span>
+      <span class="badge">Email-in for invoices and bills of lading</span>
+      <span class="badge">Document AI for invoices, batch sheets, scale photos</span>
+      <span class="badge">QuickBooks / Xero bills and sales</span>
+      <span class="badge">Shopify / wholesale order CSV export</span>
+      <span class="badge">7 CFR Part 205 requirements (rule checklist)</span>
+      <span class="badge">Certificate-expiry alert engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$149/mo for one site and up to 25 organic SKUs, $299/mo for up to 100 SKUs and multiple sites. A one-time $499 "inspection rescue" onboarding imports the past 12 months of records and builds the first packet. A certifier-referral tier gives certification agents a free dashboard in exchange for recommending the product to their clients.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Handlers and processors only (skip crop and livestock producers, whose record-keeping differs) and only USDA NOP, not EU or Canada equivalency. Email-in invoice capture, Organic Integrity Database certificate checks with expiry alerts, a per-product mass-balance ledger fed by CSV or photo batch sheets, and the exportable inspector packet. QuickBooks sync, traceback exercises and the readiness score come in v1.1. Go to market through organic certifiers' newsletters, state organic associations, Organic Trade Association events, and co-packer communities.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The buyer's real fear is not a software problem but an inspection date, and the tool succeeds by being boring: it quietly keeps a true-to-the-pound organic ledger all year so the annual inspection becomes a file export. The USDA publishes every certified operation and its scope in a free database, which makes automated supplier verification possible without any partnership. Food-safety and ERP software treats "organic" as a label field rather than a regulated chain of custody, leaving the niche between QuickBooks and expensive traceability suites empty. Document extraction plus rule-based reconciliation, not a chatbot, does the work, and each fraud-prevention rule tightening pushes more small handlers to need it.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
