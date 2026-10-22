@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-22 — RecallRoute</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-22</div>
+    <h1>RecallRoute</h1>
+    <p class="pitch">When a spice supplier or ingredient lot is recalled, RecallRoute traces it through your co-packer paperwork to the exact finished lots and retailers exposed, with notices drafted in minutes instead of days.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Indie food and beverage brands (roughly $500K–$20M revenue, 5–40 SKUs) that make products through co-packers and buy from ingredient distributors — sauces, snacks, spice blends, baked goods, supplements. The buyer is the founder or the one-person quality/ops lead, who has no QA department and no traceability software.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>When an upstream ingredient is recalled (an FDA enforcement report entry for a spice distributor, a USDA FSIS alert, a retailer supplier notice), the brand has to work out within hours which of its finished-goods lots contain the affected ingredient lot, which retailers and distributors received them, and whether to notify. The answer lives in a co-packer's batch sheets, emailed certificates of analysis, and a founder's spreadsheet. Whole-chain mock recalls routinely take days. Meanwhile Whole Foods, Costco and Kroger expect trace-back within 4 hours, and FDA's FSMA 204 Food Traceability Rule is pushing high-risk-food brands toward key data element records. Enterprise traceability suites cost $20K+ a year and assume an ERP the brand doesn't have. The common outcome is over-recalling everything, or missing an affected lot.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+<li>Brand forwards co-packer batch emails and ingredient CoAs/packing slips to a dedicated inbox. Document AI extracts supplier, ingredient, supplier lot, received date, finished-good SKU, finished-good lot, and production date.</li>
+<li>The system builds a lot-genealogy graph: supplier lot → batch → finished-good lot → shipments (from a CSV or Shopify/ShipStation/distributor-invoice export).</li>
+<li>A watcher polls FDA enforcement reports, FSIS recalls, CPSC and retailer-forwarded notices, matches recalled firm, product and lot codes to the brand's supplier list and ingredient lots, and fuzzy-matches product descriptions.</li>
+<li>On a hit, it produces within minutes a one-page exposure report: affected finished lots, units shipped, customers and retailers to notify, and a confidence level per link, flagging the gaps ('no supplier lot recorded for the 3/14 batch').</li>
+<li>It generates draft notices to retailers and the co-packer, plus an audit-ready trace file in the format auditors and FSMA 204 expect.</li>
+<li>A monthly 'mock recall' button picks a random lot and scores the brand's trace time and gaps, which retailers and SQF auditors ask for.</li></ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p><span class="badge">openFDA food enforcement API</span> <span class="badge">USDA FSIS recall feed</span> <span class="badge">CPSC recalls API</span> <span class="badge">Inbound email + document AI for CoAs, batch sheets, packing slips</span> <span class="badge">Shopify / ShipStation / QuickBooks CSV export</span> <span class="badge">Lot-genealogy graph store</span></p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$149/mo for up to 25 SKUs including recall monitoring and the mock-recall report; $349/mo for unlimited SKUs, multiple co-packers and retailer notice templates. A one-time $750 'traceability backfill' service ingests 12 months of past batch documents. Co-packers can resell a white-labeled seat to their clients.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One vertical (shelf-stable spice, sauce and snack brands), email-forward ingestion only, FDA and FSIS feeds only, shipment data via CSV. Exposure report and mock-recall score only; no ERP integrations, no label or allergen features, no supplier portal. Acquire customers through co-packer owner relationships, Expo West and Fancy Food exhibitor lists, and indie-food founder communities. Validate by running a real retrospective on a past public recall (such as the 2024 cinnamon-lead recall) with a pilot brand and timing it against their manual process.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Most food-safety software sells compliance documents to the QA team the brand doesn't have. This sells a single high-stress answer, 'what's exposed and who do I tell,' triggered by a free public feed that nobody joins to the brand's own messy paperwork. The moat is the ingested genealogy graph, which gets more valuable every month and is painful to rebuild elsewhere, and the product is automation plus document extraction rather than a chatbot. Retailer audits and FSMA 204 give founders an external deadline to buy before a recall, and the mock-recall score is a shareable artifact that turns a cost into a sales credential with buyers.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
