@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-25 — COLAProof</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-25</div>
+    <h1>COLAProof</h1>
+    <p class="pitch">Upload your beverage label art and get a line-by-line pre-check against TTB rules and the public archive of approved and rejected labels, so your Certificate of Label Approval doesn't bounce for the third time.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Craft distilleries, wineries, cideries, meaderies, and small import/brand-owner startups in the US, plus the freelance label designers who serve them. These are one-to-ten person operations launching or reformulating a handful of SKUs a year, with no in-house compliance staff.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Before most alcohol can be sold across state lines, the TTB must approve the label (the COLA). Submissions get rejected or returned for fixable errors: wrong type size for the alcohol-content statement, a missing or misplaced government warning, a class/type designation that doesn't match the formula, a misleading age or origin claim, or health-related wording. Each round trip costs days to weeks while bottles, glass, and a launch date sit idle, and a printed label run with a defect can mean thousands of dollars of scrap. Designers rarely know the rules; consultants charge $150–$400 per label; and the regulations (27 CFR Parts 4, 5, 7, and 16) are written for lawyers, not for someone holding an Illustrator file.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads the front and back label images (PDF/PNG) and fills a short form: product class (e.g. bourbon, fruit wine, hard cider), ABV, net contents, origin, and whether it is imported.</li>
+      <li>OCR plus layout analysis extracts every text block with its position and physical size, calibrated by a user-entered label width, so type heights can be measured in millimetres.</li>
+      <li>A rules engine checks the mandatory elements: brand name, class/type, alcohol content format, net contents, name and address statement, country of origin, sulfite and allergen statements, and the exact government warning wording, with its capitalization, bold, and minimum type size by container size.</li>
+      <li>Retrieval over TTB's public COLA registry finds near-identical approved labels from the same class, showing how others phrased the same statements and which wording drew a rejection.</li>
+      <li>Output is a pass/warn/fail checklist pinned to the label image, each item citing the CFR section, plus an export that a designer can act on directly.</li>
+      <li>Optional second step: pre-fills the COLAs Online application fields from the extracted data to cut data-entry errors.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">TTB Public COLA Registry (public)</span>
+      <span class="badge">27 CFR Parts 4, 5, 7, 16 text</span>
+      <span class="badge">OCR + layout analysis</span>
+      <span class="badge">Type-size measurement from label dimensions</span>
+      <span class="badge">Rules engine with versioned regulations</span>
+      <span class="badge">Adobe PDF/Illustrator export</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$29 per label check, with unlimited re-checks of the same label for 30 days. A $79/mo studio plan for designers and small brand portfolios covers up to 15 labels a month and shared client workspaces. Add-on: $15 per label for the COLA form pre-fill. Costs stay low because the registry data and CFR text are free.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Distilled spirits and malt/wine-based products only (skip beer-specific state rules and the formula/COLA-waiver pathways). US domestic labels first; imports in v1.1. Check only deterministic, citable rules (presence, wording, format, type size) and do not attempt to judge "misleading" claims in v1, instead surfacing similar past rejections for a human to read. Manual upload, no TTB account integration. Launch by posting free checks in craft distilling and cider communities, and by partnering with a few label printers and freelance designers who see the same errors repeatedly.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Generic compliance suites such as Sovos and similar tools focus on tax filing and shipping, not on the design-stage mistake that costs a launch window. The key asset is TTB's public registry of every approved label image and its metadata. It is rarely used as a training and retrieval set, and it lets the product say "labels like yours were approved with this wording" instead of just reciting regulations. The buyer is often the designer, not the brewer or distiller, which opens a low-cost channel: one designer who gets burned once becomes a repeat customer across dozens of clients. And since most rules are measurable (millimetres of type, exact warning text), the product is mostly deterministic software with AI used only for reading the label, not a chatbot.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
