@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-26 — YardLien</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-26</div>
+    <h1>YardLien</h1>
+    <p class="pitch">Turns every vehicle a towing yard impounds into a state-specific lien-notice and auction timeline — owner lookup, certified notices, publication, and deadline alerts — so abandoned-vehicle storage fees actually get collected.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent towing and storage operators (1–15 trucks, roughly 30,000 yards in the US) that hold abandoned, private-property, and police-ordered impounds — especially yards with 20–200 vehicles sitting at any time and a part-time office manager handling paperwork.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>A tow yard only gets paid for months of storage if it perfects a lien exactly as state law prescribes: identify the registered owner and lienholders, mail notices by certified mail within a fixed number of days (often 7–30, and different per state, vehicle value, and tow type), wait out a cure period, publish a sale notice, then auction and file title paperwork. One missed day, wrong address, or skipped lienholder and the lien is defective — the yard eats the storage bill, can be sued for wrongful sale, and is stuck with a car it cannot legally sell. Most yards track this on paper folders and sticky notes, outsource to a lien-service shop at $40–$100 per vehicle, or simply give up on low-value cars and scrap them at a loss.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>At intake, staff snap photos of the plate and VIN on a phone; OCR fills in vehicle details, tow date, tow type (private property, police, abandoned), and storage location.</li>
+      <li>The system looks up registered owner and recorded lienholders through the state's DMV / NMVTIS-compliant provider and flags out-of-state registrations.</li>
+      <li>A rules engine for the yard's state generates the exact timeline: notice-due date, cure period end, publication window, earliest legal sale date, and required notice contents.</li>
+      <li>Notices are auto-generated from state-approved templates and sent via certified mail with return receipt (print-and-mail API); proof of mailing, green cards, and returned envelopes are scanned back onto the vehicle's record.</li>
+      <li>A daily dashboard shows each vehicle as "on track", "due in 48h", or "at risk", with SMS/email nudges; defective steps (e.g., returned mail) trigger the state's fallback path such as newspaper publication.</li>
+      <li>When the vehicle is sale-eligible, the system assembles the auction packet and title-transfer paperwork and exports a ledger of fees owed vs. expected sale proceeds.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State lien &amp; abandoned-vehicle statutes (rules table, versioned)</span>
+      <span class="badge">DMV / NMVTIS owner &amp; lienholder lookup provider</span>
+      <span class="badge">Certified-mail print-and-mail API</span>
+      <span class="badge">Plate / VIN OCR</span>
+      <span class="badge">Legal-notice newspaper publication partners</span>
+      <span class="badge">QuickBooks export; tow-dispatch CSV import</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$99/month per yard including 25 active vehicles, plus a pass-through fee of roughly $12–$18 per certified mailing and a $5 per-vehicle fee beyond the cap. Positioned against $40–$100 per-vehicle lien-service fees and the typical $1,500–$4,000 of storage a single recovered vehicle can bring in, so one saved lien pays for several months.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in three states with the most tow yards and clearest statutes (e.g., Texas, Florida, California), private-property and abandoned-vehicle liens only — skip police-rotation billing, heavy-duty/recovery liens, and boats. Manual photo intake from a mobile web app, owner lookup through one data provider, certified-mail send, and the deadline dashboard. Defer auction-house integration and title filing to later versions. Sell through state towing associations, towing-industry Facebook groups, and trade shows such as TowIndustry Week.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Towing software today is dispatch and invoicing; the money-losing step happens weeks later in a back office nobody built for. The value isn't "AI paperwork" but a versioned, state-by-state rules engine that converts a statute into dated tasks and keeps proof of every step — the evidence that makes a lien survive a challenge. AI is used narrowly (OCR at intake, reading returned-mail and statute updates), while the moat is the statute table and the mail-proof trail. The buyer's pain is direct, quantifiable cash per vehicle, and every yard already has an unpaid backlog of cars they can run through the product on day one to see money recovered.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
