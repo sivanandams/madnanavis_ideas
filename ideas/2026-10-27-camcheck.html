@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-27 — CAMCheck</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-27</div>
+    <h1>CAMCheck</h1>
+    <p class="pitch">AI reads a small retail tenant's lease and the landlord's annual CAM reconciliation, finds overcharges, and files the audit request before the lease's audit-rights window closes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent restaurants, salons, clinics and small multi-location retailers (1–15 units) leasing space in shopping centers or office buildings under NNN or modified-gross leases, with no in-house finance or real-estate staff. Secondary channel: bookkeepers and fractional CFOs serving these businesses.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every year the landlord sends a Common Area Maintenance (CAM), tax and insurance reconciliation: a dense spreadsheet that often arrives with a surprise bill of several thousand dollars. Leases usually give the tenant only 60–180 days to dispute it, and that right is lost silently if missed. Common errors include a wrong pro-rata share after vacancies, uncapped "controllable" expenses that should be capped, management fees charged on pass-throughs, capital items billed as repairs, and costs the lease explicitly excludes. Lease-audit firms exist but work on 30–40% contingency and only take large accounts; small tenants just pay.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tenant uploads the lease PDF (plus amendments) and the annual reconciliation statement; the statement date is entered or detected.</li>
+      <li>Document AI extracts lease terms: pro-rata share definition, base year, caps and escalators, exclusions, gross-up clause, management-fee limit, audit window and notice procedure.</li>
+      <li>It parses the reconciliation line items into a normalized ledger and runs deterministic checks against the extracted terms (share math, cap breaches, excluded categories, fee-on-fee, year-over-year jumps).</li>
+      <li>Each finding shows the lease clause cited, the statement line, and the estimated dollar overcharge, with a confidence rating. Ambiguous clauses are flagged for human review rather than asserted.</li>
+      <li>A countdown starts for the audit-request deadline, with reminders. One click generates a notice-compliant audit request letter and a document-request list (invoices, GL detail), formatted to the lease's notice rules.</li>
+      <li>Tenant sends it by their own email or certified mail; the app tracks the landlord's response and the later credit or refund.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Lease and reconciliation PDFs (user upload)</span>
+      <span class="badge">Document AI / table extraction</span>
+      <span class="badge">Clause-to-rule library (caps, exclusions, gross-up)</span>
+      <span class="badge">Deterministic CAM math engine</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+      <span class="badge">Letter templates with state notice rules</span>
+      <span class="badge">Optional: QuickBooks export for payment history</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Free scan that shows the number of potential findings and total estimated dollars, with details unlocked for a $149 one-time fee per reconciliation, or $29/mo per location for deadline tracking across multiple leases and years. A success-fee option (15% of recovered dollars, capped) is available for tenants who prefer no upfront cost. Bookkeeper plan: $199/mo for up to 25 client locations.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>US retail NNN leases only, English, single-property reconciliations. Ship lease-term extraction, the six most common error checks and the deadline countdown, with a templated audit letter. Skip landlord negotiation, legal advice and office or industrial leases for now. Validate with 20–30 tenants and a handful of local lease-audit consultants, whose past findings can be used to calibrate the checks. Go to market through restaurant associations, small business Facebook and Reddit groups, and bookkeepers.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The value comes from the combination of a long, unstructured lease and a messy annual statement, and a ticking contractual deadline most tenants don't know they have. The core engine is rule-based arithmetic against extracted clauses, not chat, so findings are checkable and defensible. Incumbent audit firms are economically unable to serve a tenant with a $3,000 dispute; software reduces the cost per audit to near zero, opening an underserved long tail. Every recovered dollar is a clear ROI story, and each location generates recurring annual demand.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
