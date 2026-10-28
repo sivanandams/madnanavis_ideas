@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-28 — BackflowBridge</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-28</div>
+    <h1>BackflowBridge</h1>
+    <p class="pitch">Turns a certified backflow tester's field readings into the exact report format, portal submission, and due-date reminder each water utility demands — so one tester stops re-typing the same test into 40 different forms.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small-crew certified backflow assembly testers (and small irrigation/fire-sprinkler/plumbing shops that employ one tester), each servicing 300–3,000 devices across several water districts and municipalities. Secondary buyer: the customers' property managers who just want to know their devices are compliant.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <ul>
+      <li>Every utility requires an annual test report on a device it owns the compliance record for, but each has its own PDF form, emailed address, fax, or clunky portal — and a test with a failed device needs a follow-up retest report within a strict window.</li>
+      <li>Testers write numbers on a carbon-copy tag on-site, then spend evenings re-keying the same readings (check valve psi, relief valve opening, serial, location) into whichever format the utility wants. Missed or malformed submissions mean the property owner gets a shutoff notice and blames the tester.</li>
+      <li>Utility-run compliance software serves the water district, not the tester; generic field-service apps have no concept of "this district rejects reports without the device's 5-digit utility tag number."</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tester photographs the device and gauge-kit readout, or types/dictates the readings in the phone app (offline-capable; works in basements and mechanical rooms).</li>
+      <li>Vision + rules extract serial, size, model, location, and pass/fail logic (e.g., check valve ≥ 1.0 psid, relief opening ≥ 2.0 psid) and flag readings that look like transcription errors.</li>
+      <li>The tester picks the device's utility (remembered per address); the app fills that utility's form template, or pushes it through the utility's portal/email intake, and stores the submitted PDF + confirmation.</li>
+      <li>A failed device auto-creates a repair/retest task with the utility's deadline and a customer-facing notice.</li>
+      <li>Annual-due dates roll forward per device; the tester gets a route-ordered "due in 60 days" list and one-tap customer reminders.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <ul>
+      <li>Per-utility form templates and rejection rules (seeded by hand for the first 10 local utilities; crowd-corrected by users afterward).</li>
+      <li>Phone camera/OCR, device-reading calculator, offline sync.</li>
+      <li>Email-out and headless-browser submission to utility portals where no API exists; CSV/XML import where a utility offers one.</li>
+      <li>Optional: QuickBooks/Stripe for invoicing, Google Maps for route ordering, SMS for customer reminders.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p><span class="badge">Solo</span> $49/mo up to 500 devices &nbsp; <span class="badge">Crew</span> $129/mo up to 3 testers, 3,000 devices &nbsp; <span class="badge">Per-utility add-on</span> $15/mo for portal auto-submit on a non-standard utility. 30-day trial with free import of the tester's existing spreadsheet.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <ul>
+      <li>iOS/Android PWA with offline test entry and photo capture for reduced-pressure, double-check, and pressure-vacuum-breaker assemblies.</li>
+      <li>Support for 5–10 utilities in a single metro area, with form-fill to PDF + email submission (no portal automation yet).</li>
+      <li>Device registry with annual-due tracking and failed-test retest deadlines.</li>
+      <li>Spreadsheet import; no invoicing, no customer portal, no inventory in v1.</li>
+    </ul>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The product isn't a field-service app — it's a translation layer between one tester's measurements and dozens of idiosyncratic regulators' intake formats. The moat is the curated, user-corrected library of utility-specific submission rules (what each district rejects and why), which compounds with every tester added to a region and is invisible to horizontal FSM vendors. AI does the narrow jobs it's good at: reading gauge photos, catching impossible readings, and normalizing messy utility forms — not chatting.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
