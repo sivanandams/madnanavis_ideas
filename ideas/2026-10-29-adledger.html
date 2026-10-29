@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-29 — ADLedger</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-29</div>
+    <h1>ADLedger</h1>
+    <p class="pitch">Scan a piston aircraft's paper logbooks and get a live, cited FAA Airworthiness Directive compliance matrix, with next-due dates, before the annual inspection starts.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent A&amp;P/IA mechanics and small repair stations servicing general-aviation piston aircraft (Cessna, Piper, Beech, Mooney), plus small flight schools and clubs with 5–40 airframes. Secondary: owners of older aircraft who currently pay an IA by the hour to dig through logbooks.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every annual inspection requires proving compliance with every applicable Airworthiness Directive for the airframe, engine, propeller, and installed appliances (magnetos, carburetors, seats, ELTs). Hundreds of ADs can apply to a 40-year-old aircraft, many recur every 50, 100 or 500 hours or every N months, and the evidence is buried in handwritten, multi-volume logbooks. Mechanics spend 3–8 unbillable hours per aircraft building and re-checking the list, and a missed or mis-dated AD means an unairworthy aircraft, grounded flights, FAA enforcement exposure and personal liability for the signing IA. Existing tracking tools (enterprise fleet software) are priced and designed for airlines and charter operators, not a one-person shop.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Mechanic photographs or uploads logbook pages and enters the aircraft's registration; the system pulls make, model, serial, engine and propeller data from the FAA registry and prompts to confirm installed appliances.</li>
+      <li>Vision/OCR extracts every maintenance entry: date, tach or airframe hours, work performed, and any cited AD numbers, with each field linked back to the source page image for verification.</li>
+      <li>The FAA's published AD corpus is filtered by applicability (model, serial range, engine, prop, appliance part numbers) to produce the list of ADs that actually apply to this aircraft.</li>
+      <li>A matcher pairs each applicable AD with the logbook entries that show compliance, then computes status: complied once, recurring with next due date or hours, or no evidence found.</li>
+      <li>Output is a compliance matrix PDF in the format an IA expects, plus a short "needs human eyes" queue for ambiguous matches. The mechanic approves each row; nothing is auto-signed.</li>
+      <li>Email alerts fire when a newly published AD hits any aircraft in the customer's roster, or when a recurring item is within 25 hours or 30 days of due.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FAA Dynamic Regulatory System (public AD text)</span>
+      <span class="badge">FAA aircraft registry download</span>
+      <span class="badge">Vision OCR for handwritten logbooks</span>
+      <span class="badge">Applicability rules parser</span>
+      <span class="badge">PDF export</span>
+      <span class="badge">Email alerts</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49 per aircraft per initial logbook digitization, then $6 per aircraft per month for AD monitoring and alerts. Mechanic plan at $39/mo covers up to 20 customer aircraft. Flight schools pay $149/mo for up to 40 airframes. The first aircraft is free so a mechanic can test it on a real annual.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Only single-engine piston aircraft from the five or six most common type certificates, airframe and engine ADs only (propeller and appliance ADs in v1.1). Typewritten and clearly handwritten entries only; poor scans go to the review queue instead of being guessed at. US-registered aircraft only. No signing, no work-order or billing features. Launch through IA-focused forums, EAA and type-club communities, and a free "paste your N-number" applicability preview that doubles as lead capture.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The AD database is public, structured and free, but the hard part is the other side: unstructured handwritten logbooks that only became machine-readable with recent vision models, so the wedge only opened in the last couple of years. The buyer is a solo mechanic whose time is the product, which makes a clean "3 hours saved per annual" ROI easy to prove, and the legal liability on the signature makes accurate citation to source pages a hard requirement that generic chatbots cannot meet. Every digitized logbook also becomes a durable, per-aircraft record that raises switching costs and, over time, a resale-value asset for the owner.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
