@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-30 — DecimalCheck</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-30</div>
+    <h1>DecimalCheck</h1>
+    <p class="pitch">Audits mineral-rights owners' oil &amp; gas royalty check stubs against public state production data and their own lease terms, flagging underpayments and improper deductions with a ready-to-send demand letter.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Individual and family mineral/royalty owners (inherited acreage in Texas, Oklahoma, North Dakota, Pennsylvania, New Mexico, etc.) holding 3–50 wells, plus small royalty-management shops, CPAs and estate attorneys who administer inherited minerals for families and have no tooling beyond spreadsheets.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Royalty owners get a monthly or quarterly check stub from an operator and have no practical way to verify it. The payment should equal reported production &times; price &times; the owner's decimal interest, less only the deductions the lease permits. In practice, operators change decimals after title updates, take post-production deductions (gathering, compression, marketing) that leases may prohibit, report volumes or prices that drift from public filings, and sometimes suspend payments for years over "title issues." Industry audits of royalty payments routinely find underpayment, but a professional audit costs thousands and is only economical for large owners. A family receiving $400/month has no recourse and usually doesn't know there's anything to question.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner forwards or uploads check stubs (PDF, photo, or email) and, optionally, the lease and division order. The operator, well names/API numbers and decimal interest are extracted automatically.</li>
+      <li>Each well is matched to the state regulator's public monthly production records, and the stub's reported volumes, price and gross are reconciled against them.</li>
+      <li>The engine recomputes expected owner payment from decimal &times; volume &times; benchmark price, and tracks decimal changes, new or growing deduction line items, price gaps versus regional benchmarks, and stalled or suspended payments across months.</li>
+      <li>Anomalies are scored by dollar impact and confidence, with a plain-English explanation ("Operator X's deductions on well Y rose from 3% to 19% of gross in March; your lease clause 7 appears to prohibit this").</li>
+      <li>One click generates a courteous, state-appropriate inquiry or demand letter (many states have statutory interest and payment-deadline rules) citing the stubs and public data, ready to send to the operator's owner relations desk.</li>
+      <li>A running ledger shows each well's payment history, so the owner finally sees the whole picture and gets a clean annual summary for the CPA.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">State oil &amp; gas commission production data (TX RRC, OK OCC, ND DMR, NM OCD, PA DEP)</span>
+      <span class="badge">EIA &amp; regional price benchmarks</span>
+      <span class="badge">Document AI for check stubs, leases, division orders</span>
+      <span class="badge">Email-forwarding inbox</span>
+      <span class="badge">Per-state royalty statute and deadline rules table</span>
+      <span class="badge">CSV/QuickBooks export for CPAs</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$15/month per operator relationship for owners with up to ~20 wells, with a free first-statement audit as the hook. A professional tier at $199/month covers up to 25 client families for CPAs and royalty managers, with branded reports. Optional recovery add-on: 15% of any underpayment recovered through a letter-driven correction, offered only after the owner approves the claim.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Two states only (Texas and Oklahoma, which have the most inherited mineral owners and the cleanest public production data) and the three or four largest operators' stub formats. Manual upload and email forwarding. Volume/price reconciliation, decimal-change detection and deduction-trend flags only. No lease-clause interpretation in v1, and letters are templated rather than free-written. Reach customers through mineral-owner Facebook groups, landman and estate-planning blogs, and county-level mineral owner associations.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The data that exposes underpayment is already public, monthly, and well structured, yet it sits unused because nobody connects it to the one document the owner actually holds: the check stub. Existing mineral tools serve buyers and investors valuing acreage, not the passive owner defending cash flow, and the audit firms that serve large owners price themselves out of this market. The product is mostly deterministic reconciliation, with AI used only to read messy stubs and draft letters, so it avoids chatbot UX and stays cheap to run. Because royalties pay out every month for decades, a single caught error converts to long-lived retention.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
