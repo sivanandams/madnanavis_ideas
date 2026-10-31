@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-10-31 — BackflowDesk</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-10-31</div>
+    <h1>BackflowDesk</h1>
+    <p class="pitch">Turns a certified backflow tester's field readings into correctly formatted compliance reports, files each one with the right water utility's portal, and chases every device's annual re-test due date, so a one-person testing shop stops losing evenings to paperwork.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small-crew certified backflow assembly testers (often plumbers or irrigation contractors with an ASSE 5110 / state tester certification) who test 500–5,000 devices a year across several water districts and cities, plus the small property-management and HOA firms that hire them.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Almost every water utility requires an annual test on commercial backflow preventers, a certified tester's report, and timely submission. But each utility has its own form, its own portal (or fax and email), its own failure-and-retest rules, and its own deadline grace period. A tester finishes a day of crawling through vaults, then spends evenings re-typing the same gauge readings into four portals. Missed submissions mean the customer gets a shut-off notice and blames the tester. Tracking which of 2,000 devices is due when lives in a spreadsheet or a shoebox. Testers know it is the worst part of the job, and they already pay for tools that are generic field-service software and do not know any utility's rules.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tester imports existing device lists (CSV or a photo of the utility's due-list letter, parsed by document AI) to build a device registry with location, size, model, serial, hazard type and utility.</li>
+      <li>On site, a phone-first form takes the test readings (check valve pressure drops, relief valve opening point, pass/fail, repairs made). A photo of the device tag auto-fills make, model and serial through OCR.</li>
+      <li>The system validates readings against the device type's pass criteria and the utility's own rules, and flags a failure with the repair-and-retest deadline.</li>
+      <li>It generates the utility-specific report as a PDF and submits it: through the utility's portal by browser automation where there is no API, or by emailing the exact form the utility accepts. A receipt is stored against the device.</li>
+      <li>A due-date engine texts the customer 60/30/7 days ahead and offers a one-tap booking link, so the next year's route fills itself.</li>
+      <li>Unsubmitted or rejected reports show on a single "owed to utilities" screen so nothing silently lapses.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Per-utility form templates &amp; rules library</span>
+      <span class="badge">Utility submission portals (browser automation)</span>
+      <span class="badge">Device-tag OCR</span>
+      <span class="badge">Document AI for due-list letters</span>
+      <span class="badge">SMS / email reminders</span>
+      <span class="badge">QuickBooks invoicing export</span>
+      <span class="badge">Tester certification &amp; gauge calibration expiry tracking</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/mo per tester seat including 100 submitted reports, then $0.60 per additional report. A $99/mo shop tier adds crew accounts, customer reminders with booking links and QuickBooks sync. Because a single tester typically bills $60–$120 per test, saving even 10 minutes per report pays for the plan within a week.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in one metro area and cover its 5–8 largest water utilities, and hand-build each utility's template and submission path (no general-purpose portal automation yet). Ship device registry, mobile test form, PDF generation, email-based submission and the due-date reminders first. Portal automation is added utility by utility, ordered by how many early users file with them. Skip cross-connection surveys, fire-line assemblies and multi-state certification in v1. Go to market through state backflow-tester associations, local water district tester lists, and the Facebook and trade forums where testers already trade tips.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The value is not the form builder; it is the maintained library of local utility rules and submission quirks, which is boring, regional and exactly the thing a big field-service vendor will never bother to keep current. That library becomes a moat as it grows, and because every utility is a distinct integration, each new one both unlocks a new set of testers and raises the cost of switching away. Demand is also legally mandated and recurring: the same devices must be re-tested every year, so the due-date registry compounds into a predictable annual revenue base for both the tester and the product. AI is used where it earns its keep (reading tags and due-list letters, parsing rule changes) and never as a chat window.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
