@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-02 — LogbookLens</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-02</div>
+    <h1>LogbookLens</h1>
+    <p class="pitch">AI reads scanned, handwritten aircraft maintenance logbooks and builds a verified Airworthiness Directive compliance matrix, so small-plane owners and buyers know what is overdue before the FAA, an insurer, or a pre-buy inspector tells them.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owners of piston single/twin general-aviation aircraft (roughly 200,000 in the US), prospective buyers commissioning pre-buy reviews, aircraft brokers, and small A&amp;P/IA repair shops that spend unpaid hours reconciling paper logbooks before annual inspections.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Airworthiness Directives are legally mandatory, and compliance must be proven from decades of paper logbooks written by dozens of mechanics in inconsistent formats. A missed or unprovable recurring AD can ground the plane, kill a sale, void insurance coverage, or lead to FAA enforcement. Today a human logbook audit costs $500–$2,500 and takes days, existing tracking software (CAMP, Traxxall) targets fleets and requires manual data entry, and most owners just trust the last annual. Buyers routinely discover missing 337s, undocumented ADs, or gaps only after wiring a deposit on a $150K aircraft.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner enters the tail number (auto-pulling make, model, serial, engine, prop and installed appliances from the FAA registry) and uploads phone photos or PDFs of the logbooks.</li>
+      <li>Handwriting-tolerant OCR plus an LLM extraction step turns each entry into structured records: date, tach/airframe hours, work performed, AD/SB references, signer and certificate number.</li>
+      <li>The engine pulls every AD applicable to that airframe, engine, propeller and appliance serial range from the FAA Dynamic Regulatory System and checks each against the extracted entries.</li>
+      <li>Output is a compliance matrix: complied (with page-level citation to the logbook photo), recurring and due on date/hours, unverifiable (no entry found), and possible gaps in the time/hours chain.</li>
+      <li>The owner gets one-tap shareable report for a buyer, insurer or shop, plus email reminders as recurring ADs approach their due hours/date based on logged flight time.</li>
+      <li>Every flagged item is explicitly marked "for review by an A&amp;P/IA", keeping the tool advisory, not a legal determination of airworthiness.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FAA Dynamic Regulatory System (AD database, public)</span>
+      <span class="badge">FAA aircraft registry (public)</span>
+      <span class="badge">Handwriting-capable OCR / vision model</span>
+      <span class="badge">Structured extraction &amp; AD applicability matching</span>
+      <span class="badge">Hobbs/tach tracking input (manual or ForeFlight CSV import)</span>
+      <span class="badge">PDF report generation &amp; email reminders</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$149 one-time per aircraft for the initial logbook audit (positioned against $500–$2,500 manual audits), then $9/mo per aircraft for ongoing AD-due tracking. A $399/mo shop plan covers up to 50 aircraft with white-label reports; brokers pay $79 per sale-listing report.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Single-engine piston aircraft only (Cessna, Piper, Beech, Cirrus), airframe and engine ADs only; skip helicopters, turbines, avionics databases and component life-limit tracking. Upload and review only: no shop integrations or mobile app. Include a human-in-the-loop correction UI for low-confidence OCR lines, since trust depends on citing the exact page. Launch by posting free sample audits in Beechcraft/Cirrus/Bonanza owner forums, type clubs and Barnstormers, and partnering with a few pre-buy inspectors who would resell the report.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The AD database is free and structured, but the hard part has always been the unstructured side: decades of handwritten logbook pages. Modern vision models have only recently become good enough to read cursive mechanic shorthand with page-level citations, which flips a days-long expert audit into a minutes-long first pass. The market sits in a gap: fleet software is too heavy for a single owner, and the owner-facing apps are digital logbooks that only help after you re-enter everything. The purchase trigger is also unusually strong and recurring, as every aircraft sale, annual inspection and insurance renewal forces the question "can you prove this plane is legal?"</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
