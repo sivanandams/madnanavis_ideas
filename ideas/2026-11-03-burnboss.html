@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-03 — BurnBoss</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-03</div>
+    <h1>BurnBoss</h1>
+    <p class="pitch">Burn-window forecasting and auto-generated prescribed-burn plans for contract burn crews and landowners, so one good weather day turns into a permitted, documented, insured burn instead of a missed season.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent contract prescribed-burn businesses (1–10 person crews serving ranchers, timber owners, hunting-land owners and conservation groups), plus prescribed burn associations and consulting foresters in the US Southeast, Texas/Oklahoma, and the Pacific Northwest where state "certified burn manager" programs are expanding.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Prescribed burns are legal only inside a narrow envelope of wind speed/direction, relative humidity, fuel moisture, mixing height, smoke-sensitive receptors and county burn bans. A crew might get 8–15 usable days a year per client, and each burn needs a written burn plan, a permit or notification, a go/no-go checklist and an after-action record to keep liability coverage and certified-burn-manager protections. Today that means juggling NWS spot forecasts, state forestry websites, phone calls and Word templates the night before — then frequently discovering at 7 a.m. the window closed. Missed windows mean lost revenue for the crew and overgrown, wildfire-prone land for the client.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Crew draws each client unit on a map and answers a short form: fuel type, slope, target objectives, nearby roads/homes/smoke-sensitive sites, and burn-boss prescription limits (e.g., wind 5–12 mph from SW, RH 30–55%).</li>
+      <li>BurnBoss scores every unit against the 7-day forecast and local fuel-moisture observations, then texts the crew a ranked list: "Unit 14 is a GO Thursday 11:00–16:00; Unit 9 fails on RH after 2 p.m."</li>
+      <li>On a chosen day it pre-fills the state's burn notification/permit data and checks active burn bans or air-quality restrictions for the county.</li>
+      <li>It generates the burn plan PDF (map, prescription, ignition pattern suggestion, holding resources, contingency and smoke-impact notes) from the unit data and the forecast.</li>
+      <li>On burn day, a phone checklist logs spot weather readings against prescription and issues a live go/no-go flag; afterward it auto-builds the after-action record and client invoice line item.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">NWS gridded &amp; spot forecasts (free API)</span>
+      <span class="badge">RAWS / MesoWest fuel &amp; weather observations</span>
+      <span class="badge">NOAA HRRR-Smoke dispersion output</span>
+      <span class="badge">State forestry burn-ban &amp; permit pages</span>
+      <span class="badge">Parcel/map layers (county GIS, OpenStreetMap)</span>
+      <span class="badge">SMS (Twilio) &amp; PDF generation</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$59/mo per crew for up to 25 units, $149/mo for burn associations managing shared member units and equipment, plus an optional $15 per generated burn plan for landowners without a crew subscription. Crews recoup the fee on their first rescued burn day.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Launch in two or three states with the largest contract-burner population and the most uniform notification process (e.g., Georgia, Florida, Texas). Ship unit mapping, prescription-vs-forecast scoring, SMS go/no-go alerts, and a templated burn-plan PDF. Skip live permit submission (link out to the state portal, with pre-filled fields to copy) and advanced smoke modeling in v1. Go to market through prescribed burn association meetings, state certified-burn-manager course rosters, and extension-service newsletters.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Wildfire tech money chases detection and suppression, but the preventive tool — prescribed fire — is run by tiny crews on spreadsheets and text threads, and policy tailwinds (new burn-manager certification and liability-protection laws) are pushing more landowners to hire them. The product is not a chatbot: it is a prescription-matching engine over public weather data, where the value is a correct, timely "go" on the one day that works. Because burn plans and after-action logs double as liability and insurance evidence, the records become a switching-cost moat the crews would otherwise never build themselves.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
