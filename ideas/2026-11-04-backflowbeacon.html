@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-04 — BackflowBeacon</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-04</div>
+    <h1>BackflowBeacon</h1>
+    <p class="pitch">Turns a backflow tester's field readings into the exact form, format and portal submission each local water utility demands — and chases every customer's annual re-test deadline automatically.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and 2–10 person certified backflow assembly testers (often plumbers, irrigation or fire-sprinkler contractors) who each service 300–3,000 devices across several water districts, cities and counties.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every water utility requires annual test reports for testable backflow preventers, but each has its own paper/PDF form, portal (or emailed-PDF rule), device-ID numbering, pass/fail wording and late-fee schedule. Testers re-key the same gauge readings into 5–20 formats after each job, then spend evenings chasing building owners whose tests are overdue — because the utility threatens shut-off notices against the owner, who blames the tester. Missed or rejected submissions mean unpaid re-visits and lost accounts. Generic field-service software handles invoices, not utility-specific compliance paperwork.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tester imports their device list (CSV or photo of a utility notice) once; each device is linked to a utility and its reporting rules.</li>
+      <li>On site, a mobile form captures serial number, check-valve and relief-valve readings, repair notes and a photo of the tag; photos are read by OCR to prefill model/serial.</li>
+      <li>The app renders the correct utility-specific report (PDF/CSV/portal payload), validates it against that utility's rules (required fields, tester cert number, gauge calibration date) and submits or queues it.</li>
+      <li>Submission receipts and rejections are tracked per device; rejections come back with a plain-language fix.</li>
+      <li>A deadline engine texts and emails building owners at 60/30/7 days with a one-tap scheduling link, and escalates using the utility's own late-notice calendar.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Utility form/portal rule library (hand-built per utility)</span>
+      <span class="badge">State tester certification and gauge-calibration records</span>
+      <span class="badge">OCR for device tags</span>
+      <span class="badge">SMS/email (Twilio, Postmark)</span>
+      <span class="badge">QuickBooks / Stripe invoicing export</span>
+      <span class="badge">Offline-first mobile PWA</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/mo per tester seat plus $0.40 per device submitted over 150/mo; $99/mo "owner chasing" tier with automated reminders and scheduling. Utilities-rule packs for new districts are included, with a $200 one-time fee for custom requests.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Pick one state and its 10 largest utilities (e.g., Washington or Colorado). Support PDF/emailed submissions first, portal automation second. Single-user accounts, offline PWA, device import by CSV, reminder texts. Skip fire-line/DDC assemblies and utility-side dashboards. Go to market through state backflow-tester associations, certification-renewal classes and trade-supply counters where testers buy gauges.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The value is not the AI — it is a maintained library of idiosyncratic municipal rules, which is boring, defensible and tedious for competitors to copy. Tools like OCR and automated rejection explanations remove the evening paperwork, but the moat is that every added utility makes the next tester in that district an instant, low-CAC customer. Utilities themselves are quietly motivated to endorse it, since cleaner submissions cut their processing load — a distribution channel that generic field-service apps never think to open.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
