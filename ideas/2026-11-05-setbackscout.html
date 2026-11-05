@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-05 — SetbackScout</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-05</div>
+    <h1>SetbackScout</h1>
+    <p class="pitch">Upload a deck or addition sketch and an address; get a parcel-specific answer on which wetland, floodplain, shoreline and setback reviews it will trigger — plus a pre-filled permit packet — before the contractor quotes the job.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small deck, dock, pool, ADU and addition contractors (1–15 employees) working in regulated-land markets — coastal New England, the Chesapeake, Pacific Northwest, Great Lakes shorelines, Florida — and the small-town design-build firms and permit expediters who serve them.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Whether a backyard project needs a conservation commission filing, a floodplain development permit, a shoreline variance or just a plain building permit depends on overlapping federal, state and municipal layers: FEMA flood zones, National Wetlands Inventory polygons, 25–100 ft buffer rules, lot-coverage caps and zone-specific setbacks that differ by town. Contractors find out <em>after</em> quoting and signing — a surprise 8-week conservation review or a denied setback eats margin, stalls the crew and angers the homeowner. Permit expediters charge $300–$1,500 per job to do this lookup by hand, and most small contractors simply guess.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Contractor enters the job address and uploads a photo of a hand sketch, a PDF plan, or just types dimensions ("14×20 deck, 6 ft from rear lot line").</li>
+      <li>The system geocodes the parcel, pulls its boundary, and overlays FEMA flood zones, NWI wetlands, hydrography and shoreline layers.</li>
+      <li>Vision/document extraction places the proposed footprint on the parcel and computes distances to lot lines, wetland edges and water bodies, plus new impervious coverage.</li>
+      <li>A rules engine — built from the town's zoning and wetlands bylaw text, structured once per municipality — returns a checklist of triggered reviews with the specific bylaw citation and typical timeline for each.</li>
+      <li>Output is a one-page "Go / Conditional / Stop" brief for the quote, plus a pre-filled permit-application packet and a site-plan overlay image to attach.</li>
+      <li>When the project is borderline (e.g., 98 ft from a 100 ft buffer), it suggests the minimum footprint shift that avoids the review, with the resulting dimensions.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FEMA National Flood Hazard Layer (free)</span>
+      <span class="badge">USFWS National Wetlands Inventory (free)</span>
+      <span class="badge">County parcel GIS / Regrid parcel data</span>
+      <span class="badge">Municipal zoning &amp; wetlands bylaw text (structured per town)</span>
+      <span class="badge">Sketch/plan vision extraction</span>
+      <span class="badge">PDF form filling</span>
+      <span class="badge">Optional: Jobber / Buildertrend export</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$29 per property check, or $99/mo for 5 checks per month and $249/mo for unlimited checks in up to 3 municipalities. A $149 "expedite" tier gets a human reviewer to confirm borderline calls. The unit price is easy to justify against one avoided blown quote or a $500+ expeditor fee.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One state and roughly 25 towns, covering decks, sheds, pools and small additions only. Ship the parcel overlay, distance calculations and triggered-review checklist first; the pre-filled permit packet is v1.1. Municipal rules are hand-curated by the founder with LLM-assisted extraction from bylaw PDFs, then spot-verified against a few known past permits per town. Distribute through local home-builder association chapters, lumberyard counter flyers and regional contractor Facebook groups, and by publishing free per-town "what triggers a review" pages that capture search traffic from contractors.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The data is mostly free and public, but nobody joins it at the moment that matters: pre-quote, per parcel, per town bylaw. Zoning-lookup tools target developers and investors with big checks; permit-management software serves municipalities. The solo contractor in between loses money on every surprise review yet has no tool built for their question. The moat is the hand-structured municipal rulebook — unglamorous, town-by-town work that compounds with every job checked and every permit outcome fed back to calibrate the rules, and that big horizontal platforms will not bother to build.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
