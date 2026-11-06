@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-06 — HoodProof</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-06</div>
+    <h1>HoodProof</h1>
+    <p class="pitch">Turns a kitchen-hood cleaner's before/after phone photos into NFPA 96-compliant service reports and insurer-ready proof packets, so restaurants keep fire-claim coverage and cleaners keep recurring contracts.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Solo and small-crew commercial kitchen exhaust (hood) cleaning operators — 1 to 10 technicians — who service independent restaurants, school cafeterias, and church and hospital kitchens. Secondary buyer: the restaurant owner who needs the paperwork.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>NFPA 96 requires kitchen exhaust systems to be cleaned on a schedule tied to cooking volume (quarterly for high-volume, semiannually or annually for lower volume), with a service sticker and records. When a grease fire happens, insurers and fire marshals ask for proof of cleaning; missing or sloppy records can reduce or deny the claim. Cleaners today use paper carbon-copy tickets, a generic field-service app, or photos buried in a camera roll. They lose renewals to cheap competitors who skip hard-to-reach areas, and they can't prove the work they did was thorough. Restaurant owners don't know which areas (ducts, fans, rooftop grease containment) were actually cleaned.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tech opens the app at a job site and follows a guided photo checklist: hood interior, filters, plenum, each duct access panel, horizontal and vertical runs, exhaust fan, rooftop containment — before and after for each.</li>
+      <li>Vision models check each photo for sufficiency (is the area visible, is it in focus, does "after" show bare metal) and flag missing or unclear shots before the tech leaves the roof.</li>
+      <li>The tech notes any areas that were inaccessible (no access panel, blocked duct) and the app auto-generates a deficiency notice with the photo evidence for the owner to sign on the phone.</li>
+      <li>The system produces a branded PDF service report with a timestamped, geotagged photo gallery, the cleaning-frequency basis, the sticker details, and a QR code that opens a hosted tamper-evident record.</li>
+      <li>The restaurant gets a read-only portal and an insurer-ready "compliance packet" download; the cleaner gets automatic next-service reminders and re-booking prompts sent to the owner by SMS.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Phone camera + GPS + timestamps</span>
+      <span class="badge">Vision model for photo-sufficiency checks</span>
+      <span class="badge">NFPA 96 frequency rules (encoded as a rules table)</span>
+      <span class="badge">SMS/email (Twilio-style)</span>
+      <span class="badge">QuickBooks Online invoicing sync</span>
+      <span class="badge">Stripe for payments</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49/mo per technician with unlimited reports for up to 40 active customer locations, then $1 per additional location per month. Cleaners can pass a $5/mo "compliance vault" fee through to each restaurant, which is often enough to cover the subscription. No free tier, but a 14-day trial with 5 reports.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>A mobile web app (PWA, offline-capable for rooftops with poor signal), a fixed photo checklist template, the vision-based sufficiency check on a handful of key shots, PDF report generation, the hosted QR record, and SMS reminders. Skip scheduling, routing, and full invoicing in v1 (export to QuickBooks only). Go to market through hood-cleaning Facebook groups, IKECA-related communities, and YouTube trade channels, offering to import a cleaner's existing customer list for free.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The buyer looks like a tiny trades business, but the value is evidentiary: the report is built to be read by an adjuster or fire marshal after a loss, which changes the product design (timestamps, geotags, tamper-evident hosting, per-area photos) away from generic field-service software. The vision model isn't a chatbot — it is a narrow quality gate that catches the lazy-cleaning problem at the moment the tech is still on the roof. And the restaurant-side vault creates a pass-through revenue line that makes the product self-funding for the cleaner, while every QR code on a sticker doubles as free marketing to the next restaurant's inspector and owner.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
