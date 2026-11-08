@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-08 — WarrantyLoop</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-08</div>
+    <h1>WarrantyLoop</h1>
+    <p class="pitch">Automatically registers every installed HVAC unit with its manufacturer before the extended-warranty window closes, then files and tracks parts and labor claims so independent contractors stop leaving warranty money on the table.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent residential HVAC contractors with 3–40 technicians that install Carrier, Trane, Lennox, Goodman, Rheem, or Daikin equipment and run their jobs in ServiceTitan, Housecall Pro, or Jobber. The buyer is the owner or office manager who currently owns "the warranty paperwork" by default.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Most manufacturers only grant the extended parts warranty (e.g., 10 years instead of 5) if the unit is registered online within a short window after install — often 60–90 days. Techs finish the install, move to the next job, and nobody does the registration. Years later a compressor fails, the homeowner is quoted a full-price repair, and the contractor either eats the cost to protect the relationship or loses the customer. Separately, parts and labor claims get denied for missing serial numbers, wrong model numbers, or lapsed registration, and chasing manufacturer portals is unpaid admin that office staff hate. A 15-tech shop installing ~1,000 units a year can plausibly lose tens of thousands of dollars annually in warranty coverage it was entitled to.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Connect the field-service platform; WarrantyLoop watches for completed install jobs and pulls the customer, address, install date, and any equipment line items or attached photos.</li>
+      <li>Vision/OCR reads the data-plate photo the tech already took (model, serial, manufacture date) and cross-checks it against the invoice line item; mismatches are flagged to the office, not silently submitted.</li>
+      <li>A rules library of per-manufacturer registration windows and portal requirements decides what to register and by when, and a countdown surfaces units close to expiring.</li>
+      <li>A browser-automation worker (or manufacturer API/email where one exists) submits the registration, saves the confirmation PDF to the customer record, and logs the exact coverage term granted.</li>
+      <li>When a repair job is later opened against a registered unit, WarrantyLoop pre-checks coverage, assembles the parts/labor claim packet (serial, registration proof, failure notes, photos), and tracks it to reimbursement or denial.</li>
+      <li>A monthly dashboard shows registrations completed, claims recovered in dollars, and "at-risk" unregistered units — the number that justifies the subscription.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">ServiceTitan / Housecall Pro / Jobber APIs</span>
+      <span class="badge">Data-plate photo OCR</span>
+      <span class="badge">Manufacturer registration portals (browser automation)</span>
+      <span class="badge">Per-manufacturer warranty-terms rules table</span>
+      <span class="badge">Email parsing for confirmations &amp; claim status</span>
+      <span class="badge">Deadline alerts (email/SMS)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$149/mo base plus $4 per unit registered, with an optional success fee of 8% on warranty claim dollars recovered through the claims module. The pitch is simple arithmetic: one rescued compressor claim pays for a year of the product.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Registration only — no claims module yet. Support one field-service platform (Housecall Pro or Jobber, which have friendlier APIs than ServiceTitan) and the three manufacturers with the highest share among your first ten pilot shops. Start with a human-in-the-loop review queue for every submission, and measure first-pass success rate per portal before removing the human. Acquire pilots through HVAC owner Facebook groups, distributor counter-day events, and contractor-business coaches. Defer commercial/refrigeration equipment and homeowner-facing features.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Field-service software tracks jobs and invoices but treats warranty as a free-text note, and manufacturers have no incentive to make registration painless, so the gap sits between two systems that each assume the other will handle it. The work is boring, deadline-driven, and repetitive — ideal for automation — and the value is measurable in dollars rather than "time saved." Every registration also builds an equipment-install ledger per contractor, which becomes the foundation for upsells later: replacement-cycle marketing, maintenance-plan targeting, and resale-ready warranty transfer records for homeowners. The moat is the maintained portal-rules library, which is tedious enough that big platforms won't prioritize it.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
