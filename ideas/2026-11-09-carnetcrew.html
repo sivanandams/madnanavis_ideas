@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-09 — CarnetCrew</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-09</div>
+    <h1>CarnetCrew</h1>
+    <p class="pitch">Turns a touring band's or trade-show exhibitor's messy gear list into a customs-ready ATA Carnet "General List" with valuations, serial numbers and country-specific red flags, so gear isn't seized at the border.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size touring acts, their tour managers and production companies, plus boutique trade-show exhibitors and film/photo crews, who temporarily export equipment worth $20K–$500K abroad several times a year and currently hire a carnet broker or wing it with spreadsheets.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>An ATA Carnet is a passport for goods, and one wrong line (a missing serial number, an item that isn't on the list, a mismatched value or country of origin, a consumable that doesn't qualify) can mean gear held at customs, tour dates lost, or a claim against the carnet's bond for duties up to 100%+ of value. Brokers charge hundreds of dollars per application, take days to turn it around, and rebuild the list from scratch each tour even though 90% of the gear is identical. Last-minute changes (a borrowed amp, new merch, a swapped laptop) happen on the road and are usually never reconciled, which causes the very problems at re-import that the carnet was meant to prevent.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>User uploads whatever they have: a tech rider, a Google Sheet of gear, an insurance schedule PDF, or phone photos of cases and labels.</li>
+      <li>Extraction pulls out make, model, serial number, quantity, weight, country of origin and replacement value, and flags items with missing or suspicious fields (no serial, round-number valuation, duplicate serials).</li>
+      <li>The tool assigns an HS code to each item and builds a carnet-format General List, then runs a destination-country check: carnet-ineligible items (consumables, merch for sale, giveaways), countries that need extra paperwork, and ATA Convention member status.</li>
+      <li>A packing-case view pairs each item with a case and produces a scannable checklist so the crew can verify the physical gear against the list at departure and at return.</li>
+      <li>On the road, a mobile page lets the tour manager log additions or removals; the tool shows which changes need an amended carnet versus a separate temporary-import entry.</li>
+      <li>The export is a broker-ready, issuing-chamber-formatted package (PDF plus CSV) that the user submits to their chamber or broker, which typically cuts the broker's work from hours to minutes.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Harmonized System code database</span>
+      <span class="badge">ATA Carnet member-country rules (public)</span>
+      <span class="badge">Document and photo OCR for serial numbers</span>
+      <span class="badge">Google Sheets / CSV import</span>
+      <span class="badge">Insurance equipment schedule parsing</span>
+      <span class="badge">Mobile-friendly scan and checklist UI</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$49 per carnet package for one-off users. A $19/mo "gear vault" subscription keeps the reusable inventory, case manifests and change history, which is where repeat value sits, since the same list is reused each tour. A $149/mo broker plan adds client workspaces and white-labeled exports for customs brokers and chambers serving many small clients.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Cover US-issued carnets for music and trade-show gear to a short list of high-traffic destinations (UK, EU member states, Canada, Japan, Australia). No filing or payment integration in v1: the output is a clean, validated General List and checklist the user hands to their issuing chamber or broker. Skip film/TV, commercial samples and professional equipment edge cases until the music and exhibitor flow is validated. Go to market through tour-manager communities, booking-agent newsletters, and backline and rental companies who recommend tools to their clients.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Everyone assumes the pain is the government form; the real pain is the inventory data behind it. The product wins by making the gear list a living, serial-level asset that doubles as an insurance schedule and a packing checklist, and the carnet is just one export of it. The buyer is also split: musicians pay once out of urgency, but brokers and chambers have a structural incentive to adopt it because clean inputs make their margins better, which gives a solo founder a built-in distribution channel. It rewards document extraction and rules validation rather than chatbot UX, and the niche is too small for the big logistics and compliance platforms to bother with.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
