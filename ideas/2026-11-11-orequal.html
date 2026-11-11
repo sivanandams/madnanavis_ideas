@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-11 — OrEqual</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-11</div>
+    <h1>OrEqual</h1>
+    <p class="pitch">AI reads a construction spec section, lines it up against your product's data sheets and test reports, and assembles a complete "or-equal" substitution request package before the pre-bid deadline closes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent manufacturer's reps, specialty distributors, and inside-sales teams at small-to-mid building-product manufacturers (roofing membranes, door hardware, flooring, louvers, sealants, HVAC accessories, lighting) whose products are routinely <em>not</em> the basis-of-design and must win their way onto projects through substitution requests to architects and engineers.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Architects often write specs around one named product with "or approved equal" language, and a substitution is only accepted if a formal request (usually CSI Form 13.1A or the architect's own form) arrives before a cutoff — often 7–10 days before bid. Each package means reading a 15–40 page spec section, pulling out every Part 2 performance requirement (ASTM values, fire ratings, warranties, finishes, LEED/EPD needs), finding matching evidence across the product's data sheets and test reports, writing a point-by-point comparison, and noting any deviations. A rep spends 4–8 hours on one package, watches dozens of bids a month, and skips most of them. Each skipped spec is a whole project's material order, often $20K–$500K, quietly handed to the competitor whose name is in the spec.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Rep uploads (or forwards by email) the project spec section PDF and enters the bid date and substitution deadline; the system starts a deadline countdown with reminders.</li>
+      <li>A parser built for CSI MasterFormat/SectionFormat extracts Part 1 submittal rules, Part 2 named products and every measurable requirement into a structured checklist (property, test method, threshold, unit).</li>
+      <li>The rep's product library (data sheets, ICC-ES/UL reports, ASTM test results, warranties, EPDs), indexed once at onboarding, is matched against each requirement, with the exact source page cited for every value.</li>
+      <li>A comparison matrix shows each line as Meets / Exceeds / Deviates / No evidence, side by side with the basis-of-design product's published values, and lists gaps the rep must fix or explain.</li>
+      <li>One click builds the submission: a filled-in CSI 13.1A (or the architect's form), the comparison matrix, highlighted supporting documents, and a cover letter, merged into one bookmarked PDF.</li>
+      <li>Outcomes (accepted, rejected, reason) are logged per architect firm, so the next package for that firm starts with its known preferences and common reasons for rejection.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Spec PDF parsing (CSI MasterFormat / SectionFormat)</span>
+      <span class="badge">Manufacturer data sheets, ICC-ES, UL &amp; ASTM reports</span>
+      <span class="badge">Competitor basis-of-design data sheets (public)</span>
+      <span class="badge">CSI Form 13.1A template</span>
+      <span class="badge">Plan-room feeds (ConstructConnect, Dodge, BuildingConnected) — later</span>
+      <span class="badge">EPD / HPD databases (EC3, HPDC) for sustainability specs</span>
+      <span class="badge">PDF assembly &amp; highlighting</span>
+      <span class="badge">CRM sync (HubSpot, Salesforce)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$199/month per rep seat with 15 packages included and $25 per extra package. A manufacturer tier at $1,500–$3,000/month gives a shared product library, rep-network access, and win/loss reports by region and architect. One accepted substitution on a mid-size project pays for a year.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One product category at launch (single-ply roofing or Division 08 door hardware, where specs are dense with ASTM values), one fixed output (CSI 13.1A plus matrix plus merged PDF), and manual spec upload only; no plan-room scraping yet. Product libraries are onboarded by hand for the first 10 customers to tune the matcher. Sell through rep-agency associations (MANA), CSI chapter meetings, and LinkedIn outreach to regional sales managers at challenger brands.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Construction-tech money flows to general contractors and owners. The sell side of the spec, the challenger manufacturer trying to get unspecified, is ignored even though it has the clearest return: every accepted package is a direct, traceable sale. Spec sections are also far more structured than they look (a fixed three-part format, numbered articles, standard test methods), so the core job is careful extraction and evidence matching with citations, not open-ended chat, and architects can check it line by line. Over time the accept/reject log per architect firm becomes data nobody else has: which firms really accept equals, on which properties, and how they like to see them presented.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
