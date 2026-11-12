@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VialTally Idea Brief</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-12</div>
+    <h1>VialTally</h1>
+    <p class="pitch">Automatically reconciles a vet clinic's controlled-drug logbook against its practice-management records and flags every missing milliliter before a DEA inspector or a diverting employee finds it first.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent small-animal and mixed-practice veterinary clinics in the US (1–6 DVMs, roughly 60% of the ~30,000 US practices) that hold a DEA registration and stock Schedule II–V drugs such as ketamine, hydromorphone, butorphanol, buprenorphine, methadone, and euthanasia solution. The buyer is the practice owner or practice manager; the daily user is the head technician who keeps the log.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every controlled-substance withdrawal must be recorded with patient, drug, volume, and who drew it, and the running balance per bottle must match what's physically in the safe. In practice, clinics keep a paper binder or spreadsheet that drifts from the practice-management system (PIMS) invoices: a tech draws 0.3 mL for a sedation but the invoice says 0.25, a euthanasia gets invoiced but never logged, waste goes unwitnessed. Reconciling by hand takes hours a month, so it's done rarely — and discrepancies surface only at the DEA biennial inventory, a state board inspection, or after an employee has been quietly diverting opioids for months. DEA civil penalties run into five figures per recordkeeping violation, a lost registration can effectively close a practice, and veterinary drug diversion is a well-documented and growing problem. Automated dispensing cabinets solve this but cost $15K–$40K up front plus service contracts — out of reach for most independents.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Clinic connects its cloud PIMS (read-only) and photographs or uploads its existing logbook pages; vision AI transcribes handwritten entries into structured rows (date, drug, bottle, volume, patient, initials) with confidence scores for human review.</li>
+      <li>Going forward, techs log draws on a tablet/phone form in 10 seconds — scan the bottle's QR label, pick the patient from today's PIMS appointments, enter volume, second user signs for waste.</li>
+      <li>Nightly, a reconciliation engine matches every log entry to a PIMS invoice line (and vice versa) using patient, time window, drug, and dose-per-kg plausibility, then rolls up a per-bottle running balance.</li>
+      <li>Exceptions land in a morning queue: unmatched draws, invoiced-but-unlogged drugs, doses far above the clinic's own norm for that weight/procedure, waste without a witness, and bottles whose balance is trending short.</li>
+      <li>A per-staff pattern view surfaces diversion signals that no single entry reveals (e.g., one person's draws consistently 15% over invoiced dose, or waste concentrated on their shifts) — shown only to the owner role.</li>
+      <li>One click produces a DEA-ready biennial inventory and a printable, signed audit packet with the full chain of custody for any bottle.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Cloud PIMS APIs (ezyVet, Shepherd, Covetrus Pulse, Digitail)</span>
+      <span class="badge">On-prem PIMS via nightly export (Cornerstone, AVImark CSV)</span>
+      <span class="badge">Vision/handwriting model for logbook OCR</span>
+      <span class="badge">Distributor invoices (MWI/Covetrus, Patterson, Zoetis) for receipts</span>
+      <span class="badge">DEA 21 CFR 1304 recordkeeping rules + state board variations</span>
+      <span class="badge">Printable QR bottle labels</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat per-location subscription: <strong>$149/month</strong> for one DEA registration (up to 8 staff users), <strong>$249/month</strong> with diversion analytics and multi-DVM roles, plus a <strong>$499 one-time "back-log cleanup"</strong> that digitizes and reconciles up to two years of historical binder pages before an upcoming inspection. Positioned against a $20K+ dispensing cabinet or a single DEA fine, it's an easy owner-level decision.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <ul>
+      <li>One PIMS integration (ezyVet or Shepherd, both API-friendly) plus generic CSV import.</li>
+      <li>Mobile-web draw/waste logging with QR bottle labels and two-person waste sign-off.</li>
+      <li>Nightly log-vs-invoice matching with an exceptions queue and per-bottle balances.</li>
+      <li>Handwritten logbook import with human-in-the-loop correction.</li>
+      <li>Biennial inventory and audit-packet PDF export.</li>
+      <li>Out of scope for v1: hardware, e-prescribing, state PDMP reporting, multi-location rollups.</li>
+    </ul>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Everyone building in vet tech is chasing scribes, client communication, and scheduling; controlled-substance compliance looks like a boring hardware problem owned by cabinet vendors. But the evidence needed is already sitting in two places clinics have — the PIMS invoice and the logbook — and nobody cross-checks them. The AI's real job isn't chat: it's reading messy handwriting and judging dose plausibility per patient weight, which turns a monthly chore into a nightly automatic audit. The buyer's motivation is also unusually sharp and personal: the DVM's own DEA registration and license are on the line, and the product doubles as a quiet early warning for diversion — something owners badly want but can't ask staff about directly. Each inspection season, board-discipline headline, or opioid theft at a nearby clinic is a free marketing event, and the per-registration pricing extends cleanly to dental, med-spa, and urgent-care practices later.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
