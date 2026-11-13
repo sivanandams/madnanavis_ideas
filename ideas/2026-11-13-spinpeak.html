@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-13 — SpinPeak</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-13</div>
+    <h1>SpinPeak</h1>
+    <p class="pitch">Reads a laundromat's utility bills and 15-minute smart-meter data, finds the demand-charge spikes and wrong rate tariffs quietly inflating its power bill, and pushes a machine-staggering schedule that shaves the peak.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent laundromat owners and small multi-store operators (1–15 locations) in the US, typically running 30–80 commercial washers and dryers on a commercial electric tariff with demand charges. Secondary: car-wash and coin-op operators with the same load profile.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Utilities are often a laundromat's second-largest cost after rent, and on most commercial tariffs a big chunk of the electric bill isn't energy used — it's a <em>demand charge</em> based on the single highest 15-minute window of the month. One Saturday morning when 20 dryers and the water-heater recovery all fire at once can set that month's charge, sometimes adding $300–$1,500 a month per store. Owners also frequently sit on the wrong rate schedule after an equipment refresh or meter change, and nobody at the utility calls to tell them. Reading interval data and tariff books is specialist work energy consultants charge thousands for — and they don't bother with single-store businesses.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner connects their utility account via Green Button Connect (or uploads 12 months of PDF bills plus an interval-data CSV export).</li>
+      <li>Document AI parses each bill into line items: energy kWh by period, demand kW, demand charge, riders, and the current rate schedule code.</li>
+      <li>The engine overlays interval data and pinpoints the exact 15-minute windows that set each month's demand charge, showing a "your $612 peak happened Saturday 10:15–10:30" timeline.</li>
+      <li>A tariff comparator re-prices the last 12 months against every eligible schedule from that utility's published tariff book and flags cheaper options, with a pre-filled rate-change request letter.</li>
+      <li>If the store's payment system (card/app laundry platforms) exposes cycle start data, SpinPeak correlates machine starts with peaks and recommends concrete fixes: lock out X dryers during peak windows, shift water-heater recovery, adjust pricing for off-peak "happy hours."</li>
+      <li>A monthly report shows dollars saved vs. baseline, which justifies the subscription in plain numbers.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Green Button Connect / UtilityAPI-style bill &amp; interval data</span>
+      <span class="badge">Utility tariff books (OpenEI Utility Rate Database + manual curation)</span>
+      <span class="badge">Document AI for PDF bill parsing</span>
+      <span class="badge">Laundry payment/card system cycle logs (where APIs exist)</span>
+      <span class="badge">Optional smart-plug / relay controller for water heaters</span>
+      <span class="badge">Email/SMS alerts for live peak warnings</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Free one-time "bill X-ray" (upload bills, see estimated overcharge) as the lead magnet. Then $79/mo per store for ongoing peak monitoring and schedules, or a shared-savings option: 25% of verified savings for the first 12 months for owners who prefer no upfront cost. One-off tariff-switch letters can be sold at $149 for owners who won't subscribe.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Limit v1 to the 5–8 largest investor-owned utilities in two or three states with strong Green Button support and published demand tariffs (e.g., California and Texas-adjacent markets). Ship bill parsing, peak-window identification, and the tariff re-pricing report only; skip equipment control and payment-system integrations until v2. Distribution via the Coin Laundry Association community, laundromat owner Facebook groups and YouTube channels, and distributor partnerships (equipment dealers love a tool that proves new efficient machines pay for themselves).</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Energy-management software targets enterprises and the residential market targets homeowners; a single laundromat falls into the gap — too small for a consultant, too complex for a home app — even though its load profile (dozens of identical high-draw machines started by customers in bursts) is nearly ideal for peak shaving. The AI isn't a chatbot; it's doing the tedious tariff-book and interval-data reconciliation nobody does by hand. And the laundromat market is in an investor-buying wave of "passive income" owners who watch spreadsheets closely, read the same few forums, and pay readily for anything that shows a dollar figure saved — making it a tight, word-of-mouth niche a solo founder can own before expanding to car washes, ice-rinks, and other bursty-load small businesses.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
