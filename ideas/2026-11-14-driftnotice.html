@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-14 — DriftNotice</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-14</div>
+    <h1>DriftNotice</h1>
+    <p class="pitch">Turns a lawn-care crew's completed-job data into state-compliant pesticide application records, automatic neighbor notifications from state registries, and the annual state pesticide report — without anyone touching a clipboard.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Owner-operated lawn care, tree &amp; shrub, and mosquito/tick control companies with 2–25 licensed applicators doing roughly $300K–$5M in revenue, operating in states with strict application recordkeeping, pesticide-sensitive or neighbor notification registries, and annual reporting (e.g., New York, Maryland, Pennsylvania, Connecticut, New Jersey, Massachusetts, Illinois).</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every application must be logged with product, EPA registration number, rate, target pest, wind speed/direction, temperature, applicator license number, and exact location — and the required fields differ by state. Several states also require advance notice (often 24 hours or more) to neighbors listed on a pesticide-sensitive or notification registry when treating an adjacent property, plus posting of lawn flags at the time of application. New York requires commercial applicators to file an annual report of every application. In practice, technicians scribble paper logs in the truck, the office re-keys them in winter, registry checks get skipped, and a single neighbor complaint triggers an inspection where missing records mean fines per violation and potential license action. The owner knows this is a ticking risk but has no time to manage it during a 40-route-per-day spring season.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner connects their field-service software (Jobber, Service Autopilot, Real Green) or uploads the next day's route as a CSV; DriftNotice geocodes every stop.</li>
+      <li>Overnight, the system cross-references each stop's parcel against the relevant state notification/sensitive-person registry and flags adjacent addresses that require advance notice; it auto-sends the required letter, email, or SMS notice and logs proof of delivery — or blocks the stop and tells the dispatcher to reschedule if the notice window can't be met.</li>
+      <li>At the job, the technician taps "complete" in a lightweight mobile web view; product and rate prefill from the job's program template, weather is pulled automatically from the nearest station for that timestamp and GPS point, and a photo of the posted flag is captured.</li>
+      <li>The rules engine validates the record against that state's required fields and label constraints (e.g., wind above label max, rain forecast inside label window, product not registered in that state) and flags anomalies before the truck leaves.</li>
+      <li>All records roll into an inspection-ready, searchable ledger exportable per customer, per applicator, or per date range in the state's format.</li>
+      <li>At year end, the annual state report (e.g., New York's pesticide reporting submission) is generated in the required file format for one-click filing.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Field-service APIs (Jobber, Service Autopilot, Real Green) or CSV</span>
+      <span class="badge">State pesticide notification / sensitive-person registries</span>
+      <span class="badge">County parcel / GIS adjacency data</span>
+      <span class="badge">EPA PPLS &amp; state product registration lists</span>
+      <span class="badge">Historical weather API (wind, temp, precip)</span>
+      <span class="badge">Label parsing (LLM extraction of rate &amp; weather limits from product label PDFs)</span>
+      <span class="badge">Mail/SMS/email delivery with proof (Lob, Twilio)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$15 per licensed applicator per month (season-billed, Mar–Nov) with a $99/mo company minimum, plus pass-through cost for certified mailed notices. A $399 "annual report filing" add-on for companies that only want the year-end report rebuilt from their existing job history — a low-friction entry point sold in December–January, exactly when the deadline bites.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One state only — New York, which combines annual reporting, neighbor notification rules, and a dense market of lawn and tick-control operators around NYC, Long Island, and Westchester. Jobber integration plus CSV import; mobile web (no native app); registry matching and notice generation; record validation against the top 150 lawn/ornamental products by volume; annual report export. Skip agricultural and structural pest control. Go to market through state turfgrass and green-industry associations, pesticide recertification-credit courses, and Jobber's app marketplace.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Field-service tools treat pesticide compliance as a notes field, while agricultural compliance software is built for farms and ignores residential neighbor registries entirely — so the gap sits in the seam between two categories nobody sees as connected. The defensible asset isn't the app; it's the normalized, per-state rules corpus (required fields, notice windows, registry formats, report schemas) combined with parcel-adjacency matching, which is tedious enough that incumbents won't build it but valuable enough that one avoided inspection fine pays for years of subscription. AI does the unglamorous work — parsing product labels into machine-checkable limits and reconciling messy route data — instead of chatting, and each new state added is a near-copy expansion with its own captive market.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
