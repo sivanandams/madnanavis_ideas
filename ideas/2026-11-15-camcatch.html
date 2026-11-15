@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-15 — CAMCatch</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-15</div>
+    <h1>CAMCatch</h1>
+    <p class="pitch">AI reads a commercial tenant's lease and the landlord's annual CAM reconciliation side by side, flags the charges the lease doesn't allow, and sends the audit request before the lease's objection window closes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Multi-unit franchisees and small retail/restaurant chains (roughly 5–60 leased locations in strip centers and neighborhood shopping centers) — think a 14-unit quick-service franchisee, a regional urgent-care group, or a fitness franchise operator. They pay $20K–$150K per location per year in triple-net (NNN) pass-through charges, have no in-house lease administrator, and the CFO or controller handles leases between payroll and P&amp;L close.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every year each landlord sends a Common Area Maintenance (CAM), tax and insurance reconciliation demanding a true-up — often a five-figure surprise. Lease auditors routinely report that a large share of these statements contain errors in the landlord's favor: capital improvements passed through as maintenance, admin/management fees above the lease cap, wrong pro-rata share (gross leasable area changes, anchor tenants excluded from the denominator), missing "controllable CAM" caps, improper gross-up, or costs the lease expressly excludes. But the tenant's right to dispute is usually buried in the lease with a short window — commonly 60 to 180 days from receipt — after which the statement becomes binding. Big chains have lease-admin teams and contingency auditors; a 14-unit franchisee has 14 different leases, 14 different landlords, statements arriving on 14 different dates, and nobody who has time to compare clause 7.3(b) to line 42 of a landlord spreadsheet. Contingency audit firms typically won't take accounts this small, so the overcharges just get paid.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Onboarding: tenant uploads each lease (plus amendments) as PDFs. Document AI extracts a structured "CAM rulebook" per location — pro-rata share definition, building GLA, admin-fee cap, controllable-CAM cap and base year, exclusion list, gross-up rules, audit-right window and notice address — and asks the user to confirm low-confidence fields.</li>
+      <li>When a reconciliation statement arrives, the user forwards the email to a per-location inbox address (or uploads it). The system logs the receipt date and immediately starts the audit-window countdown, with reminders at 30/14/3 days remaining.</li>
+      <li>The statement and its line items are parsed and mapped to the lease's cost categories; a deterministic rules engine (not a chatbot) runs checks: share-of-GLA math, cap arithmetic year-over-year, fee-on-fee (admin fee charged on taxes/insurance when the lease excludes them), excluded categories, and abnormal year-over-year jumps per line.</li>
+      <li>Each flag shows the exact lease clause, the statement line, the estimated dollar overcharge, and a confidence level — so the controller can see "$6,840 likely recoverable at Location 9, admin fee charged at 15% vs. 10% cap (Lease §6.4)".</li>
+      <li>One click generates a formal objection and request-for-backup-documentation letter, addressed per the lease's notice clause, preserving audit rights before the deadline; letters and landlord replies are tracked per location.</li>
+      <li>A portfolio dashboard rolls up exposure across all locations and forecasts next year's NNN charges for budgeting — useful even in years with no errors.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Lease &amp; amendment PDF extraction (LLM + layout parsing)</span>
+      <span class="badge">Reconciliation statement parser (PDF / Excel)</span>
+      <span class="badge">Deterministic CAM rules engine</span>
+      <span class="badge">Per-location inbound email addresses</span>
+      <span class="badge">County property-tax records (assessed values, for tax pass-through checks)</span>
+      <span class="badge">QuickBooks / Xero (to match NNN payments to statements)</span>
+      <span class="badge">Deadline engine with email/SMS alerts</span>
+      <span class="badge">Letter generation &amp; certified-mail API (e.g. Lob)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$39 per location per month (annual billing) for lease abstraction, deadline tracking, automatic statement checks and objection letters — a 14-location operator pays about $6.5K/year, versus typical overcharge findings that can exceed that at a single location. Optional success-fee tier for customers who prefer no subscription: 20% of recovered amounts (well below the 30–50% contingency auditors charge). A referral partnership with lease-audit CPAs handles disputes that escalate to a full books-and-records audit, earning a revenue share.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>US retail/strip-center NNN leases only (skip office, industrial and ground leases, which use different expense structures). Focus on the five highest-yield checks: pro-rata share math, admin/management fee cap, controllable-CAM cap, excluded-cost categories, and year-over-year anomalies. Manual upload plus email forwarding; no landlord portal integrations. Human-in-the-loop review of every lease abstraction for the first 50 customers to build a labeled clause dataset. Sell through franchisee associations (independent franchisee owner groups for major QSR and fitness brands), restaurant CPA firms and franchise-focused CFO consultants, with a free "upload one lease + last statement, see what we find" teaser as the acquisition hook.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Lease-administration software exists, but it's sold to enterprises with real-estate departments, and CAM auditing exists, but it's a contingency-fee service business that only pursues large accounts — the multi-unit franchisee sits in the gap between the two, and it's a huge, under-served segment that buys through tight-knit owner associations where one win spreads fast. The value isn't "chat with your lease"; it's turning each lease into executable rules once, then running them automatically every year against every statement, with the statutory-feeling deadline (the lease's own audit window) as the purchase trigger. And the product gets sharper over time in a way competitors can't easily copy: because the same national landlords and property managers send statements to many tenants, CAMCatch accumulates a cross-tenant map of which landlords habitually over-allocate which cost categories — intelligence no single tenant could ever build.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
