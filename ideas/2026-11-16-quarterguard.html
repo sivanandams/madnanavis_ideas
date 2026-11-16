@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-16 — QuarterGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-16</div>
+    <h1>QuarterGuard</h1>
+    <p class="pitch">Turns H-2A growers' handwritten crew tally sheets into a running wage-floor and "three-fourths guarantee" forecast, so a farm learns in week 6, not at the DOL audit, that it is on track to owe its workers back pay.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size U.S. farms (roughly 5–80 H-2A guest workers per season) growing labor-heavy crops: berries, apples, citrus, vegetables, nursery, tobacco. Also H-2A labor contractors (H-2ALCs) and the filing agents and farm bureaus that help growers through the program. Most of these operations run payroll on generic software or an outside bookkeeper, and track field hours on paper.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>H-2A pay rules go well beyond "pay minimum wage." For every pay period the grower must pay the highest of several floors: the Adverse Effect Wage Rate (AEWR), the prevailing wage, any agreed rate and the federal or state minimum. Piece-rate earnings must be topped up whenever they fall below the hourly floor. Workers' inbound travel and subsistence must be reimbursed once they finish 50% of the contract. The trap that does the most damage is the <strong>three-fourths guarantee</strong>: the employer must offer each worker hours equal to at least 75% of the workdays in the contract period. It is settled only at the end of the contract, so a rainy June, a poor fruit set or an early season end can quietly build up a five-figure shortfall that nobody sees until the last paycheck, or until a Wage and Hour Division investigation. Findings bring back wages, civil money penalties and possible debarment from the program, which can end a farm's business. On top of that, AEWR figures and how they are calculated have changed repeatedly in recent years, sometimes mid-season. Meanwhile, the real hours data sits on crew leaders' handwritten tally sheets, often in Spanish, in the cab of a pickup truck.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The grower uploads the certified job order (ETA-790/790A). Document AI pulls out the contract start and end dates, guaranteed hours per week, hourly and piece rates, crop activities and the housing and travel terms, and builds a contract profile for each crew.</li>
+      <li>Every day, crew leaders snap a photo of the paper tally sheet in a no-login mobile web app (or the farm uploads a CSV from its time clock). Handwriting OCR, tuned for names, bin and bucket counts and hours, turns each sheet into per-worker rows. Anything it is unsure of is flagged for a quick human check, not guessed.</li>
+      <li>Each pay period, the rules engine works out every worker's required pay against all applicable floors and the piece-rate top-up, and compares it with what payroll actually paid. Any gap shows up as a specific line item with a dollar amount.</li>
+      <li>A season forecaster projects each worker's three-fourths guarantee position to the end of the contract, using hours so far, remaining workdays and the grower's harvest plan. It shows plainly: "On the current pace you'll be 312 hours short across Crew B, about $5,600 owed. Offering 4 more hours/week for the next 5 weeks cures it."</li>
+      <li>Milestone alerts cover the 50% travel-reimbursement trigger, outbound travel owed at contract end, and AEWR updates published for the farm's state and job category.</li>
+      <li>The system produces earnings-statement data in English and Spanish (optionally sent to workers over WhatsApp) and keeps a running audit binder of tally photos, calculations and pay comparisons, exportable as one PDF when WHD asks.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">DOL OFLC AEWR &amp; prevailing-wage tables</span>
+      <span class="badge">20 CFR 655 Subpart B rules encoded as a versioned rules engine</span>
+      <span class="badge">State minimum-wage &amp; ag-overtime tables</span>
+      <span class="badge">ETA-790/790A job order parsing</span>
+      <span class="badge">Handwriting OCR for tally sheets (EN/ES)</span>
+      <span class="badge">Payroll CSV import/export (QuickBooks, ADP, ag payroll tools)</span>
+      <span class="badge">Time-clock CSV import</span>
+      <span class="badge">WhatsApp/SMS for worker statements</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Seasonal, priced per worker: $15 per H-2A worker per contract month, with a $149/month minimum, billed only while a contract is active (no charge in the off-season, which matches how growers think about costs). A 40-worker farm on a 6-month contract pays about $3,600 a season, a small fraction of a single back-wage finding. An agent/contractor tier at $499/month covers multiple client farms with a portfolio risk view. A one-time $750 "pre-audit review" runs a finished season's data through the engine for farms that have just received a WHD letter.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Hourly and piece-rate fieldworkers in a single state with one employer per contract (skip joint-employer and multi-state itinerant contracts in v1). Ship four things: job-order parsing, tally-photo OCR with a review queue, the per-period wage-floor check, and the three-fourths guarantee forecaster. Payroll stays where it is; QuarterGuard only imports what was paid and exports corrections. No direct payroll integrations or housing-inspection module yet. Launch in one dense H-2A region (e.g., Georgia/Florida or Washington tree fruit) through H-2A filing agents, state grower associations and extension-office workshops. A filing agent who recommends the tool to 30 client farms is the main growth channel.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>H-2A compliance looks like a paperwork problem, but the three-fourths guarantee makes it a <em>forecasting and scheduling</em> problem. The liability builds up invisibly and is settled only at the end of the contract, so the most valuable output isn't a compliance report. It's a mid-season decision ("add hours to Crew B now, or plan to cut the check"). Generic payroll software calculates one pay period at a time and has no idea a season-long guarantee exists. The real moat is unglamorous: reliably reading messy, bilingual, handwritten field tallies, which is where the actual hours data lives and where horizontal HR tools never go. The market is also growing on its own, because certified H-2A positions have climbed steadily for over a decade as domestic farm labor shrinks. And debarment risk makes the buyer's motivation existential, not optional.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine. Not legal advice; rule details should be validated against current DOL regulations before building.</footer>
+</div>
+</body>
+</html>
