@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-17 — SidewallScan</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-17</div>
+    <h1>SidewallScan</h1>
+    <p class="pitch">A phone photo of a used tire's sidewall becomes an instant age check, open-recall check, and signed customer disclosure — so independent used-tire shops stop selling dangerous or recalled tires and stop eating the liability when they do.</p>
+  </header>
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent used-tire shops and small tire &amp; wheel dealers in the US (typically 1–3 locations, 2–10 staff, high-volume cash business selling $30–$80 used tires), plus the regional used-tire wholesalers and casing sorters who supply them by the trailer-load.</p>
+  </div>
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Tires age-degrade even with plenty of tread, and many manufacturers and safety groups advise against using tires roughly 6–10 years past their build date — but the build date is buried in a tiny 4-digit code at the end of the DOT Tire Identification Number, often on the inner sidewall. Recalls are tied to specific TIN ranges and are almost never checked on used inventory. Used-tire shops sort hundreds of casings a week by eye, so aged and recalled tires routinely get mounted on customers' cars. When one fails, the shop faces injury lawsuits, insurance non-renewals, and a growing wave of state legislative and media attention to used-tire sales. Shops have no fast, defensible way to prove "we checked this tire and told the customer."</p>
+  </div>
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>At intake or sorting, a tech snaps a photo of the sidewall with the shop's phone or a cheap mounted tablet.</li>
+      <li>Vision OCR (tuned for embossed rubber, glare, and dirt) reads the DOT TIN, size, brand/line, and load/speed rating; low-confidence characters get a one-tap correction prompt.</li>
+      <li>The engine decodes the plant code and build week/year, computes age, and checks the TIN against NHTSA tire recall campaigns.</li>
+      <li>Each tire gets a traffic-light verdict — <strong>Sell</strong>, <strong>Sell with disclosure</strong> (older than shop's chosen threshold), or <strong>Do not sell</strong> (open recall / over hard age limit) — plus a printable inventory sticker with a QR code.</li>
+      <li>At sale, scanning the sticker pulls the tire history and produces a one-page disclosure (age, recall status, condition notes, photos) that the customer signs on screen; it's stored and emailed/texted to the customer.</li>
+      <li>A nightly job re-checks all in-stock and sold TINs against new recalls and alerts the shop (and optionally the customer) if a previously sold tire becomes recalled.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">NHTSA recalls API &amp; tire recall data</span>
+      <span class="badge">DOT plant-code registry</span>
+      <span class="badge">Vision OCR model fine-tuned on sidewall photos</span>
+      <span class="badge">Tire size/spec catalog</span>
+      <span class="badge">E-signature &amp; SMS (e.g., Twilio)</span>
+      <span class="badge">Label printers (Zebra/Rollo)</span>
+      <span class="badge">Shop POS later: Shopmonkey, Tekmetric, Square</span>
+    </p>
+  </div>
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$59/month per location with unlimited scans and stored disclosures; $149/month "Wholesale" tier for casing sorters with bulk-scan mode, lot reports, and buyer-facing certified-lot PDFs. Upsell: partner with shop insurers offering a premium discount for documented scan-and-disclose compliance — the insurer becomes the distribution channel.</p>
+  </div>
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Mobile web app (no native app store dependency), sidewall OCR + manual-correction flow, age decode, NHTSA recall lookup, three-state verdict with configurable age thresholds, QR sticker printing, signed customer disclosure PDF, and the nightly recall re-check. Passenger and light-truck tires only (skip commercial truck and retreads for v1). No POS integration — a simple CSV export covers bookkeeping. Go to market by walking into 30 local used-tire shops, tire-industry Facebook groups, and used-tire wholesalers who can push it to their buyers.</p>
+  </div>
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Tire software is built for new-tire dealers selling registered, traceable inventory; the used-tire segment is cash-heavy, low-tech, and assumed to be "not a software buyer" — so no one has built for it. But the liability exposure is concentrated exactly there, and the hard technical piece (reading worn, embossed black-on-black text from a phone photo) is a genuine AI vision problem rather than a chatbot. The real product isn't the scan, it's the signed, timestamped evidence trail plus perpetual recall monitoring on tires already sold — something a shop can show an insurer, a lawyer, or a regulator — which turns a $40 transaction into a defensible, documented sale.</p>
+  </div>
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
