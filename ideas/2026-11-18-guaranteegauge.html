@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-18 — GuaranteeGauge</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-18</div>
+    <h1>GuaranteeGauge</h1>
+    <p class="pitch">Reads a farm's H-2A job order, watches payroll and timesheets all season, and warns weeks ahead when the farm is drifting toward a three-fourths-guarantee shortfall, a piece-rate wage gap, or a missed travel reimbursement. That's the moment the problem can still be fixed cheaply, long before a Wage &amp; Hour audit.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size U.S. growers who bring in 10–250 H-2A seasonal guest workers a year: berry, tree-fruit, vegetable, nursery and tobacco operations, plus farm labor contractors. Typically the person doing the work is the owner, the owner's spouse, or a one-person office manager. They file through an H-2A agent but run payroll themselves.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The H-2A program comes with obligations most growers only half understand until an investigator explains them. The <strong>three-fourths guarantee</strong> says the employer must offer each worker at least 75% of the hours promised across the whole contract period. A wet spring or an early frost can quietly push a crew below it, and the gap becomes owed back wages at the end. Piece-rate pay has to be topped up to the Adverse Effect Wage Rate (AEWR) in every pay period. The AEWR changes every year and its methodology has changed recently. Inbound travel and subsistence must be reimbursed once a worker finishes 50% of the contract. Earnings statements need specific fields. None of this is tracked live. Spreadsheets, payroll software built for W-2 farmhands, and an agent who only shows up at certification time all miss it. The bill comes later as back-wage findings, civil money penalties and, at worst, debarment from the program the farm needs to survive.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The grower uploads the certified job order (ETA-790/790A) and the clearance order PDF. Document AI pulls out the contract start and end dates, promised hours per week, wage offers, piece rates, housing and meal terms, and the reimbursement promises.</li>
+      <li>The system builds an obligation ledger for each worker: guaranteed hours to date, the applicable AEWR for the state and occupation, and the 50% date that triggers travel reimbursement.</li>
+      <li>Each pay period the grower drops in a payroll export or timekeeping CSV, or syncs it directly. The engine reconciles hours offered against hours worked, flags any piece-rate week below the hourly floor, and calculates the exact top-up owed.</li>
+      <li>A season forecast projects the guarantee balance to the contract end date. Example: "At the current pace, crew B finishes 412 hours short, about $7,300 owed. Adding 6 hours/week from Oct 3 closes the gap." It sends alerts by email and SMS when that projection crosses a threshold.</li>
+      <li>Automatic reminders fire for the 50% reimbursement date, outbound travel at contract end, and AEWR updates. Each reminder includes the amount owed per worker.</li>
+      <li>At season end it produces an audit binder: reconciled hours, top-up calculations, compliant earnings statement templates (English/Spanish), and a dated log of every offered-hours record. That binder is what the grower hands a WHD investigator.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">DOL job orders (SeasonalJobs.dol.gov / FLAG)</span>
+      <span class="badge">AEWR tables by state &amp; occupation</span>
+      <span class="badge">20 CFR 655 Subpart B rule set</span>
+      <span class="badge">Ag payroll CSV exports</span>
+      <span class="badge">Crew timekeeping apps / bin-count tickets</span>
+      <span class="badge">Document AI for job-order parsing</span>
+      <span class="badge">SMS/email alerts (EN/ES)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Charged per worker per season: $15/worker per contract period, with a $199 minimum per season. A 40-worker farm pays about $600 a year, a rounding error next to a single back-wage finding. A $49/month "agent" tier lets H-2A filing agents and farm labor contractors manage many clients from one dashboard. That tier is the main distribution channel, because agents already own the grower relationship and want to look proactive.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Hourly and piece-rate field crews in one state with a dense H-2A base (for example Washington, Georgia, Florida or North Carolina), and one contract per worker. Skip mid-season contract extensions, job-order amendments, H-2A sheepherder/range rules, and housing inspection tracking for v1. Ingest by CSV upload with mapping templates for the 2–3 most common ag payroll systems. The core product is the guarantee forecast plus the piece-rate top-up check. The audit binder can be a simple PDF export. Reach growers through H-2A agents, state grower associations, and extension-office compliance workshops held before the season.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Most people see H-2A software as a filing problem (visa paperwork, recruitment), and agents and law firms already own that. The expensive failures happen afterward, during the season, in the gap between the hours a farm promised in February and the hours the weather allowed in August. That is a forecasting problem, not a forms problem, and it's the part nobody owns. The three-fourths guarantee is fixable while there's still time to offer extra hours or reassign crews, but by audit time it's just a liability. AI is useful here because it can read idiosyncratic job orders and messy payroll exports into one structured ledger, with no chat window involved. The agent channel gives a solo founder dozens of farms per sale instead of chasing growers one at a time.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
