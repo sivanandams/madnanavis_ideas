@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-19 — TrapTrail</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-19</div>
+    <h1>TrapTrail</h1>
+    <p class="pitch">Grease-trap pumping companies snap a photo of the paper manifest at the curb; TrapTrail files it in every city's FOG-program format, predicts each restaurant's next required pump-out from its measured fill rate, and books the job before the 25% rule is breached.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size grease-trap and interceptor pumping companies (roughly 2–25 trucks) that service restaurants, cafeterias, and food-processing sites across multiple municipalities. Secondary buyer: multi-unit restaurant franchisees and facilities managers who carry the fine risk when a pump-out is missed or a manifest never reaches the city.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Hundreds of US sewer districts run Fats, Oils &amp; Grease (FOG) pretreatment programs under their EPA-mandated pretreatment obligations, and each sets its own rules: pump-out when FOG plus solids reach 25% of trap depth, minimum frequencies (often every 30–90 days), and a manifest submitted within a set number of days — via a vendor portal in one city, an emailed PDF in the next, a paper form in a third. A hauler running routes through 15 jurisdictions spends evenings re-keying handwritten driver manifests into different systems, and every missed or late filing becomes a notice of violation for their restaurant customer, who then blames — and often fires — the hauler. Meanwhile scheduling is fixed-interval guesswork: some traps get pumped too often (customer overpays and churns to a cheaper hauler) while others overflow between visits (sewer blockage, fines of hundreds to thousands of dollars per day, angry calls). The data needed to fix this — measured FOG depth at every visit — is already being written on paper and thrown away.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Hauler imports their customer list (CSV or from QuickBooks/ServiceTitan/Jobber); TrapTrail geocodes each site and assigns it to its sewer jurisdiction automatically.</li>
+      <li>At each stop the driver photographs the manifest (or fills a 4-field mobile form): trap size, measured FOG/solids depth, gallons removed, disposal facility.</li>
+      <li>Vision AI extracts and validates the fields (gallons vs. trap capacity, disposal site on the approved list, signature present) and flags anomalies before the truck leaves.</li>
+      <li>A jurisdiction rules engine renders the manifest in each city's required format and submits it — portal upload, email to the FOG inspector, or a printable form queued for mailing — then logs proof of submission against the filing deadline.</li>
+      <li>Using each site's history of depth readings, a simple fill-rate model forecasts when the trap will hit the local threshold, proposes the next service date, and auto-texts the restaurant manager to confirm the booking.</li>
+      <li>Restaurants get a shareable compliance page (all manifests, next due date) to show an inspector — which doubles as the hauler's sticky retention tool.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Municipal FOG ordinances &amp; manifest form library</span>
+      <span class="badge">Sewer-district boundary GIS / geocoding</span>
+      <span class="badge">Vision/document AI for handwritten manifests</span>
+      <span class="badge">Municipal FOG portals (where uploads are possible) + email/PDF fallback</span>
+      <span class="badge">QuickBooks / Jobber / ServiceTitan customer &amp; invoice sync</span>
+      <span class="badge">Twilio SMS for booking confirmations</span>
+      <span class="badge">Approved disposal / rendering facility lists</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-truck subscription at $89/truck/month including unlimited manifests and filings, with a $149/month base for small operators. A restaurant-side "compliance page" tier at $15/location/month is offered to multi-unit franchisees who want a single view across haulers — a second revenue line that also pulls new haulers onto the platform.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Start with one metro area covering 10–20 jurisdictions (for example, a large Texas or Southern California metro where FOG enforcement is active and cities are densely packed), hand-encoding each city's thresholds, frequencies, deadlines, and form layouts. Ship manifest capture, validation, and email/PDF filing first; direct portal uploads and the fill-rate forecast follow once a few months of depth readings have accumulated. Skip route optimization and billing — integrate with the hauler's existing tools instead. Go to market through state pumper associations, the Pumper &amp; Cleaner Expo (WWETT) community, and by cold-calling the haulers listed on each city's "approved FOG hauler" page, which many cities publish.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The existing FOG software sells to <em>cities</em> to track restaurants; nobody serves the hauler stuck in the middle, who must satisfy dozens of incompatible city systems at once. The jurisdiction rules library is boring, manual work — exactly why it's defensible once built, and each added city makes the product more valuable to every hauler crossing it. The bigger hidden asset is the depth reading on every manifest: aggregated, it becomes the only dataset of actual grease-accumulation rates by restaurant type and trap size, turning a compliance tool into a demand-forecasting engine that tells haulers which jobs are coming and lets them price "pump only when needed" contracts competitors can't match. AI does the unglamorous work — reading greasy handwritten forms and mapping fields to fifty formats — with no chatbot anywhere in sight.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
