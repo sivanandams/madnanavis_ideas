@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-20 — DriftLog</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-20</div>
+    <h1>DriftLog</h1>
+    <p class="pitch">Turns an ag-spray drone's raw flight logs into state-compliant pesticide application records and a timestamped, weather-backed drift-defense file — automatically, after every job.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small commercial drone spray operators in the US — 1 to 10 drone crews running DJI Agras, XAG, or Hylio aircraft under an FAA Part 137 certificate — who apply fungicides, herbicides, and insecticides for row-crop farmers, orchards, vineyards, and rights-of-way. Many are ex-farmers or ex-crop-dusters who started in the last 2–3 years as the category exploded, and they run the business from a pickup truck and a spreadsheet.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every custom application creates a paperwork obligation: state departments of agriculture require commercial applicator records (product, EPA reg. number, rate, acres, field location, wind speed/direction, temperature, applicator license number, time on/off), and restricted-use pesticides add federal recordkeeping on top. Operators fly 10–40 fields a day in peak season and reconstruct these records at night from memory, a phone weather app, and the drone's controller screen — often days later. The real fear is drift: when a neighbor's soybeans or a vineyard shows damage, the state opens an investigation and the operator must prove wind, temperature-inversion conditions, buffer distances, and label rate at the moment of application. A sloppy record loses the case by default, and a single drift claim can cost $20K–$200K plus a license suspension. Existing ag-records software is built for ground rigs and farm owners, not for drone operators whose best evidence is already sitting unused in the flight log.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator connects their drone fleet account (or drops exported flight-log/KML files into a folder synced from the controller) and sets up a product library by scanning pesticide labels.</li>
+      <li>After each job, DriftLog parses the flight log: field boundary flown, swath, altitude, speed, flow rate, tank loads, and start/stop timestamps — computing actual acres treated and actual gallons/acre.</li>
+      <li>It pulls hyper-local historical weather for the exact polygon and minutes of the flight (wind speed and direction at height, gusts, temperature, humidity, Delta-T, inversion risk) from a weather API and nearby mesonet stations.</li>
+      <li>A label-rule engine checks the job against the product label (max rate, wind limits, droplet/altitude requirements, buffer to water or sensitive crops) and against mapped sensitive sites (organic farms, apiaries, vineyards from state registries like FieldWatch/DriftWatch) — flagging anything out of bounds.</li>
+      <li>The system generates the state-formatted application record and a sealed PDF "drift-defense packet" (flight path map with spray-on segments, weather timeline, buffer map, label compliance check) with a hash so it's provably unaltered.</li>
+      <li>Records are filed by grower and season; the farmer customer gets an automatic copy for their own records, and state annual reports export in one click.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">DJI Agras / XAG / Hylio flight log exports</span>
+      <span class="badge">Historical hyperlocal weather API + mesonet data</span>
+      <span class="badge">EPA PPLS pesticide label database</span>
+      <span class="badge">Label-rule extraction (document AI)</span>
+      <span class="badge">FieldWatch / DriftWatch sensitive-site registry</span>
+      <span class="badge">State applicator record templates</span>
+      <span class="badge">Mapping (field polygons, buffers)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-drone subscription: $79/month per aircraft (seasonal billing allowed — operators can pause in winter), with a $49 per-incident "investigation export" for operators on a lightweight free tier. A $299/month multi-crew plan adds grower portals, multiple licensed applicators, and state annual-report exports. Upsell later: invoicing tied to verified acres, and a partnership channel with ag-aviation insurers who may discount premiums for operators with verified records.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support DJI Agras log exports only (the dominant fleet), and the 3–4 states with the densest drone-spray activity and clearest record templates (e.g., Iowa, Illinois, Arkansas, California). Ship log parsing, weather backfill, the state application record, and the drift-defense PDF; the label-rule engine starts as a manually curated set of the ~100 most-sprayed products rather than full label AI. No mobile app — a web dashboard plus a watched upload folder. Go to market through drone-spray Facebook groups, Agras dealers who sell the aircraft, state aerial applicator associations, and Part 137 training schools.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Ag software founders target farmers; drone software founders target mapping and flight planning. Nobody targets the compliance gap of the drone spray operator, even though it's one of the fastest-growing segments in agriculture and the aircraft already record more precise evidence than any ground rig or manned plane ever has. The product doesn't need generative chat at all — the AI is in label parsing and in fusing flight telemetry with minute-level weather — and its value is asymmetric: operators pay monthly for paperwork relief, but they stay forever because the first time a neighbor files a drift complaint, the sealed packet is the difference between a dismissed investigation and a lost license.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
