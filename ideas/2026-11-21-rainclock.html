@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RainClock — Stormwater Idea</title>
+<style>
+  :root {
+    --bg: #f5f8fb;
+    --card-bg: #ffffff;
+    --ink: #141a21;
+    --ink-soft: #4b5866;
+    --accent: #1d5f8c;
+    --accent-soft: #dbe9f4;
+    --border: #dbe3eb;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1319;
+      --card-bg: #151c24;
+      --ink: #e8eef4;
+      --ink-soft: #a6b4c2;
+      --accent: #5aa9de;
+      --accent-soft: #1a2d3e;
+      --border: #29333e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1319; --card-bg: #151c24; --ink: #e8eef4; --ink-soft: #a6b4c2;
+    --accent: #5aa9de; --accent-soft: #1a2d3e; --border: #29333e;
+  }
+  :root[data-theme="light"] {
+    --bg: #f5f8fb; --card-bg: #ffffff; --ink: #141a21; --ink-soft: #4b5866;
+    --accent: #1d5f8c; --accent-soft: #dbe9f4; --border: #dbe3eb;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-21</div>
+    <h1>RainClock</h1>
+    <p class="pitch">Radar-measured rainfall at each construction site starts the stormwater (SWPPP) inspection clock automatically, then turns field photos into a signed, permit-format inspection report before the 24-hour deadline runs out.</p>
+  </header>
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small and mid-size site-work contractors, home builders, and erosion-control subcontractors running 3–40 active disturbed-acre sites covered by the EPA Construction General Permit (CGP) or a state equivalent (e.g., Texas TXR150000, Georgia GAR100001, North Carolina NCG01). The buyer is the owner or compliance lead at a 10–150 person firm, plus the independent SWPPP inspectors who sell inspections to those firms.</p>
+  </div>
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Under most construction stormwater permits, a storm of 0.25 inches or more obligates an inspection within 24 hours (or the next business day), with corrective actions due within days after that. Nobody knows when 0.25" fell on a specific site: the nearest airport gauge is 15 miles away, storms are patchy, and superintendents are juggling a dozen jobs. Missed post-storm inspections are the single most common finding in stormwater enforcement, and Clean Water Act penalties can run into five figures per violation per day. Meanwhile, the inspections that do happen are clipboard forms re-typed into Word at night, photos sit in a superintendent's camera roll, and the "corrective action log" is a spreadsheet nobody updates. When a state inspector or a citizen-suit lawyer asks for records, firms scramble to reconstruct them, and they often can't prove whether a storm actually crossed the threshold.</p>
+  </div>
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Contractor drops a pin or uploads a site boundary for each active job, selects its permit (EPA CGP or one supported state permit), and picks the inspection schedule option the SWPPP commits to (e.g., weekly, or every 14 days plus after every 0.25" storm).</li>
+      <li>Every hour, RainClock pulls gridded radar-plus-gauge precipitation estimates (NOAA MRMS, about 1 km resolution) for the site's polygon and keeps a running 24-hour total, cross-checked against the nearest CoCoRaHS and ASOS gauges.</li>
+      <li>When a site crosses the trigger threshold, the assigned inspector gets an SMS and push alert with the exact deadline ("Inspection due by 2:00 PM Tue, Site 14 — 0.41 in. measured"). If the deadline gets close with no inspection logged, it escalates to the owner.</li>
+      <li>On site, the inspector walks a mobile checklist generated from that site's own SWPPP control list (silt fence, inlet protection, construction entrance, stockpiles, concrete washout) and takes a geotagged photo at each control point.</li>
+      <li>A vision model reviews each photo against its control type and flags likely deficiencies (silt fence undercut or overtopped, sediment past the inlet filter, tracking onto the street) as draft corrective actions. The inspector confirms or rejects each one with a single tap.</li>
+      <li>The system generates the signed inspection report in the permit's required fields, opens corrective-action tickets with permit-driven due dates, and files everything into an audit-ready binder per site. The binder includes the rainfall evidence for each trigger and for each storm that stayed below the threshold.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">NOAA MRMS radar QPE (public, gridded)</span>
+      <span class="badge">CoCoRaHS &amp; ASOS gauge data</span>
+      <span class="badge">EPA CGP + state permit field schemas</span>
+      <span class="badge">SWPPP PDF parsing (control list extraction)</span>
+      <span class="badge">Vision model for BMP photo triage</span>
+      <span class="badge">Twilio SMS / push alerts</span>
+      <span class="badge">Procore &amp; Google Drive export (later)</span>
+    </p>
+  </div>
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per active site per month, about $39 per site, with a $149/mo minimum. Sites stop billing automatically once a Notice of Termination is filed, which matches how contractors already budget stormwater as a per-job cost. A $499/mo inspector-firm tier covers independent SWPPP inspectors who serve many clients and adds white-labeled reports and client portals. A one-time $199 "records rescue" service rebuilds a past site's rainfall history and inspection gaps from archived MRMS data when a firm is facing an audit or a notice of violation.</p>
+  </div>
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Support the EPA CGP plus one high-volume state permit (Texas or Georgia), with rainfall triggers and deadline alerts in the first release. Use a static checklist built from manually entered SWPPP controls. Automatic SWPPP PDF parsing comes later. Photo AI starts in "suggest only" mode for the three most common deficiencies: silt fence failure, inlet protection failure, and sediment tracking. PDF report output and per-site binders are included. No turbidity sampling, no dewatering logs, and no state e-reporting submission in v1. Go to market through erosion-control supply distributors, state stormwater certification courses (inspector recertification classes), and builder associations, where one compliance lead's referral reaches whole regional networks.</p>
+  </div>
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing SWPPP tools are digital clipboards. They assume you already know an inspection is due. The real failure is earlier: nobody knows it rained 0.25" on this particular 6-acre lot. Public radar data at roughly 1 km resolution makes per-site rainfall measurement possible for almost nothing, but almost no one in construction knows the dataset exists. That turns RainClock from a forms app into an early-warning system, and it produces a second asset competitors lack: a timestamped rainfall record for every site, including proof of the storms that didn't trigger an inspection. In an enforcement dispute or a citizen suit, that evidence of non-obligation is often worth more than the inspection reports themselves, and it is what makes the product hard to cancel once a firm has had one close call.</p>
+  </div>
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
