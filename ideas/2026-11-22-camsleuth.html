@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-22 — CamSleuth</title>
+<style>
+  :root {
+    --bg: #fbf8f4;
+    --card-bg: #ffffff;
+    --ink: #1f1a15;
+    --ink-soft: #5c534a;
+    --accent: #8a4b12;
+    --accent-soft: #f6e6d4;
+    --border: #ebe1d6;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14110d;
+      --card-bg: #1c1813;
+      --ink: #f2ece5;
+      --ink-soft: #bfb2a4;
+      --accent: #e9a25c;
+      --accent-soft: #3a2614;
+      --border: #352d24;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14110d; --card-bg: #1c1813; --ink: #f2ece5; --ink-soft: #bfb2a4;
+    --accent: #e9a25c; --accent-soft: #3a2614; --border: #352d24;
+  }
+  :root[data-theme="light"] {
+    --bg: #fbf8f4; --card-bg: #ffffff; --ink: #1f1a15; --ink-soft: #5c534a;
+    --accent: #8a4b12; --accent-soft: #f6e6d4; --border: #ebe1d6;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-22</div>
+    <h1>CamSleuth</h1>
+    <p class="pitch">AI reads a small retail or medical tenant's commercial lease against the landlord's annual CAM reconciliation, finds the overcharges, and sends the audit-rights notice before the lease's review window closes.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small commercial tenants in NNN or modified-gross leases who receive an annual Common Area Maintenance (CAM) / operating-expense reconciliation: multi-unit franchisees (QSR, fitness, salons), dental and veterinary practices, urgent-care clinics, and independent retailers in strip centers and medical office buildings — typically paying $3–$15/sq ft in pass-through charges on 1,500–10,000 sq ft spaces.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Every spring, landlords send a reconciliation "true-up" bill — often $2K–$20K — that tenants pay because checking it means re-reading a 60-page lease and cross-referencing definitions of Operating Expenses, exclusions, caps on controllable expenses, management-fee percentages, gross-up clauses, and pro-rata share denominators. Errors are common and systematically favor the landlord: capital improvements passed through as repairs, management fees charged on top of excluded items, pro-rata shares calculated on leased rather than total GLA, cap violations, and expenses belonging to anchor tenants. Lease-audit firms do catch this, but they work on 30–50% contingency and only take tenants with large enough recoveries — national chains, not the 4-location franchisee. Worse, most leases give the tenant a short audit-or-dispute window (often 60–180 days after the statement), so by the time an owner thinks about it, the right has lapsed.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Tenant uploads the lease (plus amendments) and the landlord's reconciliation statement and expense backup, or forwards the landlord's email to a dedicated inbox address.</li>
+      <li>Document AI extracts the lease's expense rules into a structured "lease rulebook": OpEx definition, explicit exclusions, controllable-expense cap and base year, admin/management fee %, gross-up rule, pro-rata share formula and stated square footage, and the audit/dispute deadline.</li>
+      <li>A countdown starts immediately for the dispute window, with email/SMS reminders at 30/14/3 days.</li>
+      <li>The reconciliation line items are classified (repair vs. capital, controllable vs. uncontrollable, excluded categories) and a deterministic rules engine recomputes the tenant's share, producing a variance table: each flagged line, the lease clause it violates, and the dollar impact.</li>
+      <li>Pro-rata share is sanity-checked against the center's total GLA pulled from county assessor records and the landlord's prior-year statements, catching denominator shrinkage.</li>
+      <li>The tenant gets a plain-English findings report and a one-click, lease-cited letter that invokes audit rights or requests backup documentation, sent before the deadline; strong cases can be routed to a partner lease-audit CPA for a referral fee.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Document AI for lease &amp; reconciliation PDFs</span>
+      <span class="badge">Lease-clause extraction schema</span>
+      <span class="badge">Expense classification model (capital vs. repair)</span>
+      <span class="badge">Deterministic recomputation engine</span>
+      <span class="badge">County assessor / parcel GLA data</span>
+      <span class="badge">Email ingest inbox</span>
+      <span class="badge">QuickBooks / Xero (to pull past CAM payments)</span>
+      <span class="badge">Deadline alerts (email/SMS)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>$249 flat per lease-year review (includes the dispute letter), or $49/location/month for continuous monitoring across all leases with automatic review of every new statement. An optional success tier of 15% of recovered dollars applies only when the tenant uses the escalation/negotiation assist — far below the 30–50% audit firms charge, and available to tenants those firms ignore. Franchisor and dental-DSO channel plans priced per location.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>U.S. retail strip-center and medical-office NNN leases only (skip office full-service-gross leases, ground leases, and percentage-rent audits). Support the ten highest-frequency error types: cap violations, management fee on excluded items, capital-expense pass-through, pro-rata denominator, gross-up misuse, insurance/tax double counting, anchor-tenant carve-outs, late-statement waivers, base-year errors, and arithmetic errors. Manual upload plus email forwarding; a human reviewer QA's every report for the first 100 customers to build a labeled dataset. Go to market through franchisee associations, dental practice-management consultants, and tenant-rep brokers who want a value-add for clients at renewal time.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The money is already gone — the tenant paid it — so nobody frames this as a software problem; it lives in the "hire an auditor someday" bucket that small tenants never reach. But the core of the job is mechanical: once a lease's expense clauses are turned into structured rules, the recomputation is deterministic math, and AI's role is narrow and verifiable (extraction and line-item classification), not open-ended chat. The lease's dispute deadline creates an annual, calendar-driven purchase trigger with a dollar number attached, and the product compounds: every lease reviewed sharpens the classification model, a tenant's prior-year findings make the next year's review sharper, and aggregated anonymized data reveals which landlords and property managers overcharge most — a dataset tenant-rep brokers would pay for at lease negotiation.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
