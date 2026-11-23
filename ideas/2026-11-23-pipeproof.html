@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-23 — PipeProof</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-23</div>
+    <h1>PipeProof</h1>
+    <p class="pitch">Lets tiny water systems turn thousands of "unknown" service lines into verified, regulator-ready records by having residents snap a 30-second photo of the pipe at their meter, which vision AI classifies and files into the federal lead-line inventory automatically.</p>
+  </header>
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small US community water systems serving roughly 500–10,000 people — rural water districts, small-town public works departments, mobile-home-park and HOA-owned systems — typically run by one or two certified operators and a part-time clerk with no GIS staff. Secondary buyers: the small engineering firms and state rural-water associations that do compliance work for dozens of these systems at once.</p>
+  </div>
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Under the EPA Lead and Copper Rule Improvements (LCRI), every community water system must maintain a service-line inventory that classifies each line — including the customer-owned side and lead connectors — as lead, galvanized-requiring-replacement, non-lead, or "lead status unknown," with the baseline inventory and a replacement plan due by November 1, 2027 and roughly 10% of lead lines replaced per year after that. Small systems filed their initial 2024 inventories with a huge share of lines marked "unknown" because the records are paper tap cards or nothing at all, and every unknown counts as a line they may have to dig up, notify residents about every year, and fund replacement for. Excavating to check a line costs hundreds to thousands of dollars; a single operator cannot visit 3,000 meter pits and basements. The enterprise tools built for this are priced and designed for big city utilities with GIS teams, so small systems are stuck with spreadsheets, a looming deadline, and state primacy agencies asking for evidence they don't have.</p>
+  </div>
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Operator uploads the existing inventory spreadsheet (the one already filed with the state) plus any billing/address export; PipeProof normalizes addresses and shows the "unknown" count as the headline number to shrink.</li>
+      <li>The system generates a unique QR code and short link per address and sends it as a bill insert, postcard, door hanger or SMS: "Help us confirm your pipe is safe — take a photo where the water line enters your home."</li>
+      <li>Residents open a guided mobile web page (no app install) that walks them through finding the line, doing a coin-scratch test and a magnet test, and taking 2–3 photos; the page checks image quality live and asks for a retake if the shot is blurry or too dark.</li>
+      <li>A vision model classifies the visible material (copper, PEX/plastic, galvanized, likely lead) with a confidence score and pulls in supporting signals — year built from county assessor data, neighboring verified lines, tap-card dates — to assign the suggested LCRI category.</li>
+      <li>Low-confidence or "likely lead" submissions go to a one-click operator review queue; approved records update the inventory with the photo and method as documented evidence.</li>
+      <li>PipeProof exports the inventory in the state primacy agency's template, drafts the required resident notification letters for lead/GRR/unknown lines, and produces a dig-priority list (where field verification will eliminate the most unknowns per dollar) for the replacement plan.</li>
+    </ol>
+  </div>
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Existing inventory CSV/XLSX import</span>
+      <span class="badge">Utility billing exports (CSV first; later Caselle, Tyler Incode, Springbrook)</span>
+      <span class="badge">County assessor parcel data (year built)</span>
+      <span class="badge">State primacy agency inventory templates</span>
+      <span class="badge">Vision model fine-tuned on service-line photos</span>
+      <span class="badge">Twilio SMS + print-mail API (e.g. Lob) for outreach</span>
+      <span class="badge">Address geocoding</span>
+    </p>
+  </div>
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Annual subscription tiered by service connections, so it fits a small-system budget line and is easy to put in a grant application: about $1,800/yr under 1,000 connections, $3,600/yr to 3,300, and $6,000–$9,000/yr to 10,000. Printed postcards and door hangers are passed through at cost plus a margin. Engineering firms and rural-water associations get a multi-system license at $500–$1,500/mo. Sales should lead with the money: one avoided exploratory excavation (often $1,000+) pays for a year, and the documentation supports applications for state revolving fund lead-service-line money.</p>
+  </div>
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>One or two states whose primacy agency templates are public and whose rural water association will co-market. Spreadsheet import, QR/SMS outreach, the guided resident photo flow, AI classification with operator review, state-template export, and notification-letter drafts. Leave out GIS maps, work-order management, contractor bidding and billing-system integrations. Bootstrap the vision model with photos from a handful of pilot systems, labeled by their operators, and keep the rules engine configurable, since EPA and the states keep revising LCRI details and deadlines.</p>
+  </div>
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Lead-line inventory software already exists, so the space looks taken. But those tools are sold to large utilities with GIS departments, and they treat the field crew as the main source of data. The insight here is that the cheapest sensor for a small system is the resident's phone: residents have a strong reason to respond ("is my water safe?"), and the AI's job is narrow and checkable — classify one photo of one pipe and attach it as evidence — not a chatbot. Each verified photo removes an "unknown" from the inventory, along with a recurring notification duty and a possible dig, so the product's value can be counted in unknowns removed and excavations avoided. Over time the photo-plus-outcome dataset (photo, then what the excavation actually found) becomes a moat that improves accuracy and makes PipeProof a credible verification method for state regulators. Buyers are dull, numerous and deadline-bound: about 50,000 US community water systems, most of them small, all facing the same federal date.</p>
+  </div>
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
