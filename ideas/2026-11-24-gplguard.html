@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-24 — GPLGuard</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-24</div>
+    <h1>GPLGuard</h1>
+    <p class="pitch">AI audits an independent funeral home's General Price List, website, and signed arrangement paperwork against the FTC Funeral Rule, and fixes the gaps before an undercover FTC test-shopper or a grieving family's complaint finds them.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent, family-owned funeral homes and small regional groups (1–8 locations, roughly 50–600 calls a year) in the U.S. They have no compliance staff, and the funeral director who meets families is often the same person who updates the price list in Word once a year.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>The FTC Funeral Rule is very specific. The General Price List (GPL) has to contain certain items in a set order with exact required disclosure wording. Casket and outer-burial-container price lists have to be shown at specific moments. The basic services fee has to be presented correctly. Package pricing can't hide itemized prices. Every family needs a Statement of Funeral Goods and Services Selected. The FTC runs periodic undercover test-shopping sweeps, and each violation can cost more than $50,000 in civil penalties. Homes caught in a sweep are usually pushed into a multi-year compliance program, which is expensive and embarrassing. On top of that, states are adding rules of their own (California, for example, requires the GPL to be posted online), and the FTC has been reviewing whether to require online price disclosure everywhere. Most homes can't afford an attorney's review every time they change a price, so small mistakes build up quietly: a missing disclosure line, an embalming statement in the wrong place, a package with no itemized option, an outdated PDF on the website.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The director uploads the current GPL, the casket and outer-burial-container price lists, and 3–5 recently signed (redacted) Statements of Goods and Services. They also enter the funeral home's website URL.</li>
+      <li>Document AI pulls every line item, price, and disclosure block from the uploads and maps each one to a structured model of the Funeral Rule's required items and wording.</li>
+      <li>A rules engine checks that model clause by clause: are the required items and disclosures present and worded correctly, is the basic-services-fee language right, are cash-advance items handled properly, and is there an itemized alternative to every package? A state overlay (starting with CA, TX, FL, NY, IL) adds state-specific requirements.</li>
+      <li>A crawler compares the website's published prices and any posted GPL PDF against the uploaded GPL. It flags prices that don't match, stale versions, and missing postings that the state requires.</li>
+      <li>Signed arrangement statements are checked for patterns that test-shoppers and complaints catch, such as embalming charged without a recorded reason or approval, or required items left out.</li>
+      <li>The output is a prioritized findings report with rule citations, plus a corrected GPL the home can print, with its own prices kept and the language and ordering fixed. Every later price change is re-checked before it goes live.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FTC Funeral Rule (16 CFR Part 453) text &amp; FTC compliance guide</span>
+      <span class="badge">State funeral board regulations (5-state overlay for v1)</span>
+      <span class="badge">Document AI for PDF/scan parsing</span>
+      <span class="badge">Website crawler &amp; diff monitor</span>
+      <span class="badge">Later: case-management software exports (e.g., Osiris, Passare, FrontRunner, SRS)</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>A one-time $349 "Sweep-Ready Audit" for each location. This is the entry product and is easy to justify against a five-figure penalty. After that, a $59/month subscription per location covers continuous website monitoring, re-checks of every price-list revision, alerts when rules change at the state or federal level, and a quarterly spot-check of signed statements. A multi-location tier is around $149/month for up to 5 locations.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Version 1 covers the federal Funeral Rule plus five large states. It accepts manual uploads only and includes the website price-mismatch crawler. It produces a findings report and a corrected GPL template. Integrations with case-management software, preneed contract review, and cemetery/crematory-only operations come later. Sales go through state funeral directors' associations (which already run Funeral Rule CE seminars and could resell an audit as a member benefit), mortuary-science alumni networks, and funeral-industry Facebook groups. The first trust signal is a free "10-point GPL self-check" lead magnet.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Funeral software vendors sell case management and online arrangement tools, but none of them treat the Funeral Rule as a continuous, line-level compliance check. They assume the funeral home's price list is already correct. The regulation is narrow and written in exact terms, which suits deterministic rule checking backed by document AI far better than an open-ended chatbot, so a small team can deliver reliable results. The timing also helps. Price-transparency pressure (state online-posting laws, the FTC's rule review, consumer price-comparison sites) is turning a once-a-decade concern into an ongoing risk on a public website. And the buyers are unusually loyal: independent funeral homes are multi-generational businesses that stay with vendors for decades and refer each other through tight state associations, so one association partnership can bring in a whole state.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
