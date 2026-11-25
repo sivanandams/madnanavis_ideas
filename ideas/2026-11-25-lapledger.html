@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-25 — LapLedger</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-25</div>
+    <h1>LapLedger</h1>
+    <p class="pitch">Field-photo AI that turns a commercial roofing crew's daily phone pictures into a manufacturer-ready warranty submittal, so contractors stop losing retainage and approved-installer status to missing seam probes, fastener counts and pre-install notices.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Small-to-mid commercial roofing contractors (10–80 field staff, $3M–$30M revenue) who install single-ply (TPO, PVC, EPDM) and modified-bitumen systems under manufacturer system warranties (GAF, Carlisle, Holcim/Elevate, Johns Manville, Sika Sarnafil). Buyer is the owner or operations/project manager; daily users are foremen and the office warranty/closeout coordinator.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>On commercial jobs the building owner's spec almost always requires a 15–30 year manufacturer NDL (no-dollar-limit) warranty, and the general contractor holds 5–10% retainage until that warranty is issued. To get it, the roofer must file a pre-installation notice on time, follow the manufacturer's exact fastening pattern for the wind zone, probe and document every heat-welded seam, log daily weather and adhesive temperatures, and pass a manufacturer technical inspection. That evidence lives in foremen's camera rolls, paper daily logs and scattered texts. When the inspector flags a missing item (no photo of the corner enhancement fastening, seam-probe log gaps, the wrong membrane lot recorded), the warranty slips by weeks, a crew goes back to the roof, and retainage on a $600k job ($30k–$60k) sits unpaid. Repeated misses can cost the contractor its approved-installer tier, and with it access to the best bids. Nobody on the team owns closeout paperwork full-time, so it gets done badly and late.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>The PM creates a job: manufacturer, roof system, warranty length, wind-uplift rating and roof size. LapLedger loads that manufacturer's requirement checklist for the system, covering pre-install notice deadlines, required photo shots, fastener density by roof zone (field, perimeter, corners) and inspection triggers.</li>
+      <li>LapLedger immediately calculates and calendars the pre-installation notice deadline and drafts the notice from job data for one-click submission to the manufacturer's portal or rep email.</li>
+      <li>Foremen use a lightweight mobile capture flow, not a full app: each day a guided shot list ("NW corner fastening, seam probe section 4, drain detail #2") is texted to them. Photos are auto-tagged with GPS, time and the roof-zone grid.</li>
+      <li>Vision AI checks every photo against what it was meant to show. It counts plates per board against the zone's required density, detects un-probed or fish-mouthed seams, reads membrane roll labels for lot numbers, and flags blurry or mislabeled shots while the crew is still on the roof.</li>
+      <li>Daily weather is pulled automatically for the job address and cross-checked against adhesive and membrane temperature limits; out-of-range days are flagged with a note to document mitigation.</li>
+      <li>At substantial completion, LapLedger assembles a submittal packet in the manufacturer's expected order (notice, daily logs, photo index by roof zone, material lot list, punch-list sign-offs) and shows a readiness score before the technical inspection is requested.</li>
+      <li>After inspection, punch items are logged against the roof grid, assigned to the foreman with re-shoot requirements, and the warranty issuance date and retainage release are tracked to closure.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Manufacturer warranty &amp; installation spec manuals (parsed into checklists)</span>
+      <span class="badge">FM Global / ASCE 7 wind-zone fastening tables</span>
+      <span class="badge">Vision models for fastener counting, seam &amp; label reading</span>
+      <span class="badge">Historical + daily weather API (NOAA / Open-Meteo)</span>
+      <span class="badge">SMS capture links (Twilio) with photo EXIF/GPS</span>
+      <span class="badge">Roof plan PDF upload for zone grid overlay</span>
+      <span class="badge">Later: Procore, Buildertrend, AccuLynx, CompanyCam import</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-active-job pricing that tracks the contractor's revenue: $149 per warranted job up to 50,000 sq ft and $299 for larger jobs, or a $499/mo plan covering 6 concurrent jobs, then $59 per extra job. The ROI pitch is simple: one avoided return trip (~$2,500 in crew and lift costs) or two weeks' faster release of $40k in retainage pays for a year. Optional add-on: $99 per job for a human-reviewed "inspection-ready" packet check before the manufacturer rep visits.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Two manufacturers (GAF and Carlisle, the largest commercial single-ply share) and TPO/EPDM mechanically attached and fully adhered systems only. SMS-link photo capture as a web app (no native app), fastener-count and seam-probe photo checks, weather cross-checks, a pre-install notice calculator and a PDF submittal packet generator. No direct manufacturer portal integration yet; the packet is downloaded and uploaded by the coordinator. Sell through regional roofing contractor associations, manufacturer territory reps (who also hate incomplete submittals), and roofing-industry Facebook and Reddit groups, starting with 10 design-partner contractors in high-wind states (FL, TX, Carolinas).</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Construction photo tools like CompanyCam are crowded, but they store photos; they don't know what a given manufacturer's warranty requires or whether a photo actually proves it. The value isn't "AI on the jobsite" in general. It sits in one painful document gate with direct cash attached: retainage that can't be released until a manufacturer issues a warranty. That makes ROI unusually easy to prove, unlike generic productivity software. The manufacturer requirement library is boring, manual and compounding work that becomes the moat, and the fastener-counting vision task is narrow enough to be very accurate with modest training data. There's also a hidden second buyer: manufacturers' technical services teams and territory reps spend huge amounts of time rejecting bad submittals, so a standardized, pre-validated packet format could later be sold or co-marketed to them, turning a contractor tool into a channel the manufacturers themselves promote to their approved-installer networks.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
