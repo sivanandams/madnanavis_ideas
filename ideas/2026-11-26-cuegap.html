@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-26 — CueGap</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-26</div>
+    <h1>CueGap</h1>
+    <p class="pitch">Matches a TV composer's actual on-screen music usage against the cue sheets filed with their PRO, finds the episodes, cues, and territories where royalties went missing, and generates the correction filings to claw them back.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Working media composers and small production-music libraries (1–20 writers) who score or license into unscripted/reality TV, documentary series, and streaming originals — people with hundreds to thousands of cue placements per year, earning $30K–$500K annually in performance royalties through ASCAP, BMI, SESAC, SOCAN, or PRS, and who have no back-office staff to audit them.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Performance royalties for TV music depend entirely on cue sheets — spreadsheets that the production company (not the composer) is supposed to file, listing every cue, its duration, and its usage type (background, theme, visual vocal). In unscripted TV these are routinely late, incomplete, or wrong: a 45-second background cue logged as 4 seconds, a theme miscoded as background (a several-fold rate difference), a show's 22 episodes filed for only 14, or international airings never registered with foreign societies. The composer only sees the result 6–9 months later as a dense PRO statement, and nobody connects "what aired" to "what was paid." Industry folklore puts leakage at 10–30% of what composers are owed, and PRO claim windows are finite — so every month unaudited is money that quietly expires.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Composer uploads (or forwards by email) their PRO royalty statements (CSV/PDF exports from ASCAP/BMI member portals) and connects a folder of delivered cue stems or their library's track list.</li>
+      <li>CueGap pulls the broadcast and streaming schedule for every series they've worked on (episode counts, air dates, networks, territories) and builds an "expected performances" ledger per series.</li>
+      <li>For episodes the composer can access (screener links, recorded airings, or streaming), audio fingerprinting detects which of their cues actually play, for how long, and whether they sit under dialog (background) or open/close the show (theme).</li>
+      <li>A reconciliation engine diffs three sources — what aired, what the cue sheet claims, and what the PRO paid — and flags each gap with a dollar estimate: missing episodes, short-logged durations, wrong usage codes, unregistered territories, and wrong writer splits.</li>
+      <li>For each flagged gap, it generates the evidence packet (timestamped detection log, schedule data) and a pre-filled correction: a cue-sheet amendment request to the production company's music supervisor and a PRO inquiry/claim in the society's required format.</li>
+      <li>A tracker follows each claim to resolution and shows "recovered to date," which becomes the product's renewal argument.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">PRO statement parsers (ASCAP, BMI, SESAC, SOCAN, PRS formats)</span>
+      <span class="badge">Audio fingerprinting (Chromaprint / open-source matcher on composer's own stems)</span>
+      <span class="badge">TV schedule &amp; episode metadata (TVmaze, TMDB, Gracenote-style listings)</span>
+      <span class="badge">Streaming availability by territory (JustWatch-style data)</span>
+      <span class="badge">LLM document AI for cue-sheet and statement extraction</span>
+      <span class="badge">PRO rate tables by usage type &amp; daypart</span>
+      <span class="badge">Email/Gmail ingestion for statements</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Hybrid: a $49/mo "Watch" subscription (statement ingestion, schedule monitoring, missing-episode and late-filing alerts) plus a 15% contingency fee on royalties recovered through CueGap-generated claims, capped per claim. Libraries pay $199–$499/mo by catalog size. Contingency removes the "is this worth it?" objection — the composer only pays meaningfully when money comes back.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>US-only, ASCAP and BMI statements only, US linear cable plus the top streaming platforms. Skip fingerprinting live broadcasts in v1: composers upload episode files or screeners they already receive, and the matcher runs only against their own stems (a small, closed reference set, so accuracy is high and licensing is a non-issue). Ship the three-way diff report and the missing-episode/usage-code flags first; claim filing is generated documents the composer sends themselves. Go to market through composer communities (Society of Composers &amp; Lyricists, production-music forums, Facebook groups for library composers) with a free "one-statement audit" as the lead magnet.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>Existing music-monitoring services (broadcast fingerprinting networks) sell detection to large publishers and charge for coverage; existing royalty tools serve songwriters and streaming, not TV cue sheets. Nobody sits at the specific junction of <em>cue sheet vs. aired reality vs. PRO payout</em> for the long tail of composers — the people for whom 20% leakage is a mortgage payment. The trick that makes it feasible for a solo founder is inverting the fingerprinting problem: instead of identifying any song in the world on any broadcast (expensive, data-licensing heavy), you match a known episode against one composer's few hundred stems, which open-source tools handle well. The AI is in the boring places — parsing wildly inconsistent statement formats, classifying background vs. theme usage, and drafting society-specific claims — not in a chat box. And contingency pricing on found money means the product sells itself with a single recovered statement.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
