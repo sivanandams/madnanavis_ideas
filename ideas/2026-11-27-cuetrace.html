@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-27 — CueTrace</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #1f6b45;
+    --accent-soft: #dcefe2;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #4fbd85;
+      --accent-soft: #1c3327;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #4fbd85; --accent-soft: #1c3327; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #1f6b45; --accent-soft: #dcefe2; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-27</div>
+    <h1>CueTrace</h1>
+    <p class="pitch">Drop in a locked edit and the composer's stems; CueTrace fingerprints every music cue in the final mix and files a PRO-ready cue sheet, so indie composers stop losing the performance royalties they already earned.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Independent film, documentary, and unscripted-TV composers (and the small post-production houses and music supervisors who hire them) whose work airs on broadcast, cable, streaming, festivals, or monetized YouTube — typically productions with budgets from $50K to $3M that have no studio music-clearance department.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>Performance-rights organizations (ASCAP, BMI, SESAC, PRS, SOCAN and others) pay composers for broadcast and streaming use of their music only when a cue sheet exists: a precise list of every cue with title, start/end timecode, duration, usage type (background, visual vocal, theme), writers, publishers, and splits. Big studios have staff or enterprise vendors for this. On indie projects nobody owns it — the editor is gone, the producer doesn't know it's required, and the composer is left reconstructing timings by scrubbing a screener with a stopwatch, often months after delivery. Cue sheets get filed late, wrong (cues re-cut or looped in the final mix no longer match the composer's original lengths), or never. The result is quiet, compounding loss: a single documentary that airs internationally for years can be worth thousands in royalties that simply never get claimed, and distributors increasingly reject deliverables packages that are missing a cue sheet.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Composer creates a project and uploads (or links via Frame.io/Dropbox) the final locked picture or mixed audio, plus a folder of their delivered cue stems/bounces.</li>
+      <li>Audio fingerprinting matches each stem against the final mix, detecting every occurrence — including cues that the editor trimmed, looped, layered under dialogue, or reused in a different scene — and records precise in/out timecodes and durations.</li>
+      <li>An editor's EDL/AAF/XML (optional) is parsed to cross-check timings and catch licensed library or third-party tracks the composer didn't write, which are flagged separately for the producer.</li>
+      <li>A classifier proposes the usage type for each occurrence (background vs. visual vocal vs. main/end title theme) using placement cues — opening/closing position, on-screen performance, dialogue presence — which the composer confirms with one click.</li>
+      <li>Writer, publisher, PRO affiliation, IPI numbers, and splits are filled from the composer's saved profile and collaborator directory.</li>
+      <li>CueTrace exports a cue sheet in the formats PROs and distributors accept (PDF, Excel templates, and structured files for upload to cue-sheet portals), plus a reminder schedule to verify that registrations appear on royalty statements after air dates.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">Audio fingerprinting (open-source Chromaprint / custom landmark hashing)</span>
+      <span class="badge">EDL / AAF / FCPXML / Premiere XML parsers</span>
+      <span class="badge">Frame.io, Dropbox, Google Drive file import</span>
+      <span class="badge">PRO cue-sheet templates &amp; portal export formats</span>
+      <span class="badge">Composer profile: IPI/CAE numbers, publishers, splits</span>
+      <span class="badge">Air-date tracking &amp; royalty-statement reminder engine</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Per-project pricing for occasional users: $49 for a feature or episode, with series packs (10 episodes for $299). A $29/mo "Working Composer" plan includes unlimited cue sheets, saved collaborator splits, and the air-date tracker. A $149/mo studio tier for post houses and music supervisors adds multi-composer projects and deliverables-package exports for distributors.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>Audio-only fingerprint matching between uploaded stems and one final mix file, timecode output, a confirm-and-edit review table, and PDF/Excel cue sheet export in the ASCAP/BMI-accepted layout. Skip EDL parsing, library-track detection, and portal-specific structured uploads until v1.1. English-language PROs (US, UK, Canada) only. Go to market through composer communities (film-scoring forums, subreddits, Discord groups), film-scoring programs, the Society of Composers &amp; Lyricists, and festival composer panels — where "I've never filed a cue sheet for that doc" is a common confession.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>The hard data problem — "where exactly does each of my cues appear in the finished picture, at what length, and how was it used?" — is a precise signal-matching task, not a language task, and the composer is the only party who already holds the reference audio needed to solve it. That inverts the usual workflow: instead of waiting on a busy editor for an EDL that may not reflect the final mix, the person who gets paid can produce the document themselves in minutes. Enterprise cue-sheet vendors sell top-down to studios and broadcasters; nobody sells bottom-up to the thousands of independent composers for whom one forgotten cue sheet is real money. And because royalties keep paying for years after air, the ROI pitch is unusually concrete: the product's price is often recovered by a single international broadcast.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
