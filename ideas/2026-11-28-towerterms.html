@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SaaS Idea — 2026-11-28 — TowerTerms</title>
+<style>
+  :root {
+    --bg: #f7faf8;
+    --card-bg: #ffffff;
+    --ink: #171d19;
+    --ink-soft: #4d5750;
+    --accent: #2d4f8a;
+    --accent-soft: #dde6f4;
+    --border: #dde6e0;
+    --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10140f;
+      --card-bg: #171d17;
+      --ink: #e9f1ec;
+      --ink-soft: #a9b8ae;
+      --accent: #7ea6e8;
+      --accent-soft: #1c2840;
+      --border: #2b332c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #10140f; --card-bg: #171d17; --ink: #e9f1ec; --ink-soft: #a9b8ae;
+    --accent: #7ea6e8; --accent-soft: #1c2840; --border: #2b332c;
+  }
+  :root[data-theme="light"] {
+    --bg: #f7faf8; --card-bg: #ffffff; --ink: #171d19; --ink-soft: #4d5750;
+    --accent: #2d4f8a; --accent-soft: #dde6f4; --border: #dde6e0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 5rem;
+  }
+  header {
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  h1 {
+    font-size: 1.9rem;
+    margin: 0 0 0.4rem;
+    letter-spacing: -0.01em;
+  }
+  .pitch {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.1rem;
+  }
+  .card h2 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin: 0 0 0.7rem;
+    font-family: var(--mono);
+  }
+  .card p, .card li { margin: 0; color: var(--ink); }
+  .card ol, .card ul { margin: 0; padding-left: 1.2rem; }
+  .card li + li { margin-top: 0.5rem; }
+  .badge {
+    display: inline-block;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    margin-right: 0.4rem;
+  }
+  .nonobvious {
+    border-color: var(--accent);
+  }
+  footer {
+    margin-top: 2.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 2rem 1rem 3rem; }
+    h1 { font-size: 1.55rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">SaaS Idea Log — 2026-11-28</div>
+    <h1>TowerTerms</h1>
+    <p class="pitch">Landowners with a cell tower on their property upload the ground lease and a buyout offer; TowerTerms reconstructs what the lease is really worth and tells them whether to sell, counter, or hold — before the aggregator's 30-day "offer expires" deadline.</p>
+  </header>
+
+  <div class="card">
+    <h2>Target Customer</h2>
+    <p>Farmers, ranchers, churches, small businesses, family trusts, and rural landowners in the US who lease a patch of land (or a rooftop) to a tower company — American Tower, Crown Castle, SBA, Vertical Bridge — and who receive unsolicited lump-sum or perpetual-easement buyout offers from lease aggregators. Secondary buyers: estate attorneys, small CPA firms, and farm-land brokers who handle these assets for clients a few times a year.</p>
+  </div>
+
+  <div class="card">
+    <h2>Pain Point</h2>
+    <p>There are well over 100,000 macro tower sites in the US, and most sit on land owned by someone who signed a 25-year lease decades ago and hasn't read it since. Those owners are a target market for aggregators who mail and call constantly with offers like "$180,000 cash today for your lease" — priced at a steep discount to the lease's real present value, and often bundled with a perpetual easement that gives away future upside (new carrier collocations, 5G equipment, revenue-share clauses) for nothing. Meanwhile the tower company itself may be pressing for a lease amendment that extends the term, cuts the escalator, or waives revenue share. The landowner can't tell which clauses matter, what the escalator compounds to, how many carriers are actually on the tower, or how likely the site is to be decommissioned. The specialist lease consultants who do know charge contingency fees, are hard to find, and are often conflicted. So landowners either sell blind or ignore a real decision about a five- to seven-figure asset.</p>
+  </div>
+
+  <div class="card">
+    <h2>MVP Workflow</h2>
+    <ol>
+      <li>Owner uploads the ground lease (often a scanned 1990s PDF plus amendments) and, optionally, the buyout or amendment offer letter; they enter the site address.</li>
+      <li>Document AI extracts the economically material terms into a structured lease abstract: current rent, escalator type and rate, renewal terms and who controls them, remaining term, revenue-share / collocation clauses, assignment rights, right-of-first-refusal, termination-for-convenience rights, and removal/restoration obligations.</li>
+      <li>The site is matched to the FCC Antenna Structure Registration and public tower-company site lists to identify the tower owner and estimate the number of carriers on the structure from licensing data.</li>
+      <li>A valuation engine projects rent cash flows across all renewal terms, applies a site-specific risk discount (carrier count, termination rights, rural vs. urban, carrier consolidation exposure), and outputs a fair value range for (a) the lease stream, (b) a term-limited easement, and (c) a perpetual easement.</li>
+      <li>The report shows the offer's implied discount in plain language ("this offer equals roughly 7 years of rent for 40+ years of payments"), flags clauses the buyer is quietly acquiring, and generates a counter-offer letter or a "hold" recommendation.</li>
+      <li>If the tower company is proposing an amendment, a redline view shows exactly what is changing and its dollar impact over the remaining term.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2>Data &amp; Integrations Needed</h2>
+    <p>
+      <span class="badge">FCC Antenna Structure Registration (ASR) database</span>
+      <span class="badge">FCC ULS license data for carrier estimation</span>
+      <span class="badge">County recorder memoranda of lease (where public)</span>
+      <span class="badge">Document AI / OCR for scanned leases</span>
+      <span class="badge">Discount-rate &amp; comparable-buyout dataset (crowdsourced from users)</span>
+      <span class="badge">Stripe for per-report checkout</span>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>Pricing Model</h2>
+    <p>Flat $349 per site for the lease abstract + valuation + offer analysis, bought at the moment an offer arrives. $149 add-on for a counter-offer letter and amendment redline. A $1,200/yr professional plan for estate attorneys, CPAs, and land brokers covering up to 15 sites. Longer term: an optional, disclosed referral marketplace that runs competitive bids from multiple lease buyers for owners who do want to sell — earning a 1–2% fee while still guaranteeing a better price than a single unsolicited offer.</p>
+  </div>
+
+  <div class="card">
+    <h2>First Version Scope</h2>
+    <p>US macro ground leases only (skip rooftops, DAS, and small cells). Support the four largest tower companies' common lease templates first, since a handful of form leases cover most sites. Ship the lease abstract and valuation report; the counter-offer letter and amendment redline can follow once valuations are calibrated against a few dozen real closed buyouts. Manual upload, no account integrations. Go to market via SEO on the exact phrases owners search when an offer lands ("cell tower lease buyout offer", "is my cell tower lease worth selling"), farm bureau newsletters, and estate-planning attorneys.</p>
+  </div>
+
+  <div class="card nonobvious">
+    <h2>What Makes It Non-Obvious</h2>
+    <p>This is a hidden asset class owned almost entirely by non-experts, with a sophisticated, well-funded buy side and essentially no affordable sell-side tooling — a classic information asymmetry that software can close. The AI isn't a chatbot; it's doing the tedious, high-value parts: reading a 40-page scanned lease to find the one revenue-share clause, and joining it with public FCC data the owner has never heard of. The purchase trigger is built in — an aggressive offer letter with an expiration date — and the willingness to pay is high because a single report routinely changes a six-figure decision. Every report also adds a data point (offer vs. fair value by region and tower owner) that compounds into a proprietary pricing dataset no one else has, which later supports the marketplace business.</p>
+  </div>
+
+  <footer>Generated as part of a recurring solo-founder idea-generation routine.</footer>
+</div>
+</body>
+</html>
